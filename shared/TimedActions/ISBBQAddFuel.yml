@@ -1,0 +1,46 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBBQAddFuel:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: fireplace
+                type: IsoBarbecue
+              - name: item
+                type: InventoryItem
+              - name: fuelAmt
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISBBQAddFuel"'
+        fields:
+          item:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          fireplace:
+            type: IsoBarbecue
+          fuelAmt:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

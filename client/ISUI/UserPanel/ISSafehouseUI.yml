@@ -1,0 +1,149 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSafehouseUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: safehouse
+                type: SafeHouse
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISSafehouseUI"'
+          messages: {}
+          inviteDialogs:
+            type: table<table, ISModalDialog>
+          instance:
+            type: ISSafehouseUI
+            nullable: true
+        fields:
+          no:
+            type: ISButton
+          title:
+            type: ISLabel
+          changeTitle:
+            type: ISButton
+          owner:
+            type: ISLabel
+          pos:
+            type: ISLabel
+          dateCreated:
+            type: ISLabel
+          location:
+            type: ISLabel
+          points:
+            type: ISLabel
+          releaseSafehouse:
+            type: ISButton
+          changeOwnership:
+            type: ISButton
+          refreshPlayerList:
+            type: ISButton
+          playerList:
+            type: ISScrollingListBox
+          removePlayer:
+            type: ISButton
+          quitSafehouse:
+            type: ISButton
+          addPlayer:
+            type: ISButton
+          respawn:
+            type: ISTickBox
+          selectedPlayer:
+            type: string
+            nullable: true
+          updateTick:
+            type: number
+          addPlayerUI:
+            type: ISSafehouseAddPlayerUI
+          player:
+            type: IsoPlayer
+          safehouse:
+            type: SafeHouse
+          updateTickMax:
+            type: number
+          buttonBorderColor:
+            type: umbrella.RGBA
+        methods:
+          - name: initialise
+          - name: onClickRespawn
+            parameters:
+              - name: clickedOption
+                type: integer
+              - name: enabled
+                type: boolean
+          - name: populateList
+          - name: drawPlayers
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: render
+          - name: prerender
+          - name: updatePlayerList
+          - name: updateButtons
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: close
+          - name: onChangeTitle
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onQuitSafehouse
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onRemovePlayerFromSafehouse
+            parameters:
+              - name: button
+                type: ISButton
+              - name: player
+                nullable: true
+          - name: onReleaseSafehouse
+            parameters:
+              - name: button
+                type: ISButton
+              - name: player
+                nullable: true
+          - name: isOwner
+            return:
+              - type: boolean
+          - name: hasPrivilegedAccessLevel
+            return:
+              - type: boolean
+          - name: onAnswerSafehouseInvite
+            parameters:
+              - name: button
+                type: ISButton
+        staticMethods:
+          - name: OnSafehousesChanged
+          - name: ReceiveSafehouseInvite
+            parameters:
+              - name: safehouse
+                type: string
+              - name: host
+                type: string
+          - name: AcceptedSafehouseInvite
+            parameters:
+              - name: safehouseName
+                type: string
+              - name: host
+                type: string

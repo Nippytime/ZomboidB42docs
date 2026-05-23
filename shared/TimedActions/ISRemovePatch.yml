@@ -1,0 +1,54 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRemovePatch:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: clothing
+                type: Clothing
+              - name: part
+                type: BloodBodyPartType
+              - name: needle
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISRemovePatch"'
+        fields:
+          patchExisted:
+            type: boolean
+          clothing:
+            type: Clothing
+          needle:
+            type: InventoryItem
+          sound:
+            type: integer
+          fabricType:
+            type: integer
+            nullable: true
+          part:
+            type: BloodBodyPartType
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: complete
+            return:
+              - type: boolean
+          - name: perform
+          - name: getDuration
+            return:
+              - type: number
+        staticMethods:
+          - name: chanceToGetPatchBack
+            parameters:
+              - name: character
+                type: IsoPlayer
+            return:
+              - type: number

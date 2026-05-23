@@ -1,0 +1,48 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSeedActionNew:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: seed
+                type: InventoryItem
+              - name: typeOfSeed
+                type: string
+              - name: plant
+                type: CPlantGlobalObject
+        staticFields:
+          Type:
+            defaultValue: '"ISSeedActionNew"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          character:
+            type: IsoPlayer
+          seed:
+            type: InventoryItem
+          typeOfSeed:
+            type: string
+          plant:
+            type: string
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

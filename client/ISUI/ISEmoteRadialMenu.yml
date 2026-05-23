@@ -1,0 +1,70 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISEmoteRadialMenu:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISEmoteRadialMenu"'
+          defaultMenu:
+            type: table<string, umbrella.ISEmoteRadialMenu.MenuItem>
+            nullable: true
+          variants:
+            type: table<string, string[]>
+            nullable: true
+          icons:
+            type: table<string, Texture>
+            nullable: true
+          menu:
+            type: table<string, umbrella.ISEmoteRadialMenu.MenuItem>
+            nullable: true
+        fields:
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+        methods:
+          - name: init
+          - name: display
+          - name: center
+          - name: fillMenu
+            parameters:
+              - name: submenu
+                type: string
+                nullable: true
+          - name: emote
+            parameters:
+              - name: emote
+                type: string
+          - name: configEmote
+        staticMethods:
+          - name: checkKey
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: boolean
+          - name: onKeyPressed
+            parameters:
+              - name: key
+                type: integer
+          - name: onKeyRepeat
+            parameters:
+              - name: key
+                type: integer
+          - name: onKeyReleased
+            parameters:
+              - name: key
+                type: integer
+      umbrella.ISEmoteRadialMenu.MenuItem:
+        fields:
+          name:
+            type: string
+          subMenu:
+            type: table<string, string>
+            nullable: true

@@ -1,0 +1,44 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDryMyself:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISDryMyself"'
+        fields:
+          tick:
+            type: number
+          item:
+            type: InventoryItem
+            nullable: true
+          started:
+            type: boolean
+          serverStartTime:
+            type: number
+          timer:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: serverStart
+          - name: serverStop
+          - name: syncItemUses
+          - name: getDuration
+            return:
+              - type: number

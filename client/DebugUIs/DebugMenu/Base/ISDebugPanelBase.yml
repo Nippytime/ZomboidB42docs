@@ -1,0 +1,83 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDebugPanelBase:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: title
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISDebugPanelBase"'
+          instance:
+            type: ISDebugPanelBase
+            nullable: true
+        fields:
+          panelInfo:
+            type: umbrella.ISDebugPanelBase.PanelInfo[]
+          panels:
+            type: table
+          variableColor:
+            type: umbrella.RGBA
+          buttonBorderColor:
+            type: umbrella.RGBA
+          zOffsetSmallFont:
+            type: number
+          panelTitle:
+            type: string
+        methods:
+          - name: initialise
+          - name: registerPanel
+            parameters:
+              - name: _buttonTitle
+                type: string
+              - name: _panelClass
+                type: ISUIElement
+              - name: _ignoreSorting
+                type: boolean
+                nullable: true
+          - name: createChildren
+          - name: onClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: onMadeActive
+          - name: update
+          - name: close
+        staticMethods:
+          - name: OnOpenPanel
+            parameters:
+              - name: _class
+                type: ISUIElement
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _w
+                type: number
+              - name: _h
+                type: number
+              - name: _title
+                type: string
+            return:
+              - type: ISUIElement
+                nullable: true
+      umbrella.ISDebugPanelBase.PanelInfo:
+        fields:
+          buttonTitle:
+            type: string
+          panelClass:
+            type: ISUIElement
+          ignoreSorting:
+            type: boolean
+            nullable: true

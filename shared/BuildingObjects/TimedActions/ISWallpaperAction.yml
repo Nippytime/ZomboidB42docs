@@ -1,0 +1,52 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWallpaperAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: thumpable
+                type: IsoThumpable
+              - name: wallpaper
+                type: InventoryItem
+              - name: papering
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISWallpaperAction"'
+        fields:
+          sound:
+            type: integer
+          sprite:
+            type: string
+          wallType:
+            type: string
+          isThump:
+            type: boolean
+          thumpable:
+            type: IsoThumpable
+          papering:
+            type: string
+          wallpaper:
+            type: InventoryItem
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: serverStart
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

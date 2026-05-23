@@ -1,0 +1,54 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBBQInfoWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: bbq
+                type: IsoBarbecue
+        staticFields:
+          Type:
+            defaultValue: '"ISBBQInfoWindow"'
+          windows:
+            type: table<IsoPlayer, ISBBQInfoWindow>
+        fields:
+          panel:
+            type: ISToolTip
+          object:
+            type: IsoBarbecue
+          spriteName:
+            type: string
+          fuelAmount:
+            type: number
+          isLit:
+            type: boolean
+          drawJoypadFocus:
+            type: boolean
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+        methods:
+          - name: createChildren
+          - name: update
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: setObject
+            parameters:
+              - name: bbq
+                type: IsoBarbecue
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: close

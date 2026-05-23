@@ -1,0 +1,62 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      CoopUserName:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"CoopUserName"'
+          instance:
+            type: CoopUserName
+            nullable: true
+        fields:
+          fontHgt:
+            type: number
+          entry:
+            type: ISTextEntryBox
+          backButton:
+            type: ISButton
+          nextButton:
+            type: ISButton
+        methods:
+          - name: createChildren
+          - name: shouldShow
+            return:
+              - type: boolean
+          - name: getUserName
+            return:
+              - type: string
+          - name: beforeShow
+          - name: clickBack
+          - name: clickNext
+          - name: prerender
+          - name: render
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData

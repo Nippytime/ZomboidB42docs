@@ -1,0 +1,63 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWoodenDoor:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: sprite
+                type: string
+              - name: northSprite
+                type: string
+              - name: openSprite
+                type: string
+              - name: openNorthSprite
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISWoodenDoor"'
+        fields:
+          sq:
+            type: IsoGridSquare
+          javaObject:
+            type: IsoThumpable
+            nullable: true
+          openSprite:
+            type: string
+          openNorthSprite:
+            type: string
+          name:
+            type: string
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: getHealth
+            return:
+              - type: number
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare

@@ -1,0 +1,62 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISComponentsListPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: entity
+                type: GameEntity
+              - name: entityConfig
+                type: XuiSkin.EntityUiStyle
+        staticFields:
+          Type:
+            defaultValue: '"ISComponentsListPanel"'
+        fields:
+          container:
+            type: ISPanel
+          panels:
+            type: umbrella.ISEntityUI.ComponentPanelInfo[]
+          scrollBarWidth:
+            type: number
+          player:
+            type: IsoPlayer
+          entity:
+            type: GameEntity
+          entityConfig:
+            type: XuiSkin.EntityUiStyle
+          maximumWidth:
+            type: number
+          maximumHeight:
+            type: number
+          padding:
+            type: number
+          margin:
+            type: number
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: OnCloseWindow

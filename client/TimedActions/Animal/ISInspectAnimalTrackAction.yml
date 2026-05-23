@@ -1,0 +1,32 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISInspectAnimalTrackAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: track
+                type: IsoAnimalTrack | InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISInspectAnimalTrackAction"'
+        fields:
+          track:
+            type: IsoAnimalTrack | InventoryItem
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: getDuration
+            return:
+              - type: number

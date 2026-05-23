@@ -1,0 +1,96 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISModalEditRole:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: role
+                type: Role
+        staticFields:
+          Type:
+            defaultValue: '"ISModalEditRole"'
+          instance:
+            type: ISModalEditRole
+            nullable: true
+        fields:
+          labelTitle:
+            type: ISLabel
+          valueDescriptionLabel:
+            type: ISLabel
+          valueDescription:
+            type: ISTextEntryBox
+          buttonColorLabel:
+            type: ISLabel
+          buttonColor:
+            type: ISButton
+          colorPicker:
+            type: ISColorPicker
+          tickBoxCapabilityLabel:
+            type: ISLabel
+          filter:
+            type: ISTextEntryBox
+          scrollPanel:
+            type: ISPanelJoypad
+          tickBoxCapability:
+            type: ISTickBox
+          close:
+            type: ISButton
+          save:
+            type: ISButton
+          color:
+            type: umbrella.RGBA
+          role:
+            type: Role
+          capabilities:
+            type: table<Capability, boolean>
+        methods:
+          - name: initialise
+          - name: onFilterTextChange
+          - name: doSearch
+          - name: onTickBox
+            parameters:
+              - name: index
+                type: integer
+              - name: selected
+                type: boolean
+          - name: onColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onPickedTagColor
+            parameters:
+              - name: color
+                type: umbrella.RGBA
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: populateList
+          - name: drawDatas
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onSelectRole
+            parameters:
+              - name: _item
+          - name: prerender
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: closeModal

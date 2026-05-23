@@ -1,0 +1,30 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWorldMenuElements:
+        staticMethods:
+          - name: ContextEntity
+            return:
+              - type: ISContextEntity
+      ISContextEntity:
+        extends: ISMenuElement
+        local: true
+        staticMethods:
+          - name: init
+          - name: createMenu
+            parameters:
+              - name: _data
+                type: umbrella.WorldMenuContextData
+          - name: openPanel
+            parameters:
+              - name: _data
+                type: umbrella.WorldMenuContextData
+              - name: _entity
+                type: IsoObject
+          - name: buildTest
+            parameters:
+              - name: _data
+                type: umbrella.WorldMenuContextData
+              - name: _type
+                type: EntityDebugTestType

@@ -1,0 +1,107 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISLayoutManager:
+        staticFields:
+          windows:
+            type: table<string, umbrella.ISLayoutManager.RegisteredWindow>
+          enableLog:
+            defaultValue: "false"
+          layouts:
+            type: umbrella.ISLayoutManager.Resolution[]
+            nullable: true
+        staticMethods:
+          - name: RegisterWindow
+            parameters:
+              - name: name
+                type: string
+              - name: funcs
+                type: ISUIElement
+              - name: target
+                type: ISUIElement
+          - name: DefaultRestoreWindow
+            parameters:
+              - name: window
+                type: ISUIElement
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: DefaultSaveWindow
+            parameters:
+              - name: window
+                type: ISUIElement
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: SaveWindowVisible
+            parameters:
+              - name: window
+                type: ISUIElement
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: TryRestore
+            parameters:
+              - name: name
+                type: string
+            return:
+              - type: unknown
+                nullable: true
+          - name: CallRestoreLayout
+            parameters:
+              - name: name
+                type: string
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: CallSaveLayout
+            parameters:
+              - name: name
+                type: string
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: FindResizeWidget
+            parameters:
+              - name: window
+                type: ISUIElement
+            return:
+              - type: ISResizeWidget
+                nullable: true
+          - name: ReadIni
+          - name: WriteIni
+          - name: SaveLayout
+            parameters:
+              - name: name
+                type: string
+              - name: window
+                type: ISUIElement
+          - name: OnPostSave
+      umbrella.ISLayoutManager.Layout:
+        fields:
+          name:
+            type: string
+          x:
+            type: number
+          y:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+          visible:
+            type: '"true" | "false"'
+            nullable: true
+          pin:
+            type: '"true" | "false"'
+            nullable: true
+      umbrella.ISLayoutManager.RegisteredWindow:
+        fields:
+          funcs:
+            type: ISUIElement
+          target:
+            type: ISUIElement
+      umbrella.ISLayoutManager.Resolution:
+        fields:
+          width:
+            type: number
+          height:
+            type: number
+          windows:
+            type: umbrella.ISLayoutManager.Layout[]

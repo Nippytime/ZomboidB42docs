@@ -1,0 +1,153 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetTooltipInput:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: BaseCraftingLogic
+              - name: inputScript
+                type: InputScript
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetTooltipInput"'
+        fields:
+          amountWidth:
+            type: number
+          amountWidth2:
+            type: number
+          textColor:
+            type: umbrella.RGBA
+          colPartial:
+            type: umbrella.RGBA
+          colBad:
+            type: umbrella.RGBA
+          primary:
+            type: umbrella.ISWidgetTooltipInput.ScriptValues
+          secondary:
+            type: umbrella.ISWidgetInput.ScriptValues
+            nullable: true
+          arrow:
+            type: ISImage
+            nullable: true
+          editedLabels:
+            type: boolean
+          player:
+            type: IsoPlayer
+          logic:
+            type: BaseCraftingLogic
+          inputScript:
+            type: InputScript
+          consumeScript:
+            type: InputScript
+            nullable: true
+          createScript:
+            type: OutputScript
+            nullable: true
+          iconSize:
+            type: number
+          interactiveMode:
+            type: boolean
+          displayAsOutput:
+            type: boolean
+          normalBorderColor:
+            type: table
+          textureFluid:
+            type: Texture
+          textureKeep:
+            type: Texture
+          textureDrain:
+            type: Texture
+          textureConsume:
+            type: Texture
+          textureCreate:
+            type: Texture
+          margin:
+            type: number
+          doToolTip:
+            type: boolean
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: createScriptValues
+            parameters:
+              - name: _script
+                type: InputScript
+            return:
+              - type: umbrella.ISWidgetTooltipInput.ScriptValues
+          - name: updateScriptValues
+            parameters:
+              - name: _table
+                type: umbrella.ISWidgetTooltipInput.ScriptValues
+          - name: updateValues
+      umbrella.ISWidgetTooltipInput.ScriptValues:
+        fields:
+          isConsume:
+            type: boolean
+          script:
+            type: InputScript
+          isKeep:
+            type: boolean
+          isCreate:
+            type: boolean
+            nullable: true
+          isItemCount:
+            type: boolean
+          iconColor:
+            type: umbrella.RGBA
+          cycleIcons:
+            type: boolean
+          icon:
+            type: ISImage
+          label:
+            type: ISLabel
+          iconText:
+            type: string
+            nullable: true
+          iconTexture:
+            type: Texture
+            nullable: true
+          amount:
+            type: number
+            nullable: true
+          amountStr:
+            type: string
+            nullable: true
+          inputObjects:
+            type: ArrayList<Item>
+            nullable: true
+          outputObjects:
+            type: ArrayList<Item>
+            nullable: true

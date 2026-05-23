@@ -1,0 +1,125 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFitnessUI:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: clickedSquare
+                type: IsoGridSquare
+        staticFields:
+          Type:
+            defaultValue: '"ISFitnessUI"'
+          instance:
+            type: table<integer, ISFitnessUI>
+          enduranceLevelThreshold:
+            defaultValue: "2"
+        fields:
+          ok:
+            type: ISButton
+          cancel:
+            type: ISButton
+          close:
+            type: ISButton
+          exercises:
+            type: ISRadioButtons
+          barHgt:
+            type: number
+          barY:
+            type: number
+          timeLbl:
+            type: ISLabel
+          exeTime:
+            type: ISTextEntryBox
+          plusBtn:
+            type: ISButton
+          minusBtn:
+            type: ISButton
+          tooltipLbl:
+            type: ISRichTextPanel
+          selectedExe:
+            type: string
+          exeData:
+            type: umbrella.FitnessExercises.Exercise
+            nullable: true
+          joypadButtons:
+            type: ISButton[]
+          titleY:
+            type: number
+          player:
+            type: IsoPlayer
+          fgBar:
+            type: umbrella.RGBA
+          fgBarOrange:
+            type: umbrella.RGBA
+          fgBarRed:
+            type: umbrella.RGBA
+          clickedSquare:
+            type: IsoGridSquare
+          buttonBorderColor:
+            type: umbrella.RGBA
+          zoneProgress:
+            type: number
+          fitness:
+            type: Fitness
+          regularityProgressBarWidth:
+            type: number
+        methods:
+          - name: setVisible
+            parameters:
+              - name: bVisible
+                type: boolean
+          - name: initialise
+          - name: onClickTime
+            parameters:
+              - name: button
+                type: ISButton
+          - name: clickedExe
+            parameters:
+              - name: buttons
+                type: ISRadioButtons
+              - name: index
+                type: integer
+          - name: updateExercises
+          - name: selectedNewExercise
+          - name: addExerciseToList
+            parameters:
+              - name: type
+                type: string
+              - name: data
+                type: umbrella.FitnessExercises.Exercise
+          - name: render
+          - name: getCurrentRegularity
+            return:
+              - type: number
+          - name: prerender
+          - name: updateButtons
+            parameters:
+              - name: currentAction
+                type: ISBaseTimedAction
+          - name: equipItems
+            return:
+              - type: boolean
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer

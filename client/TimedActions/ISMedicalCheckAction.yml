@@ -1,0 +1,50 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISMedicalCheckAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: otherPlayer
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISMedicalCheckAction"'
+          HealthWindows:
+            type: table<integer, umbrella.ISMedicalCheckAction.HealthWindow>
+        fields:
+          otherPlayer:
+            type: IsoPlayer
+          otherPlayerX:
+            type: number
+          otherPlayerY:
+            type: number
+          forceProgressBar:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+        staticMethods:
+          - name: getHealthWindowForPlayer
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+            return:
+              - type: umbrella.ISMedicalCheckAction.HealthWindow
+                nullable: true
+      umbrella.ISMedicalCheckAction.HealthWindow:
+        extends: ISCollapsableWindow
+        fields:
+          nested:
+            type: ISHealthPanel

@@ -1,0 +1,37 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPickupBrokenGlass:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: glass
+                type: IsoBrokenGlass
+        staticFields:
+          Type:
+            defaultValue: '"ISPickupBrokenGlass"'
+        fields:
+          glass:
+            type: IsoBrokenGlass
+          square:
+            type: IsoGridSquare
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

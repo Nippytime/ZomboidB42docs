@@ -1,0 +1,56 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCutAnimalOnHook:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+              - name: body
+                type: IsoAnimal
+              - name: hook
+                type: IsoButcherHook
+              - name: luaHookUI
+                type: ISButcherHookUI
+              - name: bucket
+                type: InventoryItem
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISCutAnimalOnHook"'
+        fields:
+          body:
+            type: IsoAnimal
+          hook:
+            type: IsoButcherHook
+          luaHook:
+            type: ISButcherHookUI
+          bucket:
+            type: InventoryItem
+            nullable: true
+          animalDef:
+            type: umbrella.AnimalPartsDefinition
+          perkLevel:
+            type: integer
+          xp:
+            type: integer
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: unknown
+          - name: update
+          - name: serverStart
+          - name: serverStop
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

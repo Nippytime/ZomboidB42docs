@@ -1,0 +1,107 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPickCharacterCursor:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISPickCharacterCursor"'
+        fields:
+          objectIndex:
+            type: integer
+          squareX:
+            type: number
+          squareY:
+            type: number
+          squareZ:
+            type: number
+          currentSquare:
+            type: IsoGridSquare
+            nullable: true
+          character:
+            type: IsoPlayer
+          player:
+            type: integer
+          noNeedHammer:
+            type: boolean
+          skipBuildAction:
+            type: boolean
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: rotateKey
+            parameters:
+              - name: key
+                type: integer
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: isValidCharacter
+            parameters:
+              - name: chr
+                type: IsoMovingObject
+          - name: onPickCharacter
+            parameters:
+              - name: chr
+                type: IsoMovingObject
+          - name: getObjectList
+            parameters:
+              - name: square
+                type: IsoGridSquare
+                nullable: true
+            return:
+              - type: IsoMovingObject[]
+          - name: getHighlightedCharacter
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: IsoMovingObject
+                nullable: true
+          - name: onJoypadPressButton
+            parameters:
+              - name: joypadIndex
+                type: integer
+              - name: joypadData
+                type: JoypadData
+              - name: button
+                type: integer
+            return:
+              - type: unknown
+                nullable: true
+          - name: getLBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getRBPrompt
+            return:
+              - type: string
+                nullable: true

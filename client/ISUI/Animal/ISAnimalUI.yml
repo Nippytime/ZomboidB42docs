@@ -1,0 +1,122 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAnimalUI:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: animal
+                type: IsoAnimal
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISAnimalUI"'
+          maxDist:
+            defaultValue: "5"
+          btnOffset:
+            defaultValue: "210"
+        fields:
+          prevFocus:
+            nullable: true
+          avatarX:
+            type: number
+          avatarY:
+            type: number
+          avatarWidth:
+            type: number
+          avatarHeight:
+            type: number
+          avatarPanel:
+            type: ISCharacterScreenAvatar
+          avatarBackgroundTexture:
+            type: Texture
+          xOffset:
+            type: number
+          renameBtn:
+            type: ISButton
+          feedBtn:
+            type: ISButton
+          milkAnimalBtn:
+            type: ISButton
+          ageBtn:
+            type: ISButton
+          genderBtn:
+            type: ISButton
+          animalName:
+            type: string
+          refreshNeeded:
+            type: boolean
+          animal:
+            type: IsoAnimal
+          chr:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          avatarDefinition:
+            type: umbrella.AnimalAvatarDefinition
+          skillLvl:
+            type: integer
+        methods:
+          - name: prerender
+          - name: render
+          - name: initialise
+          - name: close
+          - name: create
+          - name: attachAnimal
+          - name: onChangeGender
+          - name: onSetAge
+          - name: renameAnimal
+          - name: onRenameAnimalClick
+            parameters:
+              - name: button
+                type: ISButton
+              - name: animal
+          - name: maxTextWidth
+            parameters:
+              - name: font
+                type: UIFont
+              - name: text
+                type: string
+              - name: maxWidth
+                type: number
+            return:
+              - type: number
+          - name: updateAvatar
+          - name: getWoolText
+            return:
+              - type: string
+          - name: getUdderText
+            return:
+              - type: string
+          - name: getPregnantText
+            return:
+              - type: string
+          - name: getClutchSizeText
+            return:
+              - type: string
+          - name: onMilkAnimal
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+      ISAnimalAvatar:
+        extends: ISUI3DModel
+        staticFields:
+          Type:
+            defaultValue: '"ISAnimalAvatar"'

@@ -1,0 +1,219 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISVehicleAnimalUI:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: vehicle
+                type: BaseVehicle
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISVehicleAnimalUI"'
+          ui:
+            type: ISVehicleAnimalUI
+            nullable: true
+        fields:
+          progressBar:
+            type: ISProgressBar
+          addBtn:
+            type: ISButton
+          scrollPanel:
+            type: ISPanelJoypad
+          animalCount:
+            type: integer
+          avatarWidth:
+            type: number
+          avatarHeight:
+            type: number
+          btnHeight:
+            type: number
+          btnWidth:
+            type: number
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          vehicle:
+            type: BaseVehicle
+          btnBorder:
+            type: umbrella.RGBA
+          avatarBackgroundTexture:
+            type: Texture
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: checkCanAddAnimal
+          - name: onAddAnimal
+          - name: prerenderScrollPanel
+          - name: update
+          - name: prerender
+          - name: render
+          - name: create
+            parameters:
+              - name: reset
+          - name: onAnimalInfo
+            parameters:
+              - name: animal
+                type: IsoAnimal
+          - name: onRemoveAnimal
+            parameters:
+              - name: animal
+                type: IsoAnimal
+          - name: onGrabAnimal
+            parameters:
+              - name: animal
+                type: IsoAnimal
+          - name: reset
+            parameters:
+              - name: panel
+                type: ISUIElement
+          - name: close
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivate
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivate_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: isKeyConsumed
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: boolean
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+        staticMethods:
+          - name: onKillAnimalDebug
+            parameters:
+              - name: animal
+                type: IsoAnimal
+              - name: player
+                type: IsoPlayer
+      ISAnimalInVehiclePanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: animalUI
+                type: ISVehicleAnimalUI
+        staticFields:
+          Type:
+            defaultValue: '"ISAnimalInVehiclePanel"'
+        fields:
+          avatar:
+            type: ISVehicleAnimal3DModel
+          animalUI:
+            type: ISVehicleAnimalUI
+        methods:
+          - name: createChildren
+          - name: prerender
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onJoypadDownInParent
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+      ISVehicleAnimal3DModel:
+        extends: ISUI3DModel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISVehicleAnimal3DModel"'
+        fields:
+          animal:
+            type: IsoAnimal
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: instantiate
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean

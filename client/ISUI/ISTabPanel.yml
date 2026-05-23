@@ -1,0 +1,248 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISTabPanel.TabTornOff:
+        - type: "fun(target: unknown, tornOff: umbrella.ISTabPanel.View, newWindow:
+            ISCollapsableWindow)"
+    classes:
+      ISTabPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISTabPanel"'
+          tabSelected:
+            type: Texture
+            nullable: true
+          tabUnSelected:
+            type: Texture
+            nullable: true
+          xMouse:
+            defaultValue: "-1"
+          yMouse:
+            defaultValue: "-1"
+          mouseOut:
+            defaultValue: "false"
+          viewDragging:
+            type: umbrella.ISTabPanel.View
+            nullable: true
+          viewDraggin:
+            type: table
+            nullable: true
+          fromOutside:
+            type: boolean
+            nullable: true
+        fields:
+          scrollX:
+            type: number
+            nullable: true
+          smoothScrollTargetX:
+            type: number
+            nullable: true
+          smoothScrollX:
+            type: number
+            nullable: true
+          tabTransparency:
+            type: number
+          textTransparency:
+            type: number
+          isDragging:
+            type: boolean
+          blinkTabAlpha:
+            type: number
+          blinkTabAlphaIncrease:
+            type: boolean
+          draggingTab:
+            type: integer
+            nullable: true
+          viewList:
+            type: umbrella.ISTabPanel.View[]
+          activeView:
+            type: umbrella.ISTabPanel.View
+            nullable: true
+          maxLength:
+            type: number
+          equalTabWidth:
+            type: boolean
+          centerTabs:
+            type: boolean
+          tabTornOffTarget:
+            type: unknown
+            nullable: true
+          tabTornOff:
+            type: umbrella.ISTabPanel.TabTornOff
+            nullable: true
+          blinkTabs:
+            type: table
+          tabHeight:
+            type: number
+          tabPadX:
+            type: number
+          allowDraggingTabs:
+            type: boolean
+          allowTornOffTabs:
+            type: boolean
+          onActivateView:
+            type: "fun(target: unknown?, panel: ISTabPanel)"
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: initialise
+          - name: updateSmoothScrolling
+          - name: ensureVisible
+            parameters:
+              - name: index
+                type: integer
+          - name: setTabsTransparency
+            parameters:
+              - name: alpha
+                type: number
+          - name: setTextTransparency
+            parameters:
+              - name: alpha
+                type: number
+          - name: prerender
+          - name: render
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: getView
+            parameters:
+              - name: viewName
+                type: string
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: activateView
+            parameters:
+              - name: viewName
+                type: string
+            return:
+              - type: boolean
+          - name: getActiveView
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: getActiveViewIndex
+            return:
+              - type: integer
+                nullable: true
+          - name: addView
+            parameters:
+              - name: name
+                type: string
+              - name: view
+                type: ISUIElement
+          - name: removeView
+            parameters:
+              - name: view
+                type: ISUIElement
+          - name: replaceView
+            parameters:
+              - name: view
+                type: ISUIElement
+              - name: panel
+                type: ISUIElement
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: setEqualTabWidth
+            parameters:
+              - name: equal
+                type: boolean
+          - name: setCenterTabs
+            parameters:
+              - name: center
+                type: boolean
+          - name: getWidthOfAllTabs
+            return:
+              - type: number
+          - name: getTabX
+            parameters:
+              - name: tabIndex
+                type: integer
+              - name: scrollX
+                type: number
+            return:
+              - type: number
+          - name: getTabIndexAtX
+            parameters:
+              - name: x
+                type: number
+              - name: scrollX
+                type: number
+            return:
+              - type: integer
+          - name: getScrollButtonAtX
+            parameters:
+              - name: x
+                type: number
+            return:
+              - type: string
+                nullable: true
+          - name: setOnTabTornOff
+            parameters:
+              - name: target
+                type: unknown
+                nullable: true
+              - name: method
+                type: umbrella.ISTabPanel.TabTornOff
+        staticMethods:
+          - name: redoTab
+            parameters:
+              - name: self
+                type: ISTabPanel
+      umbrella.ISTabPanel.View:
+        fields:
+          name:
+            type: string
+          view:
+            type: ISUIElement
+          tabWidth:
+            type: number
+          fade:
+            type: UITransition

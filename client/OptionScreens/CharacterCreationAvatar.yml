@@ -1,0 +1,79 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      CharacterCreationAvatar:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"CharacterCreationAvatar"'
+        fields:
+          avatarBackgroundTexture:
+            type: Texture
+          avatarPanel:
+            type: ISUI3DModel
+          turnLeftButton:
+            type: ISButton
+          turnRightButton:
+            type: ISButton
+          animCombo:
+            type: ISComboBox
+          direction:
+            type: IsoDirections
+        methods:
+          - name: createChildren
+          - name: prerender
+          - name: render
+          - name: onTurnChar
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onAnimSelected
+            parameters:
+              - name: combo
+                type: ISComboBox
+          - name: setCharacter
+            parameters:
+              - name: character
+                type: IsoGameCharacter
+          - name: setSurvivorDesc
+            parameters:
+              - name: survivorDesc
+                type: SurvivorDesc
+          - name: setFacePreview
+            parameters:
+              - name: val
+                type: boolean
+          - name: rescaleAvatarViewer
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joyadData
+                type: JoypadData
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joyadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joyadData
+                type: JoypadData
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joyadData
+                type: JoypadData

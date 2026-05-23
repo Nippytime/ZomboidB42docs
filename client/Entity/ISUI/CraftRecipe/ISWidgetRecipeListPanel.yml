@@ -1,0 +1,80 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetRecipeListPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: BaseCraftingLogic
+              - name: callbackTarget
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetRecipeListPanel"'
+        fields:
+          recipeListPanel:
+            type: ISScrollingListBox
+          largestTooltipWidth:
+            type: number
+          pendingSelectedData:
+            type: CraftRecipe
+            nullable: true
+          player:
+            type: IsoPlayer
+          logic:
+            type: BaseCraftingLogic
+          callbackTarget:
+            type: unknown
+            nullable: true
+          enabledShowAllFilter:
+            type: boolean
+          wrapTooltipText:
+            type: boolean
+          expandToFitTooltip:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: setSelectedData
+            parameters:
+              - name: _recipe
+                type: CraftRecipe
+          - name: setDataList
+            parameters:
+              - name: _recipeCollection
+                type: CraftRecipeListNodeCollection
+          - name: setInternalDimensions
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _width
+                type: number
+              - name: _height
+                type: number

@@ -1,0 +1,136 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCharacterInfo:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: playerNum
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISCharacterInfo"'
+          timerMultiplierAnim:
+            defaultValue: "0"
+          animOffset:
+            type: number
+            nullable: true
+          instance:
+            type: ISCharacterInfo
+            nullable: true
+        fields:
+          sorted:
+            type: PerkFactory.Perk[]
+          nameToPerk:
+            type: table<string, PerkFactory.Perk>
+          buttonList:
+            type: ISButton[]
+          collapse:
+            type: table<integer, boolean>
+          lastLevelUpTime:
+            type: number
+          progressBarLoaded:
+            type: boolean
+          reloadSkillBar:
+            type: boolean
+          progressBars:
+            type: ISSkillProgressBar[]
+          playerNum:
+            type: integer
+          char:
+            type: IsoPlayer
+          txtLen:
+            type: number
+          perks:
+            type: table<PerkFactory.Perk, PerkFactory.Perk[]>
+          lastLeveledUpPerk:
+            type: PerkFactory.Perk
+            nullable: true
+          arrow:
+            type: Texture
+          arrowLeft:
+            type: Texture
+          yButton:
+            type: Texture
+          disabledArrow:
+            type: Texture
+          SkillPtsProgressBarEmpty:
+            type: Texture
+          SkillPtsProgressBarStart:
+            type: Texture
+          SkillPtsProgressBar:
+            type: Texture
+          SkillBarSeparator:
+            type: Texture
+          ProgressSkilMultiplier:
+            type: Texture
+          showingPassive:
+            type: boolean
+          barWithTooltip:
+            type: ISSkillProgressBar
+            nullable: true
+          joypadIndex:
+            type: integer
+            nullable: true
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: setVisible
+            parameters:
+              - name: visible
+          - name: prerender
+          - name: render
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: collapseSection
+            parameters:
+              - name: button
+                type: ISButton
+          - name: ensureVisible
+          - name: updateTooltipForJoypad
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: onJoypadDirUp
+          - name: onJoypadDirDown
+          - name: onJoypadDirLeft
+          - name: onJoypadDirRight
+        staticMethods:
+          - name: loadPerk
+            parameters:
+              - name: self
+                type: ISCharacterInfo
+            return:
+              - type: table<PerkFactory.Perk, PerkFactory.Perk[]>
+          - name: onResolutionChange
+            parameters:
+              - name: oldw
+                type: number
+              - name: oldh
+                type: number
+              - name: neww
+                type: number
+              - name: newh
+                type: number

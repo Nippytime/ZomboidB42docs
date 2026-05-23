@@ -1,0 +1,84 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISForageIcon:
+        extends: ISBaseIcon
+        constructors:
+          - parameters:
+              - name: _manager
+                type: ISSearchManager
+              - name: _forageIcon
+                type: umbrella.Foraging.ZoneIconData
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+        staticFields:
+          Type:
+            defaultValue: '"ISForageIcon"'
+        fields:
+          itemDef:
+            type: umbrella.Foraging.ItemDefinition
+          catDef:
+            type: umbrella.Foraging.CategoryDefinition
+          itemType:
+            type: string
+            nullable: true
+          altWorldTexture:
+            type: Texture
+            nullable: true
+          render3DTexture:
+            type: boolean
+            nullable: true
+          isMover:
+            type: boolean
+          canRollForSearchFocus:
+            type: boolean
+            nullable: true
+          renderWorldIcon:
+            type: function
+            nullable: true
+          zoneData:
+            type: umbrella.Foraging.ZoneData
+          zoneDef:
+            type: umbrella.Foraging.ZoneDefinition
+          onClickContext:
+            type: function
+        methods:
+          - name: onRightMouseUp
+            return:
+              - type: boolean
+                nullable: true
+          - name: onRightMouseDown
+            return:
+              - type: boolean
+          - name: doForage
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _contextOption
+                type: ISContextMenu
+                nullable: true
+              - name: _targetContainer
+                type: ItemContainer
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: getNewCategoryItem
+            parameters:
+              - name: _catDef
+                type: umbrella.Foraging.CategoryDefinition
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+            return:
+              - type: boolean
+                nullable: true
+          - name: doSearchFocusCheck
+          - name: updatePinIconPosition
+          - name: checkIsForageable
+            return:
+              - type: boolean
+          - name: checkIsIdentified
+          - name: initialise

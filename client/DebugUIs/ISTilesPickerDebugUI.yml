@@ -1,0 +1,102 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISTilesPickerDebugUI:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+        staticFields:
+          Type:
+            defaultValue: '"ISTilesPickerDebugUI"'
+        fields:
+          filesList:
+            type: ISScrollingListBox
+          tilesList:
+            type: ISTilesPickerTilesList
+          cursor:
+            type: ISSelectCursor
+            nullable: true
+          selectX:
+            type: number
+          selectY:
+            type: number
+          selectZ:
+            type: number
+          marker:
+            type: WorldMarkers.GridSquareMarker
+            nullable: true
+          arrow:
+            type: WorldMarkers.DirectionArrow
+            nullable: true
+          playerNum:
+            type: integer
+          height:
+            type: integer
+          chr:
+            type: IsoPlayer
+          title:
+            type: string
+        methods:
+          - name: createChildren
+          - name: populateList
+          - name: drawTilesetList
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onSelectNewSquare
+          - name: onSquareSelected
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: prerender
+          - name: render
+          - name: addMarker
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: radius
+                type: number
+          - name: removeMarker
+          - name: close
+      ISTilesPickerTilesList:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISTilesPickerTilesList"'
+        fields:
+          tileset:
+            type: string
+            nullable: true
+        methods:
+          - name: render
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean

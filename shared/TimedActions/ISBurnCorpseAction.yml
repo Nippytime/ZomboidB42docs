@@ -1,0 +1,42 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBurnCorpseAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: corpse
+                type: IsoDeadBody
+              - name: lighter
+                type: InventoryItem
+              - name: petrol
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISBurnCorpseAction"'
+        fields:
+          lighter:
+            type: InventoryItem
+            nullable: true
+          petrol:
+            type: InventoryItem
+            nullable: true
+          corpse:
+            type: IsoDeadBody
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

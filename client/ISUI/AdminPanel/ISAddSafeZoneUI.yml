@@ -1,0 +1,93 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAddSafeZoneUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISAddSafeZoneUI"'
+          instance:
+            type: ISAddSafeZoneUI
+            nullable: true
+        fields:
+          notIntersecting:
+            type: boolean
+          zonewidth:
+            type: number
+          zoneheight:
+            type: number
+          size:
+            type: number
+          X1:
+            type: number
+          Y1:
+            type: number
+          X2:
+            type: number
+          Y2:
+            type: number
+          cancel:
+            type: ISButton
+          ok:
+            type: ISButton
+          startingPoint:
+            type: ISButton
+          titleEntry:
+            type: ISTextEntryBox
+          ownerEntry:
+            type: ISTextEntryBox
+          claimOptions:
+            type: ISTickBox
+          startingX:
+            type: number
+          startingY:
+            type: number
+          fullHighlight:
+            type: boolean
+          creatingZone:
+            type: boolean
+          character:
+            type: IsoPlayer
+          buttonBorderColor:
+            type: umbrella.RGBA
+        methods:
+          - name: highlightZone
+            parameters:
+              - name: _x1
+                type: number
+              - name: _x2
+                type: number
+              - name: _y1
+                type: number
+              - name: _y2
+                type: number
+              - name: _fullHighlight
+                type: boolean
+          - name: checkIfIntersectingAnotherZone
+          - name: updateButtons
+          - name: prerender
+          - name: initialise
+          - name: redefineStartingPoint
+          - name: onClickClaimOptions
+            parameters:
+              - name: _clickedOption
+                type: integer
+              - name: _ticked
+                type: boolean
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton

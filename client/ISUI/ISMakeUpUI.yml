@@ -1,0 +1,116 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISMakeUpUI:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: item
+                type: InventoryItem
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISMakeUpUI"'
+          windows:
+            type: table<integer, ISMakeUpUI>
+        fields:
+          avatarX:
+            type: number
+          avatarY:
+            type: number
+          avatarWidth:
+            type: number
+          avatarHeight:
+            type: number
+          avatarBorderSize:
+            type: number
+          avatarPanel:
+            type: ISUI3DModel
+          avatarBackgroundTexture:
+            type: Texture
+          leftPanel:
+            type: ISPanel
+          rightPanel:
+            type: ISPanel
+          addMakeupLbl:
+            type: ISLabel
+          location:
+            type: ISComboBox
+          comboMakeup:
+            type: ISComboBox
+          add:
+            type: ISButton
+          removeMakeupLbl:
+            type: ISLabel
+          removeMakeupCombo:
+            type: ISComboBox
+          remove:
+            type: ISButton
+          needsUpdateAvatar:
+            type: boolean
+          makeUpSelected:
+            nullable: true
+          needsUpdateLayout:
+            type: boolean
+          previousMakeUp:
+            type: InventoryItem
+            nullable: true
+          drawJoypadFocus:
+            type: boolean
+          joypadButtons:
+            type: ISButton[]
+          character:
+            type: IsoPlayer
+          item:
+            type: InventoryItem
+          title:
+            type: string
+          desc:
+            type: SurvivorDesc
+          playerNum:
+            type: integer
+        methods:
+          - name: createChildren
+          - name: onSelectRemoveMakeUp
+          - name: onRemoveMakeUp
+          - name: initRemoveMakeUpCombo
+          - name: initLocationCombo
+          - name: reinit
+          - name: reinitCombos
+          - name: setWidthToChildren
+            parameters:
+              - name: panel
+                type: ISUIElement
+              - name: minWidth
+                type: number
+          - name: updateLayout
+          - name: onApplyMakeUp
+          - name: onSelectMakeUp
+          - name: onSelectLocation
+          - name: updateAvatar
+          - name: prerender
+          - name: update
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: close
+          - name: displayBodyPart
+            parameters:
+              - name: cat
+                type: umbrella.MakeUpDefinitions.Category
+        staticMethods:
+          - name: OnPlayerDeath
+            parameters:
+              - name: playerObj
+                type: IsoPlayer

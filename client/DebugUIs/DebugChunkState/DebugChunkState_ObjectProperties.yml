@@ -1,0 +1,195 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      DebugChunkStateUI_ObjPropsHandler:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: gameState
+                type: DebugChunkState
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_ObjPropsHandler"'
+        fields:
+          object:
+            type: IsoObject
+            nullable: true
+          addLineX:
+            type: number
+          addLineY:
+            type: number
+          gameState:
+            type: DebugChunkState
+          highlightAreas:
+            type: "{ userData: IsoSprite, y1: number, y2: number? }[]"
+        methods:
+          - name: playerIndex
+            return:
+              - type: integer
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoObject
+            return:
+              - type: boolean
+          - name: prerender
+          - name: render
+          - name: render1
+          - name: postrender
+          - name: addLine
+            parameters:
+              - name: text
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+              - name: arg4
+                type: unknown
+          - name: startHighlightArea
+            parameters:
+              - name: userData
+                type: IsoSprite
+          - name: endHighlightArea
+          - name: getHighlightAreaUnderMouse
+            return:
+              - type: "{ userData: IsoSprite, y1: number, y2: number? }"
+                nullable: true
+      DebugChunkState_ObjectProperties.OPH_render:
+        extends: DebugChunkStateUI_ObjPropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_OPH_render"'
+        fields:
+          object:
+            type: IsoObject
+            nullable: true
+        methods:
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoObject
+            return:
+              - type: boolean
+          - name: render1
+      DebugChunkState_ObjectProperties.OPH_overlaySprite:
+        extends: DebugChunkStateUI_ObjPropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_OPH_overlaySprite"'
+        fields:
+          object:
+            type: IsoObject
+            nullable: true
+        methods:
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoObject
+                nullable: true
+            return:
+              - type: boolean
+          - name: render1
+      DebugChunkState_ObjectProperties.OPH_AttachedAnimSprite:
+        extends: DebugChunkStateUI_ObjPropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_OPH_AttachedAnimSprite"'
+        fields:
+          object:
+            type: IsoObject
+            nullable: true
+        methods:
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoObject
+                nullable: true
+            return:
+              - type: boolean
+          - name: render1
+      DebugChunkState_ObjectProperties.OPH_ModData:
+        extends: DebugChunkStateUI_ObjPropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_OPH_ModData"'
+        fields:
+          object:
+            type: IsoObject
+            nullable: true
+        methods:
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoObject
+                nullable: true
+            return:
+              - type: unknown
+          - name: render1
+      DebugChunkState_ObjectProperties.OPH_SpriteProperties:
+        extends: DebugChunkStateUI_ObjPropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_OPH_SpriteProperties"'
+        fields:
+          object:
+            type: IsoObject
+            nullable: true
+        methods:
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoObject
+                nullable: true
+            return:
+              - type: boolean
+          - name: render1
+      DebugChunkStateUI_ObjPropsPanel:
+        extends: ISSectionedPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: debugChunkState
+                type: DebugChunkStateUI
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_ObjPropsPanel"'
+        fields:
+          object:
+            type: IsoObject
+            nullable: true
+          debugChunkState:
+            type: DebugChunkStateUI
+        methods:
+          - name: createChildren
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoObject
+                nullable: true
+          - name: render

@@ -1,0 +1,79 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      camping:
+        staticFields:
+          tentSprites: {}
+        staticMethods:
+          - name: findTentSprites
+            parameters:
+              - name: sprite
+                type: string
+            return:
+              - type: umbrella.Camping.TentSprites
+                nullable: true
+          - name: addTent
+            parameters:
+              - name: grid
+                type: IsoGridSquare
+              - name: sprite
+                type: string
+            return:
+              - type: IsoThumpable
+          - name: removeTent
+            parameters:
+              - name: tent
+                type: IsoObject
+                nullable: true
+          - name: destroyTent
+            parameters:
+              - name: tent
+                type: IsoObject
+          - name: getTentObjects
+            parameters:
+              - name: tent
+                type: IsoObject
+            return:
+              - type: IsoObject[]
+          - name: isTentObject
+            parameters:
+              - name: object
+                type: IsoObject
+            return:
+              - type: boolean
+          - name: findTentObject
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: IsoObject
+                nullable: true
+          - name: tentAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: IsoObject
+                nullable: true
+          - name: getCurrentTent
+            parameters:
+              - name: grid
+                type: IsoGridSquare
+            return:
+              - type: IsoObject
+                nullable: true
+      umbrella.Camping.TentSprites:
+        fields:
+          frontLeft:
+            type: string
+          backLeft:
+            type: string
+          frontRight:
+            type: string
+          backRight:
+            type: string

@@ -1,0 +1,58 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDestroyStuffAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: IsoObject
+              - name: cornerCounter
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISDestroyStuffAction"'
+        fields:
+          spriteFrame:
+            type: number
+          sledge:
+            type: InventoryItem
+            nullable: true
+          cornerCounter:
+            type: integer
+          item:
+            type: IsoObject
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: getCornerWallSprite
+            parameters:
+              - name: wallSprite
+                type: IsoSprite
+            return:
+              - type: string
+                nullable: true
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: complete
+            return:
+              - type: boolean
+                nullable: true
+          - name: getDuration
+            return:
+              - type: number

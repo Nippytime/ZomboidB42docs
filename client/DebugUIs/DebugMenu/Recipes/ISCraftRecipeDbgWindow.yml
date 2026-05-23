@@ -1,0 +1,89 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCraftRecipeDbgWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISCraftRecipeDbgWindow"'
+          coords:
+            type: number[] | false
+          instance:
+            type: ISCraftRecipeDbgWindow
+            nullable: true
+        fields:
+          th:
+            type: number
+          rh:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+          heightMod:
+            type: number
+          panel:
+            type: ISTabPanel
+          recipeOverviewScreen:
+            type: ISCraftRecipeOverviewPanel
+          recipeTagsScreen:
+            type: ISCraftRecipeTagsPanel
+          recipeQueriesScreen:
+            type: ISCraftRecipeQueriesPanel
+          recipeIconsScreen:
+            type: ISCraftRecipeIconsPanel
+          recipeTagsDebugScreen:
+            type: ISCraftRecipeTagsDebugPanel
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          title:
+            type: string
+          searchText:
+            type: string
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onResize
+            parameters:
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+          - name: incY
+            parameters:
+              - name: _y
+                type: number
+              - name: _obj
+                type: ISUIElement
+              - name: _margin
+                type: number
+                nullable: true
+            return:
+              - type: number
+          - name: prerender
+          - name: render
+          - name: close
+        staticMethods:
+          - name: OnOpenPanel
+            parameters:
+              - name: _player
+                type: IsoPlayer
+                nullable: true
+            return:
+              - type: ISCraftRecipeDbgWindow
+                nullable: true

@@ -1,0 +1,61 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWearClothing:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISWearClothing"'
+          WalkBodyLocations:
+            type: ItemBodyLocation[]
+        fields:
+          equipSound:
+            type: integer
+            nullable: true
+          item:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          soundNoTrigger:
+            type: boolean
+          fromHotbar:
+            type: boolean
+          clothingAction:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: isAlreadyEquipped
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+          - name: stopSound
+        staticMethods:
+          - name: isStopOnWalk
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+      WearClothingAnimations: {}

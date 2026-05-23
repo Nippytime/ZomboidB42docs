@@ -1,0 +1,156 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      Fishing:
+        staticFields:
+          actionProperties: {}
+          lure: {}
+          FishConfig:
+            type: Fishing.FishConfig
+          isSizeLimit:
+            defaultValue: "false"
+          fishes:
+            type: Fishing.FishConfig[]
+          trashItems:
+            type: string[]
+          line: {}
+          hook: {}
+          rods: {}
+          breakRodReplacement: {}
+          fishNet:
+            type: string[]
+          fishNetWithBait:
+            type: string[]
+        staticMethods:
+          - name: IndexAllLures
+          - name: IsLure
+            parameters:
+              - name: item
+                type: string
+            return:
+              - type: boolean
+          - name: IsArtificalLure
+            parameters:
+              - name: item
+                type: string
+            return:
+              - type: boolean
+          - name: onCreateFish
+            parameters:
+              - name: item
+                type: InventoryItem
+          - name: onCreateFishingRod
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: onCreateChum
+            parameters:
+              - name: item
+                type: InventoryItem
+      Fishing.FishConfig:
+        local: true
+        constructors:
+          - parameters:
+              - name: itemType
+                type: string
+        fields:
+          itemType:
+            type: string
+          lure:
+            type: table<string, number>
+          minLength:
+            type: number
+          isHaveDifferentSizes:
+            type: boolean
+          isRiver:
+            type: boolean
+          isLake:
+            type: boolean
+          maxLength:
+            type: integer
+          trophyLength:
+            type: integer
+          maxWeight:
+            type: integer
+          trophyWeight:
+            type: number
+          isPredator:
+            type: boolean
+          weightFactor:
+            type: number
+          fishesSizeData:
+            type: umbrella.FishSizeData[]
+        methods:
+          - name: setLocation
+            parameters:
+              - name: isRiver
+                type: boolean
+              - name: isLake
+                type: boolean
+          - name: setMaxLength
+            parameters:
+              - name: length
+                type: integer
+          - name: setTrophyLength
+            parameters:
+              - name: length
+                type: integer
+          - name: setMaxWeight
+            parameters:
+              - name: weight
+                type: integer
+          - name: setTrophyWeight
+            parameters:
+              - name: weight
+                type: number
+          - name: setPredator
+            parameters:
+              - name: isPredator
+                type: boolean
+          - name: setWeightFactor
+            parameters:
+              - name: number
+                type: number
+          - name: addLures
+            parameters:
+              - name: itemTable
+                type: table<string, umbrella.FishLureTable>
+              - name: chanceCoeff
+                type: number
+          - name: clearLures
+          - name: getLureChance
+            parameters:
+              - name: item
+                type: string
+            return:
+              - type: number
+          - name: initFishSizeData
+          - name: getFishSizeData
+            parameters:
+              - name: smallChance
+                type: number
+              - name: mediumChance
+                type: number
+              - name: bigChance
+                type: number
+            return:
+              - type: number
+                nullable: true
+      umbrella.FishSizeData:
+        fields:
+          size:
+            type: '"Small" | "Medium" | "Big"'
+          length:
+            type: integer
+          weight:
+            type: integer
+      umbrella.FishLureTable:
+        fields:
+          chanceModifier:
+            type: number
+          amountOfFoodHunger:
+            type: integer

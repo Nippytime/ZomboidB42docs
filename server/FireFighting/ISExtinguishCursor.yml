@@ -1,0 +1,144 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISExtinguishCursor:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: extinguisher
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISExtinguishCursor"'
+          _colorInfo:
+            nullable: true
+        fields:
+          extinguisher:
+            type: InventoryItem
+            nullable: true
+          character:
+            type: IsoPlayer
+          player:
+            type: integer
+          skipBuildAction:
+            type: boolean
+          noNeedHammer:
+            type: boolean
+          skipWalk:
+            type: boolean
+          renderFloorHelper:
+            type: boolean
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: walkTo
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: isValidArea
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: isRunningAction
+            return:
+              - type: ISBaseTimedAction
+                nullable: true
+          - name: getTopLeftOfSquares
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: number
+              - type: number
+              - type: number
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: onJoypadPressButton
+            parameters:
+              - name: joypadIndex
+                type: integer
+              - name: joypadData
+                type: JoypadData
+              - name: button
+                type: integer
+            return:
+              - type: unknown
+                nullable: true
+          - name: getAPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getLBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getRBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getSquares
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: IsoGridSquare[]
+          - name: getClosestSquare
+            parameters:
+              - name: squares
+                type: IsoGridSquare[]
+            return:
+              - type: number
+                nullable: true
+          - name: getFireObjects
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: IsoFire[]

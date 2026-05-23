@@ -1,0 +1,161 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      WorldMapEditor:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: javaObject
+                type: WorldMapEditorState
+        staticFields:
+          Type:
+            defaultValue: '"WorldMapEditor"'
+        fields:
+          mapAPI:
+            type: UIWorldMapV1
+          streetsAPI: {}
+          styleAPI:
+            type: WorldMapStyleV1
+          symbolsAPI:
+            type: WorldMapSymbolsV1
+          modeButton:
+            type: table<string, ISButton>
+          dragging:
+            type: boolean
+          dragMoved:
+            type: boolean
+          dragStartX:
+            type: number
+          dragStartY:
+            type: number
+          dragStartCX:
+            type: number
+          dragStartCY:
+            type: number
+          dragStartZoomF:
+            type: number
+          dragStartWorldX:
+            type: number
+          dragStartWorldY:
+            type: number
+          currentMode:
+            type: string
+          state:
+            type: WorldMapEditorState
+          mapItem:
+            type: MapItem
+          bounds:
+            nullable: true
+          mode:
+            type: table<string, WorldMapEditorMode>
+        methods:
+          - name: instantiate
+          - name: createChildren
+          - name: onResolutionChange
+            parameters:
+              - name: oldw
+                type: number
+              - name: oldh
+                type: number
+              - name: neww
+                type: number
+              - name: newh
+                type: number
+          - name: update
+          - name: render
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+                nullable: true
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+                nullable: true
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: onSwitchMode
+            parameters:
+              - name: button
+                type: ISButton
+          - name: isKeyConsumed
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: boolean
+          - name: onKeyPress
+            parameters:
+              - name: key
+                type: integer
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+          - name: setDataFiles
+            parameters:
+              - name: fileNames
+                type: string[]
+          - name: loadSettingsFromMap
+          - name: onGenerateLuaScript
+          - name: onExit
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: close
+          - name: showUI
+    functions:
+      - name: WorldMapEditor_InitUI
+        parameters:
+          - name: javaObject
+            type: WorldMapEditorState

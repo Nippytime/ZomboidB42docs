@@ -1,0 +1,115 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISDigitalCode.OnClick:
+        - type: "fun(target: unknown, button: ISButton, character: IsoPlayer, padlock:
+            InventoryItem?, thumpable: IsoThumpable)"
+    classes:
+      ISDigitalCode:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onclick
+                type: umbrella.ISDigitalCode.OnClick
+                nullable: true
+              - name: player
+                type: integer
+              - name: padlock
+                type: InventoryItem
+                nullable: true
+              - name: thumpable
+                type: IsoThumpable
+              - name: new
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISDigitalCode"'
+        fields:
+          button1p:
+            type: ISButton
+          number1:
+            type: ISTextEntryBox
+          button1m:
+            type: ISButton
+          button2p:
+            type: ISButton
+          number2:
+            type: ISTextEntryBox
+          button2m:
+            type: ISButton
+          button3p:
+            type: ISButton
+          number3:
+            type: ISTextEntryBox
+          button3m:
+            type: ISButton
+          ok:
+            type: ISButton
+          joypadButtons:
+            type: ISButton[]
+            nullable: true
+          new:
+            type: boolean
+          character:
+            type: IsoPlayer
+            nullable: true
+          name:
+            nullable: true
+          target:
+            type: unknown
+            nullable: true
+          onclick:
+            type: umbrella.ISDigitalCode.OnClick
+            nullable: true
+          player:
+            type: integer
+          playerX:
+            type: number
+          playerY:
+            type: number
+          padlock:
+            type: InventoryItem
+            nullable: true
+          thumpable:
+            type: IsoThumpable
+        methods:
+          - name: initialise
+          - name: destroy
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: increment
+            parameters:
+              - name: number
+                type: number
+          - name: decrement
+            parameters:
+              - name: number
+                type: number
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: getCode
+            return:
+              - type: number

@@ -1,0 +1,104 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetRecipeTools:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: BaseCraftingLogic
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetRecipeTools"'
+        fields:
+          toolsLabel:
+            type: ISLabel
+            nullable: true
+          colDisabled:
+            type: umbrella.RGBA
+          colEnabled:
+            type: umbrella.RGBA
+          colTextEnabled:
+            type: umbrella.RGBA
+          colBad:
+            type: umbrella.RGBA
+          left:
+            type: umbrella.ISWidgetRecipeTools.ToolSide
+          right:
+            type: umbrella.ISWidgetRecipeTools.ToolSide
+          player:
+            type: IsoPlayer
+          logic:
+            type: BaseCraftingLogic
+          editMode:
+            type: boolean
+          iconSize:
+            type: number
+          doToolBorder:
+            type: boolean
+          textureKeep:
+            type: Texture
+          textureDrain:
+            type: Texture
+          margin:
+            type: number
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: createToolSide
+            parameters:
+              - name: _recipe
+                type: CraftRecipe
+              - name: _doLeft
+                type: boolean
+                nullable: true
+            return:
+              - type: umbrella.ISWidgetRecipeTools.ToolSide
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: updateToolValues
+            parameters:
+              - name: _table
+                type: umbrella.ISWidgetRecipeTools.ToolSide
+          - name: render
+          - name: update
+      umbrella.ISWidgetRecipeTools.ToolSide:
+        fields:
+          enabled:
+            type: boolean
+          inputScript:
+            type: InputScript
+          inputWidget:
+            type: ISWidgetInput
+            nullable: true
+          icon:
+            type: ISImage
+          label:
+            type: ISLabel

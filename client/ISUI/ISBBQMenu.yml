@@ -1,0 +1,59 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBBQMenu:
+        staticMethods:
+          - name: onDisplayInfo
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: player
+                type: integer
+              - name: bbq
+                type: IsoBarbecue
+          - name: FindPropaneTank
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: bbq
+                type: IsoBarbecue
+            return:
+              - type: InventoryItem | IsoWorldInventoryObject
+                nullable: true
+          - name: onExtinguish
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: player
+                type: integer
+              - name: bbq
+                type: IsoBarbecue
+          - name: onInsertPropaneTank
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: player
+                type: integer
+              - name: bbq
+                type: IsoBarbecue
+              - name: tank
+                type: InventoryItem | IsoWorldInventoryObject
+          - name: onRemovePropaneTank
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: player
+                type: integer
+              - name: bbq
+                type: IsoBarbecue
+              - name: tank
+          - name: onToggle
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: player
+                type: integer
+              - name: bbq
+                type: IsoBarbecue
+              - name: tank

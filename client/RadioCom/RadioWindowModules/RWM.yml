@@ -1,0 +1,39 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      RWM:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"RWM"'
+        fields:
+          player:
+            type: IsoPlayer
+            nullable: true
+          device:
+            type: InventoryItem | IsoObject | VehiclePart
+            nullable: true
+          fontheight:
+            type: number
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: readFromObject
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+          - name: prerender
+          - name: render

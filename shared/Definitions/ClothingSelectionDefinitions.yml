@@ -1,0 +1,37 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ClothingSelectionDefinition:
+        - type: table<string, umbrella.ClothingSelectionDefinitionTable>
+    classes:
+      ClothingSelectionDefinitions:
+        staticFields:
+          default: {}
+          fireofficer: {}
+          policeofficer: {}
+          parkranger: {}
+          constructionworker: {}
+          securityguard: {}
+          carpenter: {}
+          burglar: {}
+          chef: {}
+          repairman: {}
+          farmer: {}
+          fisherman: {}
+          doctor: {}
+          veteran: {}
+          nurse: {}
+          lumberjack: {}
+          fitnessInstructor: {}
+          burgerflipper: {}
+          electrician: {}
+          metalworker: {}
+          engineer: {}
+          mechanics: {}
+      umbrella.ClothingSelectionDefinitionTable:
+        fields:
+          chance:
+            type: integer
+          items:
+            type: string[]

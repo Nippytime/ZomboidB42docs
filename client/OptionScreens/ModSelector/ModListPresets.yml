@@ -1,0 +1,84 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ModListPresets:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: model
+                type: ModSelector.Model
+        staticFields:
+          Type:
+            defaultValue: '"ModListPresets"'
+        fields:
+          model:
+            type: ModSelector.Model
+          childrenLine:
+            type: table<integer, ISUIElement>
+          childrenIndex:
+            type: integer
+          presetCombo:
+            type: ISComboBox
+          savePresetButton:
+            type: ISButton
+          delPresetButton:
+            type: ISButton
+          sharePresetButton:
+            type: ISButton
+          addPresetButton:
+            type: ISButton
+          missedModsPanel:
+            type: ModSelector.MissedModsWindow
+        methods:
+          - name: createChildren
+          - name: render
+          - name: addChild
+            parameters:
+              - name: child
+                type: ISUIElement
+          - name: updateView
+          - name: onPresetButton
+            parameters:
+              - name: button
+                type: ISButton
+          - name: addSharedPreset
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onValidateSavePreset
+            parameters:
+              - name: text
+                type: string
+            return:
+              - type: boolean
+          - name: onSavePreset
+            parameters:
+              - name: button
+                type: ISButton
+          - name: choosePreset
+            parameters:
+              - name: combo
+                type: ISComboBox
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData

@@ -1,0 +1,39 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFixGenerator:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: generator
+                type: IsoGenerator
+        staticFields:
+          Type:
+            defaultValue: '"ISFixGenerator"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          generator:
+            type: IsoGenerator
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: continueFixing
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

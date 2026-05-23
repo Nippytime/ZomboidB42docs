@@ -1,0 +1,113 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ForecasterDebug:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: title
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ForecasterDebug"'
+          instance:
+            type: ForecasterDebug
+            nullable: true
+        fields:
+          clim:
+            type: ClimateManager
+          forecaster:
+            type: ClimateForecaster
+          firstForecast:
+            type: boolean
+          daysList:
+            type: ISScrollingListBox
+          infoList:
+            type: ISScrollingListBox
+          variableColor:
+            type: umbrella.RGBA
+          buttonBorderColor:
+            type: umbrella.RGBA
+          zOffsetSmallFont:
+            type: number
+          panelTitle:
+            type: string
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onClickClose
+          - name: OnDaysListMouseDown
+            parameters:
+              - name: item
+                type: ClimateForecaster.DayForecast
+          - name: populateList
+          - name: drawDayList
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: formatVal
+            parameters:
+              - name: _value
+                type: number
+              - name: _func
+                type: function
+              - name: _func2
+                type: function
+                nullable: true
+            return:
+              - type: string
+          - name: printForecastValue
+            parameters:
+              - name: _name
+                type: string
+              - name: _value
+                type: number
+              - name: _func
+                type: function
+                nullable: true
+              - name: _func2
+                type: function
+                nullable: true
+          - name: populateInfoList
+            parameters:
+              - name: _forecast
+                type: ClimateForecaster.DayForecast
+          - name: populateWeatherInfoList
+            parameters:
+              - name: _forecast
+                type: ClimateForecaster.DayForecast
+              - name: _isOverlap
+                type: boolean
+          - name: drawInfoList
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: prerender
+          - name: update
+          - name: close
+        staticMethods:
+          - name: OnOpenPanel
+            return:
+              - type: ForecasterDebug
+                nullable: true

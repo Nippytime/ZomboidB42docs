@@ -1,0 +1,62 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      FloatArrayPlotter:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: maxPlotPoints
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"FloatArrayPlotter"'
+        fields:
+          plotColor:
+            type: umbrella.RGBA
+          data:
+            type: ArrayList
+            nullable: true
+          gridColor:
+            type: umbrella.RGBA
+          greyCol:
+            type: umbrella.RGBA
+          doGridLines:
+            type: boolean
+          gridHorzSpacing:
+            type: number
+          gridVertSpacing:
+            type: number
+          maxPlotPoints:
+            type: number
+          indexPointer:
+            type: number
+          vertBars:
+            type: table
+          horzBars:
+            type: "{ val: unknown, col: umbrella.RGBA }[]"
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: update
+          - name: prerender
+          - name: render
+          - name: setData
+            parameters:
+              - name: _data
+                type: ArrayList
+                nullable: true
+          - name: setHorzLine
+            parameters:
+              - name: value
+                type: number
+              - name: col
+                type: umbrella.RGBA

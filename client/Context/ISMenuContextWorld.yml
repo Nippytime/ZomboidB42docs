@@ -1,0 +1,113 @@
+version: "1.1"
+languages:
+  lua:
+    tables:
+      ISMenuContextWorld:
+        staticMethods:
+          - name: new
+            return:
+              - type: ISMenuContextWorld
+    classes:
+      ISMenuContextWorld:
+        extends: ISMenuElement
+        local: true
+        fields:
+          debug:
+            type: boolean
+          contextData:
+            type: umbrella.WorldMenuContextData[]
+        staticMethods:
+          - name: reset
+            parameters:
+              - name: _playerNum
+                type: integer
+          - name: init
+          - name: getContextData
+            parameters:
+              - name: _playerNum
+                type: integer
+            return:
+              - type: umbrella.WorldMenuContextData
+          - name: createMenu
+            parameters:
+              - name: _playerNum
+                type: integer
+              - name: _object
+                type: IsoObject
+                nullable: true
+              - name: _objects
+                type: IsoObject[]
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _test
+                type: boolean
+                nullable: true
+            return:
+              - type: ISContextMenu | boolean
+                nullable: true
+          - name: getAllObjects
+            parameters:
+              - name: _data
+                type: umbrella.WorldMenuContextData
+            return:
+              - type: IsoObject[]
+          - name: getObjectsSquare
+            parameters:
+              - name: _data
+                type: umbrella.WorldMenuContextData
+              - name: _sq
+                type: IsoGridSquare
+          - name: tableContains
+            parameters:
+              - name: _table
+                type: unknown[]
+              - name: _item
+                type: unknown
+            return:
+              - type: boolean
+          - name: printDebug
+            parameters:
+              - name: _data
+                type: umbrella.WorldMenuContextData
+      umbrella.WorldMenuContextData:
+        fields:
+          context:
+            type: ISContextMenu
+            nullable: true
+          playerNum:
+            type: integer
+            nullable: true
+          player:
+            type: IsoPlayer
+            nullable: true
+          playerRoom:
+            type: IsoRoom
+            nullable: true
+          inventory:
+            type: ItemContainer
+            nullable: true
+          object:
+            type: IsoObject
+            nullable: true
+          objects:
+            type: IsoObject[]
+            nullable: true
+          test:
+            type: boolean
+            nullable: true
+          isJoypad:
+            type: boolean
+            nullable: true
+          joypadData:
+            type: JoypadData
+            nullable: true
+          playerData:
+            type: ISPlayerDataObject
+            nullable: true
+          contains:
+            type: table<IsoObject, true?>
+            nullable: true
+          squares:
+            type: IsoGridSquare[]

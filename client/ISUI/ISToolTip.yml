@@ -1,0 +1,171 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISToolTip:
+        extends: ISPanel
+        constructors:
+          - {}
+        staticFields:
+          Type:
+            defaultValue: '"ISToolTip"'
+        fields:
+          name:
+            type: string
+            nullable: true
+          description:
+            type: string
+          contextMenu:
+            type: ISContextMenu
+            nullable: true
+          texture:
+            type: Texture
+            nullable: true
+          desiredX:
+            type: number
+            nullable: true
+          desiredY:
+            type: number
+            nullable: true
+          owner:
+            type: ISUIElement
+            nullable: true
+          footNote:
+            type: string
+            nullable: true
+          maxLineWidth:
+            type: number
+            nullable: true
+          followMouse:
+            type: boolean
+          descriptionPanel:
+            type: ISRichTextPanel
+          nameMarginX:
+            type: number
+          defaultMyWidth:
+            type: number
+        methods:
+          - name: initialise
+          - name: instantiate
+          - name: setName
+            parameters:
+              - name: name
+                type: string
+          - name: setTitle
+            parameters:
+              - name: str
+                type: string
+          - name: setDescription
+            parameters:
+              - name: str
+                type: string
+          - name: setContextMenu
+            parameters:
+              - name: contextMenu
+                type: ISContextMenu
+          - name: setTexture
+            parameters:
+              - name: textureName
+                type: string
+          - name: setTextureDirectly
+            parameters:
+              - name: texture
+                type: Texture
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: prerender
+          - name: render
+          - name: doLayout
+          - name: layoutContents
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: myWidth
+                type: number
+            return:
+              - type: number
+              - type: number
+          - name: renderContents
+          - name: setDesiredPosition
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: adjustPositionToAvoidOverlap
+            parameters:
+              - name: avoidRect
+                type: umbrella.Rect
+          - name: overlaps
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: boolean
+          - name: placeLeft
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: umbrella.Rect
+          - name: placeRight
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: umbrella.Rect
+          - name: placeAbove
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: umbrella.Rect
+          - name: setOwner
+            parameters:
+              - name: ui
+                type: ISUIElement
+          - name: reset
+        staticMethods:
+          - name: GetFont
+            return:
+              - type: UIFont

@@ -1,0 +1,114 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBaseEntityWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: entity
+                type: GameEntity
+              - name: entityUiStyle
+                type: XuiSkin.EntityUiStyle
+        staticFields:
+          Type:
+            defaultValue: '"ISBaseEntityWindow"'
+        fields:
+          maximumHeight:
+            type: number
+          entityHeader:
+            type: ISWidgetEntityHeader
+            nullable: true
+          xuiPreferredResizeWidth:
+            type: number
+          xuiPreferredResizeHeight:
+            type: number
+          xuiResizeAnchorRight:
+            type: boolean
+          dirtyLayout:
+            type: boolean
+          hasClosedWindowInstance:
+            type: boolean
+          maximumWidth:
+            type: number
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          title:
+            nullable: true
+          panelCloseDistance:
+            type: number
+          entity:
+            type: GameEntity
+          entityUiStyle:
+            type: XuiSkin.EntityUiStyle
+          enableHeader:
+            type: boolean
+          maximumHeightPercent:
+            type: number
+          overrideBPrompt:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: createEntityHeader
+            parameters:
+              - name: _xuiSkin
+                type: XuiSkin
+              - name: _styleName
+                type: string
+              - name: _force
+                type: boolean
+                nullable: true
+              - name: _styleIcon
+                type: string
+                nullable: true
+              - name: _styleLabel
+                type: string
+                nullable: true
+              - name: _styleButton
+                type: string
+                nullable: true
+          - name: xuiRecalculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+              - name: _force
+                type: boolean
+                nullable: true
+              - name: _anchorRight
+                type: boolean
+                nullable: true
+          - name: prerender
+          - name: stayOnSplitScreen
+          - name: render
+          - name: update
+            return:
+              - type: boolean
+          - name: close
+          - name: validateSizeBounds
+          - name: isKeyConsumed
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: boolean
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer

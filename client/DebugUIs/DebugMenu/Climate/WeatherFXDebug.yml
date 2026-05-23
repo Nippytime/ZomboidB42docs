@@ -1,0 +1,257 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      WeatherFXDebug:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"WeatherFXDebug"'
+          instance:
+            type: WeatherFXDebug
+            nullable: true
+          shiftDown:
+            defaultValue: "0"
+          eventAdded:
+            defaultValue: "false"
+          fx:
+            type: IsoWeatherFX
+            nullable: true
+        fields:
+          labelWindIntensity:
+            type: ISLabel
+          labelWindIntensityValue:
+            type: ISLabel
+          windIntensitySlider:
+            type: ISVolumeControl
+          labelWindAngle:
+            type: ISLabel
+          labelWindAngleValue:
+            type: ISLabel
+          windAngleSlider:
+            type: ISVolumeControl
+          labelCloud:
+            type: ISLabel
+          labelCloudValue:
+            type: ISLabel
+          cloudSlider:
+            type: ISVolumeControl
+          labelFog:
+            type: ISLabel
+          labelFogValue:
+            type: ISLabel
+          fogSlider:
+            type: ISVolumeControl
+          labelPrecipitation:
+            type: ISLabel
+          labelPrecipitationValue:
+            type: ISLabel
+          precipitationSlider:
+            type: ISVolumeControl
+          labelIsSnow:
+            type: ISLabel
+          tickBoxIsSnow:
+            type: ISTickBox
+          btnDebugBounds:
+            type: ISButton
+          btnClimate:
+            type: ISButton
+          btnNightVision:
+            type: ISButton
+          btnLaunchFlare:
+            type: ISButton
+          btnGodMode:
+            type: ISButton
+          LightColorPanel:
+            type: ISPanel
+          labelDesaturation:
+            type: ISLabel
+          labelDesaturationValue:
+            type: ISLabel
+          DesaturationSlider:
+            type: ISVolumeControl
+          labelDayLightStrength:
+            type: ISLabel
+          labelDayLightStrengthValue:
+            type: ISLabel
+          DayLightStrengthSlider:
+            type: ISVolumeControl
+          labelNightStrength:
+            type: ISLabel
+          labelNightStrengthValue:
+            type: ISLabel
+          NightStrengthSlider:
+            type: ISVolumeControl
+          labelAmbient:
+            type: ISLabel
+          labelAmbientValue:
+            type: ISLabel
+          AmbientSlider:
+            type: ISVolumeControl
+          labelViewDistance:
+            type: ISLabel
+          labelViewDistanceValue:
+            type: ISLabel
+          ViewDistanceSlider:
+            type: ISVolumeControl
+          btnStorm:
+            type: ISButton
+          btnTropical:
+            type: ISButton
+          btnBlizzard:
+            type: ISButton
+          currentTile:
+            nullable: true
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          title:
+            type: string
+          richtext:
+            nullable: true
+          overrideBPrompt:
+            type: boolean
+          subFocus:
+            nullable: true
+          hotKeyPanels:
+            type: table
+          isJoypadWindow:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onButtonGodMode
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onButtonDebugBounds
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onButtonClimate
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onButtonDoStorm
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onButtonDoTropical
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onButtonDoBlizzard
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onButtonNightVision
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onButtonLaunchFlare
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onLightColorChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onAmbientChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onViewDistanceChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onDesaturationChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onLightIntensityChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onNightStrengthChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onDayLightStrengthChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onWindIntensityChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onWindAngleChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onPrecipitationChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onFogIntensityChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: onCloudIntensityChange
+            parameters:
+              - name: _slider
+                type: ISVolumeControl
+              - name: _value
+                type: number
+          - name: tickBoxIsSnowChange
+            parameters:
+              - name: _optionIndex
+                type: integer
+              - name: _value
+                type: boolean
+          - name: onResize
+          - name: update
+          - name: prerender
+          - name: stayOnSplitScreen
+          - name: render
+          - name: close
+          - name: clear
+        staticMethods:
+          - name: OnOpenPanel
+            return:
+              - type: WeatherFXDebug
+                nullable: true

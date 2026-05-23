@@ -1,0 +1,38 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISUnbarricadeAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: BarricadeAble
+        staticFields:
+          Type:
+            defaultValue: '"ISUnbarricadeAction"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          item:
+            type: BarricadeAble
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

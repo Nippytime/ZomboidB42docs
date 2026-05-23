@@ -1,0 +1,50 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISVehicleGauge:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: texture
+                type: Texture
+              - name: needleX
+                type: number
+              - name: needleY
+                type: number
+              - name: minAngle
+                type: number
+              - name: maxAngle
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISVehicleGauge"'
+        fields:
+          texture:
+            type: Texture
+          needleX:
+            type: number
+          needleY:
+            type: number
+          minAngle:
+            type: number
+          maxAngle:
+            type: number
+        methods:
+          - name: setNeedleWidth
+            parameters:
+              - name: width
+                type: number
+          - name: setTexture
+            parameters:
+              - name: texture
+                type: Texture
+          - name: setValue
+            parameters:
+              - name: value
+                type: number
+          - name: instantiate

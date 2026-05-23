@@ -1,0 +1,280 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISMoveableCursor:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: _character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISMoveableCursor"'
+          modes:
+            type: "{ tags: string[], titles: string[] }"
+          cursors:
+            type: table<integer, ISMoveableCursor>
+          mode:
+            type: table<integer, string>
+          cacheMode:
+            type: table<integer, string>
+          normalColor: {}
+          validColor: {}
+          invalidColor: {}
+        fields:
+          objectIndex:
+            type: integer
+          objectListCache:
+            type: umbrella.ISMoveableCursor.ObjectInfo |
+              umbrella.ISMoveableCursor.ObjectInfo[] | false
+            nullable: true
+          cacheObject:
+            type: IsoObject
+            nullable: true
+          tryInitialInvItem:
+            type: InventoryItem
+            nullable: true
+          cursorFacing:
+            type: integer
+            nullable: true
+          joypadFacing:
+            type: number
+            nullable: true
+          cacheSquare:
+            type: IsoGridSquare
+            nullable: true
+          renderX:
+            type: number
+          renderY:
+            type: number
+          renderZ:
+            type: number
+          currentMoveProps:
+            type: ISMoveableSpriteProps
+            nullable: true
+          origMoveProps:
+            type: ISMoveableSpriteProps
+            nullable: true
+          canCreate:
+            type: boolean
+            nullable: true
+          objectSprite:
+            type: string
+            nullable: true
+          origSpriteName:
+            type: string
+            nullable: true
+          colorMod:
+            type: umbrella.RGBA
+            nullable: true
+          yOffset:
+            type: number
+          currentSquare:
+            type: IsoGridSquare
+            nullable: true
+          canSeeCurrentSquare:
+            type: boolean
+            nullable: true
+          cacheInvObjectSprite:
+            type: string
+            nullable: true
+          xJoypad:
+            type: number
+            nullable: true
+          yJoypad:
+            type: number
+            nullable: true
+          isMoveableCursor:
+            type: boolean
+          moveableMode:
+            type: string
+          character:
+            type: IsoPlayer
+          player:
+            type: integer
+          skipBuildAction:
+            type: boolean
+          isYButtonResetCursor:
+            type: boolean
+          noNeedHammer:
+            type: boolean
+          skipWalk:
+            type: boolean
+          renderFloorHelper:
+            type: boolean
+          subObjectIndex:
+            type: integer
+          cacheInvObjectIndex:
+            type: integer
+        methods:
+          - name: deactivate
+          - name: exitCursor
+          - name: onObjectLeftMouseButtonDown
+            parameters:
+              - name: object
+                type: IsoObject
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: clearCache
+          - name: getMoveableMode
+            return:
+              - type: string
+                nullable: true
+          - name: tryInitialItem
+            parameters:
+              - name: _item
+                type: InventoryItem
+          - name: setMoveableMode
+            parameters:
+              - name: _mode
+                type: string
+                nullable: true
+          - name: create
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _z
+                type: number
+              - name: _north
+                type: boolean
+              - name: _sprite
+                type: string
+          - name: getInfoPanel
+            return:
+              - type: ISMoveableInfoWindow
+          - name: setInfoPanel
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+                nullable: true
+              - name: _object
+                type: IsoObject
+                nullable: true
+              - name: _moveProps
+                type: ISMoveableSpriteProps
+                nullable: true
+              - name: _customTexture
+                type: string
+                nullable: true
+            return:
+              - type: ISMoveableInfoWindow
+                nullable: true
+          - name: render
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _z
+                type: number
+              - name: _square
+                type: IsoGridSquare
+          - name: isValid
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: rotateKey
+            parameters:
+              - name: key
+                type: integer
+              - name: _joypadTriggered
+                type: boolean
+          - name: rotateWhilePlacing
+          - name: getDirectionFromItem
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: IsoDirections
+          - name: rotateMouse
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: setCursorFacing
+            parameters:
+              - name: facing
+                type: integer
+          - name: setJoypadFocus
+            parameters:
+              - name: _window
+                type: ISUIElement
+          - name: getRotateableObject
+            return:
+              - type: umbrella.ISMoveableCursor.ObjectInfo | false
+          - name: getInventoryObjectList
+            return:
+              - type: umbrella.ISMoveableCursor.ObjectInfo[]
+          - name: shouldAddObject
+            parameters:
+              - name: _obj
+                type: IsoObject
+              - name: moveProps
+                type: ISMoveableSpriteProps
+            return:
+              - type: boolean
+          - name: getObjectList
+            return:
+              - type: umbrella.ISMoveableCursor.ObjectInfo[]
+          - name: getScrapObjectList
+            return:
+              - type: umbrella.ISMoveableCursor.ObjectInfo[]
+          - name: getRepairObjectList
+            return:
+              - type: umbrella.ISMoveableCursor.ObjectInfo[]
+          - name: onJoypadPressButton
+            parameters:
+              - name: joypadIndex
+                type: integer
+              - name: joypadData
+                type: JoypadData
+              - name: button
+                type: integer
+          - name: getAPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getXPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getLBPrompt
+            return:
+              - type: string
+          - name: getRBPrompt
+            return:
+              - type: string
+                nullable: true
+        staticMethods:
+          - name: exitCursorKey
+            parameters:
+              - name: _key
+                type: integer
+          - name: changeModeKey
+            parameters:
+              - name: _key
+                type: integer
+              - name: _playerNum
+                type: integer
+              - name: _joyPadTriggered
+                type: boolean
+          - name: clearCacheForAllPlayers
+      umbrella.ISMoveableCursor.ObjectInfo:
+        fields:
+          object:
+            type: IsoObject
+          moveProps:
+            type: ISMoveableSpriteProps
+          isWall:
+            type: boolean
+            nullable: true

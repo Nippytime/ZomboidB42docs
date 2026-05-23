@@ -1,0 +1,203 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDesignationZoneAnimalZoneUI:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: zone
+                type: DesignationZoneAnimal
+        staticFields:
+          Type:
+            defaultValue: '"ISDesignationZoneAnimalZoneUI"'
+        fields:
+          itemPadY:
+            type: number
+          itemHgt:
+            type: number
+          animalPanel:
+            type: ISDesignationZoneAnimalZoneUI_AnimalsPanel
+          ok:
+            type: ISButton
+          reloadBtn:
+            type: ISButton
+          animalInfoBtn:
+            type: ISButton
+          infoBtn:
+            type: ISButton
+          nbOfAnimals:
+            type: number
+          nbOfCorpses: {}
+          updateTick:
+            type: number
+          animalbuttons:
+            type: ISButton[]
+          animalLabels:
+            type: ISLabel[]
+          zone:
+            type: DesignationZoneAnimal
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          buttonBorderColor:
+            type: umbrella.RGBA
+          listTakesFocus:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: checkExist
+            return:
+              - type: boolean
+          - name: prerender
+          - name: render
+          - name: updateAnimals
+            return:
+              - type: number
+          - name: calcNearRiver
+            return:
+              - type: integer
+          - name: calcWater
+            return:
+              - type: integer
+          - name: calcFood
+            return:
+              - type: number
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: reload
+          - name: close
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: queueCheckHutchDoor
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: self
+                type: ISDesignationZoneAnimalZoneUI
+              - name: hutch
+                type: IsoHutch
+              - name: animal
+                type: IsoAnimal
+          - name: queueOpenAnimalInfo
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: self
+                type: ISDesignationZoneAnimalZoneUI
+              - name: hutch
+                type: IsoHutch
+              - name: animal
+                type: IsoAnimal
+      ISDesignationZoneAnimalZoneUI_AnimalsPanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: ui
+                type: ISDesignationZoneAnimalZoneUI
+        staticFields:
+          Type:
+            defaultValue: '"ISDesignationZoneAnimalZoneUI_AnimalsPanel"'
+        fields:
+          selected:
+            type: integer
+          mouseOverAnimal:
+            nullable: true
+          smoothScrollY:
+            type: number
+            nullable: true
+          smoothScrollTargetY:
+            type: number
+            nullable: true
+          ui:
+            type: ISDesignationZoneAnimalZoneUI
+        methods:
+          - name: prerender
+          - name: render
+          - name: highlightAnimal
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: size
+            return:
+              - type: integer
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: ensureVisible
+            parameters:
+              - name: index
+                type: integer
+          - name: updateSmoothScrolling

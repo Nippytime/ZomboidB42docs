@@ -1,0 +1,48 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISInstallVehiclePart:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: item
+                type: InventoryItem
+              - name: maxTimeInit
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISInstallVehiclePart"'
+        fields:
+          item:
+            type: InventoryItem
+          vehicle:
+            type: BaseVehicle
+          part:
+            type: VehiclePart
+          maxTimeInit:
+            type: number
+          jobType:
+            type: string
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+                nullable: true
+          - name: getDuration
+            return:
+              - type: number

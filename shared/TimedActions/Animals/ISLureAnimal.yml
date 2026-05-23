@@ -1,0 +1,66 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISLureAnimal:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: animal
+                type: IsoAnimal
+              - name: item
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISLureAnimal"'
+        fields:
+          timerCheck:
+            type: number
+          saidLine:
+            type: boolean
+          saidLine2:
+            type: boolean
+          timer:
+            type: number
+          lastTimer:
+            type: number
+          animal:
+            type: IsoAnimal
+          item:
+            type: InventoryItem
+          useProgressBar:
+            type: boolean
+          luringTick:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: luredAnimal
+            parameters:
+              - name: animal
+                type: IsoAnimal
+          - name: start
+          - name: stopSound
+          - name: stop
+          - name: perform
+          - name: serverStop
+          - name: complete
+            return:
+              - type: boolean
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: serverStart
+          - name: getDuration
+            return:
+              - type: number

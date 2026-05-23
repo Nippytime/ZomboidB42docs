@@ -1,0 +1,83 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCraftRecipeInfoBox:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: recipe
+                type: CraftRecipe
+        staticFields:
+          Type:
+            defaultValue: '"ISCraftRecipeInfoBox"'
+        fields:
+          infoPairs:
+            type: table
+          recipe:
+            type: CraftRecipe
+          player:
+            type: IsoPlayer
+          displayTags:
+            type: boolean
+          margin:
+            type: number
+          doToolTip:
+            type: boolean
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: createDynamicChildren
+          - name: addInfoPair
+            parameters:
+              - name: _key
+                type: unknown
+              - name: _value
+                type: unknown
+              - name: _valueColor
+                type: umbrella.RGBA
+                nullable: true
+              - name: fullColor
+                type: boolean
+                nullable: true
+          - name: addInfo
+            parameters:
+              - name: _key
+                type: unknown
+              - name: fullColor
+                type: boolean
+                nullable: true
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: setRecipe
+            parameters:
+              - name: _recipe
+                type: CraftRecipe

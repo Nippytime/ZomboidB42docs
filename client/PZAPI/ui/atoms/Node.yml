@@ -1,0 +1,150 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      UI.Node:
+        local: true
+        staticFields:
+          _ATOM_UI_CLASS:
+            defaultValue: AtomUI
+          x:
+            defaultValue: "0"
+          y:
+            defaultValue: "0"
+          width:
+            defaultValue: "256"
+          height:
+            defaultValue: "256"
+          pivotX:
+            defaultValue: "0"
+          pivotY:
+            defaultValue: "0"
+          angle:
+            defaultValue: "0"
+          scaleX:
+            defaultValue: "1"
+          scaleY:
+            defaultValue: "1"
+          r:
+            defaultValue: "1"
+          g:
+            defaultValue: "1"
+          b:
+            defaultValue: "1"
+          a:
+            defaultValue: "1"
+          anchorLeft:
+            defaultValue: "false"
+          anchorRight:
+            defaultValue: "false"
+          anchorTop:
+            defaultValue: "false"
+          anchorDown:
+            defaultValue: "false"
+          visible:
+            defaultValue: "true"
+          enabled:
+            defaultValue: "true"
+          alwaysBack:
+            defaultValue: "false"
+          alwaysOnTop:
+            defaultValue: "false"
+          isStencil:
+            defaultValue: "false"
+        fields:
+          javaObj:
+            type: AtomUI
+          children:
+            type: table<string, UI.Node>
+            nullable: true
+          super:
+            type: table
+        overloads:
+          - parameters:
+              - name: args
+                type: table
+            return:
+              - type: UI.Node
+        methods:
+          - name: setX
+            parameters:
+              - name: value
+                type: number
+          - name: setY
+            parameters:
+              - name: value
+                type: number
+          - name: setWidth
+            parameters:
+              - name: value
+                type: number
+          - name: setHeight
+            parameters:
+              - name: value
+                type: number
+          - name: setWidthSilent
+            parameters:
+              - name: value
+                type: number
+          - name: setHeightSilent
+            parameters:
+              - name: value
+                type: number
+          - name: setPivotX
+            parameters:
+              - name: value
+                type: number
+          - name: setPivotY
+            parameters:
+              - name: value
+                type: number
+          - name: setAngle
+            parameters:
+              - name: value
+                type: number
+          - name: setScaleX
+            parameters:
+              - name: value
+                type: number
+          - name: setScaleY
+            parameters:
+              - name: value
+                type: number
+          - name: setColor
+            parameters:
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: setVisible
+            parameters:
+              - name: value
+                type: boolean
+          - name: setEnabled
+            parameters:
+              - name: value
+                type: boolean
+          - name: setAlwaysOnTop
+            parameters:
+              - name: value
+                type: boolean
+          - name: setAlwaysBack
+            parameters:
+              - name: value
+                type: boolean
+          - name: centerOnScreen
+            parameters:
+              - name: playerNum
+                type: integer
+          - name: instantiate
+            tags:
+              - StubGen_Extra
+      PZAPI.UI:
+        local: true
+        staticFields:
+          Node:
+            type: UI.Node

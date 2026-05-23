@@ -1,0 +1,72 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISTakeWaterAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+                nullable: true
+              - name: waterObject
+                type: IsoObject
+              - name: waterTaintedCL
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISTakeWaterAction"'
+        fields:
+          sound:
+            type: integer
+          item:
+            type: InventoryItem
+            nullable: true
+          waterObject:
+            type: IsoObject
+          waterTaintedCL:
+            type: boolean
+          waterUnit:
+            type: number
+          startUsedAmount:
+            type: number
+          startThirst:
+            type: number
+          endUsedAmount:
+            type: number
+            nullable: true
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: updateUse
+            parameters:
+              - name: targetDelta
+                type: number
+          - name: start
+          - name: stopSound
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: transferFluid
+            parameters:
+              - name: _amount
+                type: number
+          - name: serverStart
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: getDuration
+            return:
+              - type: number

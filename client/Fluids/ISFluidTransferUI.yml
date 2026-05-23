@@ -1,0 +1,216 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidTransferUI:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: _player
+                type: IsoPlayer
+              - name: _container
+                type: ISFluidContainer
+              - name: source
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidTransferUI"'
+          players:
+            type: table<integer, umbrella.ISFluidTransferUI.PlayerTableItem>
+          cheatSkill:
+            defaultValue: "false"
+          cheatTransfer:
+            defaultValue: "false"
+        fields:
+          titleText:
+            type: string
+          titleLabel:
+            type: ISLabel
+          fluidTitleText:
+            type: string
+          fluidTitleLabel:
+            type: ISLabel
+          errorText:
+            type: string
+          errorLabel:
+            type: ISLabel
+          panelLeftText:
+            type: string
+          panelLeft:
+            type: ISFluidContainerPanel
+          panelLeftX:
+            type: number
+          panelMiddle:
+            type: ISPanel
+          btnSwap:
+            type: ISButton
+          maxTransferText:
+            type: string
+          maxTransferLabel:
+            type: ISLabel
+          slider:
+            type: ISSliderPanel
+          transferringText:
+            type: string
+          transferringLabel:
+            type: ISLabel
+          panelRightText:
+            type: string
+          panelRight:
+            type: ISFluidContainerPanel
+          panelRightX:
+            type: number
+          btnTransfer:
+            type: ISButton
+          btnClose:
+            type: ISButton
+          disableTransfer:
+            type: boolean
+          disableSwap:
+            type: boolean
+          action:
+            type: ISFluidTransferAction | false
+          fromPreviousOwner:
+            type: ItemContainer | IsoGridSquare
+            nullable: true
+          toPreviousOwner:
+            type: ItemContainer | IsoGridSquare
+            nullable: true
+          variableColor:
+            type: umbrella.RGBA
+          buttonBorderColor:
+            type: umbrella.RGBA
+          transferColor:
+            type: umbrella.RGBA
+          zOffsetSmallFont:
+            type: number
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          container:
+            type: ISFluidContainer
+          source:
+            type: boolean
+          isIsoPanel:
+            type: boolean
+          info:
+            type: umbrella.ISFluidTransferUI.InfoTable
+          errorDefault:
+            type: string
+          disableJoypadNavigation:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: setMaxTransfer
+            parameters:
+              - name: _value
+                type: number
+          - name: setTransferring
+            parameters:
+              - name: _value
+                type: number
+          - name: onContainerAdd
+            parameters:
+              - name: _item
+                type: InventoryItem
+              - name: _panel
+                type: ISFluidContainerPanel
+          - name: onContainerRemove
+            parameters:
+              - name: _removedItem
+                type: InventoryItem
+              - name: _panel
+                type: ISFluidContainerPanel
+          - name: onContainerVerify
+            parameters:
+              - name: _item
+                type: InventoryItem
+              - name: _panel
+                type: ISFluidContainerPanel
+            return:
+              - type: boolean
+          - name: onSlider
+            parameters:
+              - name: _value
+                type: number
+              - name: _slider
+                type: ISSliderPanel
+          - name: validatePanel
+            parameters:
+              - name: _forceUpdate
+                type: boolean
+          - name: prerender
+          - name: render
+          - name: update
+          - name: arrangePanels
+          - name: close
+          - name: onButton
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: toggleCheatSkill
+            parameters:
+              - name: _b
+                type: boolean
+          - name: toggleCheatTransfer
+            parameters:
+              - name: _b
+                type: boolean
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+            return:
+              - type: unknown
+                nullable: true
+          - name: setOrClearItem
+            parameters:
+              - name: panel
+                type: ISFluidContainerPanel
+        staticMethods:
+          - name: OpenPanel
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _container
+                type: ISFluidContainer
+              - name: _source
+                type: boolean
+      umbrella.ISFluidTransferUI.InfoTable:
+        fields:
+          maxTransfer:
+            type: number
+          transferring:
+            type: number
+      umbrella.ISFluidTransferUI.PlayerTableItem:
+        fields:
+          instance:
+            type: ISFluidTransferUI
+          x:
+            type: number
+          y:
+            type: number

@@ -1,0 +1,40 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWringClothing:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISWringClothing"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          item:
+            type: InventoryItem
+          maxTime:
+            type: number
+          forceProgressBar:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stopSound
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

@@ -1,0 +1,139 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPaperCursor:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: paperType
+                type: string
+              - name: newSprite
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISPaperCursor"'
+        fields:
+          objectIndex:
+            type: number
+          renderX:
+            type: number
+          renderY:
+            type: number
+          renderZ:
+            type: number
+          currentSquare:
+            type: IsoGridSquare
+          newSpriteSprite:
+            type: IsoSprite
+            nullable: true
+          newSprite:
+            type: string
+          character:
+            type: IsoPlayer
+          player:
+            type: integer
+          skipBuildAction:
+            type: boolean
+          noNeedHammer:
+            type: boolean
+          skipWalk:
+            type: boolean
+          renderFloorHelper:
+            type: boolean
+          paperType:
+            type: string
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: walkTo
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: _isWall
+            parameters:
+              - name: object
+                type: IsoObject
+                nullable: true
+            return:
+              - type: boolean
+          - name: _isDoorFrame
+            parameters:
+              - name: object
+                type: IsoObject
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: rotateKey
+            parameters:
+              - name: key
+                type: integer
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: onJoypadPressButton
+            parameters:
+              - name: joypadIndex
+                type: integer
+              - name: joypadData
+                type: JoypadData
+              - name: button
+                type: integer
+            return:
+              - type: unknown
+                nullable: true
+          - name: getAPrompt
+            return:
+              - type: string
+          - name: getLBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getRBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: canPaper
+            parameters:
+              - name: object
+                type: IsoObject
+            return:
+              - type: boolean
+          - name: hasItems
+            return:
+              - type: boolean
+          - name: getObjectList
+            return:
+              - type: IsoObject[]

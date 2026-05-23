@@ -1,0 +1,214 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISInventoryTransferAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: srcContainer
+                type: ItemContainer
+              - name: destContainer
+                type: ItemContainer
+              - name: time
+                type: number
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISInventoryTransferAction"'
+          putSoundDelay:
+            defaultValue: "2"
+          putSoundTime:
+            defaultValue: "0"
+          putSound:
+            type: integer
+            nullable: true
+          putSoundContainer:
+            type: ItemContainer
+            nullable: true
+        fields:
+          dontAdd:
+            type: boolean
+          maxTime:
+            type: number
+            nullable: true
+          selectedContainer:
+            type: ItemContainer
+            nullable: true
+          jobType:
+            type: string
+          loopSound:
+            type: integer
+            nullable: true
+          loopSoundNoTrigger:
+            type: boolean
+          transactionId:
+            type: number
+          started:
+            type: boolean
+          sourceContainerOpened:
+            type: ItemContainer
+            nullable: true
+          destContainerOpened:
+            type: ItemContainer
+            nullable: true
+          item:
+            type: InventoryItem
+            nullable: true
+          queueList:
+            type: umbrella.ISInventoryTransferAction.QueueItem[]
+          onCompleteFunc:
+            type: function
+            nullable: true
+          onCompleteArgs:
+            type: table
+            nullable: true
+          allowMissingItems:
+            type: boolean
+          srcContainer:
+            type: ItemContainer
+          destContainer:
+            type: ItemContainer
+          transactions:
+            type: umbrella.ISInventoryTransferAction.Transaction
+          loopedAction:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: doActionAnim
+            parameters:
+              - name: cont
+                type: ItemContainer
+          - name: startActionAnim
+          - name: start
+          - name: playSourceContainerOpenSound
+          - name: playSourceContainerCloseSound
+          - name: playDestContainerOpenSound
+          - name: playDestContainerCloseSound
+          - name: getTransferStartSoundName
+            return:
+              - type: string
+                nullable: true
+          - name: getTransferCompleteSoundName
+            return:
+              - type: string
+                nullable: true
+          - name: stopLoopingSound
+          - name: stop
+          - name: forceComplete
+          - name: perform
+          - name: isAlreadyTransferred
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: floorHasRoomFor
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: canDropOnFloor
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: getNotFullFloorSquare
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: IsoGridSquare
+                nullable: true
+          - name: transferItem
+            parameters:
+              - name: item
+                type: InventoryItem
+          - name: setOnComplete
+            parameters:
+              - name: func
+                type: function
+                nullable: true
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true
+              - name: arg5
+                type: unknown
+                nullable: true
+              - name: arg6
+                type: unknown
+                nullable: true
+              - name: arg7
+                type: unknown
+                nullable: true
+              - name: arg8
+                type: unknown
+                nullable: true
+          - name: getTimeDelta
+            return:
+              - type: number
+          - name: canMergeAction
+            parameters:
+              - name: action
+                type: ISBaseTimedAction
+            return:
+              - type: boolean
+          - name: checkQueueList
+          - name: setAllowMissingItems
+            parameters:
+              - name: allow
+                type: boolean
+          - name: getExtraLogData
+            return:
+              - type: string[]
+      ISInventoryPage:
+        staticFields:
+          putSoundContainer:
+            nullable: true
+      umbrella.ISInventoryTransferAction.QueueItem:
+        fields:
+          items:
+            type: InventoryItem[]
+          time:
+            type: number
+          type:
+            type: string
+      umbrella.ISInventoryTransferAction.Transaction:
+        fields:
+          "[1]":
+            type: InventoryItem
+          "[2]":
+            type: ItemContainer
+          "[3]":
+            type: ItemContainer
+    functions:
+      - name: javaTransferItems
+        parameters:
+          - name: character
+            type: IsoPlayer
+          - name: item
+            type: InventoryItem
+          - name: srcContainer
+            type: ItemContainer
+          - name: destContainer
+            type: ItemContainer

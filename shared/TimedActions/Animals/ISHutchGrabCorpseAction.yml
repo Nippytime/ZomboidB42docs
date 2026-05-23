@@ -1,0 +1,47 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISHutchGrabCorpseAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: index
+                type: integer
+              - name: hutch
+                type: IsoHutch
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchGrabCorpseAction"'
+        fields:
+          corpse:
+            type: InventoryItem
+          animal:
+            type: IsoAnimal
+          index:
+            type: integer
+          hutch:
+            type: IsoHutch
+          forceProgressBar:
+            type: boolean
+          ignoreHandsWounds:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: unknown
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

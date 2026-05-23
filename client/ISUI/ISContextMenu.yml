@@ -1,0 +1,848 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISContextMenu.OnHighlight:
+        - type: "fun(option: umbrella.ISContextMenu.Option, menu: ISContextMenu,
+            isHighlighted: boolean, ...: unknown)"
+    classes:
+      ISContextMenu:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: zoom
+                type: number
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISContextMenu"'
+          globalPlayerContext:
+            type: number
+            nullable: true
+          wantNoise:
+            defaultValue: "false"
+        fields:
+          mouseOut:
+            type: boolean
+          subMenu:
+            type: ISContextMenu
+            nullable: true
+          mouseOver:
+            type: number
+            nullable: true
+          visibleCheck:
+            type: boolean
+          forceVisible:
+            type: boolean
+          toolTip:
+            type: ISToolTip
+            nullable: true
+          highlightedOption:
+            type: umbrella.ISContextMenu.Option
+            nullable: true
+          currentOptionRect:
+            type: "{ x: number, y: number, width: number, height: number }"
+            nullable: true
+          blinkAlpha:
+            type: number
+          blinkAlphaIncrease:
+            type: boolean
+          scrollAreaHeight:
+            type: number
+          addedDefaultOptions:
+            type: boolean
+          slideGoalTime:
+            type: number
+            nullable: true
+          slideGoalY:
+            type: number
+            nullable: true
+          slideGoalX:
+            type: number
+            nullable: true
+          slideGoalDY:
+            type: number
+            nullable: true
+          numOptions:
+            type: integer
+          options:
+            type: umbrella.ISContextMenu.Option[]
+          font:
+            type: UIFont
+          fontHgt:
+            type: number
+          itemHgt:
+            type: number
+          zoom:
+            type: number
+            nullable: true
+          padY:
+            type: number
+          padTopBottom:
+            type: number
+          backgroundColorMouseOver:
+            type: umbrella.RGBA
+          parent:
+            type: table | ISContextMenu
+            nullable: true
+          keepOnScreen:
+            type: boolean
+          optionPool:
+            type: umbrella.ISContextMenu.Option[]
+          subOptionNums:
+            type: integer
+          player:
+            type: integer
+          scrollIndicatorHgt:
+            type: number
+          arrowUp:
+            type: Texture
+          arrowDown:
+            type: Texture
+          tickTexture:
+            type: Texture
+          instanceMap:
+            type: ISContextMenu[]
+            nullable: true
+            tags:
+              - StubGen_Extra
+          subMenuPool:
+            type: ISContextMenu[]
+            nullable: true
+            tags:
+              - StubGen_Extra
+          subInstance:
+            type: ISContextMenu
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: initialise
+          - name: isMouseOut
+            return:
+              - type: boolean
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: hideSelfAndChildren2
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: ensureVisible
+          - name: onFocus
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onJoypadDirUp
+          - name: onJoypadDirDown
+          - name: onJoypadDirLeft
+          - name: onJoypadDirRight
+          - name: hideSelf
+          - name: hideAndChildren
+          - name: showTooltip
+            parameters:
+              - name: option
+                type: umbrella.ISContextMenu.Option
+          - name: hideToolTip
+          - name: checkHighlightedOption
+            parameters:
+              - name: option
+                nullable: true
+          - name: callOptionHighlightFunction
+            parameters:
+              - name: option
+                type: umbrella.ISContextMenu.Option
+              - name: isHighlighted
+                type: boolean
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: closeAll
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: prerender
+          - name: render
+          - name: calcHeight
+          - name: calcWidth
+            return:
+              - type: number
+          - name: isOptionSingleMenu
+            return:
+              - type: boolean
+          - name: isAnyVisible
+            return:
+              - type: boolean
+          - name: getIndexForSubMenu
+            parameters:
+              - name: subMenu
+            return:
+              - type: integer
+          - name: addDefaultOptions
+          - name: getDefaultOptionCount
+            return:
+              - type: integer
+          - name: setSlideGoalX
+            parameters:
+              - name: startX
+                type: number
+              - name: finalX
+                type: number
+          - name: setSlideGoalY
+            parameters:
+              - name: startY
+                type: number
+              - name: finalY
+                type: number
+          - name: updateSlideGoalX
+          - name: updateSlideGoalY
+          - name: displayAncestor
+            parameters:
+              - name: ancestor
+                type: ISUIElement
+          - name: displaySubMenu
+            parameters:
+              - name: subMenu
+                type: ISContextMenu
+              - name: option
+                type: umbrella.ISContextMenu.Option
+          - name: getRootY
+            return:
+              - type: number
+          - name: getItemY
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: number
+          - name: getIndexAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: integer
+          - name: topmostMenuWithMouse
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: ISContextMenu
+                nullable: true
+          - name: allocOption
+            parameters:
+              - name: name
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+              - name: param5
+                type: unknown
+                nullable: true
+              - name: param6
+                type: unknown
+                nullable: true
+              - name: param7
+                type: unknown
+                nullable: true
+              - name: param8
+                type: unknown
+                nullable: true
+              - name: param9
+                type: unknown
+                nullable: true
+              - name: param10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+          - name: addOption
+            parameters:
+              - name: name
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+              - name: param5
+                type: unknown
+                nullable: true
+              - name: param6
+                type: unknown
+                nullable: true
+              - name: param7
+                type: unknown
+                nullable: true
+              - name: param8
+                type: unknown
+                nullable: true
+              - name: param9
+                type: unknown
+                nullable: true
+              - name: param10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+          - name: getOptionFromName
+            parameters:
+              - name: name
+                type: string
+            return:
+              - type: umbrella.ISContextMenu.Option
+                nullable: true
+          - name: addColorBoxOption
+            parameters:
+              - name: name
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+              - name: param5
+                type: unknown
+                nullable: true
+              - name: param6
+                type: unknown
+                nullable: true
+              - name: param7
+                type: unknown
+                nullable: true
+              - name: param8
+                type: unknown
+                nullable: true
+              - name: param9
+                type: unknown
+                nullable: true
+              - name: param10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+                nullable: true
+          - name: addDebugOption
+            parameters:
+              - name: name
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+              - name: param5
+                type: unknown
+                nullable: true
+              - name: param6
+                type: unknown
+                nullable: true
+              - name: param7
+                type: unknown
+                nullable: true
+              - name: param8
+                type: unknown
+                nullable: true
+              - name: param9
+                type: unknown
+                nullable: true
+              - name: param10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+                nullable: true
+          - name: addOptionOnTop
+            parameters:
+              - name: name
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+              - name: param5
+                type: unknown
+                nullable: true
+              - name: param6
+                type: unknown
+                nullable: true
+              - name: param7
+                type: unknown
+                nullable: true
+              - name: param8
+                type: unknown
+                nullable: true
+              - name: param9
+                type: unknown
+                nullable: true
+              - name: param10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+          - name: insertOptionAfter
+            parameters:
+              - name: prevOptionName
+                type: string
+              - name: name
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+              - name: param5
+                type: unknown
+                nullable: true
+              - name: param6
+                type: unknown
+                nullable: true
+              - name: param7
+                type: unknown
+                nullable: true
+              - name: param8
+                type: unknown
+                nullable: true
+              - name: param9
+                type: unknown
+                nullable: true
+              - name: param10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+                nullable: true
+          - name: insertOptionBefore
+            parameters:
+              - name: nextOptionName
+                type: string
+              - name: name
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+              - name: param5
+                type: unknown
+                nullable: true
+              - name: param6
+                type: unknown
+                nullable: true
+              - name: param7
+                type: unknown
+                nullable: true
+              - name: param8
+                type: unknown
+                nullable: true
+              - name: param9
+                type: unknown
+                nullable: true
+              - name: param10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+                nullable: true
+          - name: removeLastOption
+          - name: removeOptionByName
+            parameters:
+              - name: optName
+                type: string
+          - name: addGetUpOption
+            parameters:
+              - name: text
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: p2
+                type: unknown
+                nullable: true
+              - name: p3
+                type: unknown
+                nullable: true
+              - name: p4
+                type: unknown
+                nullable: true
+              - name: p5
+                type: unknown
+                nullable: true
+              - name: p6
+                type: unknown
+                nullable: true
+              - name: p7
+                type: unknown
+                nullable: true
+              - name: p8
+                type: unknown
+                nullable: true
+              - name: p9
+                type: unknown
+                nullable: true
+              - name: p10
+                type: unknown
+                nullable: true
+              - name: ...
+            return:
+              - type: umbrella.ISContextMenu.Option
+                nullable: true
+          - name: onGetUpAndThen
+            parameters:
+              - name: onSelect
+                type: function
+                nullable: true
+              - name: p1
+                type: unknown
+                nullable: true
+              - name: p2
+                type: unknown
+                nullable: true
+              - name: p3
+                type: unknown
+                nullable: true
+              - name: p4
+                type: unknown
+                nullable: true
+              - name: p5
+                type: unknown
+                nullable: true
+              - name: p6
+                type: unknown
+                nullable: true
+              - name: p7
+                type: unknown
+                nullable: true
+              - name: p8
+                type: unknown
+                nullable: true
+              - name: p9
+                type: unknown
+                nullable: true
+              - name: p10
+                type: unknown
+                nullable: true
+              - name: ...
+          - name: renderOptionTextureOrColor
+            parameters:
+              - name: option
+                type: umbrella.ISContextMenu.Option
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+          - name: getMenuOptionNames
+            return:
+              - type: table<string, umbrella.ISContextMenu.Option>
+          - name: addSubMenu
+            parameters:
+              - name: option
+                type: umbrella.ISContextMenu.Option
+              - name: menu
+                type: ISContextMenu
+          - name: addActionsOption
+            parameters:
+              - name: text
+                type: string
+              - name: getActionsFunction
+                type: function
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true
+              - name: arg5
+                type: unknown
+                nullable: true
+              - name: arg6
+                type: unknown
+                nullable: true
+              - name: arg7
+                type: unknown
+                nullable: true
+              - name: arg8
+                type: unknown
+                nullable: true
+              - name: arg9
+                type: unknown
+                nullable: true
+              - name: arg10
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISContextMenu.Option
+                nullable: true
+          - name: setOptionChecked
+            parameters:
+              - name: option
+                type: umbrella.ISContextMenu.Option
+              - name: checked
+                type: boolean
+          - name: clear
+          - name: isEmpty
+            return:
+              - type: boolean
+          - name: getScrollAreaHeight
+            return:
+              - type: number
+          - name: setFont
+            parameters:
+              - name: font
+                type: UIFont
+          - name: setFontFromOption
+          - name: getNew
+            parameters:
+              - name: parentContext
+                type: ISContextMenu
+            return:
+              - type: ISContextMenu
+          - name: getSubMenu
+            parameters:
+              - name: num
+                type: integer
+            return:
+              - type: ISContextMenu
+                nullable: true
+          - name: getSubInstance
+            parameters:
+              - name: num
+                type: integer
+            return:
+              - type: ISContextMenu
+                nullable: true
+        staticMethods:
+          - name: get
+            parameters:
+              - name: player
+                type: integer
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: ISContextMenu
+          - name: noise
+            parameters:
+              - name: msg
+                type: string
+      umbrella.ISContextMenu.Option:
+        fields:
+          id:
+            type: integer
+          name:
+            type: string
+          onSelect:
+            type: "fun(target: unknown, ...: unknown)"
+            nullable: true
+          iconTexture:
+            type: Texture
+            nullable: true
+          color:
+            type: umbrella.RGB
+            nullable: true
+          checkMark:
+            type: boolean
+            nullable: true
+          target:
+            type: unknown
+            nullable: true
+          param1:
+            type: unknown
+            nullable: true
+          param2:
+            type: unknown
+            nullable: true
+          param3:
+            type: unknown
+            nullable: true
+          param4:
+            type: unknown
+            nullable: true
+          param5:
+            type: unknown
+            nullable: true
+          param6:
+            type: unknown
+            nullable: true
+          param7:
+            type: unknown
+            nullable: true
+          param8:
+            type: unknown
+            nullable: true
+          param9:
+            type: unknown
+            nullable: true
+          param10:
+            type: unknown
+            nullable: true
+          subOption:
+            type: integer
+            nullable: true
+          toolTip:
+            type: ISToolTip
+            nullable: true
+          notAvailable:
+            type: boolean
+            nullable: true
+          isDisabled:
+            type: boolean
+            nullable: true
+          isDefaultOption:
+            type: boolean
+            nullable: true
+          onHighlight:
+            type: umbrella.ISContextMenu.OnHighlight
+            nullable: true
+          onHighlightParams:
+            type: table
+            nullable: true

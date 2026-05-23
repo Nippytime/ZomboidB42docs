@@ -1,0 +1,95 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ModSelector.ModListPanel:
+        extends: ISPanelJoypad
+        local: true
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: model
+                type: ModSelector.Model
+        staticFields:
+          Type:
+            defaultValue: '"ModListPanel"'
+        fields:
+          model:
+            type: ModSelector.Model
+          joypadListFocus:
+            type: boolean
+          filterPanel:
+            type: ISPanelJoypad
+          filterCombo:
+            type: ISComboBox
+          searchLabel:
+            type: ISLabel
+          searchEntry:
+            type: ISTextEntryBox
+          enabledModsTickbox:
+            type: ISTickBox
+          favoriteButton:
+            type: ISButton
+          modList:
+            type: ModSelector.ModListBox
+          isFavoriteMode:
+            type: boolean
+          joypadFocused:
+            type: boolean
+            nullable: true
+        methods:
+          - name: updateView
+          - name: render
+          - name: drawCustomRectBorder
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: prerender
+          - name: createChildren
+          - name: recalcSize
+          - name: applyUnsupportedMods
+          - name: applyFilters
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: setJoypadFocused
+            parameters:
+              - name: val
+                type: boolean
+        staticMethods:
+          - name: setText
+            parameters:
+              - name: self
+                type: ISTextEntryBox
+              - name: str
+                type: string
+      ModSelector:
+        staticFields:
+          ModListPanel:
+            type: ModSelector.ModListPanel

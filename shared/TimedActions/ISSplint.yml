@@ -1,0 +1,67 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSplint:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: otherPlayer
+                type: IsoPlayer
+              - name: rippedSheet
+                type: InventoryItem
+                nullable: true
+              - name: plank
+                type: InventoryItem
+                nullable: true
+              - name: bodyPart
+                type: BodyPart
+              - name: doIt
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISSplint"'
+        fields:
+          rippedSheet:
+            type: InventoryItem
+            nullable: true
+          plank:
+            type: InventoryItem
+            nullable: true
+          sound:
+            type: integer
+            nullable: true
+          otherPlayer:
+            type: IsoPlayer
+          doctorLevel:
+            type: integer
+          doIt:
+            type: boolean
+          doctor:
+            type: IsoPlayer
+          bodyPart:
+            type: BodyPart
+          bandagedPlayerX:
+            type: number
+          bandagedPlayerY:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+          - name: stopSound

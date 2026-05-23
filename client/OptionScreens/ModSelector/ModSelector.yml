@@ -1,0 +1,100 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ModSelector:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ModSelector"'
+          instance:
+            type: ModSelector
+            nullable: true
+        fields:
+          model:
+            type: ModSelector.Model
+          modListPanel:
+            type: ModSelector.ModListPanel
+          modInfoPanel:
+            type: ModInfoPanel
+          backButton:
+            type: ISButton
+          presetPanel:
+            type: ModListPresets
+          acceptButton:
+            type: ISButton
+          modOrderbtn:
+            type: ISButton
+          mapOrderbtn:
+            type: ISButton
+          helpButton:
+            type: ISButton
+          joypadNavigate:
+            type: table
+        methods:
+          - name: create
+          - name: prerender
+          - name: render
+          - name: onResolutionChange
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: acceptChanges
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onAccept
+          - name: updateView
+          - name: setExistingSavefile
+            parameters:
+              - name: folder
+                type: string
+          - name: setServerSettingsMods
+            parameters:
+              - name: data
+                type: umbrella.ModSelector.FinalizedData[]
+              - name: finishFunc
+                type: umbrella.ModSelector.FinalFunction
+          - name: reloadMods
+          - name: setNewGame
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateStart
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateStart_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: showNagPanel
+    functions:
+      - name: ModSelector_onModsModified

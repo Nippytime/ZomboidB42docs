@@ -1,0 +1,68 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ModInfoPanel.InteractionParam:
+        extends: ISPanelJoypad
+        local: true
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: type
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ModInfoPanelInteractionParam"'
+        fields:
+          pressed:
+            type: boolean
+          modInfo:
+            type: ChooseGameInfo.Mod
+          modDict:
+            type: umbrella.ModInfoPanel.InteractionParam.ModDict
+          type:
+            type: string
+          name:
+            type: string
+          labelWidth:
+            type: number
+          padX:
+            type: number
+          padY:
+            type: number
+          borderX:
+            type: number
+        methods:
+          - name: render
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: setModInfo
+            parameters:
+              - name: modInfo
+                type: ChooseGameInfo.Mod
+      ModInfoPanel:
+        staticFields:
+          InteractionParam:
+            type: ModInfoPanel.InteractionParam
+      umbrella.ModInfoPanel.InteractionParam.ModDict:
+        fields:
+          id:
+            type: string
+          color:
+            type: umbrella.RGB
+          len:
+            type: number
+          available:
+            type: boolean
+          modInfo:
+            type: ChooseGameInfo.Mod
+            nullable: true

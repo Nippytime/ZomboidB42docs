@@ -1,0 +1,45 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ProfessionVehicles:
+        staticFields:
+          OnCreateRegion:
+            type: "fun(region: string, square: IsoGridSquare, direction: IsoDirections)"
+          Louisville: {}
+          MarchRidge: {}
+          Muldraugh: {}
+          Riverside: {}
+          Rosewood: {}
+          WestPoint: {}
+          LAA: {}
+          CarLightsPolice: {}
+          PickUpVanLightsPolice: {}
+          StepVan_Heralds: {}
+          StepVan_MobileLibrary: {}
+          StepVan_SouthEasternHosp: {}
+          VanBuilder: {}
+          VanCarpenter: {}
+          VanGardener: {}
+          VanMechanic:
+            type: table
+          VanMeltingPointMetal: {}
+          VanMetalworker: {}
+          PickUpTruck_Camo: {}
+          PickUpVan_Camo: {}
+          VanSeats_Mural: {}
+          RaceCarBurnt: {}
+          PickUpVanBuilder:
+            defaultValue: ProfessionVehicles.VanBuilder
+          PickUpVanLightsCarpenter:
+            defaultValue: ProfessionVehicles.VanCarpenter
+          PickUpVanMetalworker:
+            defaultValue: ProfessionVehicles.VanMetalworker
+          StepVan_Mechanic:
+            defaultValue: ProfessionVehicles.VanMechanic
+          UniqueVehicles: {}
+        staticMethods:
+          - name: CheckSwap
+            parameters:
+              - name: vehicle
+                type: BaseVehicle

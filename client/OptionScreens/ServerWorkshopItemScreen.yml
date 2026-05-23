@@ -1,0 +1,94 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ServerWorkshopItemScreen:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ServerWorkshopItemScreen"'
+          instance:
+            type: ServerWorkshopItemScreen
+            nullable: true
+        fields:
+          label:
+            type: ISLabel
+          listbox:
+            type: ISScrollingListBox
+          installButton:
+            type: ISButton
+          disconnectButton:
+            type: ISButton
+          prevScreen:
+            type: ISUIElement
+        methods:
+          - name: create
+          - name: prerender
+          - name: render
+          - name: onButtonInstall
+          - name: onButtonDisconnect
+          - name: setRequiredItems
+            parameters:
+              - name: itemIDs
+                type: ArrayList<integer>
+          - name: updateItemDetails
+            parameters:
+              - name: detailsList
+                type: ArrayList<SteamUGCDetails>
+          - name: progress
+            parameters:
+              - name: id
+                type: string
+              - name: downloaded
+                type: integer
+              - name: total
+                type: integer
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+      ServerWorkshopItemScreen.WorkshopItemList:
+        extends: ISScrollingListBox
+        local: true
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"WorkshopItemList"'
+        methods:
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number

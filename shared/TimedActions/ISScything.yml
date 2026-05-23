@@ -1,0 +1,47 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISScything:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: sq
+                type: IsoGridSquare
+              - name: radius
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISScything"'
+        fields:
+          sound:
+            type: integer
+          item:
+            type: InventoryItem
+          radius:
+            type: number
+          sq:
+            type: IsoGridSquare
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getGrass
+            parameters:
+              - name: sq
+                type: IsoGridSquare
+          - name: getDuration
+            return:
+              - type: number
+          - name: stopSound

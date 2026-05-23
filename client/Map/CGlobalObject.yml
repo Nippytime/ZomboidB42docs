@@ -1,0 +1,43 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      CGlobalObject:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: luaSystem
+                type: CGlobalObjectSystem
+              - name: globalObject
+                type: GlobalObject
+        staticFields:
+          Type:
+            defaultValue: '"CGlobalObject"'
+        fields:
+          luaSystem:
+            type: CGlobalObjectSystem
+          globalObject:
+            type: GlobalObject
+          x:
+            type: number
+          y:
+            type: number
+          z:
+            type: number
+        methods:
+          - name: noise
+            parameters:
+              - name: message
+                type: string
+          - name: getIsoObject
+            return:
+              - type: IsoObject
+                nullable: true
+          - name: getSquare
+            return:
+              - type: IsoGridSquare
+          - name: fromModData
+            parameters:
+              - name: modData
+                type: table
+          - name: updateFromIsoObject

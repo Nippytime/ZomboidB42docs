@@ -1,0 +1,63 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAddItemInRecipe:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: recipe
+                type: EvolvedRecipe
+              - name: baseItem
+                type: InventoryItem
+              - name: usedItem
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISAddItemInRecipe"'
+        fields:
+          baseItem:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          recipe:
+            type: EvolvedRecipe
+          usedItem:
+            type: InventoryItem
+          jobType:
+            type: string
+        methods:
+          - name: isValidStart
+            return:
+              - type: boolean
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+        staticMethods:
+          - name: checkTemperature
+            parameters:
+              - name: baseItem
+                type: InventoryItem
+              - name: usedItem
+                type: InventoryItem
+              - name: recipe
+                type: EvolvedRecipe
+          - name: checkName
+            parameters:
+              - name: baseItem
+                type: InventoryItem
+              - name: recipe
+                type: EvolvedRecipe

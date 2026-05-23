@@ -1,0 +1,96 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      xpUpdate:
+        staticFields:
+          characterInfo:
+            type: ISCharacterInfoWindow
+            nullable: true
+          lastX:
+            defaultValue: "0"
+          lastY:
+            defaultValue: "0"
+        staticMethods:
+          - name: onPlayerMove
+            parameters:
+              - name: player
+                type: IsoPlayer
+          - name: OnWeaponHitTree
+            parameters:
+              - name: owner
+                type: IsoPlayer
+              - name: weapon
+                type: HandWeapon
+          - name: onWeaponHitXp
+            parameters:
+              - name: owner
+                type: IsoPlayer
+              - name: weapon
+                type: HandWeapon
+              - name: hitObject
+                type: IsoMovingObject
+              - name: damage
+                type: number
+              - name: hitCount
+                type: integer
+          - name: onMakeItem
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: resultItem
+                type: InventoryItem
+              - name: recipe
+                type: Recipe
+          - name: displayCharacterInfo
+            parameters:
+              - name: key
+                type: integer
+          - name: randXp
+            return:
+              - type: boolean
+          - name: addXp
+            parameters:
+              - name: owner
+                type: IsoPlayer
+              - name: type
+                type: PerkFactory.Perk
+              - name: amount
+                type: number
+          - name: levelPerk
+            parameters:
+              - name: owner
+                type: IsoPlayer
+              - name: perk
+                type: PerkFactory.Perk
+              - name: level
+                type: integer
+              - name: addBuffer
+                type: boolean
+          - name: checkForLearningRecipe
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: recipe
+                type: string
+          - name: checkForLosingLevel
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: perk
+                type: PerkFactory.Perk
+          - name: everyTenMinutes
+          - name: getModData
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+            return:
+              - type: table
+                nullable: true
+          - name: onNewGame
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+          - name: onLoad

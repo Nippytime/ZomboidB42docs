@@ -1,0 +1,42 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPickupAnimal:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: animal
+                type: IsoAnimal
+              - name: remove
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISPickupAnimal"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          animal:
+            type: IsoAnimal
+          remove:
+            nullable: true
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

@@ -1,0 +1,61 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISGeneratorInfoWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: object
+                type: IsoGenerator
+        staticFields:
+          Type:
+            defaultValue: '"ISGeneratorInfoWindow"'
+          windows:
+            type: table<IsoPlayer, ISGeneratorInfoWindow>
+        fields:
+          panel:
+            type: ISToolTip
+          object:
+            type: IsoGenerator
+          fuel:
+            type: number
+          condition:
+            type: integer
+          drawJoypadFocus:
+            type: boolean
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+        methods:
+          - name: createChildren
+          - name: update
+          - name: setObject
+            parameters:
+              - name: object
+                type: IsoGenerator
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: close
+        staticMethods:
+          - name: getRichText
+            parameters:
+              - name: object
+                type: IsoGenerator
+              - name: displayStats
+                type: boolean
+            return:
+              - type: string

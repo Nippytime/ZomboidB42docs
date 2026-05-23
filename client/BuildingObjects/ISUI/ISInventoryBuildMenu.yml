@@ -1,0 +1,38 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISInventoryBuildMenu:
+        staticMethods:
+          - name: doBuildMenu
+            parameters:
+              - name: player
+                type: integer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: onTakeThing
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: groundType
+                type: string
+          - name: onSpillGravel
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onSpillSand
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onSpillDirt
+            parameters:
+              - name: playerObj
+                type: IsoPlayer

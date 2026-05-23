@@ -1,0 +1,154 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      DebugGlobalObjectState_BasePropertiesPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"DebugGlobalObjectState_BasePropertiesPanel"'
+        fields:
+          addLineX:
+            type: number
+          addLineY:
+            type: number
+        methods:
+          - name: prerender
+          - name: render
+          - name: postrender
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: addLine
+            parameters:
+              - name: text
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+              - name: arg4
+                type: unknown
+          - name: renderKeyValue
+            parameters:
+              - name: k
+                type: unknown
+              - name: v
+                type: unknown
+      DebugGlobalObjectState_SystemPanel:
+        extends: DebugGlobalObjectState_BasePropertiesPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"DebugGlobalObjectState_SystemPanel"'
+        fields:
+          system:
+            type: GlobalObjectSystem
+        methods:
+          - name: render1
+          - name: setSystem
+            parameters:
+              - name: system
+                type: GlobalObjectSystem
+      DebugGlobalObjectState_GlobalObjectPanel:
+        extends: DebugGlobalObjectState_BasePropertiesPanel
+        staticFields:
+          Type:
+            defaultValue: '"DebugGlobalObjectState_GlobalObjectPanel"'
+        fields:
+          system:
+            type: GlobalObjectSystem
+            nullable: true
+          objectPos:
+            type: "{ x: number, y: number, z: number }"
+            nullable: true
+        methods:
+          - name: render1
+          - name: setObject
+            parameters:
+              - name: globalObject
+                type: GlobalObject
+      DebugGlobalObjectState_IsoObjectPanel:
+        extends: DebugGlobalObjectState_BasePropertiesPanel
+        staticFields:
+          Type:
+            defaultValue: '"DebugGlobalObjectState_IsoObjectPanel"'
+        fields:
+          system:
+            type: GlobalObjectSystem
+            nullable: true
+          objectPos:
+            type: "{ x: number, y: number, z: number }"
+            nullable: true
+        methods:
+          - name: render1
+          - name: setObject
+            parameters:
+              - name: globalObject
+                type: GlobalObject
+      DebugGlobalObjectState_PropertiesPanel:
+        extends: ISSectionedPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: state
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugGlobalObjectState_PropertiesPanel"'
+        fields:
+          system:
+            type: GlobalObjectSystem
+            nullable: true
+          object:
+            type: GlobalObject
+            nullable: true
+          state:
+            type: unknown
+            nullable: true
+        methods:
+          - name: createChildren
+          - name: setSystem
+            parameters:
+              - name: system
+                type: GlobalObjectSystem
+                nullable: true
+          - name: setObject
+            parameters:
+              - name: globalObject
+                type: GlobalObject
+                nullable: true

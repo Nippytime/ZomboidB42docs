@@ -1,0 +1,133 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISScrollBar:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: parent
+                type: ISUIElement
+              - name: vertical
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISScrollBar"'
+        fields:
+          scrolling:
+            type: boolean
+          pos:
+            type: number
+          barx:
+            type: number
+          bary:
+            type: number
+          barwidth:
+            type: number
+          barheight:
+            type: number
+          backgroundColor:
+            type: umbrella.RGBA
+          borderColor:
+            type: umbrella.RGBA
+          parent:
+            type: ISUIElement
+          vertical:
+            type: boolean
+          uptex:
+            type: Texture
+          downtex:
+            type: Texture
+          toptex:
+            type: Texture
+          midtex:
+            type: Texture
+          bottex:
+            type: Texture
+          background:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseDoubleClick
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: refresh
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: isPointOverThumb
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: hitTest
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: string
+                nullable: true
+          - name: onClickArrowUp
+          - name: onClickArrowDown
+          - name: onClickTrackUp
+            parameters:
+              - name: y
+                type: number
+          - name: onClickTrackDown
+            parameters:
+              - name: y
+                type: number
+          - name: onClickArrowLeft
+          - name: onClickArrowRight
+          - name: onClickTrackLeft
+            parameters:
+              - name: x
+                type: number
+          - name: onClickTrackRight
+            parameters:
+              - name: x
+                type: number
+          - name: updatePos
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: instantiate
+          - name: render

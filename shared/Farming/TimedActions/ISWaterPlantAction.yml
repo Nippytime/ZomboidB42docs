@@ -1,0 +1,57 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWaterPlantAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: uses
+                type: integer
+              - name: sq
+                type: IsoGridSquare
+              - name: maxTimeInit
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISWaterPlantAction"'
+        fields:
+          uses:
+            type: integer
+          usesUsed:
+            type: number
+          item:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          character:
+            type: IsoPlayer
+          maxTimeInit:
+            type: number
+          deltaPerUse:
+            type: number
+          sq:
+            type: IsoGridSquare
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+          - name: useItemOneUnit

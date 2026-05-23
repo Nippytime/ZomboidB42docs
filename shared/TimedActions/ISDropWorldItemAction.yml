@@ -1,0 +1,59 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDropWorldItemAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: sq
+                type: IsoGridSquare
+              - name: xoffset
+                type: number
+              - name: yoffset
+                type: number
+              - name: zoffset
+                type: number
+              - name: rotation
+                type: number
+              - name: isMultiple
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISDropWorldItemAction"'
+        fields:
+          item:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          sq:
+            type: IsoGridSquare
+          xoffset:
+            type: number
+          yoffset:
+            type: number
+          zoffset:
+            type: number
+          rotation:
+            type: number
+          isMultiple:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: complete
+            return:
+              - type: boolean
+          - name: perform
+          - name: getDuration
+            return:
+              - type: number

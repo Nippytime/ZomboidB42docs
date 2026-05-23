@@ -1,0 +1,133 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCraftRecipeTooltip:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: recipe
+                type: CraftRecipe
+              - name: logic
+                type: BaseCraftingLogic
+              - name: followMouse
+                type: boolean
+                nullable: true
+              - name: debugMode
+                type: boolean
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISCraftRecipeTooltip"'
+        fields:
+          rootTable:
+            type: ISTableLayout
+            nullable: true
+          titleWidget:
+            type: ISWidgetTitleHeader
+            nullable: true
+          infoBox:
+            type: ISCraftRecipeInfoBox
+            nullable: true
+          toolsWidget:
+            type: ISWidgetRecipeTools
+            nullable: true
+          ingredients:
+            type: ISWidgetIngredients
+            nullable: true
+          dirtyLayout:
+            type: boolean
+          recipe:
+            type: CraftRecipe
+          titleOnly:
+            type: boolean
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          logic:
+            type: BaseCraftingLogic
+          followMouse:
+            type: boolean
+            nullable: true
+          titleOnlyAlpha:
+            type: number
+          debugMode:
+            type: boolean
+            nullable: true
+          margin:
+            type: number
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: createDynamicChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: position
+          - name: render
+          - name: update
+          - name: xuiRecalculateLayout
+          - name: setRecipe
+            parameters:
+              - name: _recipe
+                type: CraftRecipe
+              - name: _titleOnly
+                type: boolean
+          - name: setTitleOnly
+            parameters:
+              - name: _b
+                type: boolean
+        staticMethods:
+          - name: activateToolTipFor
+            parameters:
+              - name: _parent
+                type: ISUIElement
+              - name: _player
+                type: IsoPlayer
+              - name: _recipe
+                type: CraftRecipe
+              - name: _logic
+                type: BaseCraftingLogic
+                nullable: true
+              - name: _followMouse
+                type: boolean
+              - name: _titleOnly
+                type: boolean
+              - name: _debugMode
+                type: boolean
+            return:
+              - type: ISCraftRecipeTooltip
+                nullable: true
+          - name: deactivateToolTipFor
+            parameters:
+              - name: _parent
+                type: ISUIElement
+                nullable: true
+            return:
+              - type: boolean

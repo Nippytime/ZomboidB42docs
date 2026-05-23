@@ -1,0 +1,87 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      LuaList:
+        extends: ISBaseObject
+        constructors:
+          - {}
+        staticFields:
+          Type:
+            defaultValue: '"LuaList"'
+        fields:
+          count:
+            type: number
+          items:
+            type: table
+        methods:
+          - name: initialise
+          - name: add
+            parameters:
+              - name: item
+                type: unknown
+          - name: size
+            return:
+              - type: integer
+          - name: isEmpty
+            return:
+              - type: boolean
+          - name: clear
+          - name: get
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: unknown
+          - name: sort
+            parameters:
+              - name: f
+                type: "fun(a: unknown, b: unknown): boolean"
+          - name: foreach
+            parameters:
+              - name: func
+                type: function
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+          - name: remove
+            parameters:
+              - name: item
+                type: unknown
+            return:
+              - type: unknown
+                nullable: true
+          - name: pop
+            return:
+              - type: unknown
+                nullable: true
+          - name: contains
+            parameters:
+              - name: item
+                type: unknown
+            return:
+              - type: boolean
+          - name: addAll
+            parameters:
+              - name: list
+                type: LuaList
+          - name: removeRandom
+            return:
+              - type: unknown
+                nullable: true
+          - name: removeAt
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: unknown
+                nullable: true

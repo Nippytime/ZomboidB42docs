@@ -1,0 +1,424 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISScrollingListBox.MouseCallback:
+        - type: "fun(target: unknown, item: unknown)"
+    classes:
+      ISScrollingListBox:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISScrollingListBox"'
+          joypadListIndex:
+            defaultValue: "1"
+          nextVisibleIndex:
+            defaultValue: ISScrollingListBox.nextVisibleItem
+        fields:
+          stopPrerender:
+            type: boolean
+          selected:
+            type: integer
+            nullable: true
+          selectedBeforeReset:
+            type: number
+            nullable: true
+          mouseoverselected:
+            type: integer
+            nullable: true
+          count:
+            type: number
+          textColor:
+            type: umbrella.RGBA
+          selectedTextColor:
+            type: umbrella.RGBA
+          onmousedown:
+            type: umbrella.ISScrollingListBox.MouseCallback
+          onmousedblclick:
+            type: umbrella.ISScrollingListBox.MouseCallback
+          items:
+            type: umbrella.ISScrollingListBox.Item[]
+          itemheightoverride:
+            type: table
+          smoothScrollY:
+            type: number
+            nullable: true
+          smoothScrollTargetY:
+            type: number
+            nullable: true
+          tooltipUI:
+            type: ISToolTip
+          listHeight:
+            type: number
+          font:
+            type: UIFont
+          fontHgt:
+            type: number
+          itemPadY:
+            type: number
+          itemheight:
+            type: number
+          altBgColor:
+            type: umbrella.RGBA
+            nullable: true
+          listHeaderColor:
+            type: umbrella.RGBA
+          selectionColor:
+            type: umbrella.RGBA
+          mouseOverHighlightColor:
+            type: umbrella.RGBA
+          drawBorder:
+            type: boolean
+          useStencilForChildren:
+            type: boolean
+          columns:
+            type: umbrella.ISScrollingListBox.Column[]
+        methods:
+          - name: initialise
+          - name: setJoypadFocused
+            parameters:
+              - name: focused
+                type: boolean
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: instantiate
+          - name: rowAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: integer
+          - name: topOfItem
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: integer
+          - name: prevVisibleIndex
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: integer
+          - name: nextVisibleItem
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: integer
+          - name: isMouseOverScrollBar
+            return:
+              - type: boolean
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: addItem
+            parameters:
+              - name: name
+                type: string
+              - name: item
+                type: unknown
+                nullable: true
+              - name: tooltip
+                nullable: true
+            return:
+              - type: umbrella.ISScrollingListBox.Item
+          - name: insertItem
+            parameters:
+              - name: index
+                type: integer
+              - name: name
+                type: string
+              - name: item
+                type: unknown
+                nullable: true
+            return:
+              - type: umbrella.ISScrollingListBox.Item
+          - name: addUniqueItem
+            parameters:
+              - name: name
+                type: string
+              - name: item
+                type: unknown
+              - name: tooltip
+            return:
+              - type: umbrella.ISScrollingListBox.Item
+                nullable: true
+          - name: contains
+            parameters:
+              - name: itemText
+                type: string
+            return:
+              - type: boolean
+          - name: removeItem
+            parameters:
+              - name: itemText
+                type: string
+            return:
+              - type: umbrella.ISScrollingListBox.Item
+                nullable: true
+          - name: removeMatchingItems
+            parameters:
+              - name: itemText
+                type: string
+            return:
+              - type: boolean
+              - type: unknown[]
+          - name: removeItemByIndex
+            parameters:
+              - name: itemIndex
+                type: integer
+            return:
+              - type: umbrella.ISScrollingListBox.Item
+                nullable: true
+          - name: removeFirst
+          - name: size
+            return:
+              - type: integer
+          - name: setTextColorRGBA
+            parameters:
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: setSelectedTextColorRGBA
+            parameters:
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: setItemTextColorRGBA
+            parameters:
+              - name: index
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: setItemSelectedTextColorRGBA
+            parameters:
+              - name: index
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: setItemTextColorToDefault
+            parameters:
+              - name: index
+          - name: setItemSelectedTextColorToDefault
+            parameters:
+              - name: index
+          - name: setOnMouseDownFunction
+            parameters:
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onmousedown
+                type: umbrella.ISScrollingListBox.MouseCallback
+                nullable: true
+          - name: invokeOnMouseDownFunction
+          - name: setOnMouseDoubleClick
+            parameters:
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onmousedblclick
+                type: umbrella.ISScrollingListBox.MouseCallback
+                nullable: true
+          - name: invokeOnMouseDoubleClick
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: drawSelection
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+          - name: drawMouseOverHighlight
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+          - name: clear
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: scrollToSelected
+          - name: sort
+            parameters:
+              - name: comparator
+          - name: updateTooltip
+          - name: updateSmoothScrolling
+          - name: parentsHaveScrollChildren
+            return:
+              - type: boolean
+          - name: prerender
+          - name: onMouseDoubleClick
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: unknown
+                nullable: true
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onJoypadDirUp
+          - name: onJoypadDirDown
+          - name: ensureVisible
+            parameters:
+              - name: index
+                type: integer
+          - name: render
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: setFont
+            parameters:
+              - name: font
+                type: UIFont | string
+              - name: padY
+                type: number
+                nullable: true
+          - name: addColumn
+            parameters:
+              - name: columnName
+                type: string
+              - name: size
+                type: number
+          - name: getItem
+            parameters:
+              - name: index
+            return:
+              - type: unknown
+          - name: getIndexOf
+            parameters:
+              - name: itemText
+            return:
+              - type: number
+        staticMethods:
+          - name: sortByName
+            parameters:
+              - name: a
+                type: umbrella.ISScrollingListBox.Item
+              - name: b
+                type: umbrella.ISScrollingListBox.Item
+            return:
+              - type: boolean
+      umbrella.ISScrollingListBox.Column:
+        fields:
+          name:
+            type: string
+          size:
+            type: number
+      umbrella.ISScrollingListBox.Item:
+        fields:
+          text:
+            type: string
+          item:
+            type: unknown
+            nullable: true
+          tooltip:
+            type: string
+            nullable: true
+          itemindex:
+            type: integer
+          index:
+            type: integer
+            nullable: true
+          height:
+            type: number
+          textColor:
+            type: umbrella.RGBA
+            nullable: true
+          selectedTextColor:
+            type: umbrella.RGBA
+            nullable: true

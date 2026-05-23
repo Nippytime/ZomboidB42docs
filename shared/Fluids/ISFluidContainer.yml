@@ -1,0 +1,64 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidContainer:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: _fluidObject
+                type: FluidContainer | ResourceFluid
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidContainer"'
+        fields:
+          isFluidResource:
+            type: boolean
+          fluidContainer:
+            type: FluidContainer
+            nullable: true
+          fluidResource:
+            type: ResourceFluid
+            nullable: true
+          isInventoryItem:
+            type: boolean
+          isoPanel:
+            type: boolean
+        methods:
+          - name: initFromObject
+            parameters:
+              - name: _fluidObject
+                type: FluidContainer | ResourceFluid
+          - name: copy
+            return:
+              - type: ISFluidContainer
+          - name: isItem
+            return:
+              - type: boolean
+          - name: isResource
+            return:
+              - type: boolean
+          - name: getFluidResource
+            return:
+              - type: ResourceFluid
+                nullable: true
+          - name: isIsoPanel
+            return:
+              - type: boolean
+          - name: resetObject
+          - name: isValid
+            return:
+              - type: boolean
+          - name: getFluidContainer
+            return:
+              - type: FluidContainer
+                nullable: true
+          - name: getOwner
+            return:
+              - type: GameEntity
+                nullable: true
+          - name: getFluidObject
+            return:
+              - type: FluidContainer | ResourceFluid
+                nullable: true
+          - name: sync

@@ -1,0 +1,78 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      NoContainerFillRooms:
+        staticFields:
+          armysurplus: {}
+          armysurplustorage: {}
+          bookstore: {}
+          camping: {}
+          campingstorage: {}
+          carsupply: {}
+          clothingstore: {}
+          clothingstorage: {}
+          hunting: {}
+          jayschicken_dining: {}
+          jayschicken_kitchen: {}
+          pawnshop: {}
+          pawnshopoffice: {}
+          pawnshopstorage: {}
+          spiffo_dining: {}
+          spiffoskitchen: {}
+      WeaponUpgrades:
+        staticFields:
+          VarmintRifle: {}
+          HuntingRifle: {}
+          Shotgun: {}
+          Pistol: {}
+          Pistol2: {}
+          Pistol3: {}
+    functions:
+      - name: ClearAllDistributionItems
+        parameters:
+          - name: _dist
+            type: table
+          - name: _dorecursive
+            type: boolean
+      - name: RemoveItemFromDistribution
+        parameters:
+          - name: _dist
+            type: table
+          - name: _item
+            type: string
+          - name: _chance
+            type: number | false
+            nullable: true
+          - name: _dorecursive
+            type: boolean
+            nullable: true
+      - name: ReplaceItemInDistribution
+        parameters:
+          - name: _dist
+            type: table
+          - name: _item
+            type: string
+          - name: _chance
+            type: number | false
+            nullable: true
+          - name: _replacement
+            type: string
+          - name: _replaceChance
+            type: number | false
+            nullable: true
+          - name: _dorecursive
+            type: boolean
+            nullable: true
+      - name: MergeDistributionRecursive
+        parameters:
+          - name: _orig
+            type: table
+          - name: _mod
+            type: table
+      - name: DeepPrintDistributionTable
+        parameters:
+          - name: _dist
+            type: table
+          - name: tab
+            type: string

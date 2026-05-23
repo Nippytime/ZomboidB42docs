@@ -1,0 +1,58 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCampingInfoWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: campfireObject
+                type: IsoObject
+              - name: campfireTable
+                type: CCampfireGlobalObject
+        staticFields:
+          Type:
+            defaultValue: '"ISCampingInfoWindow"'
+          windows:
+            type: table<IsoPlayer, ISCampingInfoWindow>
+        fields:
+          panel:
+            type: ISToolTip
+          campfireTable:
+            type: CCampfireGlobalObject
+          object:
+            type: IsoObject
+          spriteName:
+            type: string
+          fuelAmount:
+            type: number
+          isLit:
+            type: boolean
+          drawJoypadFocus:
+            type: boolean
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+        methods:
+          - name: createChildren
+          - name: update
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: setObject
+            parameters:
+              - name: campfireObject
+                type: IsoObject
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: close

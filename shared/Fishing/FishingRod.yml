@@ -1,0 +1,124 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      Fishing:
+        staticFields:
+          FishingRod:
+            type: Fishing.FishingRod
+      Fishing.FishingRod:
+        local: true
+        constructors:
+          - parameters:
+              - name: player
+                type: IsoPlayer
+              - name: joypad
+                type: integer
+        fields:
+          player:
+            type: IsoPlayer
+          playerIndex:
+            type: integer
+          skillLevel:
+            type: integer
+          strengthSkill:
+            type: integer
+          isFirstFishing:
+            type: boolean
+          rodItem:
+            type: InventoryItem
+          rodItemType:
+            type: string
+          rodItemTypeBend:
+            type: string
+          bobber:
+            type: Fishing.Bobber
+            nullable: true
+          spawnBobberDelayTimer:
+            type: number
+          lineLen:
+            type: number
+            nullable: true
+          rodCoeff:
+            type: number
+          highTensionTimer:
+            type: number
+          lowTensionTimer:
+            type: number
+          tensionLimit:
+            type: number
+          currentLineStatus:
+            type: string
+            nullable: true
+          lineMoveCoeff:
+            type: number
+          mpAimX:
+            type: number
+          mpAimY:
+            type: number
+          joypad:
+            type: integer
+          prevReelValue:
+            type: number
+          reelDelta:
+            type: number
+          isGamepadReel:
+            type: boolean
+            nullable: true
+          isGamepadRelease:
+            type: boolean
+            nullable: true
+          spawnBobberX:
+            type: number
+          spawnBobberY:
+            type: number
+        methods:
+          - name: cast
+          - name: getSpawnBobberCoords
+            return:
+              - type: number
+              - type: number
+          - name: update
+            return:
+              - type: boolean
+          - name: updateLine
+            return:
+              - type: boolean
+          - name: updateLineMoveCoeff
+          - name: isPickupBobber
+            return:
+              - type: boolean
+          - name: getTension
+            return:
+              - type: number
+          - name: isReel
+            return:
+              - type: boolean
+          - name: reel
+          - name: isReleaseLine
+            return:
+              - type: boolean
+          - name: releaseLine
+          - name: isRodMove
+            return:
+              - type: boolean
+          - name: getRodDxDy
+            return:
+              - type: number
+              - type: number
+          - name: getRodEndXY
+            return:
+              - type: number
+              - type: number
+          - name: getLineTypeCoeff
+            return:
+              - type: number
+          - name: damageLine
+          - name: brokeLine
+          - name: missFish
+          - name: consumeLure
+            parameters:
+              - name: isTrash
+                type: boolean
+          - name: resetItemModel
+          - name: destroy

@@ -1,0 +1,77 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRadioAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: mode
+                type: string
+              - name: character
+                type: IsoPlayer
+              - name: device
+                type: InventoryItem | IsoObject | VehiclePart
+              - name: secondaryItem
+                type: InventoryItem | boolean | number
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISRadioAction"'
+        fields:
+          mode:
+            type: string
+          device:
+            type: InventoryItem | IsoObject | VehiclePart
+          deviceData:
+            type: DeviceData
+          secondaryItem:
+            type: InventoryItem | boolean | number
+            nullable: true
+          ignoreHandsWounds:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+                nullable: true
+          - name: start
+          - name: update
+          - name: perform
+          - name: isValidToggleOnOff
+            return:
+              - type: boolean
+          - name: performToggleOnOff
+          - name: isValidSetChannel
+            return:
+              - type: boolean
+          - name: startSetChannel
+          - name: performSetChannel
+          - name: isValidMuteVolume
+            return:
+              - type: boolean
+          - name: performMuteVolume
+          - name: isValidUnMuteVolume
+            return:
+              - type: boolean
+          - name: performUnMuteVolume
+          - name: isValidSetVolume
+            return:
+              - type: boolean
+          - name: performSetVolume
+          - name: isValidMuteMicrophone
+            return:
+              - type: boolean
+          - name: performMuteMicrophone
+          - name: isValidRemoveHeadphones
+            return:
+              - type: boolean
+          - name: performRemoveHeadphones
+          - name: isValidAddHeadphones
+            return:
+              - type: boolean
+          - name: performAddHeadphones
+          - name: isValidTogglePlayMedia
+            return:
+              - type: boolean
+          - name: performTogglePlayMedia

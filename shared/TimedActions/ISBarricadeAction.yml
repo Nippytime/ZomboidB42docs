@@ -1,0 +1,48 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBarricadeAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: BarricadeAble
+              - name: isMetal
+                type: boolean
+              - name: isMetalBar
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISBarricadeAction"'
+        fields:
+          sound:
+            nullable: true
+          isStarted:
+            type: boolean
+          item:
+            type: BarricadeAble
+          isMetal:
+            type: boolean
+          isMetalBar:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+                nullable: true
+          - name: getDuration
+            return:
+              - type: number

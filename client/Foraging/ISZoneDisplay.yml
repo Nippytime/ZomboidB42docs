@@ -1,0 +1,233 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISZoneDisplay.zdImage:
+        extends: ISPanel
+        local: true
+        constructors:
+          - parameters:
+              - name: zoneDisplay
+                type: ISZoneDisplay
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: texture
+                type: Texture
+        staticFields:
+          Type:
+            defaultValue: '"zdImage"'
+        fields:
+          alphaTarget:
+            type: number
+          zoneDisplay:
+            type: ISZoneDisplay
+          texture:
+            type: Texture
+          alphaStep:
+            type: number
+        methods:
+          - name: initialise
+          - name: getAlpha
+            return:
+              - type: number
+          - name: getAlphaTarget
+            return:
+              - type: number
+          - name: setAlpha
+            parameters:
+              - name: _a
+                type: number
+          - name: setAlphaTarget
+            parameters:
+              - name: _a
+                type: number
+          - name: setGreyscale
+            parameters:
+              - name: _rgb
+                type: number
+          - name: setColor
+            parameters:
+              - name: _r
+                type: number
+              - name: _g
+                type: number
+              - name: _b
+                type: number
+          - name: update
+          - name: prerender
+          - name: render
+      ISZoneDisplay:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: _parent
+                type: ISSearchWindow
+        staticFields:
+          Type:
+            defaultValue: '"ISZoneDisplay"'
+          tips: {}
+          fuzzyChanceTable: {}
+        fields:
+          currentTip:
+            type: number
+          flashTipButton:
+            type: boolean
+          flashNumber:
+            type: number
+          perkLevel:
+            type: number
+          blinkStep:
+            type: number
+          currentZone:
+            type: string
+          currentZones:
+            type: table<string, string>
+          tooltip:
+            type: ISToolTip
+          zoneTitleString:
+            type: string
+          updateTick:
+            type: number
+          canSeeSky:
+            type: boolean
+            nullable: true
+          fogStep:
+            type: number
+          timeOfDay:
+            type: number
+          dawn:
+            type: number
+          noon:
+            type: number
+          dusk:
+            type: number
+          cloudIntensity:
+            type: number
+          fogIntensity:
+            type: number
+          sunBright:
+            type: number
+          moonBright:
+            type: number
+          tipPanel:
+            type: ISRichTextPanel
+          prevBtn:
+            type: ISButton
+          nextBtn:
+            type: ISButton
+          infoBtn:
+            type: ISButton
+          visionBonuses:
+            type: ISPanel
+          showBackground:
+            type: boolean
+          showBorder:
+            type: boolean
+          alpha:
+            type: number
+          zdImages:
+            type: table<string, ISPanel>
+          fadeTarget:
+            type: string
+          fadeTargets:
+            type: string[]
+          fadeElements:
+            type: table<string, ISPanel>
+          timeString:
+            type: string
+          moonPhase:
+            type: string
+          updateTickMax:
+            type: number
+          player:
+            type: integer
+          character:
+            type: IsoPlayer
+          manager:
+            type: ISSearchManager
+          gameTime:
+            type: GameTime
+          climateManager:
+            type: ClimateManager
+          climateMoon:
+            type: ClimateMoon
+          flashNumberMax:
+            type: number
+        methods:
+          - name: toggleTips
+          - name: showNextTip
+          - name: showPrevTip
+          - name: showTip
+            parameters:
+              - name: _tip
+                type: umbrella.ISZoneDisplay.Tip
+              - name: _force
+                type: boolean
+                nullable: true
+          - name: updateTips
+          - name: getHoursBetween
+            parameters:
+              - name: _start
+                type: number
+              - name: _finish
+                type: number
+            return:
+              - type: number
+          - name: updateMoonPosition
+          - name: updateSunPosition
+          - name: canSeeThroughObject
+            parameters:
+              - name: _object
+                type: IsoObject
+            return:
+              - type: boolean
+          - name: canSeeOutside
+            return:
+              - type: boolean
+                nullable: true
+          - name: updateLocation
+          - name: getVisionTooltipText
+            return:
+              - type: string
+          - name: getZoneTooltipText
+            return:
+              - type: string
+          - name: updateTooltip
+          - name: update
+          - name: isLeapYear
+            parameters:
+              - name: _yearNum
+                type: number
+            return:
+              - type: boolean
+          - name: updateMoonPhase
+          - name: updateData
+          - name: initialise
+          - name: initialiseImages
+            parameters:
+              - name: imageTable
+                type: table<string, Texture>
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: fade
+                type: boolean
+                nullable: true
+          - name: close
+      umbrella.ISZoneDisplay.Tip:
+        fields:
+          level:
+            type: integer
+          title:
+            type: string
+          text:
+            type: string
+          shown:
+            type: boolean

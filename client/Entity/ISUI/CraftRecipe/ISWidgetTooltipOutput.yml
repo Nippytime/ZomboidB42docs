@@ -1,0 +1,105 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetTooltipOutput:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: BaseCraftingLogic
+              - name: outputScript
+                type: OutputScript
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetTooltipOutput"'
+        fields:
+          amountWidth:
+            type: number
+          amountWidth2:
+            type: number
+          textColor:
+            type: umbrella.RGBA
+          colPartial:
+            type: umbrella.RGBA
+          colBad:
+            type: umbrella.RGBA
+          primary:
+            type: umbrella.ISWidgetTooltipInput.ScriptValues
+          secondary:
+            type: umbrella.ISWidgetTooltipInput.ScriptValues
+            nullable: true
+          arrow:
+            type: ISImage
+            nullable: true
+          player:
+            type: IsoPlayer
+          logic:
+            type: BaseCraftingLogic
+          outputScript:
+            type: OutputScript
+          createScript:
+            type: OutputScript
+            nullable: true
+          iconSize:
+            type: number
+          interactiveMode:
+            type: boolean
+          textureFluid:
+            type: Texture
+          textureKeep:
+            type: Texture
+          textureDrain:
+            type: Texture
+          textureConsume:
+            type: Texture
+          textureCreate:
+            type: Texture
+          margin:
+            type: number
+          doToolTip:
+            type: boolean
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: createScriptValues
+            parameters:
+              - name: _script
+                type: OutputScript
+            return:
+              - type: umbrella.ISWidgetTooltipInput.ScriptValues
+          - name: updateScriptValues
+            parameters:
+              - name: _table
+                type: umbrella.ISWidgetTooltipInput.ScriptValues
+          - name: updateValues

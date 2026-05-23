@@ -1,0 +1,254 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      DebugChunkStateUI_SquarePropsHandler:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: gameState
+                type: DebugChunkState
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_SquarePropsHandler"'
+        fields:
+          square:
+            type: IsoGridSquare
+          squareX:
+            type: number
+          squareY:
+            type: number
+          squareZ:
+            type: number
+          addLineX:
+            type: number
+          addLineY:
+            type: number
+          gameState:
+            type: DebugChunkState
+          object:
+            type: IsoObject
+            nullable: true
+        methods:
+          - name: playerIndex
+            return:
+              - type: integer
+          - name: setSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: prerender
+          - name: render
+          - name: render1
+          - name: postrender
+          - name: addLine
+            parameters:
+              - name: text
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+              - name: arg4
+                type: unknown
+      DebugChunkState_SquarePanel.SPH_misc:
+        extends: DebugChunkStateUI_SquarePropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_SPH_misc"'
+        fields:
+          zones:
+            type: ArrayList<Zone>
+          vehicleZone:
+            type: VehicleZone
+            nullable: true
+        methods:
+          - name: setSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: render1
+      DebugChunkState_SquarePanel.SPH_modData:
+        extends: DebugChunkStateUI_SquarePropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_SPH_modData"'
+        methods:
+          - name: setSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: render1
+      DebugChunkState_SquarePanel.SPH_properties:
+        extends: DebugChunkStateUI_SquarePropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_SPH_properties"'
+        methods:
+          - name: setSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: render1
+      DebugChunkState_SquarePanel.SPH_matrix:
+        extends: DebugChunkStateUI_SquarePropsHandler
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_SPH_matrix"'
+        fields:
+          font:
+            type: UIFont
+          fontHgt:
+            type: number
+        methods:
+          - name: setSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: render1
+          - name: draw9x9
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: nw
+                type: unknown
+                nullable: true
+              - name: n
+                type: unknown
+                nullable: true
+              - name: ne
+                type: unknown
+                nullable: true
+              - name: w
+                type: unknown
+                nullable: true
+              - name: at
+                type: unknown
+                nullable: true
+              - name: e
+                type: unknown
+                nullable: true
+              - name: sw
+                type: unknown
+                nullable: true
+              - name: s
+                type: unknown
+                nullable: true
+              - name: se
+                type: unknown
+                nullable: true
+          - name: draw9x9aux
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+              - name: isSet
+                type: unknown
+                nullable: true
+      DebugChunkStateUI_SquarePanel:
+        extends: ISSectionedPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: debugChunkState
+                type: DebugChunkStateUI
+        staticFields:
+          Type:
+            defaultValue: '"DebugChunkStateUI_SquarePanel"'
+        fields:
+          square:
+            type: IsoGridSquare
+          squareX:
+            type: number
+          squareY:
+            type: number
+          squareZ:
+            type: number
+          debugChunkState:
+            type: DebugChunkStateUI
+          font:
+            type: UIFont
+          fontHgt:
+            type: number
+        methods:
+          - name: createSections
+          - name: setSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number

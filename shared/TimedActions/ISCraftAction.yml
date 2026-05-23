@@ -1,0 +1,103 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCraftAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: recipe
+                type: CraftRecipe
+              - name: container
+                type: ItemContainer
+              - name: containersIn
+                type: ArrayList<ItemContainer>
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISCraftAction"'
+        fields:
+          item:
+            type: InventoryItem
+            nullable: true
+          craftSound:
+            type: integer
+            nullable: true
+          onCompleteFunc:
+            type: function
+            nullable: true
+          onCompleteArgs:
+            type: table
+            nullable: true
+          recipe:
+            type: CraftRecipe
+          container:
+            type: ItemContainer
+          containersIn:
+            type: ArrayList<ItemContainer>
+            nullable: true
+          containers:
+            type: ArrayList<ItemContainer>
+            nullable: true
+          stopOnWalk:
+            type: boolean
+          stopOnRun:
+            type: boolean
+          jobType:
+            type: string
+          forceProgressBar:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getPropItemOrModel
+            parameters:
+              - name: propStr
+                type: string
+            return:
+              - type: string
+                nullable: true
+          - name: setOnComplete
+            parameters:
+              - name: func
+                type: function
+                nullable: true
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true
+              - name: arg5
+                type: unknown
+                nullable: true
+              - name: arg6
+                type: unknown
+                nullable: true
+              - name: arg7
+                type: unknown
+                nullable: true
+              - name: arg8
+                type: unknown
+                nullable: true
+          - name: getDuration
+            return:
+              - type: number

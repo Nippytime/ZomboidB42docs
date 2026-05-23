@@ -1,0 +1,70 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISPlayerStatsAddXPUI.OnClick:
+        - type: "fun(target: unknown?, button: ISButton, perk: PerkFactory.Perk, amount:
+            string, addGlobalXP: boolean, useMultipliers: boolean)"
+    classes:
+      ISPlayerStatsAddXPUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onclick
+                type: umbrella.ISPlayerStatsAddXPUI.OnClick
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISPlayerStatsAddXPUI"'
+        fields:
+          perkList:
+            type: PerkFactory.Perk[]
+          combo:
+            type: ISComboBox
+          entry:
+            type: ISTextEntryBox
+          useMultipliers:
+            type: ISTickBox
+          ok:
+            type: ISButton
+          cancel:
+            type: ISButton
+          variableColor:
+            type: table
+          target:
+            type: unknown
+            nullable: true
+          onclick:
+            type: umbrella.ISPlayerStatsAddXPUI.OnClick
+            nullable: true
+          zOffsetSmallFont:
+            type: number
+            nullable: true
+        methods:
+          - name: initialise
+          - name: setVisible
+            parameters:
+              - name: visible
+                type: boolean
+          - name: render
+          - name: create
+          - name: onSelectPerk
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number

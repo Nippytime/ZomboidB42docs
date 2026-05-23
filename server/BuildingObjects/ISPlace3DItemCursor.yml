@@ -1,0 +1,229 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPlace3DItemCursor:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: items
+                type: InventoryItem[]
+        staticFields:
+          Type:
+            defaultValue: '"ISPlace3DItemCursor"'
+        fields:
+          placeAll:
+            type: boolean
+          keepOnSquare:
+            type: boolean
+          previousSq:
+            nullable: true
+          surfaceSelected:
+            type: number
+          keepOnSquareX:
+            type: integer
+            nullable: true
+          keepOnSquareY:
+            type: integer
+            nullable: true
+          render3DItemXOffset:
+            type: number
+          render3DItemYOffset:
+            type: number
+          render3DItemZOffset:
+            type: number
+          selectedSqDrop:
+            type: IsoGridSquare
+            nullable: true
+          itemSq:
+            nullable: true
+          surfacesPossible:
+            type: table
+          rotatePressed:
+            type: boolean
+          render3DItemRot:
+            type: number
+          rotating:
+            type: boolean
+          rotateReverse:
+            type: boolean
+            nullable: true
+          rotateStart:
+            type: number
+            nullable: true
+          joypadPositionActive:
+            type: boolean
+          joypadPositionX:
+            type: number
+          joypadPositionY:
+            type: number
+          chr:
+            type: IsoPlayer
+          character:
+            type: IsoPlayer
+          items:
+            type: InventoryItem[]
+          player:
+            type: integer
+          skipBuildAction:
+            type: boolean
+          noNeedHammer:
+            type: boolean
+          isYButtonResetCursor:
+            type: boolean
+          isPlace3DCursor:
+            type: boolean
+          dontLockItemToSquare:
+            type: boolean
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: walkTo
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: renderOpaqueObjectsInWorld
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: deactivate
+          - name: drawPrompt
+            parameters:
+              - name: playerNum
+                type: integer
+              - name: ui
+                type: ISEquippedItem
+          - name: getSurface
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: number
+          - name: rotateDelta
+            return:
+              - type: number
+          - name: clamp
+            parameters:
+              - name: rot
+                type: number
+            return:
+              - type: number
+          - name: checkSelectSurfaceKey
+          - name: checkRotateKey
+          - name: checkRotateJoypad
+          - name: handleRotate
+            parameters:
+              - name: pressed
+                type: boolean
+              - name: reverse
+                type: boolean
+          - name: checkPositionJoypad
+          - name: onJoypadPressButton
+            parameters:
+              - name: joypadIndex
+                type: integer
+              - name: joypadData
+                type: JoypadData
+              - name: button
+                type: integer
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+            return:
+              - type: unknown
+                nullable: true
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+            return:
+              - type: unknown
+                nullable: true
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+            return:
+              - type: unknown
+                nullable: true
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+            return:
+              - type: unknown
+                nullable: true
+          - name: getAPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getXPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getYPrompt
+            return:
+              - type: string
+          - name: getLBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getRBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: onObjectLeftMouseButtonDown
+            parameters:
+              - name: object
+                type: IsoObject
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean

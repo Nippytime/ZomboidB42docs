@@ -1,0 +1,332 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISEntityUI.CraftCanStart:
+        - type: "fun(player: IsoPlayer, entity: IsoObject, component: Component): boolean"
+      umbrella.ISEntityUI.CraftStart:
+        - type: "fun(player: IsoPlayer, entity: IsoObject, component: Component)"
+      umbrella.ISEntityUI.CustomCanOpenWindow:
+        - type: "fun(player: IsoPlayer, entity: GameEntity): boolean"
+      umbrella.ISEntityUI.CustomOpenWindow:
+        - type: "fun(player: IsoPlayer, entity: GameEntity)"
+    classes:
+      ISEntityUI:
+        staticFields:
+          drawDebugLines:
+            defaultValue: "false"
+          players:
+            type: table<integer, umbrella.ISEntityUI.PlayerTable>
+          enableLog:
+            defaultValue: "false"
+          isoPanelWalkToDist:
+            defaultValue: "3"
+        staticMethods:
+          - name: WalkToEntity
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: IsoObject
+              - name: _dist
+                type: number
+                nullable: true
+            return:
+              - type: boolean
+          - name: ItemSlotRemoveSingleItem
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: IsoObject
+              - name: _itemSlot
+                type: ISItemSlot
+              - name: _item
+                type: InventoryItem
+          - name: ItemSlotRemoveItems
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: IsoObject
+              - name: _itemSlot
+                type: ISItemSlot
+              - name: _items
+                type: ArrayList<InventoryItem>
+                nullable: true
+          - name: ItemSlotAddItems
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: IsoObject
+              - name: _itemSlot
+                type: ISItemSlot
+              - name: _itemList
+                type: InventoryItem[]
+          - name: GenericCraftStart
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: IsoObject
+              - name: _component
+                type: Component
+              - name: _funcCanStart
+                type: umbrella.ISEntityUI.CraftCanStart
+              - name: _funcStart
+                type: umbrella.ISEntityUI.CraftStart
+            return:
+              - type: boolean
+                nullable: true
+          - name: HandcraftStart
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _handcraftLogic
+                type: HandcraftLogic
+              - name: force
+                type: boolean
+              - name: addToQueue
+                type: boolean
+              - name: eatPercentage
+                type: number
+                nullable: true
+            return:
+              - type: ISHandcraftAction
+                nullable: true
+          - name: HandcraftStartMultiple
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _handcraftLogic
+                type: HandcraftLogic
+              - name: force
+                type: boolean
+              - name: qty
+                type: integer
+              - name: addToQueue
+                type: boolean
+            return:
+              - type: ISHandcraftAction[]
+                nullable: true
+          - name: GetEntityUiConfig
+            parameters:
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: UiConfig
+                nullable: true
+          - name: GetEntityUiStyle
+            parameters:
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: XuiSkin.EntityUiStyle
+                nullable: true
+          - name: GetEntityUiSkin
+            parameters:
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: XuiSkin
+                nullable: true
+          - name: GetComponentPanelClass
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: GameEntity
+              - name: _componentType
+                type: ComponentType
+            return:
+              - type: ISUIElement
+                nullable: true
+              - type: Component
+                nullable: true
+              - type: XuiSkin.ComponentUiStyle
+                nullable: true
+          - name: GetComponentPanels
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: GameEntity
+              - name: _dontInstantiate
+                type: boolean
+            return:
+              - type: umbrella.ISEntityUI.ComponentPanelInfo[]
+          - name: HasComponentPanels
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: boolean
+          - name: GetWindowClass
+            parameters:
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: GetWindowStyleName
+            parameters:
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: string
+                nullable: true
+          - name: GetCustomCanOpenWindowFunc
+            parameters:
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: umbrella.ISEntityUI.CustomCanOpenWindow
+                nullable: true
+          - name: GetCustomOpenWindowFunc
+            parameters:
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: umbrella.ISEntityUI.CustomOpenWindow
+                nullable: true
+          - name: CanOpenWindowFor
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: boolean
+          - name: OpenWindow
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: GameEntity
+          - name: OnCloseWindow
+            parameters:
+              - name: _window
+                type: ISBaseEntityWindow
+          - name: StoreWindowPrefs
+            parameters:
+              - name: _window
+                type: ISBaseEntityWindow
+          - name: CanPlayerUseEntity
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: GameEntity
+            return:
+              - type: boolean
+          - name: GetReloadTable
+            return:
+              - type: umbrella.ISEntityUI.ReloadTableItem[]
+          - name: CloseWindows
+          - name: OpenBuildWindow
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _isoObject
+                type: IsoObject
+                nullable: true
+              - name: _queryOverride
+                type: string
+                nullable: true
+              - name: _ignoreFindSurface
+                type: boolean
+                nullable: true
+              - name: recipe
+                type: CraftRecipe
+                nullable: true
+              - name: itemString
+                type: string
+                nullable: true
+          - name: OpenHandcraftWindow
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _isoObject
+                type: IsoObject
+                nullable: true
+              - name: _queryOverride
+                type: string
+                nullable: true
+              - name: _ignoreFindSurface
+                type: boolean
+                nullable: true
+              - name: recipe
+                type: CraftRecipe
+                nullable: true
+              - name: itemString
+                type: string
+                nullable: true
+          - name: FindCraftSurface
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _radius
+                type: number
+            return:
+              - type: IsoObject
+                nullable: true
+          - name: IsWindowOpen
+            parameters:
+              - name: _playerNum
+                type: integer
+              - name: _windowKey
+                type: string
+            return:
+              - type: unknown
+                nullable: true
+          - name: GetWindowInstance
+            parameters:
+              - name: _playerNum
+                type: integer
+              - name: _windowKey
+                type: string
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: EnsurePlayers
+          - name: ReadIni
+          - name: WriteIni
+          - name: OnSave
+      umbrella.ISEntityUI.ComponentPanelInfo:
+        fields:
+          panelClass:
+            type: ISUIElement
+          component:
+            type: Component
+          uiStyle:
+            type: XuiSkin.ComponentUiStyle
+      umbrella.ISEntityUI.PlayerTable:
+        fields:
+          windows:
+            type: table<string, umbrella.ISEntityUI.WindowTable>
+      umbrella.ISEntityUI.ReloadTableItem:
+        fields:
+          player:
+            type: IsoPlayer
+          entity:
+            type: GameEntity
+      umbrella.ISEntityUI.WindowTable:
+        fields:
+          instance:
+            type: ISUIElement
+            nullable: true
+          x:
+            type: number
+            nullable: true
+          y:
+            type: number
+            nullable: true
+          width:
+            type: number
+            nullable: true
+          height:
+            type: number
+            nullable: true

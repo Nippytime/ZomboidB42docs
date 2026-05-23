@@ -1,0 +1,70 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      CoopCharacterCreation:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: joypadIndex
+                type: integer
+                nullable: true
+              - name: joypadData
+                type: JoypadData
+                nullable: true
+              - name: playerIndex
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"CoopCharacterCreation"'
+          instance:
+            type: CoopCharacterCreation
+            nullable: true
+          visibleUI:
+            type: ISUIElement[]
+        fields:
+          coopUserName:
+            type: CoopUserName
+          mapSpawnSelect:
+            type: CoopMapSpawnSelect
+          charCreationMain:
+            type: CoopCharacterCreationMain
+          charCreationProfession:
+            type: CoopCharacterCreationProfession
+          joypadIndex:
+            type: integer
+            nullable: true
+          joypadData:
+            type: JoypadData
+            nullable: true
+          playerIndex:
+            type: integer
+        methods:
+          - name: initPlayer
+          - name: accept1
+            return:
+              - type: boolean
+                nullable: true
+          - name: accept
+          - name: cancel
+          - name: createChildren
+          - name: newPlayerMouse
+          - name: OnJoypadBeforeDeactivate
+            parameters:
+              - name: index
+                type: integer
+        staticMethods:
+          - name: getJoypad
+            return:
+              - type: JoypadData
+                nullable: true
+          - name: setVisibleAllUI
+            parameters:
+              - name: visible
+                type: boolean
+          - name: newPlayer
+            parameters:
+              - name: joypadIndex
+                type: integer
+              - name: joypadData
+                type: JoypadData

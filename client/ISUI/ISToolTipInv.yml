@@ -1,0 +1,126 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISToolTipInv:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: item
+                type: InventoryItem
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISToolTipInv"'
+        fields:
+          item:
+            type: InventoryItem
+            nullable: true
+          owner:
+            type: ISUIElement
+            nullable: true
+          contextMenu: {}
+          tooltip:
+            type: ObjectTooltip
+            nullable: true
+          toolTipDone:
+            type: boolean
+          followMouse:
+            type: boolean
+          anchorBottomLeft:
+            type: "{ x: number, y: number }"
+            nullable: true
+        methods:
+          - name: initialise
+          - name: setItem
+            parameters:
+              - name: item
+                type: InventoryItem
+                nullable: true
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: prerender
+          - name: render
+          - name: adjustPositionToAvoidOverlap
+            parameters:
+              - name: avoidRect
+                type: umbrella.Rect
+          - name: overlaps
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: boolean
+          - name: placeLeft
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: umbrella.Rect
+          - name: placeRight
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: umbrella.Rect
+          - name: placeAbove
+            parameters:
+              - name: r1
+                type: umbrella.Rect
+              - name: r2
+                type: umbrella.Rect
+            return:
+              - type: umbrella.Rect
+          - name: setOwner
+            parameters:
+              - name: ui
+                type: ISUIElement
+          - name: setCharacter
+            parameters:
+              - name: chr
+                type: IsoGameCharacter
+          - name: setContextMenu
+            parameters:
+              - name: contextMenu

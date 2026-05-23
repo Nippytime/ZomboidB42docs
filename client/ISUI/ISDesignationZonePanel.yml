@@ -1,0 +1,100 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDesignationZonePanel:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISDesignationZonePanel"'
+          instance:
+            type: ISDesignationZonePanel
+            nullable: true
+        fields:
+          zoneList:
+            type: ISScrollingListBox
+          addZone:
+            type: ISButton
+          removeZone:
+            type: ISButton
+          renameZone:
+            type: ISButton
+          closeButton:
+            type: ISButton
+          currentWidth:
+            type: number
+          selectedZone:
+            type: DesignationZoneAnimal
+            nullable: true
+          playerNum:
+            type: integer
+          player:
+            type: IsoPlayer
+          buttonBorderColor:
+            type: umbrella.RGBA
+          listTakesFocus:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: close
+          - name: populateList
+          - name: drawList
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: prerender
+          - name: updateButtons
+          - name: render
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onRenameZoneClick
+            parameters:
+              - name: button
+                type: ISButton
+              - name: animal
+          - name: onRemoveZone
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: toggleZoneUI
+            parameters:
+              - name: playerNum
+                type: number
+          - name: OnDesignationZoneUpdatedNetwork

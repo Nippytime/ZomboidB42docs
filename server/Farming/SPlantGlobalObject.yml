@@ -1,0 +1,230 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      SPlantGlobalObject:
+        extends: SGlobalObject
+        constructors:
+          - parameters:
+              - name: luaSystem
+                type: SFarmingSystem
+              - name: globalObject
+                type: GlobalObject
+        staticFields:
+          Type:
+            defaultValue: '"SPlantGlobalObject"'
+        fields:
+          objectName:
+            type: string
+          spriteName:
+            type: string
+          exterior:
+            type: boolean
+          aphidLvl:
+            type: number
+          fliesLvl:
+            type: number
+          mildewLvl:
+            type: number
+          slugsLvl:
+            type: number
+          nextGrowing:
+            type: number
+          lastWaterHour:
+            type: integer
+          waterLvl:
+            type: number
+          fertilizer:
+            type: number
+          cursed:
+            type: boolean
+          health:
+            type: number
+          compost:
+            type: boolean
+          bonusYield:
+            type: boolean
+          state:
+            type: string
+          nbOfGrow:
+            type: number
+          typeOfSeed:
+            type: string
+          waterNeeded:
+            type: number
+          hasWeeds:
+            type: boolean
+          naturalLight:
+            type: number
+          hasSeeds:
+            type: boolean
+          hasVegetable:
+            type: boolean
+          waterNeededMax:
+            type: number
+          hasSeed:
+            type: boolean
+          badCare:
+            type: boolean
+          owner:
+            type: integer
+        methods:
+          - name: initNew
+          - name: stateFromIsoObject
+            parameters:
+              - name: isoObject
+                type: IsoObject
+          - name: stateToIsoObject
+            parameters:
+              - name: isoObject
+                type: IsoObject
+          - name: getObject
+            return:
+              - type: IsoObject
+          - name: setObjectName
+            parameters:
+              - name: objectName
+                type: string
+          - name: setSpriteName
+            parameters:
+              - name: spriteName
+                type: string
+          - name: isAlive
+            return:
+              - type: boolean
+          - name: hasVisibleFlies
+            return:
+              - type: boolean
+          - name: isBadMonth
+            return:
+              - type: boolean
+                nullable: true
+          - name: isBadMonthHardy
+            return:
+              - type: boolean
+                nullable: true
+          - name: isColdHardy
+            return:
+              - type: boolean
+                nullable: true
+          - name: isSowMonth
+            return:
+              - type: boolean
+                nullable: true
+          - name: isBestMonth
+            return:
+              - type: boolean
+                nullable: true
+          - name: isRiskMonth
+            return:
+              - type: boolean
+                nullable: true
+          - name: canHarvest
+            return:
+              - type: boolean
+          - name: addObject
+          - name: removeObject
+          - name: mildew
+          - name: aphid
+          - name: flies
+          - name: slugs
+          - name: defaultDiseaseCheck
+            return:
+              - type: boolean
+          - name: upDisease
+          - name: lowerWaterLvl
+            parameters:
+              - name: plant
+                nullable: true
+          - name: cureMildew
+            parameters:
+              - name: mildewCureSource
+                type: InventoryItem
+                nullable: true
+              - name: uses
+                type: integer
+              - name: skill
+                type: integer
+          - name: cureFlies
+            parameters:
+              - name: fliesCureSource
+                type: InventoryItem
+                nullable: true
+              - name: uses
+                type: integer
+              - name: skill
+                type: integer
+          - name: cureAphids
+            parameters:
+              - name: aphidsCureSource
+                type: InventoryItem
+                nullable: true
+              - name: uses
+                type: integer
+              - name: skill
+                type: integer
+          - name: cureSlugs
+            parameters:
+              - name: slugsCureSource
+                type: InventoryItem
+                nullable: true
+              - name: uses
+                type: integer
+              - name: skill
+                type: integer
+          - name: water
+            parameters:
+              - name: waterSource
+                type: InventoryItem
+                nullable: true
+              - name: uses
+                type: integer
+          - name: fertilize
+            parameters:
+              - name: args
+                type: "{ compost: boolean, skill: integer }"
+          - name: compostPlant
+            parameters:
+              - name: skill
+                type: integer
+          - name: fertilize2
+            parameters:
+              - name: skill
+                type: integer
+          - name: checkStat
+          - name: killThis
+          - name: dryThis
+          - name: rottenThis
+          - name: destroyThis
+          - name: harvestThis
+          - name: seed
+            parameters:
+              - name: typeOfSeed
+                type: string
+              - name: skill
+                type: integer
+          - name: initHealth
+            parameters:
+              - name: skill
+                type: integer
+          - name: deadPlant
+          - name: addIcon
+          - name: saveData
+          - name: fromModData
+            parameters:
+              - name: modData
+                type: table
+          - name: toModData
+            parameters:
+              - name: modData
+                type: table
+          - name: fromObject
+            parameters:
+              - name: object
+                type: IsoObject
+          - name: loadGridSquare
+        staticMethods:
+          - name: initModData
+            parameters:
+              - name: modData
+                type: table

@@ -1,0 +1,560 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSearchManager:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: _character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISSearchManager"'
+          players:
+            type: table<IsoPlayer, ISSearchManager>
+          showDebug:
+            defaultValue: "false"
+          showDebugLocations:
+            defaultValue: "false"
+          showDebugExtended:
+            defaultValue: "false"
+          showDebugVision:
+            defaultValue: "false"
+          showDebugVisionRadius:
+            defaultValue: "false"
+        fields:
+          updateEvents:
+            type: table<string, umbrella.Foraging.UpdateEvent>
+          stashTypes:
+            type: table<string, boolean>
+          ignoredItemTypes:
+            type: table<string, boolean>
+          textureColor:
+            type: umbrella.RGBA
+          zoom:
+            type: number
+          currentTimestamp:
+            type: number
+          lastTimestamp:
+            type: number
+          timeDelta:
+            type: number
+          timeSinceFind:
+            type: number
+          iconQueue:
+            type: number
+          currentZone:
+            type: umbrella.Foraging.ZoneData
+            nullable: true
+          lastFoundX:
+            type: number
+          lastFoundY:
+            type: number
+          lastUpdateX:
+            type: number
+          lastUpdateY:
+            type: number
+          previousDistanceSinceFind:
+            type: number
+          distanceSinceFind:
+            type: number
+          maxDistanceSinceFind:
+            type: number
+          movementDelta:
+            type: number
+          distanceMoveExtra:
+            type: number
+          timeToMoveIconExtra:
+            type: number
+          timeToMoveIcon:
+            type: number
+          currentZoneName:
+            type: string
+            nullable: true
+          updateTick:
+            type: number
+          perkLevel:
+            type: number
+          square:
+            type: IsoGridSquare
+          modifiers:
+            type: table
+          radius:
+            type: number
+          aimMulti:
+            type: number
+          aimBonusTick:
+            type: number
+          sneakMulti:
+            type: number
+          sneakBonusTick:
+            type: number
+          disableTick:
+            type: number
+          isSpotting:
+            type: boolean
+          baseWidth:
+            type: number
+          baseHeight:
+            type: number
+          textureWidth:
+            type: number
+          textureHeight:
+            type: number
+          texture:
+            type: Texture
+          alphaStep:
+            type: number
+          minAlpha:
+            type: number
+          activeAlpha:
+            type: number
+          spotAlpha:
+            type: number
+          character:
+            type: IsoPlayer
+          player:
+            type: integer
+          cell:
+            type: IsoCell
+          isSearchMode:
+            type: boolean
+          isEffectOverlay:
+            type: boolean
+          iconCategories:
+            type: table<string, string>
+          forageIcons:
+            type: table<string, ISForageIcon>
+          activeIcons:
+            type: table<string, ISBaseIcon>
+          closeIcons:
+            type: table<string, ISBaseIcon>
+          worldObjectIcons:
+            type: table<string, ISWorldItemIcon | ISWorldItemIconTrack>
+          stashIcons:
+            type: table<string, ISStashIcon>
+          seenIcons:
+            type: table<string, string>
+          xpIcons:
+            type: table<string, string>
+          iconStack:
+            type: table<umbrella.Foraging.ZoneIconData, umbrella.Foraging.ZoneData>
+          worldIconStack:
+            type: table<string, umbrella.Foraging.WorldIconData>
+          iconLoadRate:
+            type: number
+          activeIconRadius:
+            type: number
+          cellIconRadius:
+            type: number
+          activeZones:
+            type: table<string, umbrella.Foraging.ZoneData>
+          activeZoneRadius:
+            type: number
+          updateTickMax:
+            type: number
+          disableTickMax:
+            type: number
+          timeToMoveIconMax:
+            type: number
+          reducedTimePerLevel:
+            type: number
+          distanceMoveThreshold:
+            type: number
+          lastSpottedX:
+            type: number
+          lastSpottedY:
+            type: number
+          maxDistanceBonus:
+            type: number
+          movedIcons:
+            type: table<string, string>
+          movedIconsSquares:
+            type: table<IsoGridSquare, boolean>
+          checkedSquares:
+            type: table<IsoGridSquare, boolean>
+          spriteCheckedSquares:
+            type: table<IsoGridSquare, boolean>
+          affinityAddedChunks:
+            type: table<IsoChunk, boolean>
+          squareStack:
+            type: table<IsoGridSquare, boolean>
+          squareCheckRate:
+            type: number
+          spriteAffinities:
+            type: table<string, string[]>
+          searchModeOverlay:
+            type: SearchMode.PlayerSearchMode
+          searchMode:
+            type: SearchMode
+          minRadius:
+            type: number
+          maxRadius:
+            type: number
+          maxRadiusCap:
+            type: number
+          overlayValues:
+            type: table<string, number>
+          effectOverlayValues:
+            type: table<string, number>
+          ignoredItemCategories:
+            type: table<string, boolean>
+          isoMarkers:
+            type: table<string, IsoMarker>
+          worldMarkers:
+            type: table<string, unknown>
+          debugMarkers:
+            type: table<string, CircleIsoMarker>
+          debugArrows:
+            type: table<string, WorldMarkers.PlayerHomingPoint>
+          aimBonusTickMax:
+            type: number
+          sneakBonusTickMax:
+            type: number
+          visibleTarget:
+            type: unknown
+            nullable: true
+          visibleFunction:
+            type: function
+          isOverride:
+            type: boolean
+        methods:
+          - name: onMouseDown
+            return:
+              - type: boolean
+          - name: onRightMouseUp
+            return:
+              - type: boolean
+          - name: onRightMouseDown
+            return:
+              - type: boolean
+          - name: getAlpha
+            return:
+              - type: number
+          - name: getColor
+            return:
+              - type: table
+          - name: setAlpha
+            parameters:
+              - name: _a
+                type: number
+          - name: setColor
+            parameters:
+              - name: _rgba
+                type: umbrella.RGBA
+          - name: flashEye
+            parameters:
+              - name: _amount
+                type: number
+          - name: onToggleVisible
+          - name: getScreenDelta
+            return:
+              - type: number
+              - type: number
+          - name: updateZoom
+          - name: updatePosition
+          - name: updateTimestamp
+          - name: prerender
+          - name: renderEye
+          - name: render
+          - name: renderDebugInfo
+          - name: isIconOnSquare
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+              - name: _iconList
+                type: table<string, ISBaseIcon>
+            return:
+              - type: boolean
+                nullable: true
+          - name: clearSpriteCheckedSquares
+          - name: clearMovedIconsSquares
+          - name: clearCheckedSquares
+          - name: clearQueue
+          - name: reset
+          - name: clearZoneData
+          - name: removeZoneAndIcons
+            parameters:
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+          - name: removeItem
+            parameters:
+              - name: _icon
+                type: ISForageIcon
+          - name: addIcon
+            parameters:
+              - name: _id
+                type: string
+                nullable: true
+              - name: _iconClass
+                type: string
+              - name: _itemType
+                type: string
+                nullable: true
+              - name: _itemObj
+                type: InventoryItem
+                nullable: true
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _z
+                type: number
+            return:
+              - type: ISBaseIcon
+                nullable: true
+          - name: clearIcons
+          - name: removeIcon
+            parameters:
+              - name: _icon
+                type: ISBaseIcon
+          - name: checkForSpriteAffinity
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+              - name: _object
+                type: IsoObject
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+            return:
+              - type: boolean
+          - name: createBonusIcon
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+              - name: _catDef
+                type: umbrella.Foraging.CategoryDefinition
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+          - name: createSpecificIcon
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+              - name: _itemType
+                type: string
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+                nullable: true
+              - name: _isBonus
+                type: boolean
+                nullable: true
+              - name: _isFocus
+                type: boolean
+                nullable: true
+              - name: _count
+                type: number
+                nullable: true
+          - name: findSpriteAffinityIcon
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+              - name: _catDef
+                type: umbrella.Foraging.CategoryDefinition
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+          - name: worldItemTest
+            parameters:
+              - name: _itemObj
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: createIconsForWorldItems
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+          - name: createIconsForContainers
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+              - name: _object
+                type: IsoObject
+          - name: checkSquares
+          - name: createIconsForCell
+          - name: getIsSeen
+            parameters:
+              - name: _icon
+                type: ISBaseIcon
+            return:
+              - type: string
+                nullable: true
+          - name: spotIcon
+            parameters:
+              - name: _icon
+                type: ISBaseIcon
+          - name: updateLocationTracking
+          - name: checkShouldForceIcon
+          - name: resetForceFindSystem
+          - name: doMoveIconNearPlayer
+          - name: doMoveIcon
+            parameters:
+              - name: _icon
+                type: ISBaseIcon
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _z
+                type: number
+          - name: doChangePosition
+            parameters:
+              - name: _icon
+                type: ISBaseIcon
+          - name: checkActiveZones
+          - name: checkCloseIcons
+          - name: checkWorldIcons
+          - name: checkIcons
+          - name: createIconsForZone
+            parameters:
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+              - name: _recreate
+                type: boolean
+                nullable: true
+          - name: doChangeZone
+            parameters:
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+                nullable: true
+          - name: getAndActivateZoneAtXY
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+            return:
+              - type: umbrella.Foraging.ZoneData | false
+                nullable: true
+          - name: updateCurrentZone
+          - name: isFinishedLoadingIcons
+            return:
+              - type: boolean
+          - name: loadIcons
+          - name: updateModifiers
+          - name: getOverlayRadius
+            return:
+              - type: number
+          - name: updateOverlay
+          - name: checkShouldDisable
+            return:
+              - type: boolean
+          - name: getGameSpeed
+            return:
+              - type: number
+          - name: checkMarkers
+          - name: resetVisionBonuses
+          - name: updateVisionBonuses
+          - name: updateAlpha
+          - name: doDisableCheck
+          - name: doUpdateEvents
+            parameters:
+              - name: _force
+                type: boolean
+          - name: update
+          - name: initialise
+          - name: toggleSearchMode
+            parameters:
+              - name: _isSearchMode
+                type: boolean
+          - name: onEnteredItemType
+            parameters:
+              - name: button
+                type: ISButton
+              - name: _square
+                type: IsoGridSquare
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+              - name: _count
+                type: number
+          - name: moveAllZoneIconsToSquare
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+          - name: refreshZoneIcons
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+          - name: createAllIconsOnSquare
+            parameters:
+              - name: _square
+                type: IsoGridSquare
+              - name: _category
+                type: string
+        staticMethods:
+          - name: getManager
+            parameters:
+              - name: _character
+                type: IsoPlayer
+            return:
+              - type: ISSearchManager
+                nullable: true
+          - name: setManager
+            parameters:
+              - name: _character
+                type: IsoPlayer
+              - name: _manager
+                type: ISSearchManager
+          - name: createUI
+            parameters:
+              - name: _player
+                type: integer
+          - name: destroyUI
+            parameters:
+              - name: _character
+                type: IsoPlayer
+          - name: handleOverride
+            parameters:
+              - name: _state
+                type: boolean
+              - name: _playerNum
+                type: integer
+          - name: handleKeyPressed
+            parameters:
+              - name: _keyPressed
+                type: integer
+          - name: initBinds
+          - name: OnGameStart
+          - name: onUpdateIcon
+            parameters:
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+              - name: _iconID
+                type: string
+              - name: _icon
+                type: ISBaseIcon
+          - name: createDebugSpawnAllContextMenu
+            parameters:
+              - name: _player
+                type: integer
+              - name: _context
+                type: ISContextMenu
+              - name: _manager
+                type: ISSearchManager
+              - name: _square
+                type: IsoGridSquare
+          - name: createDebugContextMenu
+            parameters:
+              - name: _player
+                type: integer
+              - name: _context
+                type: ISContextMenu
+              - name: _manager
+                type: ISSearchManager
+              - name: _square
+                type: IsoGridSquare
+          - name: OnFillWorldObjectContextMenu
+            parameters:
+              - name: _player
+                type: integer
+              - name: _context
+                type: ISContextMenu
+              - name: _worldObjects
+                type: IsoObject[]
+      umbrella.Foraging.UpdateEvent:
+        fields:
+          method:
+            type: string
+          tick:
+            type: integer
+          breakTick:
+            type: boolean

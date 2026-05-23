@@ -1,0 +1,81 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCraftBenchPanel:
+        extends: ISBaseComponentPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: entity
+                type: GameEntity
+              - name: component
+                type: Component
+              - name: componentUiStyle
+                type: XuiSkin.ComponentUiStyle
+        staticFields:
+          Type:
+            defaultValue: '"ISCraftBenchPanel"'
+        fields:
+          handCraftPanel:
+            type: ISHandCraftPanel
+            nullable: true
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateStart_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: OnCloseWindow
+        staticMethods:
+          - name: CanCreatePanelFor
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _entity
+                type: GameEntity
+              - name: _component
+                type: Component
+              - name: _componentUiScript
+                type: XuiSkin.ComponentUiStyle
+            return:
+              - type: boolean
+                nullable: true

@@ -1,0 +1,236 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISTextBox.ValidateFunction:
+        - type: "fun(target: unknown, text: string, ...: unknown)"
+    classes:
+      ISTextBox:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: text
+                type: string
+              - name: defaultEntryText
+                type: string
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onclick
+                type: umbrella.ISButton.OnClick
+                nullable: true
+              - name: player
+                type: integer
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISTextBox"'
+        fields:
+          fontHgt:
+            type: number
+          entry:
+            type: ISTextEntryBox
+          colorBtn:
+            type: ISButton
+          colorPicker:
+            type: ISColorPicker
+          currentColor:
+            type: ColorInfo
+          yes:
+            type: ISButton
+          no:
+            type: ISButton
+          multipleLine:
+            type: boolean
+          numLines:
+            type: number
+          maxLines:
+            type: number
+          validateTarget:
+            type: unknown
+            nullable: true
+          validateFunc:
+            type: umbrella.ISTextBox.ValidateFunction
+            nullable: true
+          validateArgs:
+            type: table
+          validateTooltipText:
+            type: string
+            nullable: true
+          showError:
+            type: boolean
+            nullable: true
+          errorMsg:
+            type: string
+            nullable: true
+          name:
+            nullable: true
+          text:
+            type: string
+          target:
+            type: unknown
+            nullable: true
+          onclick:
+            type: umbrella.ISButton.OnClick
+            nullable: true
+          player:
+            type: integer
+            nullable: true
+          param1:
+            type: unknown
+            nullable: true
+          param2:
+            type: unknown
+            nullable: true
+          param3:
+            type: unknown
+            nullable: true
+          param4:
+            type: unknown
+            nullable: true
+          defaultEntryText:
+            type: string
+          titlebarbkg:
+            type: Texture
+        methods:
+          - name: initialise
+          - name: onColorPicker
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onPickedColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+          - name: enableColorPicker
+          - name: setOnlyNumbers
+            parameters:
+              - name: onlyNumbers
+                type: boolean
+          - name: setMultipleLine
+            parameters:
+              - name: multiple
+                type: boolean
+          - name: setNumberOfLines
+            parameters:
+              - name: numLines
+                type: integer
+          - name: setMaxLines
+            parameters:
+              - name: max
+                type: integer
+          - name: getMaxLines
+            return:
+              - type: integer
+          - name: setValidateFunction
+            parameters:
+              - name: target
+                type: unknown
+                nullable: true
+              - name: func
+                type: umbrella.ISTextBox.ValidateFunction
+                nullable: true
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+          - name: setValidateTooltipText
+            parameters:
+              - name: text
+                type: string
+                nullable: true
+          - name: destroy
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: titleBarHeight
+            return:
+              - type: number
+          - name: prerender
+          - name: showErrorMessage
+            parameters:
+              - name: show
+                type: boolean
+              - name: errorMsg
+                type: string
+          - name: updateButtons
+          - name: render
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: close
+      ISTextEntryBox:
+        methods:
+          - name: isMultipleLine
+            return:
+              - type: boolean

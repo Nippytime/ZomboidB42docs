@@ -1,0 +1,50 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPutAnimalOnHook:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: body
+                type: IsoDeadBody | AnimalInventoryItem
+              - name: hook
+                type: IsoButcherHook
+              - name: luaHookUI
+                type: ISButcherHookUI
+        staticFields:
+          Type:
+            defaultValue: '"ISPutAnimalOnHook"'
+        fields:
+          sound:
+            type: integer
+          body:
+            type: IsoDeadBody | AnimalInventoryItem
+          hook:
+            type: IsoButcherHook
+          luaHook:
+            type: ISButcherHookUI
+          perkLevel:
+            type: integer
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: serverStart
+          - name: serverStop
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+          - name: stopSound

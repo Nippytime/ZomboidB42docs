@@ -1,0 +1,129 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetOutput:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: BaseCraftingLogic
+              - name: outputScript
+                type: OutputScript
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetOutput"'
+        fields:
+          amountWidth:
+            type: number
+          amountWidth2:
+            type: number
+          textColor:
+            type: umbrella.RGBA
+          colPartial:
+            type: umbrella.RGBA
+          colBad:
+            type: umbrella.RGBA
+          primary:
+            type: umbrella.ISWidgetInput.ScriptValues
+          iconCreate:
+            type: ISImage
+          secondary:
+            type: umbrella.ISWidgetInput.ScriptValues
+            nullable: true
+          arrow:
+            type: ISImage
+            nullable: true
+          editedLabels:
+            type: boolean
+          player:
+            type: IsoPlayer
+          logic:
+            type: BaseCraftingLogic
+          outputScript:
+            type: OutputScript
+          createScript:
+            type: OutputScript
+            nullable: true
+          iconSize:
+            type: number
+          iconMargin:
+            type: number
+          labelIconSize:
+            type: number
+          normalBorderColor:
+            type: table
+          iconBorderSizeX:
+            type: number
+          iconBorderSizeY:
+            type: number
+          interactiveMode:
+            type: boolean
+          textureReturned:
+            type: Texture
+          textureConsumed:
+            type: Texture
+          textureTool:
+            type: Texture
+          textureCreate:
+            type: Texture
+          margin:
+            type: number
+          doToolTip:
+            type: boolean
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: createScriptValues
+            parameters:
+              - name: _script
+                type: OutputScript
+            return:
+              - type: umbrella.ISWidgetInput.ScriptValues
+          - name: updateScriptValues
+            parameters:
+              - name: _table
+                type: umbrella.ISWidgetInput.ScriptValues
+          - name: updateValues
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number

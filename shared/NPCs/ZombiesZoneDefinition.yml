@@ -1,0 +1,110 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ZombiesZoneDefinition:
+        staticFields:
+          Wedding: {}
+          TrailerPark: {}
+          Pharmacist: {}
+          Bowling: {}
+          Doctor: {}
+          Spiffo: {}
+          Jays: {}
+          Gigamart: {}
+          PizzaWhirled: {}
+          Dinner: {}
+          PileOCrepe: {}
+          CoffeeShop: {}
+          Coffeshop:
+            defaultValue: ZombiesZoneDefinition.CoffeeShop
+          Coffeeshop:
+            defaultValue: ZombiesZoneDefinition.CoffeeShop
+          SeaHorse: {}
+          SeaHorses:
+            defaultValue: ZombiesZoneDefinition.SeaHorse
+          Seahorse:
+            defaultValue: ZombiesZoneDefinition.SeaHorse
+          Restaurant: {}
+          Survivalist: {}
+          StreetPoor: {}
+          Rocker: {}
+          Theatre: {}
+          Shelter: {}
+          LaserTag: {}
+          Rich: {}
+          StreetRich:
+            defaultValue: ZombiesZoneDefinition.Rich
+          HotelRich: {}
+          BaseballFan: {}
+          NursingHome: {}
+          Young: {}
+          Nightclub: {}
+          Tennis: {}
+          VariousFoodMarket: {}
+          FarmingStore: {}
+          Athletic: {}
+          StreetSports: {}
+          Pony: {}
+          Baseball: {}
+          Farm: {}
+          CarRepair: {}
+          Fossoil: {}
+          Gas2Go: {}
+          ThunderGas: {}
+          McCoys: {}
+          Factory: {}
+          ConstructionSite: {}
+          Offices: {}
+          Bank: {}
+          SwimmingPool: {}
+          Swimmer:
+            defaultValue: ZombiesZoneDefinition.SwimmingPool
+          FancyHotel: {}
+          CountryClub: {}
+          Spa: {}
+          Golf: {}
+          Police: {}
+          PoliceState: {}
+          Prison: {}
+          FireDept: {}
+          Army: {}
+          SecretBase: {}
+          Bar: {}
+          Beach: {}
+          School: {}
+          University: {}
+          Boxing: {}
+          Nav: {}
+          cornmaze: {}
+          CornMaze:
+            defaultValue: ZombiesZoneDefinition.cornmaze
+          Cowboy: {}
+          PonyRoama: {}
+          Stripclub: {}
+          Mob: {}
+          Cultists: {}
+          SecretLab: {}
+          Default:
+            type: umbrella.ZombiesZoneDefinition[]
+      umbrella.ZombiesZoneDefinition:
+        fields:
+          name:
+            type: string
+          chance:
+            type: number
+          gender:
+            type: string
+            nullable: true
+          room:
+            type: string
+            nullable: true
+          beardStyles:
+            type: string
+            nullable: true
+          mandatory:
+            type: string
+            nullable: true
+          toSpawn:
+            type: number
+            nullable: true

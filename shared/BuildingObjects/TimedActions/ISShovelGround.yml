@@ -1,0 +1,60 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISShovelGround:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: emptyBag
+                type: InventoryItem
+              - name: sandTile
+                type: IsoObject
+              - name: newSprite
+                type: string
+              - name: newBag
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISShovelGround"'
+        fields:
+          emptyBag:
+            type: InventoryItem
+            nullable: true
+          sound:
+            type: integer
+            nullable: true
+          sandTile:
+            type: IsoObject
+            nullable: true
+          newSprite:
+            type: string
+          newBag:
+            type: string
+          item:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: shovelGround
+            parameters:
+              - name: sq
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: complete
+            return:
+              - type: boolean
+          - name: perform
+          - name: getDuration
+            return:
+              - type: number

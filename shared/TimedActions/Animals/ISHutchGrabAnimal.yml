@@ -1,0 +1,39 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISHutchGrabAnimal:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: index
+                type: integer
+              - name: hutch
+                type: IsoHutch
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchGrabAnimal"'
+        fields:
+          hutch:
+            type: IsoHutch
+          index:
+            type: integer
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

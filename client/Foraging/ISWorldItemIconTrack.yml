@@ -1,0 +1,55 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWorldItemIconTrack:
+        extends: ISBaseIcon
+        constructors:
+          - parameters:
+              - name: _manager
+                type: ISSearchManager
+              - name: _icon
+                type: umbrella.Foraging.WorldIconData
+        staticFields:
+          Type:
+            defaultValue: '"ISWorldItemIconTrack"'
+        fields:
+          isValidSquare:
+            type: boolean
+          itemObjTable:
+            type: table<InventoryItem, InventoryItem>
+          container:
+            type: ItemContainer
+          isTrack:
+            type: boolean
+        methods:
+          - name: onRightMouseUp
+          - name: doContextMenu
+          - name: onRightMouseDown
+            return:
+              - type: boolean
+          - name: doPickup
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _contextOption
+                type: ISContextMenu
+              - name: _targetContainer
+                type: ItemContainer
+                nullable: true
+              - name: _items
+                type: InventoryItem[]
+                nullable: true
+          - name: isValidWorldItem
+            return:
+              - type: boolean
+          - name: isValid
+            return:
+              - type: boolean
+          - name: findPinOffset
+          - name: setWorldMarkerPosition
+          - name: checkIsForageable
+            return:
+              - type: boolean

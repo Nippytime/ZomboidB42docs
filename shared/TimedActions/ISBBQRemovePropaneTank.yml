@@ -1,0 +1,38 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBBQRemovePropaneTank:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: bbq
+                type: IsoBarbecue
+        staticFields:
+          Type:
+            defaultValue: '"ISBBQRemovePropaneTank"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          bbq:
+            type: IsoBarbecue
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

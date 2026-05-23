@@ -1,0 +1,55 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISLightFromKindle:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: plank
+                type: InventoryItem
+              - name: item
+                type: InventoryItem
+              - name: campfire
+                type: SCampfireGlobalObject
+        staticFields:
+          Type:
+            defaultValue: '"ISLightFromKindle"'
+        fields:
+          item:
+            type: InventoryItem
+            nullable: true
+          plank:
+            type: InventoryItem
+          campfire:
+            type: SCampfireGlobalObject
+          isOutdoorsMan:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: updateKindling
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: serverStart
+          - name: getDuration
+            return:
+              - type: number
+          - name: stopSound

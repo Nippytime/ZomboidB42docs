@@ -1,0 +1,595 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      SpriteModelEditor:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"SpriteModelEditor"'
+        fields:
+          scene:
+            type: SpriteModelEditor_Scene
+          listBox:
+            type: SpriteModelEditor_ListBox
+          belowList:
+            type: ISPanel
+          button1:
+            type: ISButton
+          comboChooseModel:
+            type: ISComboBox
+          comboChooseAnimation:
+            type: ISComboBox
+          sliderAnimationTime:
+            type: ISSliderPanel
+          runtimeEntry:
+            type: ISTextEntryBox
+          tilePicker:
+            type: SpriteModelEditor_TilePicker
+          bottomPanel:
+            type: ISPanel
+          buttonCreateTilesetImage:
+            type: ISButton
+          toolBar:
+            type: ISPanel
+          comboModID:
+            type: ISComboBox
+          buttonOptions:
+            type: ISButton
+          optionsPanel:
+            type: SpriteModelEditor_OptionsPanel
+          currentModelScriptName:
+            type: string
+            nullable: true
+          animationComboModelScriptName:
+            type: string
+            nullable: true
+          animationComboTileProperties:
+            type: SpriteModel
+            nullable: true
+          runtimeEntryProperties:
+            type: SpriteModel
+            nullable: true
+          selectedTileProperties:
+            type: SpriteModel
+            nullable: true
+          tempTranslate:
+            type: Vector3f
+          tempExtents:
+            type: Vector3f
+          modID:
+            type: string
+        methods:
+          - name: createChildren
+          - name: createToolbar
+          - name: onToggleGizmo
+          - name: onComboChooseModel
+          - name: onComboChooseAnimation
+          - name: onAnimationTimeChanged
+            parameters:
+              - name: time
+                type: number
+              - name: slider
+                type: ISSliderPanel
+          - name: syncChooseModelCombo
+          - name: syncChooseAnimationCombo
+          - name: setSelectedAnimation
+            parameters:
+              - name: animationName
+                type: string
+                nullable: true
+          - name: syncAnimationTimeSlider
+          - name: syncRuntimeEntry
+          - name: onRuntimeEntered
+          - name: resetView
+          - name: onResolutionChange
+            parameters:
+              - name: oldw
+                type: number
+              - name: oldh
+                type: number
+              - name: neww
+                type: number
+              - name: newh
+                type: number
+          - name: update
+          - name: prerender
+          - name: render
+          - name: getTileProperties
+            return:
+              - type: SpriteModel
+                nullable: true
+          - name: getOrCreateTileProperties
+            return:
+              - type: SpriteModel
+                nullable: true
+          - name: onKeyPress
+            parameters:
+              - name: key
+                type: integer
+          - name: onOptions
+          - name: onExit
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onSave
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onCreateTilesetImage
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onCreateTilesetImage2
+            parameters:
+              - name: button
+                type: ISButton
+          - name: showUI
+      SpriteModelEditor_ListBox:
+        extends: ISScrollingListBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"SpriteModelEditor_ListBox"'
+        fields:
+          editor:
+            type: SpriteModelEditor
+          selected:
+            type: number
+        methods:
+          - name: prerender
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: indexOf
+            parameters:
+              - name: text
+                type: string
+            return:
+              - type: integer
+      SpriteModelEditor_OptionsPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"SpriteModelEditor_OptionsPanel"'
+        fields:
+          tickBox:
+            type: ISTickBox
+        methods:
+          - name: createChildren
+          - name: onTickBox
+            parameters:
+              - name: index
+                type: integer
+              - name: selected
+                type: boolean
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+      SpriteModelEditor_Scene:
+        extends: ISUI3DScene
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: editor
+                type: SpriteModelEditor
+        staticFields:
+          Type:
+            defaultValue: '"SpriteModelEditor_Scene"'
+        fields:
+          zeroVector:
+            type: Vector3f
+          selectedTileName:
+            type: string
+          gizmoAxis:
+            type: string
+          gizmoStartScenePos:
+            type: Vector3f
+          gizmoClickScenePos:
+            type: Vector3f
+          rotate:
+            type: boolean
+          dragPointIndex:
+            type: integer
+          tempTranslate:
+            type: Vector3f
+          tempRotate:
+            type: Vector3f
+          tempExtentsMin:
+            type: Vector3f
+          tempExtentsMax:
+            type: Vector3f
+          originalTranslate:
+            type: table<string, Vector3f>
+          originalRotate:
+            type: table<string, Vector3f>
+          originalScale:
+            type: table<string, Vector3f>
+          editor:
+            type: SpriteModelEditor
+          gizmo:
+            type: string
+          sceneModelName:
+            type: string
+        methods:
+          - name: prerenderEditor
+          - name: prerender
+          - name: render
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: snapToFurniturePixel
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: number
+              - type: number
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+                nullable: true
+              - name: y
+                type: number
+                nullable: true
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: renderBox3D
+            parameters:
+              - name: tx
+                type: number
+              - name: ty
+                type: number
+              - name: tz
+                type: number
+              - name: rx
+                type: number
+              - name: ry
+                type: number
+              - name: rz
+                type: number
+              - name: minX
+                type: number
+              - name: minY
+                type: number
+              - name: minZ
+                type: number
+              - name: maxX
+                type: number
+              - name: maxY
+                type: number
+              - name: maxZ
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+          - name: renderNorthWall
+          - name: renderWestWall
+          - name: renderTileName
+          - name: onGizmoStart
+          - name: onGizmoChanged
+            parameters:
+              - name: delta
+                type: number
+          - name: onGizmoAccept
+          - name: onGizmoCancel
+          - name: java0
+            parameters:
+              - name: func
+                type: string
+            return:
+              - type: unknown
+          - name: java1
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+            return:
+              - type: unknown
+          - name: java2
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+                nullable: true
+            return:
+              - type: unknown
+          - name: java3
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+            return:
+              - type: unknown
+          - name: java4
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+            return:
+              - type: unknown
+          - name: java5
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+              - name: arg4
+                type: unknown
+            return:
+              - type: unknown
+          - name: java6
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+              - name: arg4
+                type: unknown
+              - name: arg5
+                type: unknown
+            return:
+              - type: unknown
+          - name: java7
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+              - name: arg4
+                type: unknown
+              - name: arg5
+                type: unknown
+              - name: arg6
+                type: unknown
+            return:
+              - type: unknown
+          - name: java9
+            parameters:
+              - name: func
+                type: string
+              - name: arg0
+                type: unknown
+              - name: arg1
+                type: unknown
+              - name: arg2
+                type: unknown
+              - name: arg3
+                type: unknown
+              - name: arg4
+                type: unknown
+              - name: arg5
+                type: unknown
+              - name: arg6
+                type: unknown
+              - name: arg7
+                type: unknown
+              - name: arg8
+                type: unknown
+            return:
+              - type: unknown
+      SpriteModelEditor_TileList:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: picker
+                type: SpriteModelEditor_TilePicker
+        staticFields:
+          Type:
+            defaultValue: '"SpriteModelEditor_TileList"'
+        fields:
+          selected:
+            type: "{ col: number, row: number }"
+            nullable: true
+          tileset:
+            type: string
+          picker:
+            type: SpriteModelEditor_TilePicker
+          editor:
+            type: SpriteModelEditor
+        methods:
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onClearSelectedTiles
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+          - name: render
+          - name: setTileset
+            parameters:
+              - name: tilesetName
+                type: string
+          - name: getColRowAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: number
+              - type: number
+          - name: isValidColRow
+            parameters:
+              - name: col
+                type: number
+              - name: row
+                type: number
+            return:
+              - type: boolean
+      SpriteModelEditor_TilePicker:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: editor
+                type: SpriteModelEditor
+        staticFields:
+          Type:
+            defaultValue: '"SpriteModelEditor_TilePicker"'
+        fields:
+          comboTileset:
+            type: ISComboBox
+          listBox:
+            type: SpriteModelEditor_TileList
+          editor:
+            type: SpriteModelEditor
+        methods:
+          - name: createChildren
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: onSelectTileset
+    functions:
+      - name: SpriteModelEditor_InitUI

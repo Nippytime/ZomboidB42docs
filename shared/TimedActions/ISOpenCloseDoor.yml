@@ -1,0 +1,36 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISOpenCloseDoor:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: IsoDoor | IsoThumpable
+        staticFields:
+          Type:
+            defaultValue: '"ISOpenCloseDoor"'
+        fields:
+          item:
+            type: IsoDoor | IsoThumpable
+          ignoreHandsWounds:
+            type: boolean
+          retriggerLastAction:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

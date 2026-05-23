@@ -1,0 +1,54 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      STrapSystemCommands:
+        staticMethods:
+          - name: add
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: table
+          - name: remove
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: table
+          - name: removeAnimal
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: table
+          - name: addBait
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: table
+          - name: addAnimalDebug
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: table
+          - name: checkTrap
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: umbrella.XYZ
+          - name: removeBait
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: table
+          - name: destroy
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: args
+                type: table

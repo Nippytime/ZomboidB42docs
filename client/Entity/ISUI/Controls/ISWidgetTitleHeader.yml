@@ -1,0 +1,138 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetTitleHeader:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: recipe
+                type: CraftRecipe
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: HandcraftLogic
+                nullable: true
+              - name: isFavourite
+                type: boolean
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetTitleHeader"'
+        fields:
+          iconSize:
+            type: number
+          icon:
+            type: ISImage
+            nullable: true
+          titleLabel:
+            type: ISLabel
+            nullable: true
+          favouritesIcon:
+            type: ISButton
+            nullable: true
+          isCanWalkIcon:
+            type: ISImage
+            nullable: true
+          canBeDoneInDarkIcon:
+            type: ISImage
+            nullable: true
+          needToBeLearnIcon:
+            type: ISImage
+            nullable: true
+          requiresSurfaceIcon:
+            type: ISImage
+            nullable: true
+          timeIcon:
+            type: ISImage
+            nullable: true
+          tooltipLabel:
+            type: ISLabel
+            nullable: true
+          specificWorkstationLabel:
+            type: ISLabel
+            nullable: true
+          recipeBenefitLabel:
+            type: ISLabel
+            nullable: true
+          errorLabel:
+            type: ISLabel
+            nullable: true
+          isFavourite:
+            type: boolean
+          title:
+            type: string
+          iconTex:
+            type: Texture
+            nullable: true
+          isCanWalk:
+            type: boolean
+          canBeDoneInDark:
+            type: boolean
+          needToBeLearn:
+            type: boolean
+          requiresSurface:
+            type: boolean
+          showPropertyIcons:
+            type: boolean
+          propertyIconSize:
+            type: number
+          player:
+            type: IsoPlayer
+          recipe:
+            type: CraftRecipe
+          logic:
+            type: HandcraftLogic
+            nullable: true
+          paddingTop:
+            type: number
+          paddingBottom:
+            type: number
+          paddingLeft:
+            type: number
+          paddingRight:
+            type: number
+          marginTop:
+            type: number
+          marginBottom:
+            type: number
+          marginLeft:
+            type: number
+          marginRight:
+            type: number
+          requiredSkillList:
+            type: ISLabel[]
+          colWhite:
+            type: umbrella.RGBA
+          colGood:
+            type: umbrella.RGBA
+          colBad:
+            type: umbrella.RGBA
+          enableIcon:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: updateLabels
+          - name: updatePropertyIcons
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onFavouritesClick

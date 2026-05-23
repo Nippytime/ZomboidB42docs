@@ -1,0 +1,186 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      STrapGlobalObject:
+        extends: SGlobalObject
+        constructors:
+          - parameters:
+              - name: luaSystem
+                type: STrapSystem
+              - name: globalObject
+                type: GlobalObject
+        staticFields:
+          Type:
+            defaultValue: '"STrapGlobalObject"'
+        fields:
+          trapType:
+            type: string
+          trapBait:
+            type: string
+          trapBaitDay:
+            type: number
+          animalAliveHour:
+            type: number
+          lastUpdate:
+            type: number
+          baitAmountMulti:
+            type: number
+          animal:
+            type: table | umbrella.TrapAnimalDefinition
+          animalHour:
+            type: number
+          openSprite:
+            type: string
+          closedSprite:
+            type: string
+          zone:
+            type: string
+          zones:
+            type: table<string, string>
+          player:
+            type: string
+          trappingSkill:
+            type: number
+          destroyed:
+            type: boolean
+          bait:
+            type: string
+            nullable: true
+          def:
+            type: umbrella.TrapDefinition
+            nullable: true
+        methods:
+          - name: initNew
+          - name: stateFromIsoObject
+            parameters:
+              - name: isoObject
+                type: IsoObject
+          - name: stateToIsoObject
+            parameters:
+              - name: isoObject
+                type: IsoObject
+          - name: calculTrap
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: sendSound
+            parameters:
+              - name: soundName
+                type: string
+              - name: square
+                type: IsoGridSquare
+          - name: addSound
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: isWoodenTrap
+            return:
+              - type: boolean
+          - name: isMetalTrap
+            return:
+              - type: boolean
+          - name: checkDestroy
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: removeBait
+            parameters:
+              - name: character
+                type: IsoPlayer
+                nullable: true
+          - name: clearAnimalAndChangeSprite
+          - name: addAliveAnimal
+            parameters:
+              - name: character
+                type: IsoPlayer
+          - name: removeAnimal
+            parameters:
+              - name: character
+                type: IsoPlayer
+            return:
+              - type: unknown
+                nullable: true
+          - name: removeAnimalCorpse
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: isoAnimal
+          - name: removeAnimalItem
+            parameters:
+              - name: character
+          - name: testForAnimal
+            parameters:
+              - name: zoneType
+                type: string
+              - name: animalsList
+                type: umbrella.TrapAnimalDefinition[]
+          - name: checkForAnimal
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: setAnimal
+            parameters:
+              - name: animal
+                type: umbrella.TrapAnimalDefinition
+          - name: addBait
+            parameters:
+              - name: bait
+                type: string
+              - name: age
+              - name: baitAmountMulti
+                type: number
+              - name: player
+                type: IsoPlayer
+          - name: setZones
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: setDef
+          - name: toObject
+            parameters:
+              - name: object
+                type: IsoObject
+              - name: transmitData
+                type: boolean
+          - name: fromModData
+            parameters:
+              - name: modData
+                type: table
+          - name: toModData
+            parameters:
+              - name: modData
+                type: table
+          - name: checkBaitFreshness
+            return:
+              - type: boolean
+          - name: checkTime
+            parameters:
+              - name: animal
+                type: umbrella.TrapAnimalDefinition
+            return:
+              - type: boolean
+          - name: reinitModData
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: checkForWallExploit
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: spawnDestroyItems
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: object
+                type: IsoObject
+        staticMethods:
+          - name: SpawnDestroyItems
+            parameters:
+              - name: trapType
+              - name: square
+                type: IsoGridSquare
+              - name: object
+                type: IsoObject

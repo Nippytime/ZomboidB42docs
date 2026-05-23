@@ -1,0 +1,30 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      UI.TextButton:
+        extends: UI.Panel
+        local: true
+        staticFields:
+          sounds:
+            type: table<string, string>
+        fields:
+          super:
+            type: UI.Panel
+        overloads:
+          - parameters:
+              - name: args
+                type: table
+            return:
+              - type: UI.TextButton
+        methods:
+          - name: onHover
+            parameters:
+              - name: state
+                type: boolean
+          - name: onLeftClick
+      PZAPI.UI:
+        local: true
+        staticFields:
+          TextButton:
+            type: UI.TextButton

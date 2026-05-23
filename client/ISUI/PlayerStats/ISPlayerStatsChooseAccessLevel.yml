@@ -1,0 +1,72 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISPlayerStatsChooseAccessLevelUI.OnClick:
+        - type: "fun(target: unknown?, button: ISButton, roleName: string)"
+    classes:
+      ISPlayerStatsChooseAccessLevelUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onclick
+                type: umbrella.ISPlayerStatsChooseAccessLevelUI.OnClick
+                nullable: true
+              - name: player
+                type: IsoPlayer
+              - name: admin
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISPlayerStatsChooseAccessLevelUI"'
+        fields:
+          combo:
+            type: ISComboBox
+          ok:
+            type: ISButton
+          cancel:
+            type: ISButton
+          variableColor:
+            type: umbrella.RGBA
+          target:
+            type: unknown
+            nullable: true
+          onclick:
+            type: umbrella.ISPlayerStatsChooseAccessLevelUI.OnClick
+            nullable: true
+          chr:
+            type: IsoPlayer
+          admin:
+            type: IsoPlayer
+          comboList:
+            type: "{ type: string, label: string }[]"
+          zOffsetSmallFont:
+            type: number
+        methods:
+          - name: initialise
+          - name: setVisible
+            parameters:
+              - name: visible
+                type: boolean
+          - name: render
+          - name: create
+          - name: populateComboList
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number

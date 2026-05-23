@@ -1,0 +1,49 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      CFarmingSystem:
+        extends: CGlobalObjectSystem
+        constructors:
+          - {}
+        staticFields:
+          Type:
+            defaultValue: '"CFarmingSystem"'
+          instance:
+            type: CFarmingSystem
+            nullable: true
+            tags:
+              - StubGen_Extra
+        fields:
+          hoursElapsed:
+            type: number
+            nullable: true
+        methods:
+          - name: isValidIsoObject
+            parameters:
+              - name: isoObject
+                type: IsoObject
+            return:
+              - type: boolean
+          - name: newLuaObject
+            parameters:
+              - name: globalObject
+                type: GlobalObject
+            return:
+              - type: CPlantGlobalObject
+          - name: OnServerCommand
+            parameters:
+              - name: command
+                type: string
+              - name: args
+                type: table
+          - name: getXp
+            parameters:
+              - name: character
+                type: IsoPlayer
+            return:
+              - type: number
+          - name: changePlayer
+            parameters:
+              - name: player
+                type: IsoPlayer

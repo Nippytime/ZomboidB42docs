@@ -1,0 +1,91 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISEatFoodAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: Food
+              - name: percentage
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISEatFoodAction"'
+        fields:
+          eatAudio:
+            type: number
+          scrapeSound:
+            type: integer
+            nullable: true
+          playedScrapeSound:
+            type: boolean
+          item:
+            type: Food
+          container:
+            type: ItemContainer
+          percentage:
+            type: number
+          carLighter:
+            type: boolean
+            nullable: true
+          openFlame:
+            type: boolean
+          useUtensil:
+            type: boolean
+          isEating:
+            type: boolean
+          spoon:
+            type: InventoryItem
+            nullable: true
+          fork:
+            type: InventoryItem
+            nullable: true
+          eatSound:
+            type: string
+          ignoreHandsWounds:
+            type: boolean
+        methods:
+          - name: isValidStart
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: serverStop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getRequiredItem
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: eat
+            parameters:
+              - name: food
+                type: Food
+              - name: percentage
+                type: number
+          - name: getDuration
+            return:
+              - type: number
+          - name: getSecondItem
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: isEatingRemaining
+            parameters:
+              - name: item
+                type: Food
+            return:
+              - type: boolean

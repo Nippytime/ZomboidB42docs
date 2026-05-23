@@ -1,0 +1,74 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBarbedWire:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: sprite
+                type: string
+              - name: northSprite
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISBarbedWire"'
+        fields:
+          sq:
+            type: IsoGridSquare
+          javaObject:
+            type: IsoThumpable
+            nullable: true
+          name:
+            type: string
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: onTimedActionStart
+            parameters:
+              - name: action
+                type: ISBaseTimedAction
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: getBarbedWire
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: integer
+          - name: getWoodenStake
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: integer
+          - name: getObjectIndex
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: integer

@@ -1,0 +1,86 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAdmPanelWeather:
+        extends: ISDebugSubPanelBase
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+        staticFields:
+          Type:
+            defaultValue: '"ISAdmPanelWeather"'
+        fields:
+          lblCurrentWeather:
+            type: ISLabel
+          bars:
+            type: umbrella.ISAdmPanelWeather.Bar[]
+          bar1:
+            type: umbrella.ISAdmPanelWeather.Bar
+          bar2:
+            type: umbrella.ISAdmPanelWeather.Bar
+          sliderDurationSlider:
+            type: ISSliderPanel
+          sliderCustomStrSlider:
+            type: ISSliderPanel
+          tickBoxFrontType:
+            type: ISTickBox
+          totalY:
+            type: number
+          player: {}
+        methods:
+          - name: createChildren
+          - name: prerender
+          - name: close
+          - name: onSliderChange
+            parameters:
+              - name: _newval
+                type: number
+              - name: _slider
+                type: ISSliderPanel
+          - name: onTicked
+            parameters:
+              - name: _index
+                type: integer
+              - name: _selected
+                type: boolean
+              - name: _arg1
+                type: unknown
+                nullable: true
+              - name: _arg2
+                type: unknown
+                nullable: true
+              - name: _tickbox
+                type: ISTickBox
+          - name: onClick
+            parameters:
+              - name: _button
+                type: ISButton
+      umbrella.ISAdmPanelWeather.Bar:
+        fields:
+          x:
+            type: number
+          y:
+            type: number
+          w:
+            type: number
+          h:
+            type: number
+          progress:
+            type: number
+          text:
+            type: string
+          back:
+            type: umbrella.RGBA
+          fill:
+            type: umbrella.RGBA
+          border:
+            type: umbrella.RGBA

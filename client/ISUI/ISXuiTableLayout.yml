@@ -1,0 +1,259 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISXuiTableLayoutColumn:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: _columnIndex
+                type: integer
+              - name: _width
+                type: number
+              - name: _isPercent
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISXuiTableLayoutColumn"'
+        fields:
+          columnIndex:
+            type: integer
+          configWidth:
+            type: number
+          isPercent:
+            type: boolean
+          width:
+            type: number
+          minimumWidth:
+            type: number
+          x:
+            type: number
+          temp:
+            type: number
+          backgroundColor:
+            type: umbrella.RGBA
+          borderColor:
+            type: umbrella.RGBA
+      ISXuiTableLayoutRow:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: _rowIndex
+                type: integer
+              - name: _height
+                type: number
+              - name: _isPercent
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISXuiTableLayoutRow"'
+        fields:
+          rowIndex:
+            type: integer
+          configHeight:
+            type: number
+          isPercent:
+            type: boolean
+          height:
+            type: number
+          minimumHeight:
+            type: number
+          y:
+            type: number
+          temp:
+            type: number
+          backgroundColor:
+            type: umbrella.RGBA
+          borderColor:
+            type: umbrella.RGBA
+      ISXuiTableLayoutCell:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: _columnIndex
+                type: integer
+              - name: _rowIndex
+                type: integer
+              - name: _parent
+                type: ISXuiTableLayout
+        staticFields:
+          Type:
+            defaultValue: '"ISXuiTableLayoutCell"'
+        fields:
+          parent:
+            type: ISXuiTableLayout
+          columnIndex:
+            type: integer
+          rowIndex:
+            type: integer
+          x:
+            type: number
+          y:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+          drawBackground:
+            type: boolean
+          backgroundColor:
+            type: umbrella.RGBA
+          drawBorder:
+            type: boolean
+          borderColor:
+            type: umbrella.RGBA
+          children:
+            type: ISUIElement[]
+        methods:
+          - name: getAbsoluteX
+            return:
+              - type: number
+          - name: getAbsoluteY
+            return:
+              - type: number
+          - name: getX
+            return:
+              - type: number
+          - name: getY
+            return:
+              - type: number
+          - name: getWidth
+            return:
+              - type: number
+          - name: getHeight
+            return:
+              - type: number
+          - name: addChild
+            parameters:
+              - name: _child
+                type: ISUIElement
+          - name: setRectangle
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _w
+                type: number
+              - name: _h
+                type: number
+      ISXuiTableLayout:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: columns
+                type: integer
+                nullable: true
+              - name: rows
+                type: integer
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISXuiTableLayout"'
+        fields:
+          dirtyLayout:
+            type: boolean
+          drawBackground:
+            type: boolean
+          drawBorder:
+            type: boolean
+          backgroundColor:
+            type: umbrella.RGBA
+          borderColor:
+            type: umbrella.RGBA
+          drawGrid:
+            type: boolean
+          gridColor:
+            type: umbrella.RGBA
+          columns:
+            type: ISXuiTableLayoutColumn[]
+          rows:
+            type: ISXuiTableLayoutRow[]
+          cells:
+            type: (ISXuiTableLayoutCell | false)[]
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onResize
+            parameters:
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+          - name: row
+            parameters:
+              - name: _index
+                type: integer
+            return:
+              - type: ISXuiTableLayoutRow
+                nullable: true
+          - name: rowCount
+            return:
+              - type: integer
+          - name: column
+            parameters:
+              - name: _index
+                type: integer
+            return:
+              - type: ISXuiTableLayoutColumn
+                nullable: true
+          - name: columnCount
+            return:
+              - type: integer
+          - name: cell
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+            return:
+              - type: ISXuiTableLayoutCell | false
+                nullable: true
+          - name: cellGetFirst
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: cellCount
+            return:
+              - type: integer
+          - name: isValidPos
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+            return:
+              - type: boolean
+          - name: ensureCell
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+            return:
+              - type: ISXuiTableLayoutCell
+                nullable: true
+          - name: addElement
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+              - name: _element
+                type: ISUIElement
+          - name: calculateLayout
+          - name: prerender
+          - name: render

@@ -1,0 +1,146 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetRecipeFilterPanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: callbackTarget
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetRecipeFilterPanel"'
+        fields:
+          searchEntryBox:
+            type: ISTextEntryBox
+          filterTypeCombo:
+            type: ISComboBox
+            nullable: true
+          sortComboLabel:
+            type: ISLabel
+            nullable: true
+          sortCombo:
+            type: ISComboBox
+            nullable: true
+          viewModeButton:
+            type: ISButton
+          showAllRecipeTickBox:
+            type: ISTickBox
+          tickBoxShowAllVersion:
+            type: ISTickBox
+          searchInfoText:
+            type: string
+          callbackTarget:
+            type: unknown
+            nullable: true
+          paddingTop:
+            type: number
+          paddingBottom:
+            type: number
+          paddingLeft:
+            type: number
+          paddingRight:
+            type: number
+          marginTop:
+            type: number
+          marginBottom:
+            type: number
+          marginLeft:
+            type: number
+          marginRight:
+            type: number
+          margin:
+            type: number
+          autoFillContents:
+            type: boolean
+          needFilterCombo:
+            type: boolean
+          needSortCombo:
+            type: boolean
+          showFilterByOutputItem:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+          iconGrid:
+            type: Texture
+          iconList:
+            type: Texture
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: updateViewModeButton
+          - name: populateComboList
+          - name: populateSortList
+          - name: onShowAllVersionClick
+            parameters:
+              - name: clickedOption
+                type: integer
+              - name: enabled
+                type: boolean
+          - name: onShowAllRecipeClick
+            parameters:
+              - name: clickedOption
+                type: integer
+              - name: enabled
+                type: boolean
+          - name: filter
+            parameters:
+              - name: textFilter
+                type: string
+              - name: selectedCombo
+                type: string
+          - name: onButtonClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: OnClickFilterType
+            parameters:
+              - name: box
+                type: ISComboBox
+          - name: OnClickSortType
+            parameters:
+              - name: box
+                type: ISComboBox
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: setSearchInfoText
+            parameters:
+              - name: _text
+                type: string
+        staticMethods:
+          - name: onTextChange
+            parameters:
+              - name: box
+                type: ISTextEntryBox

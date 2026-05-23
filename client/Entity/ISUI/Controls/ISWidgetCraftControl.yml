@@ -1,0 +1,86 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetCraftControl:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: entity
+                type: GameEntity
+              - name: component
+                type: Component
+              - name: callbackTarget
+                type: unknown
+                nullable: true
+              - name: _styleButton
+                type: string
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetCraftControl"'
+        fields:
+          buttonStart:
+            type: ISButton
+            nullable: true
+          originalButtonWidth:
+            type: number
+          originalButtonHeight:
+            type: number
+          player:
+            type: IsoPlayer
+          entity:
+            type: GameEntity
+          component:
+            type: Component
+          callbackTarget:
+            type: unknown
+            nullable: true
+          styleButton:
+            type: string
+            nullable: true
+          margin:
+            type: number
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onButtonClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: onGetIsStartEnabled
+            return:
+              - type: boolean
+          - name: onStart
+            return:
+              - type: boolean

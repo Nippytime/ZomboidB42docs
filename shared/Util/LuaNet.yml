@@ -1,0 +1,81 @@
+version: "1.1"
+languages:
+  lua:
+    tables:
+      LuaNet:
+        methods:
+          - name: getInstance
+            return:
+              - type: LuaNet
+    classes:
+      LuaNet:
+        local: true
+        staticMethods:
+          - name: setDebug
+            parameters:
+              - name: _debug
+                type: boolean
+          - name: getDebug
+            return:
+              - type: boolean
+          - name: isRunning
+            return:
+              - type: boolean
+          - name: getName
+            return:
+              - type: string
+          - name: getModule
+            parameters:
+              - name: _name
+                type: string
+              - name: _debug
+                type: boolean
+            return:
+              - type: umbrella.LuaNetModule
+          - name: onInitAdd
+            parameters:
+              - name: _func
+                type: function
+          - name: Init
+          - name: destroy
+      umbrella.LuaNetModule:
+        staticMethods:
+          - name: addCommandHandler
+            parameters:
+              - name: _command
+                type: string
+              - name: _handler
+                type: "fun(player: IsoPlayer | false, ...: unknown)"
+          - name: listen
+            parameters:
+              - name: _package
+                type: umbrella.LuaNetPackage
+              - name: _player
+                type: IsoPlayer
+                nullable: true
+          - name: send
+            parameters:
+              - name: _command
+                type: string
+              - name: ...
+                type: unknown
+                nullable: true
+          - name: sendPlayer
+            parameters:
+              - name: _player
+                type: IsoPlayer | false
+              - name: _command
+                type: string
+              - name: ...
+                type: unknown
+                nullable: true
+      umbrella.LuaNetPackage:
+        fields:
+          command:
+            type: string
+          recipient:
+            type: string | false
+          source:
+            type: string | false
+          payload:
+            type: table

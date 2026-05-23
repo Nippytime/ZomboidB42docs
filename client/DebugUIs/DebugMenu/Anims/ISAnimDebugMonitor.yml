@@ -1,0 +1,138 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAnimDebugMonitor:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISAnimDebugMonitor"'
+          instance:
+            type: ISAnimDebugMonitor
+            nullable: true
+        fields:
+          cGreen:
+            type: umbrella.RGBA
+          cRed:
+            type: umbrella.RGBA
+          buttonToggleMonitor:
+            type: ISButton
+          buttonLayers:
+            type: ISButton
+          buttonVariables:
+            type: ISButton
+          buttonActiveNodes:
+            type: ISButton
+          buttonAnimTracks:
+            type: ISButton
+          buttonStamps:
+            type: ISButton
+          labelVars:
+            type: ISLabel
+          addVarComboType:
+            type: ISComboBox
+          addVarKeyLabel:
+            type: ISLabel
+          addVarKey:
+            type: ISTextEntryBox
+          addVarValueLabel:
+            type: ISLabel
+          addVarValue:
+            type: ISTextEntryBox
+          addVarAddButton:
+            type: ISButton
+          comboVars:
+            type: ISComboBox
+          entryBoxValue:
+            type: ISTextEntryBox
+          buttonClearVar:
+            type: ISButton
+          buttonSetVar:
+            type: ISButton
+          labelFloat:
+            type: ISLabel
+          comboFloats:
+            type: ISComboBox
+          labelFloatInfo:
+            type: ISLabel
+          floatPlotter:
+            type: FloatArrayPlotter
+          richtext:
+            type: ISRichTextPanel
+            nullable: true
+          clearText:
+            type: string
+          init:
+            type: boolean
+          selectedVar:
+            type: boolean
+          editEnabled:
+            type: boolean
+          monitor:
+            type: AnimatorDebugMonitor
+            nullable: true
+          oldNodesVal:
+            type: "[boolean]"
+            nullable: true
+          oldTracksVal:
+            type: "[boolean]"
+            nullable: true
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          greyCol:
+            type: umbrella.RGBA
+          title:
+            type: string
+          currentTile:
+            nullable: true
+          overrideBPrompt:
+            type: boolean
+          subFocus:
+            nullable: true
+          hotKeyPanels:
+            type: table
+          isJoypadWindow:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: scrollToBottom
+          - name: clearLog
+          - name: toggleEditEnabled
+            parameters:
+              - name: _b
+                type: boolean
+          - name: onClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: onCombo
+            parameters:
+              - name: _combo
+                type: ISComboBox
+          - name: onResize
+          - name: update
+          - name: colorButtons
+          - name: prerender
+          - name: stayOnSplitScreen
+          - name: render
+          - name: close
+          - name: clear
+        staticMethods:
+          - name: OnOpenPanel
+            return:
+              - type: ISAnimDebugMonitor

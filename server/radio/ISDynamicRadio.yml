@@ -1,0 +1,32 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      DynamicRadio:
+        staticFields:
+          valid:
+            defaultValue: "true"
+          scripts:
+            type: umbrella.DynamicRadio.Script[]
+          channels: {}
+          cache:
+            type: table<string, RadioChannel>
+        staticMethods:
+          - name: OnLoadRadioScripts
+            parameters:
+              - name: _scriptManager
+                type: RadioScriptManager
+              - name: _isNewGame
+                type: boolean
+          - name: OnEveryHour
+      umbrella.DynamicRadio.Script:
+        staticMethods:
+          - name: OnLoadRadioScripts
+          - name: OnEveryHour
+            parameters:
+              - name: channel
+                type: RadioChannel
+              - name: gametime
+                type: GameTime
+              - name: radio
+                type: ZomboidRadio

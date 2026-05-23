@@ -1,0 +1,165 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISItemsListTable:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: viewer
+                type: ISItemsListViewer
+        staticFields:
+          Type:
+            defaultValue: '"ISItemsListTable"'
+          instance:
+            type: ISItemsListTable
+            nullable: true
+        fields:
+          listHeaderColor:
+            type: umbrella.RGBA
+          buttonBorderColor:
+            type: umbrella.RGBA
+          totalResult:
+            type: number
+          filterWidgets:
+            type: ISUIElement[]
+          filterWidgetMap:
+            type: table<string, ISUIElement>
+          viewer:
+            type: ISItemsListViewer
+          datas:
+            type: ISScrollingListBox
+          buttonAdd1:
+            type: ISButton
+          buttonAdd2:
+            type: ISButton
+          buttonAdd5:
+            type: ISButton
+          buttonAddMultiple:
+            type: ISButton
+          filters:
+            type: ISLabel
+        methods:
+          - name: initialise
+          - name: render
+          - name: createChildren
+          - name: addItem
+            parameters:
+              - name: item
+                type: Item
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onAddItem
+            parameters:
+              - name: button
+                type: ISButton
+              - name: item
+                type: Item
+          - name: initList
+            parameters:
+              - name: module
+                type: Item[]
+          - name: update
+          - name: filterDisplayCategory
+            parameters:
+              - name: widget
+                type: ISComboBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterCategory
+            parameters:
+              - name: widget
+                type: ISComboBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterName
+            parameters:
+              - name: widget
+                type: ISTextEntryBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterType
+            parameters:
+              - name: widget
+                type: ISTextEntryBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterLootCategory
+            parameters:
+              - name: widget
+                type: ISComboBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterCraft
+            parameters:
+              - name: widget
+                type: ISComboBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterForage
+            parameters:
+              - name: widget
+                type: ISComboBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterLoot
+            parameters:
+              - name: widget
+                type: ISComboBox
+              - name: scriptItem
+                type: Item
+            return:
+              - type: boolean
+          - name: filterSpawned
+            parameters:
+              - name: widget
+              - name: scriptItem
+            return:
+              - type: boolean
+          - name: onOtherKey
+            parameters:
+              - name: key
+                type: integer
+          - name: drawDatas
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+        staticMethods:
+          - name: onFilterChange
+            parameters:
+              - name: widget
+                type: ISUIElement

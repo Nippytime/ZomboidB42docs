@@ -1,0 +1,158 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISStringListView:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISStringListView"'
+        fields:
+          listLabel:
+            type: ISLabel
+          labelWidth:
+            type: number
+          entryBox:
+            type: ISTextEntryBox
+          infoList:
+            type: ISScrollingListBox
+          greyCol:
+            type: table
+          searchText:
+            type: string
+          iconExpand:
+            type: Texture
+          iconCollapse:
+            type: Texture
+          rootNode:
+            type: ISStringListViewNode
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onResize
+          - name: parseSearchText
+          - name: clear
+          - name: buildNodes
+            parameters:
+              - name: _lines
+                type: ArrayList<string>
+          - name: buildList
+          - name: populate
+            parameters:
+              - name: _lines
+                type: ArrayList<string>
+                nullable: true
+          - name: drawInfoList
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onInfoListSelected
+            parameters:
+              - name: _item
+                type: table
+          - name: update
+          - name: prerender
+          - name: render
+          - name: setExpandedAll
+        staticMethods:
+          - name: onTextChange
+            parameters:
+              - name: box
+                type: ISTextEntryBox
+      ISStringListViewNode:
+        constructors:
+          - parameters:
+              - name: _parent
+                type: ISStringListViewNode
+                nullable: true
+              - name: _text
+                type: string
+              - name: _isRoot
+                type: boolean
+                nullable: true
+        fields:
+          parent:
+            type: ISStringListViewNode
+            nullable: true
+          text:
+            type: string
+          isRoot:
+            type: boolean
+            nullable: true
+          key:
+            type: string
+          keyCol:
+            type: Color
+          keyX:
+            type: number
+          keyW:
+            type: number
+          val:
+            nullable: true
+          valCol:
+            type: Color
+          valX:
+            type: number
+          valW:
+            type: number
+          width:
+            type: number
+          highlight:
+            type: Colors | false
+          isNeedle:
+            type: boolean
+          expanded:
+            type: boolean
+          container:
+            type: boolean
+          children:
+            type: ISStringListViewNode[]
+        methods:
+          - name: reset
+          - name: resetHighlights
+          - name: setHighlight
+            parameters:
+              - name: _col
+                type: Colors
+          - name: search
+            parameters:
+              - name: _text
+                type: string
+              - name: _col
+                type: Colors
+          - name: isDrawIcon
+            return:
+              - type: boolean
+          - name: isContainer
+            return:
+              - type: boolean
+          - name: toggleExpand
+          - name: setExpanded
+            parameters:
+              - name: _b
+                type: boolean
+              - name: _noChildren
+                type: boolean
+                nullable: true
+          - name: setExpandedAll
+          - name: preBuild
+          - name: build
+            parameters:
+              - name: _list
+                type: ISScrollingListBox

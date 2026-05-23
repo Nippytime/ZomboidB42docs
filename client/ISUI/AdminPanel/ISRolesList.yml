@@ -1,0 +1,102 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRolesList:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISRolesList"'
+          instance:
+            type: ISRolesList
+            nullable: true
+        fields:
+          add:
+            type: ISButton
+          edit:
+            type: ISButton
+          delete:
+            type: ISButton
+          close:
+            type: ISButton
+          datas:
+            type: ISScrollingListBox
+          tooltipUI:
+            type: ISToolTip
+          player:
+            type: IsoPlayer
+        methods:
+          - name: initialise
+          - name: populateList
+          - name: drawDatas
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onSelectRole
+            parameters:
+              - name: _item
+                type: Role
+          - name: prerender
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onClickOption
+            parameters:
+              - name: item
+                type: Role
+              - name: action
+                type: string
+          - name: onDeleteModalClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onAddRoleClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onRightMouse
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: doContextMenu
+            parameters:
+              - name: item
+                type: Role
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: closeModal

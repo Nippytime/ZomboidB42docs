@@ -1,0 +1,34 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISServerSavingMessage:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: text
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISServerSavingMessage"'
+        fields:
+          richtext:
+            type: ISRichTextPanel
+          text:
+            type: string
+        methods:
+          - name: initialise
+          - name: destroy
+          - name: prerender
+          - name: render
+        staticMethods:
+          - name: showPauseMessage
+          - name: showSavingFinishMessage

@@ -1,0 +1,91 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISEquipWeaponAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: maxTimeInit
+                type: number
+              - name: primary
+                type: boolean
+              - name: twoHands
+                type: boolean
+                nullable: true
+              - name: alwaysTurnOn
+                type: boolean
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISEquipWeaponAction"'
+        fields:
+          item:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          maxTimeInit:
+            type: number
+          primary:
+            type: boolean
+          twoHands:
+            type: boolean
+            nullable: true
+          ignoreHandsWounds:
+            type: boolean
+          alwaysTurnOn:
+            type: boolean
+            nullable: true
+          hotbar:
+            type: ISHotbar
+            nullable: true
+          fromHotbar:
+            type: boolean
+            nullable: true
+          useProgressBar:
+            type: boolean
+          jobType:
+            type: string
+          animSpeed:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: stop
+          - name: isAlreadyEquipped
+            return:
+              - type: boolean
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+                nullable: true
+    functions:
+      - name: isForceDropHeavyItem
+        parameters:
+          - name: item
+            type: InventoryItem
+            nullable: true
+        return:
+          - type: boolean
+      - name: forceDropHeavyItems
+        parameters:
+          - name: character
+            type: IsoPlayer

@@ -1,0 +1,361 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISTableLayout:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: _styleColumn
+                type: string
+                nullable: true
+              - name: _styleRow
+                type: string
+                nullable: true
+              - name: _styleCell
+                type: string
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISTableLayout"'
+        fields:
+          columns:
+            type: ISTableLayoutColumn[]
+          rows:
+            type: ISTableLayoutRow[]
+          cells:
+            type: ISTableLayoutCell[]
+          drawGrid:
+            type: boolean
+          gridColor:
+            type: umbrella.RGBA
+          styleColumn:
+            type: string
+            nullable: true
+          styleRow:
+            type: string
+            nullable: true
+          styleCell:
+            type: string
+            nullable: true
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: row
+            parameters:
+              - name: _index
+                type: integer
+            return:
+              - type: ISTableLayoutRow
+                nullable: true
+          - name: rowCount
+            return:
+              - type: number
+          - name: column
+            parameters:
+              - name: _index
+                type: integer
+            return:
+              - type: ISTableLayoutColumn
+                nullable: true
+          - name: columnCount
+            return:
+              - type: number
+          - name: cell
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+            return:
+              - type: ISTableLayoutCell
+                nullable: true
+          - name: cellGetFirst
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+            return:
+              - type: unknown
+                nullable: true
+          - name: cellCount
+            return:
+              - type: integer
+          - name: cellFor
+            parameters:
+              - name: _element
+                type: ISUIElement
+            return:
+              - type: ISTableLayoutCell
+                nullable: true
+          - name: isValidPos
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+            return:
+              - type: boolean
+          - name: setElement
+            parameters:
+              - name: _column
+                type: integer
+              - name: _row
+                type: integer
+              - name: _element
+                type: ISUIElement
+          - name: addChild
+            deprecated: true
+            parameters:
+              - name: _element
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: createTable
+            parameters:
+              - name: columns
+                type: integer
+              - name: rows
+                type: integer
+          - name: addColumnFill
+            parameters:
+              - name: _styleColumn
+                type: string
+                nullable: true
+            return:
+              - type: ISTableLayoutColumn
+          - name: addColumn
+            parameters:
+              - name: _styleColumn
+                type: string
+                nullable: true
+              - name: _autoFill
+                type: boolean
+                nullable: true
+            return:
+              - type: ISTableLayoutColumn
+          - name: addRowFill
+            parameters:
+              - name: _styleRow
+                type: string
+                nullable: true
+            return:
+              - type: ISTableLayoutRow
+                nullable: true
+          - name: addRow
+            parameters:
+              - name: _styleRow
+                type: string
+                nullable: true
+              - name: _autoFill
+                type: boolean
+                nullable: true
+            return:
+              - type: ISTableLayoutRow
+                nullable: true
+          - name: ensureCells
+          - name: clearTable
+      ISTableLayoutColumn:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: _parentTable
+                type: ISTableLayout
+              - name: _columnIndex
+                type: integer
+              - name: _isAutoFill
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISTableLayoutColumn"'
+        fields:
+          columnIndex:
+            type: integer
+          isAutoFill:
+            type: boolean
+          width:
+            type: number
+          minimumWidth:
+            type: number
+          x:
+            type: number
+          temp:
+            type: number
+          backgroundColor:
+            type: umbrella.RGBA
+          borderColor:
+            type: umbrella.RGBA
+          visible:
+            type: boolean
+          parentTable:
+            type: ISTableLayout
+        methods:
+          - name: index
+            return:
+              - type: integer
+          - name: setVisible
+            parameters:
+              - name: _b
+                type: boolean
+              - name: _silent
+                type: boolean
+                nullable: true
+      ISTableLayoutRow:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: _parentTable
+                type: ISTableLayout
+              - name: _rowIndex
+                type: integer
+              - name: _isAutoFill
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISTableLayoutRow"'
+        fields:
+          rowIndex:
+            type: integer
+          isAutoFill:
+            type: boolean
+          height:
+            type: number
+          minimumHeight:
+            type: number
+          y:
+            type: number
+          temp:
+            type: number
+          backgroundColor:
+            type: umbrella.RGBA
+          borderColor:
+            type: umbrella.RGBA
+          visible:
+            type: boolean
+          parentTable:
+            type: ISTableLayout
+        methods:
+          - name: index
+            return:
+              - type: integer
+          - name: setVisible
+            parameters:
+              - name: _b
+                type: boolean
+              - name: _silent
+                type: boolean
+                nullable: true
+      ISTableLayoutCell:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: _columnIndex
+                type: integer
+              - name: _rowIndex
+                type: integer
+              - name: _parent
+                type: ISTableLayout
+        staticFields:
+          Type:
+            defaultValue: '"ISTableLayoutCell"'
+        fields:
+          parent:
+            type: ISTableLayout
+          columnIndex:
+            type: integer
+          rowIndex:
+            type: integer
+          x:
+            type: number
+          y:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+          drawBackground:
+            type: boolean
+          backgroundColor:
+            type: umbrella.RGBA
+          drawBorder:
+            type: boolean
+          borderColor:
+            type: umbrella.RGBA
+          element:
+            type: ISUIElement
+            nullable: true
+          minimumWidth:
+            type: number
+          minimumHeight:
+            type: number
+          padding:
+            type: number
+          visible:
+            type: boolean
+        methods:
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: setVisible
+            parameters:
+              - name: _b
+                type: boolean
+          - name: setX
+            parameters:
+              - name: _x
+                type: number
+          - name: setY
+            parameters:
+              - name: _y
+                type: number
+          - name: getAbsoluteX
+            return:
+              - type: number
+          - name: getAbsoluteY
+            return:
+              - type: number
+          - name: getX
+            return:
+              - type: number
+          - name: getY
+            return:
+              - type: number
+          - name: getWidth
+            return:
+              - type: number
+          - name: getHeight
+            return:
+              - type: number
+          - name: addChild
+            parameters:
+              - name: _child
+                type: ISUIElement

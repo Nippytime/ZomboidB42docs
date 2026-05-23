@@ -1,0 +1,249 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFarmingInfo:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: plant
+                type: CPlantGlobalObject
+        staticFields:
+          Type:
+            defaultValue: '"ISFarmingInfo"'
+        fields:
+          plant:
+            type: CPlantGlobalObject
+          vegetable:
+            type: Texture
+          isEnabled:
+            type: boolean
+          character:
+            type: IsoPlayer
+        methods:
+          - name: initialise
+          - name: setPlant
+            parameters:
+              - name: plant
+                type: SPlantGlobalObject
+          - name: setEnabled
+            parameters:
+              - name: val
+                type: boolean
+          - name: prerender
+          - name: render
+          - name: update
+          - name: isPlantValid
+            return:
+              - type: boolean
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: getBlueBar
+            parameters:
+              - name: list
+                type: table
+          - name: getOrangeBar
+            parameters:
+              - name: list
+                type: table
+          - name: getRedBar
+            parameters:
+              - name: list
+                type: table
+          - name: getDiseaseColor
+            parameters:
+              - name: diseaseLvl
+                type: number
+              - name: index
+                type: string
+              - name: info
+                type: ISFarmingInfo
+          - name: getGreen
+            parameters:
+              - name: list
+                type: table
+              - name: index
+                type: string
+                nullable: true
+          - name: getRed
+            parameters:
+              - name: list
+                type: table
+              - name: index
+                type: string
+                nullable: true
+          - name: getOrange
+            parameters:
+              - name: list
+                type: table
+              - name: index
+                type: string
+                nullable: true
+          - name: getWhite
+            parameters:
+              - name: list
+                type: table
+              - name: index
+                type: string
+                nullable: true
+        staticMethods:
+          - name: hasDisease
+            parameters:
+              - name: plant
+                type: SPlantGlobalObject
+            return:
+              - type: boolean
+          - name: getDiseaseString
+            parameters:
+              - name: diseaseLvl
+                type: number
+              - name: farmingLevel
+                type: number
+            return:
+              - type: string
+          - name: getHealth
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+              - name: farmingLevel
+                type: number
+            return:
+              - type: string
+          - name: getWaterLvl
+            parameters:
+              - name: plant
+                type: SPlantGlobalObject
+              - name: farmingLevel
+                type: number
+            return:
+              - type: string
+          - name: getTitleColor
+            parameters:
+              - name: plant
+                type: SPlantGlobalObject
+            return:
+              - type: umbrella.RGB
+          - name: getWaterBarWidth
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+            return:
+              - type: number
+          - name: getWaterLvlBarColor
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+              - name: farmingLevel
+                type: number
+          - name: getNoWateredSinceColor
+            parameters:
+              - name: plant
+                type: SPlantGlobalObject
+              - name: lastWatedHour
+                type: number
+              - name: farmingLevel
+                type: number
+            return:
+              - type: umbrella.RGB
+          - name: RequiredWidth
+            return:
+              - type: number
+          - name: getWaterLvlColor
+            parameters:
+              - name: plant
+                type: SPlantGlobalObject
+              - name: farmingLevel
+                type: number
+            return:
+              - type: umbrella.RGB
+          - name: getHealthColor
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+              - name: farmingLevel
+                type: number
+          - name: getCurrentGrowingPhase
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+              - name: farmingLevel
+                type: number
+            return:
+              - type: string | false
+          - name: getNextGrowingPhase
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+            return:
+              - type: string
+          - name: getDisease
+            parameters:
+              - name: diseaseLvl
+                type: number
+              - name: farmingLevel
+                type: number
+              - name: disease
+                type: table
+              - name: info
+                type: ISFarmingInfo
+              - name: index
+                type: number
+              - name: string
+                type: string
+          - name: getDiseaseName
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+            return:
+              - type: umbrella.ISFarmingInfo.DiseaseTable
+          - name: getDiseaseStats
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+          - name: getLastWatedHour
+            parameters:
+              - name: plant
+                type: SPlantGlobalObject
+            return:
+              - type: number
+          - name: getFertilizerColor
+            parameters:
+              - name: info
+                type: ISFarmingInfo
+      umbrella.ISFarmingInfo.DiseaseTable:
+        fields:
+          text:
+            type: string
+          "[integer]":
+            type: umbrella.ISFarmingInfo.DiseaseInfo
+            nullable: true
+      umbrella.ISFarmingInfo.DiseaseInfo:
+        fields:
+          name:
+            type: string
+            nullable: true
+          value:
+            type: string
+            nullable: true

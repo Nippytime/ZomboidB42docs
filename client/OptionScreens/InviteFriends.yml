@@ -1,0 +1,104 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      InviteFriends:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"InviteFriends"'
+          instance:
+            type: InviteFriends
+            nullable: true
+        fields:
+          selectedFriend:
+            type: SteamFriend
+            nullable: true
+          inviteTime:
+            type: number
+            nullable: true
+          mouseOverButtonIndex:
+            type: integer
+            nullable: true
+          invited:
+            type: table<integer, boolean>
+          listbox:
+            type: ISScrollingListBox
+          filterEntry:
+            type: ISTextEntryBox
+          backButton:
+            type: ISButton
+          inviteButton:
+            type: ISButton
+          allowButton:
+            type: ISButton
+          statusLabel:
+            type: ISLabel
+          isCoopHost:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: hasChoices
+            return:
+              - type: boolean
+          - name: fillList
+          - name: refreshList
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onDblClick
+          - name: clickBack
+          - name: clickInvite
+          - name: update
+          - name: prerender
+          - name: render
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onMouseDown_ListBox
+            parameters:
+              - name: self
+                type: ISScrollingListBox
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: toggleAllowDeny
+            parameters:
+              - name: index
+                type: integer
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: loadInvitedFile
+          - name: saveInvitedFile
+          - name: create
+          - name: filter
+        staticMethods:
+          - name: OnSteamFriendStatusChanged
+            parameters:
+              - name: steamID
+                type: string

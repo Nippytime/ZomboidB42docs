@@ -1,0 +1,169 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISExtendedPlacementUI:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+                nullable: true
+              - name: y
+                type: number
+                nullable: true
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: IsoWorldInventoryObject
+        staticFields:
+          Type:
+            defaultValue: '"ISExtendedPlacementUI"'
+          windows: {}
+        fields:
+          labelmov:
+            type: ISLabel
+          labelxmov:
+            type: ISLabel
+          labelymov:
+            type: ISLabel
+          labelzmov:
+            type: ISLabel
+          txtboxxmov:
+            type: ISTextEntryBox
+          txtboxymov:
+            type: ISTextEntryBox
+          txtboxzmov:
+            type: ISTextEntryBox
+          ignoreSliderValueChange:
+            type: boolean
+          sliderxmov:
+            type: ISSliderPanel
+          sliderymov:
+            type: ISSliderPanel
+          sliderzmov:
+            type: ISSliderPanel
+          labelrot:
+            type: ISLabel
+          labelxrot:
+            type: ISLabel
+          labelyrot:
+            type: ISLabel
+          labelzrot:
+            type: ISLabel
+          txtboxxrot:
+            type: ISTextEntryBox
+          txtboxyrot:
+            type: ISTextEntryBox
+          txtboxzrot:
+            type: ISTextEntryBox
+          sliderxrot:
+            type: ISSliderPanel
+          slideryrot:
+            type: ISSliderPanel
+          sliderzrot:
+            type: ISSliderPanel
+          closeBtn:
+            type: ISButton
+          revertBtn:
+            type: ISButton
+          gizmo:
+            type: string
+          drawJoypadFocus:
+            type: boolean
+          title:
+            type: string
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          worlditem:
+            type: IsoWorldInventoryObject
+          item:
+            type: InventoryItem
+          font:
+            type: UIFont
+          fontsmall: {}
+          pressedTime:
+            type: number
+          pressedMaxTime:
+            type: number
+          wasPressing:
+            type: boolean
+          originalRotX:
+            type: integer
+          originalRotY:
+            type: integer
+          originalRotZ:
+            type: integer
+          originalMovX:
+            type: integer
+          originalMovY:
+            type: integer
+          originalMovZ:
+            type: integer
+        methods:
+          - name: initialise
+          - name: setTxtboxValueFromSliders
+          - name: resetSlidersValues
+          - name: onAxisSliderChange
+            parameters:
+              - name: value
+                type: number
+              - name: slider
+                type: ISSliderPanel
+          - name: onAxisTextChange
+            parameters:
+              - name: box
+                type: ISTextEntryBox
+          - name: setupAxisTextBox
+            parameters:
+              - name: txtBox
+                type: ISTextEntryBox
+          - name: setupButton
+            parameters:
+              - name: button
+                type: ISButton
+          - name: revert
+          - name: clickedButton
+            parameters:
+              - name: button
+                type: ISButton
+          - name: adjust
+          - name: prerender
+          - name: createChildren
+          - name: update
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: setObject
+            parameters:
+              - name: item
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onRotateGizmo
+            parameters:
+              - name: vector3
+          - name: onTranslateGizmo
+            parameters:
+              - name: vector3
+          - name: close
+          - name: isKeyConsumed
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: boolean
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+        staticMethods:
+          - name: GetWindowForPlayer
+            parameters:
+              - name: playerIndex
+            return:
+              - type: unknown

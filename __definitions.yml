@@ -1,0 +1,71 @@
+version: "1.1"
+languages:
+  lua:
+    tags:
+      - StubGen_Definitions
+    classes:
+      umbrella.HSB:
+        fields:
+          h:
+            type: number
+          s:
+            type: number
+          b:
+            type: number
+      umbrella.Rect:
+        fields:
+          x:
+            type: number
+          y:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+      umbrella.RGB:
+        fields:
+          r:
+            type: number
+          g:
+            type: number
+          b:
+            type: number
+      umbrella.RGBA:
+        extends: umbrella.RGB
+        fields:
+          a:
+            type: number
+      umbrella.ServerProperties:
+        fields:
+          description:
+            type: string
+          version:
+            type: string
+          open:
+            type: '"0" | "1"'
+          public:
+            type: '"0" | "1"'
+          mods:
+            type: string
+          modCount:
+            type: string
+          pvp:
+            type: '"0" | "1"'
+      umbrella.XY:
+        fields:
+          x:
+            type: number
+          y:
+            type: number
+      umbrella.XYZ:
+        extends: umbrella.XY
+        fields:
+          z:
+            type: number
+      umbrella.XYWH:
+        extends: umbrella.XY
+        fields:
+          w:
+            type: number
+          h:
+            type: number

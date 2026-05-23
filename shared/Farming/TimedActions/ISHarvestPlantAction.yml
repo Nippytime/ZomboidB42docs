@@ -1,0 +1,44 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISHarvestPlantAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: plant
+                type: CPlantGlobalObject
+              - name: maxTimeInit
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISHarvestPlantAction"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          character:
+            type: IsoPlayer
+          plant:
+            type: CPlantGlobalObject
+          maxTimeInit:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

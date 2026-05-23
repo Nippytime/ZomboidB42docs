@@ -1,0 +1,244 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPlayerStatsUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: playerChecked
+                type: IsoPlayer
+              - name: admin
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISPlayerStatsUI"'
+          instance:
+            type: ISPlayerStatsUI
+            nullable: true
+        fields:
+          selectedPerk:
+            type: umbrella.ISPlayerStatsUI.PerkTable
+            nullable: true
+          mainPanel:
+            type: ISPanel
+          closeBtn:
+            type: ISButton
+          addTraitBtn:
+            type: ISButton
+          changeProfession:
+            type: ISButton
+          changeUsernameBtn:
+            type: ISButton
+          changeForename:
+            type: ISButton
+          changeSurname:
+            type: ISButton
+          changeAccessLvlBtn:
+            type: ISButton
+          userlogBtn:
+            type: ISButton
+          warningPointsBtn:
+            type: ISButton
+          weightBtn:
+            type: ISButton
+          manageInvBtn:
+            type: ISButton
+          xpListBox:
+            type: ISScrollingListBox
+          addXpBtn:
+            type: ISButton
+          addLvlBtn:
+            type: ISButton
+          loseLvlBtn:
+            type: ISButton
+          warningPoint:
+            type: number
+          char:
+            type: IsoPlayer
+          variableColor:
+            type: umbrella.RGBA
+          admin:
+            type: IsoPlayer
+          listHeaderColor:
+            type: umbrella.RGBA
+          buttonBorderColor:
+            type: umbrella.RGBA
+          traits:
+            type: ISImage[]
+          traitsRemoveButtons:
+            type: table<string, ISButton>
+          perks:
+            type: table
+          perksAddXPButtons:
+            type: table
+          userlogs:
+            type: umbrella.ISPlayerStatsUI.Userlog[]
+          buttonOffset:
+            type: number
+          buttonWidth:
+            type: number
+          buttonPadY:
+            type: number
+          buttonHeight:
+            type: number
+          windows:
+            type: ISUIElement[]
+        methods:
+          - name: initialise
+          - name: setVisible
+            parameters:
+              - name: visible
+                type: boolean
+          - name: subPanelPreRender
+          - name: subPanelRender
+          - name: prerender
+          - name: render
+          - name: canModifyThis
+            return:
+              - type: boolean
+          - name: updateButtons
+          - name: onMouseWheelXXX
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: create
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onAddWarningPoint
+            parameters:
+              - name: button
+                type: ISButton
+              - name: reason
+                type: string
+              - name: amount
+                type: string
+          - name: onAddTrait
+            parameters:
+              - name: button
+                type: ISButton
+              - name: trait
+                type: CharacterTraitDefinition
+          - name: onChangeProfession
+            parameters:
+              - name: button
+                type: ISButton
+              - name: prof
+                type: CharacterProfessionDefinition
+          - name: onChangeAccessLevel
+            parameters:
+              - name: button
+                type: ISButton
+              - name: accessLevel
+                type: string
+          - name: onChangeName
+            parameters:
+              - name: button
+                type: ISButton
+              - name: player
+                type: IsoPlayer
+              - name: changedName
+                type: string
+          - name: onChangeWeight
+            parameters:
+              - name: button
+                type: ISButton
+              - name: player
+                type: IsoPlayer
+          - name: onRemoveTrait
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: drawPerk
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onAddXP
+            parameters:
+              - name: button
+                type: ISButton
+              - name: perk
+                type: PerkFactory.Perk
+              - name: amount
+                type: string
+              - name: addGlobalXP
+                type: boolean
+              - name: useMultipliers
+                type: boolean
+          - name: updateColumns
+        staticMethods:
+          - name: loadTraits
+            parameters:
+              - name: self
+                type: ISPlayerStatsUI
+          - name: loadProfession
+            parameters:
+              - name: self
+                type: ISPlayerStatsUI
+          - name: loadPerks
+            parameters:
+              - name: self
+                type: ISPlayerStatsUI
+          - name: loadUserlog
+            parameters:
+              - name: self
+                type: ISPlayerStatsUI
+          - name: receiveUserLog
+            parameters:
+              - name: username
+                type: string
+              - name: logs
+                type: ArrayList<Userlog>
+          - name: OnOpenPanel
+      umbrella.ISPlayerStatsUI.PerkTable:
+        fields:
+          perk:
+            type: PerkFactory.Perk
+          name:
+            type: string
+          level:
+            type: integer
+          xpToLevel:
+            type: number
+          xp:
+            type: number
+          boost:
+            type: string
+          multiplier:
+            type: number
+      umbrella.ISPlayerStatsUI.Userlog:
+        fields:
+          type:
+            type: string
+          text:
+            type: string
+          issuedBy:
+            type: string
+          amount:
+            type: integer

@@ -1,0 +1,156 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      PlayerClimateDebug:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"PlayerClimateDebug"'
+          instance:
+            type: PlayerClimateDebug
+            nullable: true
+          shiftDown:
+            defaultValue: "0"
+          eventsAdded:
+            defaultValue: "false"
+          fx:
+            type: IsoWeatherFX
+            nullable: true
+          cm:
+            type: ClimateManager
+            nullable: true
+        fields:
+          panel:
+            type: ISPanel
+          labels:
+            type: table<string, table>
+          tempColor:
+            type: umbrella.RGBA
+          colWhite:
+            type: umbrella.RGBA
+          clrRed:
+            type: umbrella.RGBA
+          clrOrangeRed:
+            type: umbrella.RGBA
+          clrGold:
+            type: umbrella.RGBA
+          clrGreenYellow:
+            type: umbrella.RGBA
+          clrGreen:
+            type: umbrella.RGBA
+          vars:
+            type: table[]
+          currentTile:
+            nullable: true
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          title:
+            type: string
+          richtext:
+            nullable: true
+          overrideBPrompt:
+            type: boolean
+          subFocus:
+            nullable: true
+          hotKeyPanels:
+            type: table
+          isJoypadWindow:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: initVariables
+          - name: registerVariable
+            parameters:
+              - name: _variable
+                type: string
+              - name: _title
+                type: string
+              - name: _isValue
+                type: boolean
+              - name: _javaInstance
+                type: unknown
+                nullable: true
+              - name: _defaultVal
+                type: unknown
+                nullable: true
+              - name: _color
+                type: umbrella.RGBA
+                nullable: true
+              - name: _postfix
+                type: string
+                nullable: true
+          - name: addLabel
+            parameters:
+              - name: _curY
+                type: number
+              - name: _labelID
+                type: string
+              - name: _title
+                type: string
+            return:
+              - type: number
+          - name: addLabelValue
+            parameters:
+              - name: _curY
+                type: number
+              - name: _type
+                type: string
+              - name: _labelID
+                type: string
+              - name: _title
+                type: string
+              - name: _defaultVal
+                type: unknown
+                nullable: true
+              - name: _col
+                type: umbrella.RGBA
+                nullable: true
+              - name: _extension
+                type: string
+                nullable: true
+            return:
+              - type: number
+              - type: table
+                nullable: true
+          - name: getTitleLabel
+            parameters:
+              - name: _labelID
+            return:
+              - type: ISLabel
+                nullable: true
+          - name: getValueLabel
+            parameters:
+              - name: _labelID
+                type: string
+            return:
+              - type: ISLabel
+                nullable: true
+          - name: onResize
+          - name: update
+          - name: updateOLD
+          - name: prerender
+          - name: stayOnSplitScreen
+          - name: render
+          - name: close
+          - name: clear
+        staticMethods:
+          - name: OnOpenPanel
+            return:
+              - type: PlayerClimateDebug
+                nullable: true

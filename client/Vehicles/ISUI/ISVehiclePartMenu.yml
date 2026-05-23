@@ -1,0 +1,202 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISVehiclePartMenu:
+        staticMethods:
+          - name: getNearbyFuelPump
+            parameters:
+              - name: vehicle
+                type: BaseVehicle
+            return:
+              - type: IsoObject
+                nullable: true
+          - name: getGasCanNotEmpty
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: typeToItem
+                type: table<string, InventoryItem[]>
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: getGasCanNotFull
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: typeToItem
+                type: table<string, InventoryItem[]>
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: toPlayerInventory
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+                nullable: true
+          - name: toPlayerInventoryTag
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: tag
+                type: string
+          - name: transferRequiredItems
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: tbl
+                type: table
+          - name: equipRequiredItems
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: tbl
+                type: table
+          - name: onInstallPart
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: item
+                type: InventoryItem
+          - name: onUninstallPart
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onPumpGasoline
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onPumpGasolinePathFail
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onAddGasoline
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onTakeGasoline
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onDebugFill
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onInflateTire
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onDeflateTire
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onDeviceOptions
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onLockDoor
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onUnlockDoor
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onOpenCloseWindow
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: open
+                type: boolean
+          - name: onLockDoors
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+              - name: lock
+                type: boolean
+          - name: onSmashWindow
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: open
+                type: boolean
+          - name: doSiphonFuelMenu
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: context
+                type: ISContextMenu
+            return:
+              - type: boolean
+                nullable: true
+          - name: onTakeFuelNew
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: part
+                type: VehiclePart
+              - name: fuelContainerList
+                type: InventoryItem[]
+                nullable: true
+              - name: fuelContainer
+                type: InventoryItem
+                nullable: true
+              - name: player
+                type: integer
+          - name: doAddFuelMenu
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: context
+                type: ISContextMenu
+          - name: onAddFuelNew
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: part
+                type: VehiclePart
+              - name: fuelContainerList
+                type: InventoryItem[]
+                nullable: true
+              - name: fuelContainer
+                type: InventoryItem
+                nullable: true
+              - name: player
+                type: integer

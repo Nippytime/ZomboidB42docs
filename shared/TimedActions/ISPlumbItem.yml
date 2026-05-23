@@ -1,0 +1,38 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPlumbItem:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: itemToPipe
+                type: IsoObject
+              - name: wrench
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISPlumbItem"'
+        fields:
+          sound:
+            type: integer
+          itemToPipe:
+            type: IsoObject
+          wrench:
+            type: InventoryItem
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

@@ -1,0 +1,86 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidDebugWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidDebugWindow"'
+          coords:
+            type: number[] | false
+          instance:
+            type: ISFluidDebugWindow
+            nullable: true
+        fields:
+          th:
+            type: number
+          rh:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+          heightMod:
+            type: number
+          panel:
+            type: ISTabPanel
+          fluidOverviewScreen:
+            type: ISFluidOverviewPanel
+          fluidCategoriesScreen:
+            type: ISFluidCategoriesViewPanel
+          fluidItemsScreen:
+            type: ISFluidItemsViewPanel
+          fluidMixerScreen:
+            type: ISFluidMixerViewPanel
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          title:
+            type: string
+          searchText:
+            type: string
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onResize
+            parameters:
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+          - name: incY
+            parameters:
+              - name: _y
+                type: number
+              - name: _obj
+                type: ISUIElement
+              - name: _margin
+                type: number
+                nullable: true
+            return:
+              - type: number
+          - name: prerender
+          - name: render
+          - name: close
+        staticMethods:
+          - name: OnOpenPanel
+            parameters:
+              - name: _player
+                type: IsoPlayer
+            return:
+              - type: ISFluidDebugWindow
+                nullable: true

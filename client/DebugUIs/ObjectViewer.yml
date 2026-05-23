@@ -1,0 +1,108 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ObjectViewer:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: obj
+                type: unknown
+        staticFields:
+          Type:
+            defaultValue: '"ObjectViewer"'
+          map:
+            type: table<unknown, ObjectViewer>
+        fields:
+          selected:
+            type: integer
+          obj:
+            type: unknown
+          title:
+            type: string
+          sc:
+            type: number
+          historyPrev:
+            type: ISButton
+          filter:
+            type: ISTextEntryBox
+          objectView:
+            type: ISScrollingListBox
+          history:
+            type: table[]
+        methods:
+          - name: onRightMouseDownObject
+            parameters:
+              - name: self
+                type: ISScrollingListBox
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDoubleClickListItem
+            parameters:
+              - name: item
+                type: unknown
+          - name: onMouseDoubleClickOpenObject
+            parameters:
+              - name: item
+                type: unknown
+          - name: storePos
+          - name: restorePos
+          - name: initialise
+          - name: onSourceMouseWheel
+            parameters:
+              - name: self
+                type: ISScrollingListBox
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: fillJavaList
+            parameters:
+              - name: list
+                type: ArrayList
+          - name: fill
+          - name: createChildren
+          - name: prerender
+          - name: onFilterTextChange
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: checkFontSize
+          - name: historyPush
+          - name: historyPop
+        staticMethods:
+          - name: onWatch
+            parameters:
+              - name: item
+                type: umbrella.ObjectViewer.WatchItem
+          - name: onDataWrite
+            parameters:
+              - name: data
+                type: umbrella.ObjectViewer.WatchItem
+          - name: onDataRead
+            parameters:
+              - name: data
+                type: umbrella.ObjectViewer.WatchItem
+      umbrella.ObjectViewer.WatchItem:
+        fields:
+          obj:
+            type: unknown
+          item:
+            type: umbrella.ISScrollingListBox.Item

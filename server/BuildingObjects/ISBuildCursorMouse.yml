@@ -1,0 +1,79 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISBuildCursorMouse.OnSquareSelected:
+        - type: "fun(square: IsoGridSquare)"
+      umbrella.ISBuildCursorMouse.ValidationFunction:
+        - type: "fun(square: IsoGridSquare): boolean"
+    classes:
+      ISBuildCursorMouse:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: onSquareSelected
+                type: umbrella.ISBuildCursorMouse.OnSquareSelected
+              - name: isValid
+                type: umbrella.ISBuildCursorMouse.ValidationFunction
+        staticFields:
+          Type:
+            defaultValue: '"ISBuildCursorMouse"'
+          spriteRender:
+            type: IsoSprite
+            nullable: true
+        fields:
+          sq:
+            type: IsoGridSquare
+          chosenSprite:
+            type: string
+            nullable: true
+          previousSprite:
+            type: string
+            nullable: true
+          tooltip:
+            type: ISToolTip
+            nullable: true
+          onSquareSelected:
+            type: umbrella.ISBuildCursorMouse.OnSquareSelected
+          isValid:
+            type: boolean
+          character:
+            type: IsoPlayer
+          player:
+            type: integer
+          noNeedHammer:
+            type: boolean
+          skipBuildAction:
+            type: boolean
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: deactivate
+          - name: hideTooltip
+          - name: renderTooltip
+        staticMethods:
+          - name: IsVisible
+            return:
+              - type: boolean

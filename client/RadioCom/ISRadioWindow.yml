@@ -1,0 +1,160 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRadioWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISRadioWindow"'
+          instances:
+            type: table<integer, ISRadioWindow>
+          instancesIso:
+            type: table<integer, ISRadioWindow>
+        fields:
+          drawJoypadFocus:
+            type: boolean
+          subFocus:
+            type: ISUIElement
+            nullable: true
+          player:
+            type: IsoPlayer
+            nullable: true
+          device:
+            type: InventoryItem | IsoObject | VehiclePart
+            nullable: true
+          deviceData:
+            type: DeviceData
+            nullable: true
+          deviceType:
+            type: string
+            nullable: true
+          hotKeyPanels:
+            type: table<string, ISUIElement>
+          title:
+            type: string
+          playerNum:
+            type: integer
+          modules:
+            type: RWMElement[]
+          overrideBPrompt:
+            type: boolean
+          isJoypadWindow:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: close
+          - name: addModule
+            parameters:
+              - name: _modulePanel
+                type: RWMPanel
+              - name: _moduleName
+                type: string
+              - name: _enable
+                type: boolean
+          - name: createChildren
+          - name: update
+          - name: prerender
+          - name: stayOnSplitScreen
+          - name: render
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: clear
+          - name: readFromObject
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+          - name: onJoypadDirUp
+          - name: onJoypadDirDown
+          - name: onJoypadDirLeft
+          - name: onJoypadDirRight
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: getAPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getBPrompt
+            return:
+              - type: string
+          - name: getXPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getYPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getLBPrompt
+            return:
+              - type: string
+          - name: getRBPrompt
+            return:
+              - type: string
+          - name: unfocusSelf
+          - name: focusSelf
+          - name: isValidPrompt
+            return:
+              - type: boolean | DeviceData
+                nullable: true
+          - name: focusNext
+            parameters:
+              - name: _up
+                type: boolean
+                nullable: true
+          - name: setSubFocus
+            parameters:
+              - name: _newFocus
+                type: ISUIElement
+                nullable: true
+        staticMethods:
+          - name: activate
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+            return:
+              - type: ISRadioWindow
+          - name: isActive
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+            return:
+              - type: boolean
+          - name: closeIfActive
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+          - name: onEquip
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _item
+                type: InventoryItem

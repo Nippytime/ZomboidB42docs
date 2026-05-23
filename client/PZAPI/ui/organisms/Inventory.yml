@@ -1,0 +1,35 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      UI.playerInventory:
+        extends: UI.Node
+        local: true
+        fields:
+          super:
+            type: UI.Node
+        overloads:
+          - parameters:
+              - name: args
+                type: table
+            return:
+              - type: UI.playerInventory
+      UI.Inventory:
+        extends: UI.Node
+        local: true
+        fields:
+          super:
+            type: UI.Node
+        overloads:
+          - parameters:
+              - name: args
+                type: table
+            return:
+              - type: UI.Inventory
+      PZAPI.UI:
+        local: true
+        staticFields:
+          playerInventory:
+            type: UI.playerInventory
+          Inventory:
+            type: UI.Inventory

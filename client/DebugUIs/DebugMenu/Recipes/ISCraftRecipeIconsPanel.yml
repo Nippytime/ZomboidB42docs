@@ -1,0 +1,55 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCraftRecipeIconsPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISCraftRecipeIconsPanel"'
+        fields:
+          iconPanel:
+            type: ISTiledIconPanel
+            nullable: true
+          tooltipRecipe:
+            type: CraftRecipe
+            nullable: true
+          tooltipCounter:
+            type: number
+          activeTooltip:
+            type: ISCraftRecipeTooltip
+            nullable: true
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          searchText:
+            type: string
+          tooltipCounterTime:
+            type: number
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onResize
+            parameters:
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+          - name: prerender
+          - name: render
+          - name: close
+          - name: updateTooltip
+          - name: deactivateTooltip

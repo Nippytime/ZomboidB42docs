@@ -1,0 +1,97 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidCategoriesViewPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidCategoriesViewPanel"'
+        fields:
+          listLabel:
+            type: ISLabel
+          entryBox:
+            type: ISTextEntryBox
+          list:
+            type: ISScrollingListBox
+          fluidList:
+            type: ISScrollingListBox
+          selectedCategory:
+            type: FluidCategory
+            nullable: true
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          searchText:
+            type: string
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onResize
+            parameters:
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+          - name: incY
+            parameters:
+              - name: _y
+                type: number
+              - name: _obj
+                type: ISUIElement
+              - name: _margin
+                type: number
+                nullable: true
+            return:
+              - type: number
+          - name: onButtonClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: populate
+          - name: drawCategoryListItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onCategorySelected
+            parameters:
+              - name: _item
+                type: table
+          - name: populateFluids
+          - name: drawFluidListItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: prerender
+          - name: render
+          - name: close
+        staticMethods:
+          - name: onTextChange
+            parameters:
+              - name: box
+                type: ISTextEntryBox

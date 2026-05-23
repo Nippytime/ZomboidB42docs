@@ -1,0 +1,587 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      DebugContextMenu:
+        staticFields:
+          staggerBacking:
+            defaultValue: "false"
+          stagTime:
+            defaultValue: "0"
+          ticked:
+            defaultValue: "false"
+          selectedZombie:
+            nullable: true
+        staticMethods:
+          - name: doDebugMenu
+            parameters:
+              - name: player
+                type: integer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: onFilmingToolsUI
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onShowPlayerModel
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onShowCursor
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onAddDesignationZone
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: doDebugAnimalMenu
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+              - name: square
+                type: IsoGridSquare
+          - name: doDebugPlayerMenu
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+          - name: doDebugVehicleMenu
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+          - name: onToggleAnimalCheat
+          - name: do3DItem
+          - name: doMissingClothingItems
+          - name: doMissingItems
+          - name: onGenerateLootUI
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: stagger
+            parameters:
+              - name: player
+                type: integer
+              - name: stag
+                type: boolean
+          - name: doDebugObjectMenu
+            parameters:
+              - name: player
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: doDebugCorpseMenu
+            parameters:
+              - name: player
+                type: integer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: doDebugZombieMenu
+            parameters:
+              - name: player
+                type: integer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+              - name: square
+                type: IsoGridSquare
+          - name: onSetAnimRecorderActive
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: isActive
+                type: boolean
+          - name: onJumpVehicle
+            parameters:
+              - name: vehicle
+                type: BaseVehicle
+          - name: onHitLandmine
+            parameters:
+              - name: vehicle
+                type: BaseVehicle
+              - name: square
+                type: IsoGridSquare
+          - name: OnRemoveAllZombies
+            parameters:
+              - name: zombie
+                type: nil
+          - name: OnRemoveAllZombiesClient
+            parameters:
+              - name: zombie
+                type: nil
+          - name: OnRemoveAllAnimals
+            parameters:
+              - name: zombie
+                type: nil
+          - name: OnRemoveAllAnimalsClient
+            parameters:
+              - name: zombie
+                type: nil
+          - name: OnAddZombieClient
+            parameters:
+              - name: player
+                type: integer
+          - name: OnSelectZombie
+            parameters:
+              - name: zombie
+                type: IsoZombie
+          - name: OnSelectedZombieWalk
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: OnSelectedZombieToggleCrawling
+          - name: OnSelectedZombieToggleCanWalk
+          - name: OnSelectedZombieToggleCanCrawlUnderVehicle
+          - name: OnSelectedZombieToggleFakeDead
+          - name: OnSelectedZombieKnockDown
+            parameters:
+              - name: hitFromBehind
+                type: boolean
+          - name: OnSelectedZombieToggleUseless
+          - name: OnSetZombieOnFire
+            parameters:
+              - name: zombie
+                type: IsoZombie
+          - name: OnReanimateCorpse
+            parameters:
+              - name: body
+                type: IsoDeadBody
+          - name: OnDeadBodyToggleCrawling
+            parameters:
+              - name: body
+                type: IsoDeadBody
+          - name: OnDeadBodyToggleFakeDead
+            parameters:
+              - name: body
+                type: IsoDeadBody
+          - name: OnDeadBodyRemove
+            parameters:
+              - name: body
+                type: IsoDeadBody
+          - name: OnGetBuildingKey
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: player
+                type: integer
+          - name: OnGetDoorKey
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: door
+                type: IsoDoor | IsoThumpable
+              - name: player
+                type: integer
+          - name: OnDoorLock
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: door
+                type: IsoDoor | IsoThumpable
+          - name: OnSetDoorKeyID
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: door
+                type: IsoDoor | IsoThumpable
+          - name: OnSetDoorKeyIDBuilding
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: door
+                type: IsoDoor | IsoThumpable
+          - name: OnSetDoorKeyIDRandom
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: door
+                type: IsoDoor | IsoThumpable
+          - name: setForceLockDoor
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: door
+                type: IsoDoor | IsoThumpable
+              - name: player
+                type: integer
+          - name: OnWindowLock
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: window
+                type: IsoWindow
+          - name: OnWindowPermLock
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: window
+                type: IsoWindow
+          - name: OnWindowSmash
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: window
+                type: IsoWindow
+          - name: OnWindowGlassRemoved
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: window
+                type: IsoWindow
+          - name: OnWindowAddMetal
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: window
+                type: IsoWindow
+          - name: OnWindowRemoveMetal
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: window
+                type: IsoWindow
+          - name: OnWindowAddMetalBar
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: window
+                type: IsoWindow
+          - name: OnWindowRemoveMetalBar
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: window
+                type: IsoWindow
+          - name: OnWindowAddPlank
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: window
+                type: IsoWindow
+          - name: OnWindowRemovePlank
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: window
+                type: IsoWindow
+          - name: pickSquare
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: IsoGridSquare
+                nullable: true
+              - type: number
+              - type: number
+              - type: number
+          - name: OnBendFence
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: fence
+                type: IsoObject
+              - name: towards
+                type: boolean
+          - name: OnUnbendFence
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: fence
+                type: IsoObject
+          - name: OnResetFence
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: fence
+                type: IsoObject
+          - name: OnBreakFence
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: fence
+                type: IsoObject
+          - name: OnBBQZeroFuel
+            parameters:
+              - name: obj
+                type: IsoObject
+          - name: OnBBQSetFuel
+            parameters:
+              - name: obj
+                type: IsoObject
+          - name: OnCampfireZeroFuel
+            parameters:
+              - name: obj
+                type: IsoObject
+          - name: OnCampfireSetFuel
+            parameters:
+              - name: obj
+                type: IsoObject
+          - name: OnFireplaceZeroFuel
+            parameters:
+              - name: obj
+                type: IsoObject
+          - name: OnFireplaceSetFuel
+            parameters:
+              - name: obj
+                type: IsoObject
+          - name: OnSetCompost
+            parameters:
+              - name: worldobjects
+                type: IsoObject[]
+              - name: obj
+                type: IsoCompost
+          - name: OnGeneratorSetFuel
+            parameters:
+              - name: obj
+                type: IsoGenerator
+          - name: OnMannequinSetScript
+            parameters:
+              - name: obj
+                type: IsoMannequin
+              - name: script
+                type: MannequinScript
+          - name: OnMannequinCreateItem
+            parameters:
+              - name: script
+                type: MannequinScript
+          - name: onHordeManager
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: player
+                type: IsoPlayer
+          - name: onSpawnPoints
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: player
+                type: IsoPlayer
+          - name: doCheatMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+              - name: playerObj
+                type: IsoPlayer
+          - name: onCheat
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: cheat
+                type: boolean
+          - name: onSetAlarm
+            parameters:
+              - name: def
+                type: BuildingDef
+          - name: onMakeNoise
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: playerObj
+                type: IsoPlayer
+              - name: radius
+                type: number
+              - name: volume
+                type: number
+          - name: onAttachedItems
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onTeleportUI
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onTeleportPlayers
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onRemoveItemTool
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onSpawnVehicle
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onRemoveAllVehicles
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onRemoveVehicle
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+          - name: onAddVehicle
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onTilesPicker
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onTeleportValid
+            parameters:
+              - name: button
+                type: nil
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+          - name: onExtList
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onShowAnimationText
+            parameters:
+              - name: chr
+                type: IsoGameCharacter
+          - name: onDebugInterpolationUI
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: onDebugPlayerInterpolationUI
+            parameters:
+              - name: square
+                type: IsoGridSquare
+          - name: onRunningUI
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onSpawnSurvivorHorde
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: addRVSDebugMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+              - name: square
+                type: IsoGridSquare
+              - name: playerObj
+                type: IsoPlayer
+          - name: addRZSDebugMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+              - name: square
+                type: IsoGridSquare
+              - name: playerObj
+                type: IsoPlayer
+          - name: onRemoveVehicles
+            parameters:
+              - name: zone
+                type: Zone
+          - name: doRandomizedZoneStory
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: rzs
+                type: RandomizedZoneStoryBase
+          - name: doRandomizedVehicleStory
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: rvs
+                type: RandomizedVehicleStoryBase
+          - name: addRBDebugMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+              - name: building
+                type: IsoBuilding
+          - name: doRandomizedBuilding
+            parameters:
+              - name: building
+                type: BuildingDef
+              - name: RBdef
+                type: RandomizedDeadSurvivorBase | RandomizedBuildingBase | string
+          - name: doSurvivorSwapMenu
+            parameters:
+              - name: player
+                type: integer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+          - name: onTick
+          - name: doForageMenu
+            parameters:
+              - name: player
+                type: integer
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+              - name: test
+                type: boolean
+                nullable: true
+          - name: onAvatarUI
+            parameters:
+              - name: player
+                type: IsoPlayer
+          - name: onAddEnclosure
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: AddAnimal
+            parameters:
+              - name: type
+                type: string
+              - name: breed
+                type: AnimalBreed
+              - name: square
+                type: IsoGridSquare
+              - name: skeleton
+                type: boolean
+              - name: playerObj
+                type: IsoPlayer
+          - name: doCSV
+          - name: doFluidContainerCSV

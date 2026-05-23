@@ -1,0 +1,37 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      forageClient:
+        staticMethods:
+          - name: init
+          - name: getZones
+            return:
+              - type: forageData
+          - name: updateData
+          - name: clearData
+          - name: syncForageData
+          - name: addZone
+            parameters:
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+          - name: removeZone
+            parameters:
+              - name: _zoneData
+          - name: updateZone
+            parameters:
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+          - name: updateIcon
+            parameters:
+              - name: _zoneData
+                type: umbrella.Foraging.ZoneData
+              - name: _iconID
+                type: string
+              - name: _icon
+                type: umbrella.Foraging.ZoneIconData
+                nullable: true
+      forageData:
+        fields:
+          "[string]":
+            type: umbrella.Foraging.ZoneData

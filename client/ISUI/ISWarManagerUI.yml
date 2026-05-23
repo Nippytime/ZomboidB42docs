@@ -1,0 +1,89 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWarManagerUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISWarManagerUI"'
+          instance:
+            type: ISWarManagerUI
+            nullable: true
+        fields:
+          acceptBtn:
+            type: ISButton
+          refuseBtn:
+            type: ISButton
+          endBtn:
+            type: ISButton
+          cancelBtn:
+            type: ISButton
+          closeBtn:
+            type: ISButton
+          datas:
+            type: ISScrollingListBox
+          scrollBarSpacing:
+            type: number
+          minListWidth:
+            type: number
+          player:
+            type: IsoPlayer
+          itemheight:
+            type: number
+        methods:
+          - name: initialise
+          - name: populateList
+          - name: drawTextRecordWidth
+            parameters:
+              - name: text
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+          - name: drawDatas
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onSelectWar
+            parameters:
+              - name: _item
+                type: WarManager.War
+          - name: prerender
+          - name: update
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: closeModal
+        staticMethods:
+          - name: OnWarUpdate

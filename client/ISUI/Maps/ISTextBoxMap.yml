@@ -1,0 +1,251 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISTextBoxMap.Target:
+        - type: "{ mapUI: umbrella.MapUI, symbolsUI: ISWorldMapSymbols }"
+    classes:
+      ISTextBoxMap:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: text
+                type: string
+              - name: defaultEntryText
+                type: string
+              - name: target
+                type: umbrella.ISTextBoxMap.Target
+              - name: onclick
+                type: umbrella.ISButton.OnClick
+                nullable: true
+              - name: player
+                type: integer
+                nullable: true
+              - name: param1
+                type: unknown
+                nullable: true
+              - name: param2
+                type: unknown
+                nullable: true
+              - name: param3
+                type: unknown
+                nullable: true
+              - name: param4
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISTextBoxMap"'
+        fields:
+          colorButtonInfo:
+            type: umbrella.ISTextBoxMap.ColorButtonInfo[]
+          colorButtons:
+            type: ISButton[]
+          blackColor:
+            type: ColorInfo
+          currentColor:
+            type: ColorInfo
+          layerColorTickBox:
+            type: ISTickBox
+          fontHgt:
+            type: number
+          entry:
+            type: ISTextEntryBox
+          fontPicker:
+            type: ISComboBox
+          tickBox:
+            type: ISTickBox
+          tickBoxPerspective:
+            type: ISTickBox
+          sliderScale:
+            type: ISSliderPanel
+          sliderRotation:
+            type: ISSliderPanel
+          zoomPanel:
+            type: ISMapSymbolZoomPanel
+          yes:
+            type: ISButton
+          no:
+            type: ISButton
+          validateTarget:
+            type: unknown
+            nullable: true
+          validateFunc:
+            type: umbrella.ISTextBox.ValidateFunction
+            nullable: true
+          validateArgs:
+            type: table
+            nullable: true
+          validateTooltipText:
+            type: string
+            nullable: true
+          useLayerColor:
+            type: boolean
+          chosenFont:
+            nullable: true
+          scale:
+            type: number
+          rotation:
+            type: number
+          character:
+            type: IsoPlayer
+            nullable: true
+          name:
+            nullable: true
+          text:
+            type: string
+          mapUI:
+            type: umbrella.MapUI
+          mapAPI: {}
+          styleAPI: {}
+          symbolsAPI: {}
+          symbolsUI:
+            type: ISWorldMapSymbols
+          onclick:
+            type: umbrella.ISButton.OnClick
+            nullable: true
+          player:
+            type: integer
+            nullable: true
+          param1:
+            type: unknown
+            nullable: true
+          param2:
+            type: unknown
+            nullable: true
+          param3:
+            type: unknown
+            nullable: true
+          param4:
+            type: unknown
+            nullable: true
+          defaultEntryText:
+            type: string
+        methods:
+          - name: createChildren
+          - name: setOnlyNumbers
+            parameters:
+              - name: onlyNumbers
+                type: boolean
+          - name: setValidateFunction
+            parameters:
+              - name: target
+                type: unknown
+                nullable: true
+              - name: func
+                type: umbrella.ISTextBox.ValidateFunction
+                nullable: true
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+          - name: setValidateTooltipText
+            parameters:
+              - name: text
+                type: string
+                nullable: true
+          - name: destroy
+          - name: setUseLayerColor
+            parameters:
+              - name: b
+                type: boolean
+          - name: onUseLayerColor
+          - name: onFontSelected
+          - name: onScaleChange
+            parameters:
+              - name: value
+              - name: slider
+          - name: onRotationChange
+            parameters:
+              - name: value
+              - name: slider
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: prerender
+          - name: updateButtons
+          - name: onCommandEntered
+          - name: onOtherKey
+            parameters:
+              - name: key
+                type: integer
+          - name: selectColor
+            parameters:
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+          - name: showUseLayerColor
+            parameters:
+              - name: use
+                type: boolean
+          - name: showFontPicker
+            parameters:
+              - name: layerID
+          - name: showTranslationTickBox
+            parameters:
+              - name: isTranslation
+                type: boolean
+          - name: showMatchPerspectiveTickBox
+            parameters:
+              - name: matchPerspective
+          - name: showScaleSlider
+            parameters:
+              - name: scale
+                type: number
+          - name: showRotationSlider
+            parameters:
+              - name: degrees
+                type: number
+          - name: showZoomPanel
+            parameters:
+              - name: minZoomF
+              - name: maxZoomF
+          - name: layoutWidgets
+          - name: isTranslation
+            return:
+              - type: boolean
+          - name: isMatchPerspective
+            return:
+              - type: boolean
+          - name: render
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: close
+      umbrella.ISTextBoxMap.ColorButtonInfo:
+        fields:
+          item:
+            type: string
+          colorInfo:
+            type: ColorInfo
+          tooltip:
+            type: string

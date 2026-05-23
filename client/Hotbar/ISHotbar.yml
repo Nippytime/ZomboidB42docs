@@ -1,0 +1,226 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISHotbar:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISHotbar"'
+        fields:
+          toolRender:
+            type: ISToolTipInv
+            nullable: true
+          attachedItems:
+            type: table<integer, InventoryItem>
+          needsRefresh:
+            type: boolean
+          wornItems:
+            type: InventoryItem[]
+          replacements:
+            type: table<string, string>
+          availableSlot:
+            type: umbrella.ISHotbar.Slot[]
+          slotWidth:
+            type: number
+          slotHeight:
+            type: number
+          slotPad:
+            type: number
+          margins:
+            type: number
+          character:
+            type: IsoPlayer
+          chr:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          textColor:
+            type: umbrella.RGBA
+          font:
+            type: UIFont
+          equippedItemIcon:
+            type: Texture
+        methods:
+          - name: render
+          - name: getSlotDef
+            parameters:
+              - name: slot
+                type: string
+            return:
+              - type: umbrella.ISHotbar.AttachDefinition
+                nullable: true
+          - name: getSlotDefReplacement
+            parameters:
+              - name: slot
+                type: string
+            return:
+              - type: umbrella.ISHotbar.ReplaceDefinition
+          - name: doMenu
+            parameters:
+              - name: slotIndex
+                type: integer
+          - name: isInHotbar
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: setSizeAndPosition
+          - name: update
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: canBeAttached
+            parameters:
+              - name: slot
+                type: umbrella.ISHotbar.Slot
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: setAttachAnim
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: slot
+                type: umbrella.ISHotbar.Slot
+          - name: removeItem
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: doAnim
+                type: boolean
+                nullable: true
+          - name: isItemAttached
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: attachItem
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: slot
+                type: string
+              - name: slotIndex
+                type: integer
+              - name: slotDef
+                type: umbrella.ISHotbar.AttachDefinition
+              - name: doAnim
+                type: boolean
+                nullable: true
+          - name: reloadIcons
+          - name: haveThisSlot
+            parameters:
+              - name: slotType
+                type: string
+              - name: list
+                type: string[]
+            return:
+              - type: boolean
+          - name: getThisSlotIndex
+            parameters:
+              - name: slotType
+                type: string
+              - name: list
+                type: umbrella.ISHotbar.Slot[]
+            return:
+              - type: integer
+                nullable: true
+          - name: compareWornItems
+            return:
+              - type: boolean
+          - name: refresh
+          - name: activateSlot
+            parameters:
+              - name: slotIndex
+                type: integer
+          - name: equipItem
+            parameters:
+              - name: item
+                type: InventoryItem
+          - name: getSlotIndexAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: integer
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: loadPosition
+          - name: savePosition
+          - name: getSlotForKey
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: integer
+          - name: getKeyForIndex
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: integer
+          - name: isAllowedToActivateSlot
+            return:
+              - type: boolean
+          - name: onRadialAttach
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: slotIndex
+                type: integer
+              - name: v
+                type: string
+          - name: onRadialRemove
+            parameters:
+              - name: item
+                type: InventoryItem
+        staticMethods:
+          - name: doMenuFromInventory
+            parameters:
+              - name: playerNum
+                type: integer
+              - name: item
+                type: InventoryItem
+              - name: context
+                type: ISContextMenu
+          - name: onKeyStartPressed
+            parameters:
+              - name: key
+                type: integer
+          - name: onKeyPressed
+            parameters:
+              - name: key
+                type: integer
+          - name: onKeyKeepPressed
+            parameters:
+              - name: key
+                type: integer
+          - name: onClothingUpdated
+            parameters:
+              - name: player
+                type: IsoPlayer
+      umbrella.ISHotbar.Slot:
+        fields:
+          slotType:
+            type: string
+          name:
+            type: string
+          def:
+            type: umbrella.ISHotbar.AttachDefinition

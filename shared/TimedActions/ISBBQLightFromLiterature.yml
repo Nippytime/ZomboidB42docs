@@ -1,0 +1,49 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBBQLightFromLiterature:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: lighter
+                type: InventoryItem
+              - name: bbq
+                type: IsoBarbecue
+        staticFields:
+          Type:
+            defaultValue: '"ISBBQLightFromLiterature"'
+        fields:
+          item:
+            type: InventoryItem
+          lighter:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          bbq:
+            type: IsoBarbecue
+          fuelAmt:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+                nullable: true
+          - name: getDuration
+            return:
+              - type: number

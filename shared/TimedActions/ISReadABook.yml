@@ -1,0 +1,96 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISReadABook:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: Literature
+        staticFields:
+          Type:
+            defaultValue: '"ISReadABook"'
+        fields:
+          pageTimer:
+            type: number
+          item:
+            type: Literature
+          stats:
+            type: umbrella.ISReadABook.Stats
+            nullable: true
+          isLiteratureRead:
+            type: boolean
+            nullable: true
+          forceStopped:
+            type: boolean
+          startPage:
+            type: integer
+          playerNum:
+            type: integer
+          minutesPerPage:
+            type: number
+          maxMultiplier:
+            type: number
+          ignoreHandsWounds:
+            type: boolean
+          forceProgressBar:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: isUsingTimeout
+            return:
+              - type: boolean
+          - name: update
+          - name: doHaloText
+          - name: start
+          - name: stop
+          - name: perform
+          - name: startLoadingPrintMediaTextures
+          - name: displayPrintMedia
+          - name: revealPrintMediaLocationsOnMap
+            parameters:
+              - name: mediaID
+                type: string
+          - name: complete
+            return:
+              - type: boolean
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: isBook
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: serverStart
+          - name: getDuration
+            return:
+              - type: number
+        staticMethods:
+          - name: checkMultiplier
+            parameters:
+              - name: self
+                type: ISReadABook
+          - name: checkLevel
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: Literature
+      umbrella.ISReadABook.Stats:
+        fields:
+          boredom:
+            type: number
+          unhappyness:
+            type: number
+          stress:
+            type: number

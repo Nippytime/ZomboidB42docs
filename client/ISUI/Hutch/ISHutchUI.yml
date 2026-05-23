@@ -1,0 +1,445 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISHutch3DModel:
+        extends: ISUI3DModel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISHutch3DModel"'
+        methods:
+          - name: instantiate
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+      ISHutchNestBox:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: hutchUI
+                type: ISHutchUI
+              - name: index
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchNestBox"'
+        fields:
+          avatar:
+            type: ISHutch3DModel
+          hutchUI:
+            type: ISHutchUI
+          index:
+            type: integer
+          chr:
+            type: IsoPlayer
+          playerObj:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          possibleEggPosition:
+            type: umbrella.XY[]
+          favoriteStar:
+            type: Texture
+        methods:
+          - name: createChildren
+          - name: render
+          - name: doNestStuff
+          - name: getNest
+            return:
+              - type: IsoHutch.NestBox
+                nullable: true
+          - name: getAnimal
+            return:
+              - type: IsoAnimal
+                nullable: true
+          - name: initEggPos
+          - name: onButtonGrab
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onCheatAddAnimal
+          - name: onCheatRemoveAnimal
+          - name: onCheatAddEgg
+          - name: onCheatRemoveEgg
+          - name: onJoypadDownInParent
+            parameters:
+              - name: button
+                type: ISButton
+              - name: joypadData
+                type: JoypadData
+      ISHutchNestParentPanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: hutchUI
+                type: ISHutchUI
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchNestParentPanel"'
+        fields:
+          nestBoxUI:
+            type: ISHutchNestBox[]
+          eggHatchDoorBtn:
+            type: ISButton
+          closedDoorPanel:
+            type: ISPanel
+          openDoorBtn:
+            type: ISButton
+          disableJoypadNavigation:
+            type: boolean
+          hutchUI:
+            type: ISHutchUI
+        methods:
+          - name: createChildren
+          - name: prerender
+          - name: render
+          - name: configJoypad
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+      ISHutchRoost:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: hutchUI
+                type: ISHutchUI
+              - name: index
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchRoost"'
+        fields:
+          avatar:
+            type: ISHutch3DModel
+          hutchUI:
+            type: ISHutchUI
+          index:
+            type: integer
+          chr:
+            type: IsoPlayer
+          playerObj:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          favoriteStar:
+            type: Texture
+        methods:
+          - name: createChildren
+          - name: render
+          - name: getAnimal
+            return:
+              - type: IsoAnimal
+                nullable: true
+          - name: getBody
+            return:
+              - type: IsoDeadBody
+                nullable: true
+          - name: onButtonGrab
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onForceEgg
+            parameters:
+              - name: animal
+                type: IsoAnimal
+          - name: onKill
+            parameters:
+              - name: animal
+                type: IsoAnimal
+          - name: onCheatAddAnimal
+          - name: onCheatRemoveAnimal
+            parameters:
+              - name: animal
+                type: IsoAnimal
+          - name: onJoypadDownInParent
+            parameters:
+              - name: button
+                type: ISButton
+              - name: joypadData
+                type: JoypadData
+      ISHutchRoostParentPanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: hutchUI
+                type: ISHutchUI
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchRoostParentPanel"'
+        fields:
+          roostUI:
+            type: ISHutchRoost[]
+          avatarPanel:
+            type: ISHutch3DModel[]
+          birdPooCleanBtn:
+            type: ISButton
+          doorBtn:
+            type: ISButton
+          closedDoorPanel:
+            type: ISPanel
+          openDoorBtn:
+            type: ISButton
+          disableJoypadNavigation:
+            type: boolean
+          hutchUI:
+            type: ISHutchUI
+        methods:
+          - name: createChildren
+          - name: prerender
+          - name: render
+          - name: configJoypad
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: hasConflictWithJoypadNavigateStart
+            return:
+              - type: boolean
+      ISHutchUI:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: hutch
+                type: IsoHutch
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchUI"'
+          instance:
+            type: ISHutchUI
+            nullable: true
+          ui:
+            type: table<integer, ISHutchUI>
+        fields:
+          tabPanel:
+            type: ISTabPanel
+          nestParentPanel:
+            type: ISHutchNestParentPanel
+          roostParentPanel:
+            type: ISHutchRoostParentPanel
+          avatarBackgroundTexture:
+            type: Texture
+          hutch:
+            type: IsoHutch
+          chr:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          refreshNeeded:
+            type: boolean
+          btnBorder:
+            type: umbrella.RGBA
+          fgBar:
+            type: umbrella.RGBA
+          fgBarOrange:
+            type: umbrella.RGBA
+          fgBarRed:
+            type: umbrella.RGBA
+          chickenTexture:
+            type: Texture
+          chickenEmptyTexture:
+            type: Texture
+          eggTexture:
+            type: Texture
+        methods:
+          - name: prerender
+          - name: render
+          - name: initialise
+          - name: create
+          - name: onCleanNest
+          - name: onCleanFloor
+          - name: onToggleDoor
+          - name: onToggleEggHatchDoor
+          - name: onGrabNest
+            parameters:
+              - name: index
+                type: integer
+          - name: onGrabRoost
+            parameters:
+              - name: index
+                type: integer
+          - name: add3DAnimal
+            parameters:
+              - name: panel
+                type: ISHutch3DModel
+              - name: animal
+                type: IsoAnimal
+              - name: chickenX
+                type: number
+              - name: chickenY
+                type: number
+          - name: checkAnimalSit
+            parameters:
+              - name: panel
+                type: ISHutch3DModel
+              - name: animal
+                type: IsoAnimal
+          - name: checkAnimal
+            parameters:
+              - name: index
+                type: integer
+              - name: chickenX
+                type: number
+              - name: chickenY
+                type: number
+              - name: rowY
+                type: number
+              - name: SHELF_HEIGHT
+                type: number
+              - name: btnGrabOffset
+          - name: onTabsActivateView
+          - name: showRoosts
+          - name: showNestBoxes
+          - name: isKeyConsumed
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: boolean
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+          - name: close
+          - name: setVisible
+            parameters:
+              - name: vis
+                type: boolean
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: ShowWindow
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: hutch
+                type: IsoHutch
+            return:
+              - type: ISHutchUI

@@ -1,0 +1,56 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISItemSlotRemoveAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: entity
+                type: IsoObject
+              - name: resource
+                type: ResourceItem
+              - name: internalItemSlot
+                type: ISItemSlot
+              - name: item
+                type: InventoryItem
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISItemSlotRemoveAction"'
+        fields:
+          item:
+            type: InventoryItem
+            nullable: true
+          sound:
+            type: integer
+          entity:
+            type: IsoObject
+          resource:
+            type: ResourceItem
+          itemSlot:
+            type: ISItemSlot
+            nullable: true
+          targetItem:
+            nullable: true
+          actionAnimVariables:
+            type: table<string, string>
+          actionAnim:
+            type: string
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+          - name: stopSound

@@ -1,0 +1,100 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISProgressBar:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: text
+                type: string
+                nullable: true
+              - name: font
+                type: UIFont
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISProgressBar"'
+        fields:
+          background:
+            type: boolean
+          progress:
+            type: number
+          text:
+            type: string
+            nullable: true
+          textW:
+            type: number
+            nullable: true
+          textH:
+            type: number
+            nullable: true
+          backgroundColor:
+            type: umbrella.RGBA
+          borderColor:
+            type: umbrella.RGBA
+          progressColor:
+            type: umbrella.RGBA
+          textColor:
+            type: umbrella.RGBA
+          textBackColor:
+            type: umbrella.RGBA
+          moveWithMouse:
+            type: boolean
+          font:
+            type: UIFont
+          isVertical:
+            type: boolean
+          doRenderTexture:
+            type: boolean
+          horizontalTexture:
+            type: Texture
+          verticalTexture:
+            type: Texture
+          doTextBackdrop:
+            type: boolean
+          paddingTop:
+            type: number
+          paddingBottom:
+            type: number
+          paddingLeft:
+            type: number
+          paddingRight:
+            type: number
+        methods:
+          - name: initialise
+          - name: noBackground
+          - name: setProgress
+            parameters:
+              - name: _p
+                type: number
+          - name: setText
+            parameters:
+              - name: _text
+                type: string
+                nullable: true
+          - name: prerender
+          - name: getRenderTexture
+            return:
+              - type: Texture
+                nullable: true
+          - name: renderTexture
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _w
+                type: number
+              - name: _h
+                type: number
+              - name: _vertical
+                type: boolean

@@ -1,0 +1,27 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      FitnessExercises:
+        staticFields:
+          exercisesType: {}
+      umbrella.FitnessExercises.Exercise:
+        fields:
+          type:
+            type: string
+          name:
+            type: string
+          tooltip:
+            type: string
+          stiffness:
+            type: string
+          metabolics:
+            type: Metabolics
+          xpMod:
+            type: number
+          item:
+            type: string
+            nullable: true
+          prop:
+            type: string
+            nullable: true

@@ -1,0 +1,32 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      Fishing:
+        staticFields:
+          ManagerInstances:
+            type: table<integer, Fishing.FishingManager>
+          Handler:
+            type: Fishing.Handler
+      Fishing.Handler:
+        local: true
+        staticMethods:
+          - name: OnGameStart
+          - name: onEquipPrimary
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: inventoryItem
+                type: InventoryItem
+          - name: handleFishing
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: primaryHandItem
+                type: InventoryItem
+          - name: isFishingValid
+            parameters:
+              - name: primaryHandItem
+                type: InventoryItem
+            return:
+              - type: boolean

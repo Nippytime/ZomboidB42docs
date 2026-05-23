@@ -1,0 +1,70 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAnimalTracksUI:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: track
+                type: IsoAnimalTrack | InventoryItem
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISAnimalTracksUI"'
+        fields:
+          textRight:
+            type: number
+            nullable: true
+          track:
+            type: IsoAnimalTrack | InventoryItem
+          chr:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          refreshNeeded:
+            type: boolean
+          texture:
+            type: Texture
+          trackingLevel:
+            type: integer
+          isSprite:
+            type: boolean
+          iconSize:
+            type: number
+          maxLabelWidth:
+            type: number
+        methods:
+          - name: prerender
+          - name: render
+          - name: drawText
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+          - name: getAnimalType
+            return:
+              - type: string
+          - name: initialise
+          - name: create

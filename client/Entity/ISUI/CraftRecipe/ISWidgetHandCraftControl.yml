@@ -1,0 +1,126 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetHandCraftControl:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: HandcraftLogic
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetHandCraftControl"'
+        fields:
+          colProgress:
+            type: umbrella.RGBA
+          quantityLabel:
+            type: ISLabel
+          durationLabel:
+            type: ISLabel
+          entryBox:
+            type: ISTextEntryBox
+          buttonMax:
+            type: ISButton
+          buttonMore:
+            type: ISButton
+          buttonLess:
+            type: ISButton
+          progressBar:
+            type: ISProgressBar
+          buttonCraft:
+            type: ISButton
+          origButtonHeight:
+            type: number
+          buttonForceCraft:
+            type: ISButton
+          boxHeight:
+            type: number
+          craftTimes:
+            type: integer
+            nullable: true
+          returnToContainer:
+            type: InventoryItem[]
+          player:
+            type: IsoPlayer
+          logic:
+            type: HandcraftLogic
+          interactiveMode:
+            type: boolean
+          allowBatchCraft:
+            type: boolean
+          buttonPadding:
+            type: number
+          margin:
+            type: number
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onAutoToggled
+            parameters:
+              - name: _newState
+                type: boolean
+          - name: onButtonClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: startHandcraft
+            parameters:
+              - name: force
+                type: boolean
+                nullable: true
+          - name: onHandcraftActionStart
+            parameters:
+              - name: action
+                type: ISHandcraftAction
+          - name: onHandcraftActionComplete
+          - name: onHandcraftActionCancelled
+          - name: onInputsChanged
+          - name: setCraftQuantity
+            parameters:
+              - name: amount
+                type: integer
+          - name: sanitizeCraftQuantity
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: onTextChange
+            parameters:
+              - name: box
+                type: ISTextEntryBox

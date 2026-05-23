@@ -1,0 +1,201 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISLiteratureUI:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: owner
+                type: ISCharacterScreen
+        staticFields:
+          Type:
+            defaultValue: '"ISLiteratureUI"'
+          miscRecipes: {}
+        fields:
+          tabs:
+            type: ISTabPanel
+          listbox1:
+            type: ISLiteratureList
+          listbox2:
+            type: ISLiteratureList
+          listbox3:
+            type: ISLiteratureList
+          listboxMedia:
+            type: table
+          listbox5:
+            type: ISLiteratureGrowingList
+          drawJoypadFocus:
+            type: boolean
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          owner:
+            type: ISCharacterScreen
+        methods:
+          - name: createChildren
+          - name: close
+          - name: setLists
+          - name: setMediaLists
+            parameters:
+              - name: scriptItems
+                type: table<string, Item[]>
+          - name: prerender
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: onJoypadDirUp
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onJoypadDirDown
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onRecipeSelected
+            parameters:
+              - name: recipe
+        staticMethods:
+          - name: SetItemHidden
+            parameters:
+              - name: fullType
+                type: string
+              - name: hidden
+                type: boolean
+      ISLiteratureList:
+        extends: ISScrollingListBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISListeratureList"'
+        fields:
+          character:
+            type: IsoPlayer
+        methods:
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+      ISLiteratureMediaList:
+        extends: ISScrollingListBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISListeratureMediaList"'
+        fields:
+          character:
+            type: IsoPlayer
+          scriptItem:
+            type: Item
+            nullable: true
+        methods:
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+      ISLiteratureGrowingList:
+        extends: ISScrollingListBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISListeratureGrowingList"'
+        fields:
+          character:
+            type: IsoPlayer
+        methods:
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+    functions:
+      - name: doesMiscRecipeExist
+        parameters:
+          - name: recipeName
+            type: string
+        return:
+          - type: boolean
+      - name: getMiscRecipeIcon
+        parameters:
+          - name: recipeName
+            type: string
+        return:
+          - type: unknown
+            nullable: true
+      - name: getRecipeIcon
+        parameters:
+          - name: recipeName
+            type: string
+        return:
+          - type: unknown
+            nullable: true

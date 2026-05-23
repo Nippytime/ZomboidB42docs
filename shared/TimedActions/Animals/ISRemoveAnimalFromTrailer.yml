@@ -1,0 +1,48 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRemoveAnimalFromTrailer:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: animal
+                type: IsoAnimal
+                nullable: true
+              - name: grab
+                type: boolean
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISRemoveAnimalFromTrailer"'
+        fields:
+          vehicle:
+            type: BaseVehicle
+          animal:
+            type: IsoAnimal
+            nullable: true
+          grab:
+            type: boolean
+            nullable: true
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+                nullable: true
+          - name: getDuration
+            return:
+              - type: number

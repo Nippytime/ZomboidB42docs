@@ -1,0 +1,321 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISItemSlot.OnBoxClicked:
+        - type: "fun(target: unknown, slot: ISItemSlot, isRightClick: boolean, isShift:
+            boolean)"
+      umbrella.ISItemSlot.OnItemDropped:
+        - type: "fun(target: unknown, slot: ISItemSlot, items: InventoryItem[])"
+      umbrella.ISItemSlot.OnItemRemove:
+        - type: "fun(target: unknown, slot: ISItemSlot, item: InventoryItem)"
+      umbrella.ISItemSlot.OnVerifyItem:
+        - type: "fun(target: unknown, slot: ISItemSlot, item: InventoryItem): boolean"
+      umbrella.ISItemSlot.Callback:
+        - type: "fun(target: unknown, slot: ISItemSlot)"
+    classes:
+      ISItemSlot:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: resource
+                type: Resource
+                nullable: true
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onItemDropped
+                type: umbrella.ISItemSlot.OnItemDropped
+                nullable: true
+              - name: onItemRemove
+                type: umbrella.ISItemSlot.OnItemRemove
+                nullable: true
+              - name: onVerifyItem
+                type: umbrella.ISItemSlot.OnVerifyItem
+                nullable: true
+              - name: onBoxClicked
+                type: umbrella.ISItemSlot.OnBoxClicked
+                nullable: true
+              - name: onSelectInputsButtonClicked
+                type: umbrella.ISItemSlot.Callback
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISItemSlot"'
+        fields:
+          selectInputButton:
+            type: ISButton
+            nullable: true
+          itemCount:
+            type: number
+          mouseOverState:
+            type: number
+          storedItem:
+            type: InventoryItem
+            nullable: true
+          boxOccupied:
+            type: boolean
+          storedItemTex:
+            type: Texture
+            nullable: true
+          storedScriptItem:
+            type: Item
+            nullable: true
+          backDropTex:
+            type: Texture
+            nullable: true
+          backDropTexCol:
+            type: umbrella.RGBA
+          doBackDropTex:
+            type: boolean
+          doToolTip:
+            type: boolean
+          toolTipText:
+            type: string | false
+          toolTip:
+            type: ISToolTip | ISToolTipInv
+            nullable: true
+          character:
+            type: IsoPlayer
+            nullable: true
+          resource:
+            type: Resource
+            nullable: true
+          locked:
+            type: boolean
+          statusIcons:
+            type: table
+          backgroundEmpty:
+            type: umbrella.RGBA
+          backgroundHover:
+            type: umbrella.RGBA
+          borderValid:
+            type: umbrella.RGBA
+          borderInvalid:
+            type: umbrella.RGBA
+          actionAddColor:
+            type: umbrella.RGBA
+          actionRemoveColor:
+            type: umbrella.RGBA
+          progressColor:
+            type: umbrella.RGBA
+          renderItemCount:
+            type: boolean
+          renderRequiredItemCount:
+            type: boolean
+          maxItemCount:
+            nullable: true
+          countColor:
+            type: umbrella.RGBA
+          countInvalidColor:
+            type: table
+          drawBorderLocked:
+            type: boolean
+          borderLockedColor:
+            type: umbrella.RGBA
+          drawInnerBorder:
+            type: boolean
+          functionTarget:
+            type: unknown
+            nullable: true
+          onItemDropped:
+            type: umbrella.ISItemSlot.OnItemDropped
+            nullable: true
+          onBoxClicked:
+            type: umbrella.ISItemSlot.OnBoxClicked
+            nullable: true
+          onVerifyItem:
+            type: umbrella.ISItemSlot.OnVerifyItem
+            nullable: true
+          onItemRemove:
+            type: umbrella.ISItemSlot.OnItemRemove
+            nullable: true
+          onSelectInputsButtonClicked:
+            type: umbrella.ISItemSlot.Callback
+            nullable: true
+          onStoredItemChanged:
+            nullable: true
+          showSelectInputsButton:
+            type: boolean
+          storeItem:
+            type: boolean
+          hideItem:
+            type: boolean
+          mouseEnabled:
+            type: boolean
+          toolTipTextItem:
+            type: string | false
+          toolTipTextLocked:
+            type: string | false
+          bBlinkBorder:
+            type: boolean
+          inputScript:
+            nullable: true
+          showPreviewItem:
+            type: boolean
+          borderColorOrig:
+            type: umbrella.RGBA
+          textureSwapInput:
+            type: Texture
+          textureMissingInput:
+            type: Texture
+          selectInputButtonBackgroundColor:
+            type: umbrella.RGBA
+          selectInputButtonBackgroundColorMouseOver:
+            type: umbrella.RGBA
+          selectInputButtonTextureColor:
+            type: umbrella.RGBA
+          selectInputButtonTextureColorMouseOver:
+            type: umbrella.RGBA
+          allowDrop:
+            type: boolean
+          drawProgress:
+            type: boolean
+          progressDelta:
+            type: number
+          itemTypeFilter:
+            type: Item
+            nullable: true
+          actionAnim:
+            type: string
+            nullable: true
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onSelectInputsButton
+          - name: setSelectInputsButtonActive
+            parameters:
+              - name: _active
+                type: boolean
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: prerender
+          - name: update
+          - name: defaultVerifyItem
+            parameters:
+              - name: _itemSlot
+                type: ISItemSlot
+              - name: _item
+                type: InventoryItem
+            return:
+              - type: boolean
+          - name: hasValidItemInDrag
+            return:
+              - type: boolean
+                nullable: true
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: itemDropped
+            parameters:
+              - name: _items
+                type: InventoryItem[]
+          - name: boxClicked
+            parameters:
+              - name: _isRightClick
+                type: boolean
+              - name: _isShift
+                type: boolean
+          - name: setStoredItem
+            parameters:
+              - name: _item
+                type: InventoryItem
+                nullable: true
+          - name: setStoredScriptItem
+            parameters:
+              - name: _item
+                type: Item
+                nullable: true
+          - name: setBackDropTex
+            parameters:
+              - name: _tex
+                type: Texture
+              - name: _a
+                type: number
+              - name: _r
+                type: number
+              - name: _g
+                type: number
+              - name: _b
+                type: number
+          - name: setDoBackDropTex
+            parameters:
+              - name: _b
+                type: boolean
+          - name: setToolTip
+            parameters:
+              - name: _b
+                type: boolean
+              - name: _text
+                type: string
+          - name: activateToolTip
+          - name: deactivateToolTip
+          - name: setCharacter
+            parameters:
+              - name: _character
+                type: IsoPlayer
+          - name: setResource
+            parameters:
+              - name: _resource
+                type: Resource
+          - name: getResource
+            return:
+              - type: Resource
+                nullable: true
+          - name: isLocked
+            return:
+              - type: boolean
+          - name: setLocked
+            parameters:
+              - name: _b
+                type: boolean
+          - name: setStatusIcons
+            parameters:
+              - name: _iconTextureArray
+                type: ArrayList<Texture>
+        staticMethods:
+          - name: drawTooltip
+            parameters:
+              - name: _itemSlot
+              - name: _tooltip

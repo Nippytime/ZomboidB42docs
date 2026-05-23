@@ -1,0 +1,181 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetInput:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: BaseCraftingLogic
+              - name: inputScript
+                type: InputScript
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetInput"'
+        fields:
+          amountWidth:
+            type: number
+          amountWidth2:
+            type: number
+          textColor:
+            type: umbrella.RGBA
+          colPartial:
+            type: umbrella.RGBA
+          colBad:
+            type: umbrella.RGBA
+          primary:
+            type: umbrella.ISWidgetInput.ScriptValues
+          iconConsumed:
+            type: ISImage
+          iconTool:
+            type: ISImage
+          iconReturned:
+            type: ISImage
+          secondary:
+            type: umbrella.ISWidgetInput.ScriptValues
+            nullable: true
+          arrow:
+            type: ISImage
+            nullable: true
+          editedLabels:
+            type: boolean
+          player:
+            type: IsoPlayer
+          logic:
+            type: BaseCraftingLogic
+          inputScript:
+            type: InputScript
+          consumeScript:
+            type: InputScript
+            nullable: true
+          createScript:
+            type: OutputScript
+            nullable: true
+          iconSize:
+            type: number
+          iconMargin:
+            type: number
+          labelIconSize:
+            type: number
+          selectInputButtonSize:
+            type: number
+          selectInputButtonBackgroundColor:
+            type: umbrella.RGBA
+          selectInputButtonBackgroundColorMouseOver:
+            type: umbrella.RGBA
+          selectInputButtonTextureColor:
+            type: umbrella.RGBA
+          selectInputButtonTextureColorMouseOver:
+            type: umbrella.RGBA
+          normalBorderColor:
+            type: umbrella.RGBA
+          iconBorderSizeX:
+            type: number
+          iconBorderSizeY:
+            type: number
+          interactiveMode:
+            type: boolean
+          displayAsOutput:
+            type: boolean
+          textureReturned:
+            type: Texture
+          textureConsumed:
+            type: Texture
+          textureUsed:
+            type: Texture
+          textureTool:
+            type: Texture
+          textureCreate:
+            type: Texture
+          textureSwapInput:
+            type: Texture
+          textureMissingInput:
+            type: Texture
+          textureButtonBG:
+            type: Texture
+          margin:
+            type: number
+          doToolTip:
+            type: boolean
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: createScriptValues
+            parameters:
+              - name: _script
+                type: InputScript
+              - name: isSecondary
+                type: boolean
+            return:
+              - type: umbrella.ISWidgetInput.ScriptValues
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onSelectInputsClicked
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: updateScriptValues
+            parameters:
+              - name: _table
+                type: umbrella.ISWidgetInput.ScriptValues
+          - name: updateValues
+          - name: onRebuildItemNodes
+            parameters:
+              - name: _inputItems
+      umbrella.ISWidgetInput.ScriptValues:
+        extends: umbrella.ISWidgetTooltipInput.ScriptValues
+        fields:
+          isDrain:
+            type: boolean
+          isTool:
+            type: boolean
+          inputFullName:
+            type: string
+            nullable: true
+          itemNameLabel:
+            type: ISLabel
+            nullable: true
+          selectInputButton:
+            type: ISButton
+            nullable: true

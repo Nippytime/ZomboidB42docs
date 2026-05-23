@@ -1,0 +1,112 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISUsersList:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISUsersList"'
+          instance:
+            type: ISUsersList
+            nullable: true
+        fields:
+          add:
+            type: ISButton
+          bannedIPs:
+            type: ISButton
+          searchEntry:
+            type: ISTextEntryBox
+          close:
+            type: ISButton
+          datas:
+            type: ISScrollingListBox
+          player:
+            type: IsoPlayer
+        methods:
+          - name: initialise
+          - name: populateList
+          - name: drawDatas
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onSelectUser
+            parameters:
+              - name: _item
+                type: IsoPlayer
+          - name: doSearch
+          - name: prerender
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onClickOption
+            parameters:
+              - name: item
+                type: IsoPlayer
+              - name: action
+                type: string
+          - name: onSetRoleClickOption
+            parameters:
+              - name: item
+                type: IsoPlayer
+              - name: role
+                type: string
+          - name: onDeleteModalClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onSetPasswordClick
+            parameters:
+              - name: button
+                type: ISButton
+              - name: username
+                type: string
+          - name: onAddUserClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onRightMouse
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: doContextMenu
+            parameters:
+              - name: item
+                type: IsoPlayer
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: closeModal
+        staticMethods:
+          - name: onAddWarningPoint
+            parameters:
+              - name: username
+                type: string
+              - name: button
+                type: ISButton
+              - name: reason
+                type: string
+              - name: amount
+                type: string

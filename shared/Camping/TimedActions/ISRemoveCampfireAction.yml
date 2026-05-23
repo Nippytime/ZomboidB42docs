@@ -1,0 +1,45 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRemoveCampfireAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: campfire
+                type: SCampfireGlobalObject
+              - name: maxTimeInit
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISRemoveCampfireAction"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          character:
+            type: IsoPlayer
+          maxTimeInit:
+            type: number
+          campfire:
+            type: SCampfireGlobalObject
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: unknown
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+          - name: stopSound

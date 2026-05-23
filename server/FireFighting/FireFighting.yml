@@ -1,0 +1,52 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      FireFighting:
+        staticMethods:
+          - name: getExtinguisherUses
+            parameters:
+              - name: item
+                type: InventoryItem
+                nullable: true
+            return:
+              - type: number
+          - name: getWaterUsesFloat
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: number
+          - name: getWaterUsesInteger
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: integer
+          - name: isExtinguisher
+            parameters:
+              - name: item
+                type: InventoryItem
+                nullable: true
+            return:
+              - type: boolean
+          - name: getExtinguisher
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: isSquareToExtinguish
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: getSquareToExtinguish
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: IsoGridSquare
+                nullable: true

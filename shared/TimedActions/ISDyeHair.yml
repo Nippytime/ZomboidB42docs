@@ -1,0 +1,36 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDyeHair:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: hairDye
+                type: InventoryItem
+              - name: beard
+                type: boolean
+        staticFields:
+          Type:
+            defaultValue: '"ISDyeHair"'
+        fields:
+          hairDye:
+            type: InventoryItem
+          beard:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

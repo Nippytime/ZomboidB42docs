@@ -1,0 +1,33 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISGetOnBedAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: bed
+                type: IsoObject
+        staticFields:
+          Type:
+            defaultValue: '"ISGetOnBedAction"'
+        fields:
+          forceProgressBar:
+            type: boolean
+          bed:
+            type: IsoObject
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: setBeforeSitDirection
+          - name: setWhileSittingDirection

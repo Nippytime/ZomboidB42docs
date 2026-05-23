@@ -1,0 +1,57 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPaintSignAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: wall
+                type: IsoObject
+              - name: paintPot
+                type: InventoryItem
+                nullable: true
+              - name: sign
+                type: integer
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISPaintSignAction"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          sign:
+            type: integer
+          wall:
+            type: IsoObject
+          paintPot:
+            type: InventoryItem
+            nullable: true
+          r:
+            type: number
+          g:
+            type: number
+          b:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

@@ -1,0 +1,49 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISComfreyCataplasm:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: otherPlayer
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: bodyPart
+                type: BodyPart
+        staticFields:
+          Type:
+            defaultValue: '"ISComfreyCataplasm"'
+        fields:
+          item:
+            type: InventoryItem
+          otherPlayer:
+            type: IsoPlayer
+          doctorLevel:
+            type: number
+          bodyPart:
+            type: BodyPart
+          bandagedPlayerX:
+            type: number
+          bandagedPlayerY:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

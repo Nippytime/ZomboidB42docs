@@ -1,0 +1,80 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      SourceWindow:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: filename
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"SourceWindow"'
+          map:
+            type: table<string, SourceWindow>
+        fields:
+          title:
+            type: string
+          sourceView:
+            type: ISScrollingListBox
+          bottomPanel:
+            type: ISPanel
+          lineNumberEntry:
+            type: ISTextEntryBox
+          reloadBtn:
+            type: ISButton
+          filename:
+            type: string
+          keepOnScreen:
+            type: boolean
+        methods:
+          - name: onMouseDoubleClickBreakpointToggle
+            parameters:
+              - name: item
+                type: string
+          - name: initialise
+          - name: onSourceMouseWheel
+            parameters:
+              - name: self
+                type: ISScrollingListBox
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: reloadFile
+            return:
+              - type: boolean
+          - name: fill
+          - name: createChildren
+          - name: prerender
+          - name: renderSrc
+            parameters:
+              - name: self
+                type: ISScrollingListBox
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+            return:
+              - type: number
+          - name: scrollToLine
+            parameters:
+              - name: line
+                type: number
+          - name: checkFontSize
+          - name: onLineNumberEntered
+          - name: setListBoxItemHeight
+            parameters:
+              - name: listBox
+                type: ISScrollingListBox

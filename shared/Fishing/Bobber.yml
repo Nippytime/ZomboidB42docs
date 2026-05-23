@@ -1,0 +1,120 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      Fishing:
+        staticFields:
+          Bobber:
+            type: Fishing.Bobber
+          ServerBobberManager:
+            type: table<integer, Fishing.Bobber>
+      Fishing.Bobber:
+        local: true
+        constructors:
+          - parameters:
+              - name: player
+                type: IsoPlayer
+              - name: fishingRod
+                type: Fishing.FishingRod
+              - name: x
+                type: number
+              - name: y
+                type: number
+        fields:
+          player:
+            type: IsoPlayer
+          fishingRod:
+            type: Fishing.FishingRod
+          catchFishStarted:
+            type: boolean
+          sq:
+            type: IsoGridSquare
+          x:
+            type: number
+          y:
+            type: number
+          z:
+            type: number
+          id:
+            type: integer
+          renderFunc:
+            type: function
+          attractTimer:
+            type: integer
+          nibbleTimer:
+            type: integer
+          lure:
+            type: string
+          fishingLvl:
+            type: integer
+          fish:
+            type: Fishing.Fish
+            nullable: true
+        methods:
+          - name: getX
+            return:
+              - type: number
+          - name: getY
+            return:
+              - type: number
+          - name: getZ
+            return:
+              - type: number
+          - name: getNibbleTime
+            return:
+              - type: integer
+          - name: update
+          - name: getFreeWaterDirection
+            return:
+              - type: number
+              - type: number
+          - name: move
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: attractFish
+            return:
+              - type: boolean
+          - name: grabFish
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: isOnGround
+            return:
+              - type: boolean
+          - name: destroy
+        staticMethods:
+          - name: onFishingActionMPUpdate
+            parameters:
+              - name: data
+      umbrella.FishingActionUpdateData:
+        fields:
+          player:
+            type: IsoPlayer
+          Reject:
+            type: boolean
+          UpdateFish:
+            type: boolean
+          UpdateBobberParameters:
+            type: boolean
+          CreateBobber:
+            type: boolean
+          DestroyBobber:
+            type: boolean
+          fish:
+            type: Fishing.Fish
+            nullable: true
+          fishItem:
+            type: InventoryItem
+            nullable: true
+          bobberItem:
+            type: InventoryItem
+            nullable: true
+          bobberX:
+            type: string
+            nullable: true
+          bobberY:
+            type: string
+            nullable: true

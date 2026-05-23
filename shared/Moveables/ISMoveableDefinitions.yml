@@ -1,0 +1,312 @@
+version: "1.1"
+languages:
+  lua:
+    tables:
+      ISMoveableDefinitions:
+        staticFields:
+          cheat:
+            defaultValue: "false"
+        methods:
+          - name: getInstance
+            return:
+              - type: ISMoveableDefinitions
+        staticMethods:
+          - name: load
+    classes:
+      ISMoveableDefinitions:
+        local: true
+        fields:
+          floorReplaceSprites:
+            type: string[]
+          toolDefinitions:
+            type: table<string, umbrella.ISMoveableDefinitions.ToolDefinition>
+          matsDefinitions:
+            type: table<string, umbrella.ISMoveableDefinitions.MaterialDefinition>
+          scrapDefinitions:
+            type: table<string, umbrella.ISMoveableDefinitions.ScrapDefinition>
+          healthDefinitions:
+            type: table<string, number>
+          repairDefinitions:
+            type: table<string, umbrella.ISMoveableDefinitions.RepairDefinition>
+        staticMethods:
+          - name: parseItemTypes
+            parameters:
+              - name: _types
+                type: string[]
+            return:
+              - type: string[]
+          - name: addToolDefinition
+            parameters:
+              - name: _name
+                type: string
+              - name: _items
+                type: string[]
+              - name: _perk
+                type: PerkFactory.Perk
+              - name: _baseActionTime
+                type: number
+              - name: _sound
+                type: string
+              - name: _isWav
+                type: boolean
+          - name: getToolDefinition
+            parameters:
+              - name: _name
+                type: string
+            return:
+              - type: umbrella.ISMoveableDefinitions.ToolDefinition
+                nullable: true
+          - name: removeToolDefinition
+            parameters:
+              - name: _name
+                type: string
+          - name: addMaterialDefinition
+            parameters:
+              - name: _material
+                type: string
+              - name: _returnItem
+                type: string
+              - name: _maxAmount
+                type: number
+              - name: _chancePerRoll
+                type: number
+          - name: getMaterialDefinition
+            parameters:
+              - name: _material
+                type: string
+            return:
+              - type: umbrella.ISMoveableDefinitions.MaterialDefinition
+                nullable: true
+          - name: removeMaterialDefinition
+            parameters:
+              - name: _material
+                type: string
+          - name: addFloorReplaceSprite
+            parameters:
+              - name: _spriteName
+                type: string
+          - name: isFloorReplaceSprite
+            parameters:
+              - name: _spriteName
+                type: string
+            return:
+              - type: boolean
+          - name: addHealthDefinition
+            parameters:
+              - name: _material
+                type: string
+              - name: _modifier
+                type: number
+          - name: getHealthDefinition
+            parameters:
+              - name: _material
+                type: string
+            return:
+              - type: number
+          - name: removeHealthDefinition
+            parameters:
+              - name: _material
+                type: string
+          - name: addScrapDefinition
+            parameters:
+              - name: _material
+                type: string
+              - name: _tools
+                type: string[]
+              - name: _tools2
+                type: string[]
+              - name: _perk
+                type: PerkFactory.Perk
+              - name: _baseActionTime
+                type: number
+              - name: _sound
+                type: string
+              - name: _isWav
+                type: boolean
+              - name: _baseChance
+                type: number
+                nullable: true
+              - name: _unusableItem
+                type: string
+                nullable: true
+          - name: getScrapDefinition
+            parameters:
+              - name: _material
+                type: string
+            return:
+              - type: umbrella.ISMoveableDefinitions.ScrapDefinition
+                nullable: true
+          - name: removeScrapDefinition
+            parameters:
+              - name: _material
+                type: string
+          - name: isScrapDefinitionValid
+            parameters:
+              - name: _material
+                type: string
+            return:
+              - type: boolean
+          - name: addScrapItem
+            parameters:
+              - name: _material
+                type: string
+              - name: _returnItem
+                type: string
+              - name: _maxAmount
+                type: number
+              - name: _chancePerRoll
+                type: number
+              - name: _isStaticSize
+                type: boolean
+                nullable: true
+          - name: getScrapItems
+            parameters:
+              - name: _material
+                type: string
+            return:
+              - type: umbrella.ISMoveableDefinitions.ScrapReturnItem[]
+                nullable: true
+          - name: addRepairDefinition
+            parameters:
+              - name: _material
+                type: string
+              - name: _tools
+                type: string[]
+              - name: _tools2
+                type: string[]
+              - name: _perk
+                type: PerkFactory.Perk
+              - name: _baseActionTime
+                type: number
+              - name: _sound
+                type: string
+              - name: _isWav
+                type: boolean
+              - name: _baseChance
+                type: number
+                nullable: true
+          - name: addRepairItem
+            parameters:
+              - name: _material
+                type: string
+              - name: _partItem
+                type: string
+              - name: _amountNeeded
+                type: number
+              - name: _required
+                type: boolean
+              - name: _damageAmount
+                type: number
+                nullable: true
+          - name: getRepairDefinition
+            parameters:
+              - name: _material
+                type: string
+            return:
+              - type: umbrella.ISMoveableDefinitions.RepairDefinition
+                nullable: true
+          - name: removeRepairDefinition
+            parameters:
+              - name: _material
+                type: string
+          - name: isRepairDefinitionValid
+            parameters:
+              - name: _material
+                type: string
+            return:
+              - type: boolean
+          - name: reset
+          - name: resetTools
+          - name: resetMaterials
+          - name: resetScrap
+          - name: resetHealth
+          - name: resetRepair
+          - name: resetFloorReplaceSprites
+      umbrella.ISMoveableDefinitions.BaseDefinition:
+        fields:
+          name:
+            type: string
+          tools:
+            type: string[]
+          tools2:
+            type: string[]
+          perk:
+            type: PerkFactory.Perk
+          perkName:
+            type: string
+          baseActionTime:
+            type: number
+          sound:
+            type: string
+          isWav:
+            type: boolean
+          baseChance:
+            type: number
+            nullable: true
+      umbrella.ISMoveableDefinitions.MaterialDefinition:
+        fields:
+          returnItem:
+            type: string
+          maxAmount:
+            type: number
+          chancePerRoll:
+            type: number
+      umbrella.ISMoveableDefinitions.RepairDefinition:
+        extends: umbrella.ISMoveableDefinitions.BaseDefinition
+        fields:
+          parts:
+            type: umbrella.ISMoveableDefinitions.RepairPart[]
+          toolNames:
+            type: table<string, string>
+            nullable: true
+      umbrella.ISMoveableDefinitions.RepairPart:
+        fields:
+          displayName:
+            type: string
+          itemType:
+            type: string
+          amount:
+            type: number
+          required:
+            type: boolean
+          damageAmount:
+            type: number
+            nullable: true
+      umbrella.ISMoveableDefinitions.ScrapDefinition:
+        extends: umbrella.ISMoveableDefinitions.BaseDefinition
+        fields:
+          unusableItem:
+            type: string
+            nullable: true
+          returnItems:
+            type: umbrella.ISMoveableDefinitions.ScrapReturnItem
+          returnItemsStatic:
+            type: umbrella.ISMoveableDefinitions.ScrapReturnItem
+          toolNames:
+            type: table<string, string>
+            nullable: true
+      umbrella.ISMoveableDefinitions.ScrapReturnItem:
+        fields:
+          returnItem:
+            type: string
+          maxAmount:
+            type: number
+          chancePerRoll:
+            type: number
+      umbrella.ISMoveableDefinitions.ToolDefinition:
+        fields:
+          items:
+            type: string[]
+          perk:
+            type: PerkFactory.Perk
+          perkName:
+            type: string
+          baseActionTime:
+            type: number
+          sound:
+            type: string
+          isWav:
+            type: boolean
+          itemNames:
+            type: table<string, string>
+            nullable: true

@@ -1,0 +1,406 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISVehicleMechanics:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISVehicleMechanics"'
+          alphaOverlay:
+            defaultValue: "1"
+          alphaOverlayInc:
+            defaultValue: "true"
+          cheat:
+            defaultValue: "false"
+          ghs:
+            defaultValue: '"<GHC>"'
+          bhs:
+            defaultValue: '"<BHC>"'
+        fields:
+          tooltip:
+            type: ISToolTip
+          vehiclePart:
+            type: table<string, umbrella.ISVehicleMechanics.CategoryTable>
+          listWidth:
+            type: number
+          generalCondition:
+            type: integer
+          generalCondRGB:
+            type: umbrella.RGB
+          leftListHasFocus:
+            type: boolean
+          leftListSelection:
+            type: number
+            nullable: true
+          rightListSelection:
+            type: number
+            nullable: true
+          checkEngine:
+            type: boolean
+          listbox:
+            type: ISScrollingListBox
+          bodyworklist:
+            type: ISScrollingListBox
+          selected:
+            type: integer
+          context:
+            type: ISContextMenu
+            nullable: true
+          hidetooltip:
+            type: boolean
+          flashFailure:
+            type: boolean
+          flashTimer:
+            type: number
+          flashTimerAlpha:
+            type: number
+          flashTimerAlphaInc:
+            type: boolean
+          usedHood:
+            type: VehiclePart
+            nullable: true
+          drawJoypadFocus:
+            type: boolean
+          chr:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          vehicle:
+            type: BaseVehicle
+            nullable: true
+          partCatRGB:
+            type: umbrella.RGB
+          partRGB:
+            type: umbrella.RGB
+          title:
+            type: string
+          xCarTexOffset:
+            type: number
+        methods:
+          - name: initialise
+          - name: update
+          - name: updateLayout
+          - name: initParts
+          - name: recalculGeneralCondition
+          - name: checkEngineFull
+          - name: createChildren
+          - name: onListMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onListRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: doPartContextMenu
+            parameters:
+              - name: part
+                type: VehiclePart
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: doMenuTooltip
+            parameters:
+              - name: part
+                type: VehiclePart
+              - name: option
+                type: umbrella.ISContextMenu.Option
+              - name: lua
+                type: string
+              - name: name
+                type: string
+                nullable: true
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: renderCarOverlay
+          - name: selectPart
+            parameters:
+              - name: part
+                type: VehiclePart
+                nullable: true
+          - name: isMouseOverPart
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: part
+                type: VehiclePart
+            return:
+              - type: boolean
+                nullable: true
+          - name: getMouseOverPart
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: VehiclePart
+                nullable: true
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: renderCarOverlayTooltip
+            parameters:
+              - name: partProps
+                type: umbrella.ISCarMechanicsOverlay.PartListItem
+              - name: part
+                type: VehiclePart
+              - name: carType
+                type: string
+            return:
+              - type: boolean
+          - name: startFlashRed
+          - name: startFlashGreen
+          - name: roundContainerContentAmount
+            parameters:
+              - name: part
+                type: VehiclePart
+            return:
+              - type: number
+          - name: prerender
+          - name: render
+          - name: renderPartDetail
+            parameters:
+              - name: part
+                type: VehiclePart
+          - name: getConditionRGB
+            parameters:
+              - name: condition
+                type: integer
+            return:
+              - type: umbrella.RGB
+          - name: setVisible
+            parameters:
+              - name: bVisible
+                type: boolean
+              - name: joypadData
+                type: JoypadData
+                nullable: true
+          - name: close
+          - name: onListboxJoypadDirUp
+            parameters:
+              - name: listbox
+                type: ISScrollingListBox
+          - name: onListboxJoypadDirDown
+            parameters:
+              - name: listbox
+                type: ISScrollingListBox
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: onJoypadDirUp
+          - name: onJoypadDirDown
+          - name: onJoypadDirLeft
+          - name: onJoypadDirRight
+          - name: isKeyConsumed
+            parameters:
+              - name: key
+                type: integer
+            return:
+              - type: boolean
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+          - name: getWrench
+            parameters:
+              - name: player
+                type: IsoPlayer
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: getScrewdriver
+            parameters:
+              - name: player
+                type: IsoPlayer
+            return:
+              - type: InventoryItem
+                nullable: true
+          - name: getTirePump
+            parameters:
+              - name: player
+                type: IsoPlayer
+            return:
+              - type: InventoryItem
+                nullable: true
+        staticMethods:
+          - name: onRepairEngine
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onRepairLightbar
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onTakeEngineParts
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onConfigHeadlight
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: dir
+                type: integer
+          - name: onCheatGetKey
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+          - name: onCheatHotwire
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: hotwired
+              - name: broken
+          - name: onCheatRepair
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+          - name: onCheatSetRustAux
+            parameters:
+              - name: target
+                type: unknown
+              - name: button
+                type: ISButton
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+          - name: onCheatSetRust
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+          - name: onCheatRepairPart
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+          - name: onCheatSetConditionAux
+            parameters:
+              - name: target
+                type: unknown
+              - name: button
+                type: ISButton
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onCheatSetCondition
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onCheatSetContentAmountAux
+            parameters:
+              - name: target
+                type: unknown
+              - name: button
+                type: ISButton
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onCheatSetContentAmount
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+          - name: onCheatRemoveAux
+            parameters:
+              - name: dummy
+                nullable: true
+              - name: button
+                type: ISButton
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+          - name: onCheatRemove
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+          - name: onCheatToggle
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: OnMechanicActionDone
+            parameters:
+              - name: chr
+                type: IsoPlayer
+              - name: success
+                type: boolean
+      umbrella.ISVehicleMechanics.CategoryTable:
+        fields:
+          name:
+            type: string
+          category:
+            type: string
+          parts:
+            type: umbrella.ISVehicleMechanics.PartTable[]
+      umbrella.ISVehicleMechanics.PartTable:
+        fields:
+          name:
+            type: string
+          part:
+            type: VehiclePart

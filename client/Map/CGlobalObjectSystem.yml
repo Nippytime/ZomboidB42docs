@@ -1,0 +1,137 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      CGlobalObjectSystem:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: name
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"CGlobalObjectSystem"'
+        fields:
+          system:
+            type: GlobalObjectSystem
+          systemName:
+            type: string
+          wantNoise:
+            type: boolean
+        methods:
+          - name: noise
+            parameters:
+              - name: message
+                type: string
+          - name: initSystem
+          - name: initLuaObjects
+          - name: getLuaObjectCount
+            return:
+              - type: integer | false
+          - name: getLuaObjectByIndex
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: CGlobalObject
+          - name: isValidIsoObject
+            parameters:
+              - name: isoObject
+                type: IsoObject
+            overloads:
+              - parameters:
+                  - name: IsoObject
+                    type: IsoObject
+                return:
+                  - type: boolean
+          - name: getIsoObjectOnSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: IsoObject
+                nullable: true
+          - name: getIsoObjectAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: IsoObject
+                nullable: true
+          - name: newLuaObject
+            parameters:
+              - name: globalObject
+                type: GlobalObject
+            overloads:
+              - parameters:
+                  - name: globalObject
+                    type: GlobalObject
+                return:
+                  - type: CGlobalObject
+          - name: newLuaObjectAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: CGlobalObject
+          - name: removeLuaObject
+            parameters:
+              - name: luaObject
+                type: CGlobalObject
+          - name: removeLuaObjectAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+          - name: getLuaObjectAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: CGlobalObject
+                nullable: true
+          - name: getLuaObjectOnSquare
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: CGlobalObject
+                nullable: true
+          - name: OnLuaObjectUpdated
+            parameters:
+              - name: luaObject
+                type: CGlobalObject
+          - name: sendCommand
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: command
+                type: string
+              - name: args
+                type: table
+          - name: OnServerCommand
+            parameters:
+              - name: command
+                type: string
+              - name: args
+                type: table
+        staticMethods:
+          - name: RegisterSystemClass
+            parameters:
+              - name: luaClass
+                type: CGlobalObjectSystem

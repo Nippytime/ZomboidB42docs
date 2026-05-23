@@ -1,0 +1,152 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      RWMChannel:
+        extends: RWMPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"RWMChannel"'
+        fields:
+          editPresetPanel:
+            type: RWMSubEditPreset
+          comboBox:
+            type: ISComboBox
+          tuneInButton:
+            type: ISButton
+          addPresetButton:
+            type: ISButton
+          editPresetButton:
+            type: ISButton
+          deletePresetButton:
+            type: ISButton
+          editMode:
+            type: boolean
+          presetMode:
+            type: string
+            nullable: true
+          selectedPreset:
+            type: PresetEntry
+            nullable: true
+          presets:
+            type: ArrayList<PresetEntry>
+            nullable: true
+          lastModeExpanded:
+            type: boolean
+          parent:
+            type: ISUIElement
+            nullable: true
+          focusElement:
+            type: ISUIElement
+            nullable: true
+          fontheight:
+            type: number
+          frequencyDivider:
+            type: number
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: setPanelMode
+            parameters:
+              - name: _edit
+                type: boolean
+              - name: _ignoreParent
+                type: boolean
+                nullable: true
+          - name: round
+            parameters:
+              - name: num
+                type: number
+              - name: idp
+                type: integer
+            return:
+              - type: number
+          - name: onChildSave
+            parameters:
+              - name: _freq
+                type: number
+              - name: _name
+                type: string
+          - name: isValidPresets
+            return:
+              - type: boolean
+                nullable: true
+          - name: comboChange
+          - name: doTuneInButton
+          - name: doAddPresetButton
+          - name: doEditPresetButton
+          - name: doDeletePresetButton
+          - name: addComboOption
+            parameters:
+              - name: _freq
+                type: number
+              - name: _name
+                type: string
+          - name: readPresets
+            parameters:
+              - name: _selected
+                type: integer
+          - name: clear
+          - name: readFromObject
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+              - name: _deviceData
+                type: DeviceData
+              - name: _deviceType
+                type: string
+            return:
+              - type: boolean
+          - name: prerender
+          - name: update
+          - name: render
+          - name: setParent
+            parameters:
+              - name: _parent
+                type: ISUIElement
+          - name: getParent
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: clearJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+            return:
+              - type: boolean
+              - type: boolean
+          - name: getAPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getXPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getYPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getRBPrompt
+            return:
+              - type: string

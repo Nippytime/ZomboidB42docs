@@ -1,0 +1,10 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRecordedMedia:
+        staticMethods:
+          - name: init
+            parameters:
+              - name: _rc
+                type: RecordedMedia

@@ -1,0 +1,44 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPickupDung:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: sq
+                type: IsoGridSquare
+              - name: radius
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISPickupDung"'
+        fields:
+          item:
+            type: InventoryItem
+          radius:
+            type: integer
+          sq:
+            type: IsoGridSquare
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: pickUpDung
+            parameters:
+              - name: sq
+                type: IsoGridSquare
+          - name: getDuration
+            return:
+              - type: number

@@ -1,0 +1,41 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISOpenCloseWindow:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: object
+                type: IsoWindow
+        staticFields:
+          Type:
+            defaultValue: '"ISOpenCloseWindow"'
+        fields:
+          object:
+            type: IsoWindow
+          useProgressBar:
+            type: boolean
+          ignoreHandsWounds:
+            type: boolean
+          retriggerLastAction:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

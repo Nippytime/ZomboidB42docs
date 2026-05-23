@@ -1,0 +1,179 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRichTextPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISRichTextPanel"'
+          drawMargins:
+            defaultValue: "false"
+        fields:
+          text:
+            type: string
+            nullable: true
+          font:
+            type: UIFont
+          rgbCurrent:
+            type: umbrella.RGB
+          imageCount:
+            type: integer
+          videoCount:
+            type: integer
+          indent:
+            type: number
+            nullable: true
+          textDirty:
+            type: boolean
+          fonts:
+            type: table<integer, UIFont>
+          images:
+            type: Texture[]
+          imageX:
+            type: number[]
+          imageY:
+            type: number[]
+          rgb:
+            type: table<integer, umbrella.RGB>
+          rgbStack:
+            type: umbrella.RGB[]
+          orient:
+            type: table<integer, "left" | "right" | "centre">
+          imageW:
+            type: number[]
+          imageH:
+            type: number[]
+          lineY:
+            type: table<integer, number>
+          lineX:
+            type: table<integer, number>
+          lines:
+            type: string[]
+          keybinds:
+            type: table<string, string>
+          videos:
+            type: VideoTexture[]
+          videoX:
+            type: number[]
+          videoY:
+            type: number[]
+          videoW:
+            type: number[]
+          videoH:
+            type: number[]
+          currentLine:
+            type: integer
+          contentTransparency:
+            type: number
+          r:
+            type: integer
+          g:
+            type: integer
+          b:
+            type: integer
+          marginLeft:
+            type: number
+          marginTop:
+            type: number
+          marginRight:
+            type: number
+          marginBottom:
+            type: number
+          autosetheight:
+            type: boolean
+          textR:
+            type: number
+          textG:
+            type: number
+          textB:
+            type: number
+          clip:
+            type: boolean
+          maxLines:
+            type: number
+          defaultFont:
+            type: UIFont
+        methods:
+          - name: initialise
+          - name: setText
+            parameters:
+              - name: text
+                type: string
+                nullable: true
+          - name: processCommand
+            parameters:
+              - name: command
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: lineImageHeight
+                type: number
+              - name: lineHeight
+                type: number
+            return:
+              - type: number
+              - type: number
+              - type: number
+          - name: replaceKeyName
+            parameters:
+              - name: text
+                type: string
+              - name: offset
+                type: number
+                nullable: true
+            return:
+              - type: string
+              - type: number
+                nullable: true
+          - name: replaceKeyNames
+            parameters:
+              - name: text
+                type: string
+            return:
+              - type: string
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: paginate
+          - name: setContentTransparency
+            parameters:
+              - name: alpha
+                type: number
+          - name: render
+          - name: onResize
+          - name: setMargins
+            parameters:
+              - name: left
+                type: number
+              - name: top
+                type: number
+              - name: right
+                type: number
+              - name: bottom
+                type: number
+          - name: doRightJoystickScrolling
+            parameters:
+              - name: joypadData
+                type: JoypadData
+              - name: dx
+                type: number
+                nullable: true
+              - name: dy
+                type: number
+                nullable: true

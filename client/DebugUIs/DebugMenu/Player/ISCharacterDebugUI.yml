@@ -1,0 +1,91 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCharacterDebugUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISCharacterDebugUI"'
+          instance:
+            type: ISCharacterDebugUI
+            nullable: true
+        fields:
+          tickBoxLocalPlayer:
+            type: ISTickBox
+          tickBoxRemotePlayer:
+            type: ISTickBox
+          tickBoxZombie:
+            type: ISTickBox
+          tickBoxAnimal:
+            type: ISTickBox
+          tickBoxDeadBody:
+            type: ISTickBox
+          btnSave:
+            type: ISButton
+          btnClose:
+            type: ISButton
+          setFunctionLocalPlayer:
+            type: table<integer, function>
+          setFunctionRemotePlayer:
+            type: table<integer, function>
+          setFunctionZombie:
+            type: table<integer, function>
+          setFunctionAnimal:
+            type: table<integer, function>
+          setFunctionDeadBody:
+            type: table<integer, function>
+          player:
+            type: IsoPlayer
+          tcks:
+            type: number
+        methods:
+          - name: initialise
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: addOption
+            parameters:
+              - name: tickBox
+                type: ISTickBox
+              - name: text
+                type: string
+              - name: selected
+                type: boolean
+              - name: setFunction
+                type: function
+              - name: tickSetFunction
+                type: table
+          - name: addTickOptions
+            parameters:
+              - name: tickBox
+                type: ISTickBox
+              - name: tickSetFunction
+                type: table
+              - name: name
+                type: string
+          - name: onTicked
+            parameters:
+              - name: index
+                type: integer
+              - name: selected
+                type: boolean
+          - name: render
+          - name: prerender
+          - name: apply
+        staticMethods:
+          - name: OnOpenPanel
+            return:
+              - type: ISCharacterDebugUI
+                nullable: true

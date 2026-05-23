@@ -1,0 +1,42 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBBQInsertPropaneTank:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: bbq
+                type: IsoBarbecue
+              - name: tank
+                type: IsoWorldInventoryObject | InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISBBQInsertPropaneTank"'
+        fields:
+          tank:
+            type: IsoWorldInventoryObject | InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          bbq:
+            type: IsoBarbecue
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

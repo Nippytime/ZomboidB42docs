@@ -1,0 +1,16 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPaintMenu:
+        staticFields:
+          PaintMenuItems: {}
+          WallpaperMenuItems: {}
+        staticMethods:
+          - name: getWallType
+            parameters:
+              - name: obj
+                type: IsoObject
+            return:
+              - type: string
+                nullable: true

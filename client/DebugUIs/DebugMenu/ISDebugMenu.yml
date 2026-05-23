@@ -1,0 +1,92 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDebugMenu:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISDebugMenu"'
+          instance:
+            type: ISDebugMenu
+            nullable: true
+          forceEnable:
+            defaultValue: "false"
+          shiftDown:
+            defaultValue: "0"
+          tab:
+            defaultValue: '"MAIN"'
+          classes:
+            type: ISUIElement[]
+        fields:
+          buttons:
+            type: "{ title: string, func: function, tab: string, marginTop: number? }[]"
+          mainButton:
+            type: ISButton
+          devButton:
+            type: ISButton
+          mainTab:
+            type: "{ _y: number, _buttons: ISButton[] }"
+          devTab:
+            type: "{ _y: number, _buttons: ISButton[] }"
+          variableColor:
+            type: umbrella.RGBA
+          buttonBorderColor:
+            type: umbrella.RGBA
+          zOffsetSmallFont:
+            type: number
+        methods:
+          - name: setupButtons
+          - name: addButtonInfo
+            parameters:
+              - name: _title
+                type: string
+              - name: _func
+                type: function
+              - name: _tab
+                type: string
+              - name: _marginTop
+                type: number
+                nullable: true
+            return:
+              - type: "{ title: string, func: function, tab: string, marginTop: number? }"
+          - name: bringToTop
+            parameters:
+              - name: _buttonInfo
+                type: table
+          - name: initialise
+          - name: createChildren
+          - name: onClick_Dev
+          - name: onClick_Main
+          - name: onClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: onClickSandboxSettings
+          - name: onForgetRecipes
+          - name: close
+        staticMethods:
+          - name: OnOpenPanel
+            return:
+              - type: ISDebugMenu
+                nullable: true
+          - name: RegisterClass
+            parameters:
+              - name: _class
+                type: ISUIElement
+          - name: OnPlayerDeath
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+    functions:
+      - name: doNewUIDebug

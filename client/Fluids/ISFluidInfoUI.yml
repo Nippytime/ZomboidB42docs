@@ -1,0 +1,84 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidInfoUI:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: _player
+                type: IsoPlayer
+              - name: _container
+                type: FluidContainer
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidInfoUI"'
+          players:
+            type: table<integer, umbrella.ISFluidInfoUI.PlayerTableItem>
+          cheatSkill:
+            defaultValue: "false"
+          cheatTransfer:
+            defaultValue: "false"
+        fields:
+          title:
+            type: ISLabel
+          panel:
+            type: ISFluidContainerPanel
+          panelX:
+            type: number
+          btnClose:
+            type: ISButton
+          variableColor:
+            type: table
+          buttonBorderColor:
+            type: table
+          transferColor:
+            type: table
+          zOffsetSmallFont:
+            type: number
+          player:
+            type: IsoPlayer
+          container:
+            type: FluidContainer
+          owner:
+            type: GameEntity
+          isIsoPanel:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: prerender
+          - name: render
+          - name: update
+          - name: close
+          - name: onButton
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: OpenPanel
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _container
+                type: ISFluidContainer
+      umbrella.ISFluidInfoUI.PlayerTableItem:
+        fields:
+          instance:
+            type: ISFluidInfoUI
+          x:
+            type: number
+          y:
+            type: number

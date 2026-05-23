@@ -1,0 +1,164 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      Tutorial1:
+        staticFields:
+          steps:
+            type: LuaList
+            nullable: true
+          moveKeys:
+            type: string
+            nullable: true
+          marker:
+            type: WorldMarkers
+            nullable: true
+          joypad:
+            type: boolean
+            nullable: true
+          cratePositions:
+            type: "[string, string, number, number, number][]"
+          DeadMouseContainer:
+            type: IsoObject
+            nullable: true
+          DeadMouse:
+            type: InventoryItem
+            nullable: true
+          name:
+            defaultValue: '"Tutorial1"'
+          image:
+            defaultValue: '"media/lua/LastStand/Challenge1.png"'
+          world:
+            defaultValue: '"challengemaps/Tutorial"'
+          x:
+            defaultValue: "157"
+          y:
+            defaultValue: "157"
+          hourOfDay:
+            defaultValue: "20"
+        staticMethods:
+          - name: Add
+          - name: PreloadInit
+          - name: AddPlayer
+            parameters:
+              - name: p
+                type: IsoPlayer
+          - name: closeBothInv
+          - name: closeLoot
+          - name: closeInv
+          - name: createInventoryContextMenu
+            parameters:
+              - name: player
+                type: InventoryItem
+              - name: isInPlayerInventory
+                type: boolean
+              - name: items
+                type: (InventoryItem | umbrella.ContextMenuItemStack)[]
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: ISContextMenu
+          - name: createWorldContextMenuFromContext
+            parameters:
+              - name: context
+                type: ISContextMenu
+              - name: worldobjects
+                type: IsoObject[]
+            return:
+              - type: ISContextMenu
+          - name: createWorldContextMenu
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: worldobjects
+                type: IsoObject[]
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: ISContextMenu
+          - name: doubleClickInventory
+            parameters:
+              - name: inventoryPane
+                type: ISInventoryPane
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: mouseOverOption
+                type: integer
+            return:
+              - type: boolean
+          - name: Init
+          - name: openDoor
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+          - name: collapseInv
+            parameters:
+              - name: inv
+                type: ISInventoryPage
+          - name: lockDoor
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: IsoDoor
+                nullable: true
+          - name: unlockDoor
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: IsoDoor
+                nullable: true
+          - name: addBarricade
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+          - name: addMetalBarricade
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: IsoWindow
+                nullable: true
+          - name: FillContainers
+          - name: SpawnZombies
+            parameters:
+              - name: count
+                type: integer
+          - name: Render
+          - name: Tick
+          - name: removeFences
+          - name: replaceFence
+            parameters:
+              - name: sq
+                type: IsoGridSquare
+              - name: north
+                type: boolean

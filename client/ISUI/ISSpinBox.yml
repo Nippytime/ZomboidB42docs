@@ -1,0 +1,63 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISSpinBox.OnClick:
+        - type: "fun(target: unknown, box: ISSpinBox)"
+    classes:
+      ISSpinBox:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: targetFunc
+                type: umbrella.ISSpinBox.OnClick
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISSpinBox"'
+        fields:
+          selected:
+            type: number
+          leftButton:
+            type: ISButton
+          rightButton:
+            type: ISButton
+          tooltipUI:
+            type: ISToolTip
+          options:
+            type: string[]
+          target:
+            type: unknown
+            nullable: true
+          targetFunc:
+            type: umbrella.ISSpinBox.OnClick
+            nullable: true
+          fade:
+            type: UITransition
+        methods:
+          - name: addOption
+            parameters:
+              - name: option
+                type: string
+          - name: createChildren
+          - name: onButton
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onMouseWheel
+            parameters:
+              - name: delta
+                type: number
+          - name: prerender
+          - name: render

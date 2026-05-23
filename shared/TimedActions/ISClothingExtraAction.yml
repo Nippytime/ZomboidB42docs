@@ -1,0 +1,66 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISClothingExtraAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: extra
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISClothingExtraAction"'
+        fields:
+          equipSound:
+            type: integer
+            nullable: true
+          item:
+            type: InventoryItem
+          extra:
+            type: string
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: stopSound
+          - name: createItem
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: itemType
+                type: string
+            return:
+              - type: InventoryItem
+          - name: createItemNew
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: newItem
+                type: InventoryItem
+            return:
+              - type: InventoryItem
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+    functions:
+      - name: copyClothingItem
+        parameters:
+          - name: item
+            type: InventoryItem
+          - name: newItem
+            type: InventoryItem

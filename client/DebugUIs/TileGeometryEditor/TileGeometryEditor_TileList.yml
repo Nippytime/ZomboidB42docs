@@ -1,0 +1,163 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      TileGeometryEditor_TileList:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: picker
+                type: TileGeometryEditor_TilePicker
+        staticFields:
+          Type:
+            defaultValue: '"TileGeometryEditor_TileList"'
+        fields:
+          tileset:
+            type: string
+            nullable: true
+          picker:
+            type: TileGeometryEditor_TilePicker
+          editor:
+            type: TileGeometryEditor
+          selection:
+            type: table
+        methods:
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onSwapTilesets
+            parameters:
+              - name: tileName
+                type: string
+          - name: onRotate90Degrees
+            parameters:
+              - name: tileName
+                type: string
+          - name: onShiftOnePixelRight
+          - name: onSelectInOtherList
+            parameters:
+              - name: tileName
+                type: string
+          - name: onSelectAssignedDepthTexture
+            parameters:
+              - name: tileName
+                type: string
+          - name: onShiftGeometry
+            parameters:
+              - name: selectedTile
+                type: table
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onSubtractSpriteGridPixels
+            parameters:
+              - name: tileName
+                type: string
+          - name: parseTileName
+            parameters:
+              - name: tileName
+                type: string
+            return:
+              - type: string
+                nullable: true
+              - type: number
+                nullable: true
+          - name: getColRowAt
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: number
+              - type: number
+          - name: isValidColRow
+            parameters:
+              - name: col
+                type: number
+              - name: row
+                type: number
+            return:
+              - type: boolean
+          - name: onClearDepthOfSelectedTiles
+          - name: onClearAssignedDepthTextures
+          - name: selectionAdd
+            parameters:
+              - name: col
+                type: number
+              - name: row
+                type: number
+          - name: selectionRemove
+            parameters:
+              - name: col
+                type: number
+              - name: row
+                type: number
+          - name: selectionToggle
+            parameters:
+              - name: col
+                type: number
+              - name: row
+                type: number
+          - name: selectionIndexOf
+            parameters:
+              - name: col
+                type: number
+              - name: row
+                type: number
+            return:
+              - type: number
+          - name: selectionClear
+          - name: isSelectionEmpty
+            return:
+              - type: boolean
+          - name: getSelection
+            return:
+              - type: table
+          - name: getSingleSelectedTile
+            return:
+              - type: table
+                nullable: true
+          - name: getFirstSelectedTile
+            return:
+              - type: table
+                nullable: true
+          - name: calculateSelectionBounds
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+          - name: render
+          - name: renderGrid
+            parameters:
+              - name: xIndent
+                type: number
+              - name: yIndent
+                type: number
+              - name: texW
+                type: number
+              - name: texH
+                type: number
+          - name: setTileset
+            parameters:
+              - name: tilesetName
+                type: string
+                nullable: true

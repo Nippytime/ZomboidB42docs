@@ -1,0 +1,30 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISJoypadDisconnectedUI:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: playerNum
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISJoypadDisconnectedUI"'
+        fields:
+          label:
+            type: ISLabel
+          buttonKBM:
+            type: ISButton
+          playerNum:
+            type: integer
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: createChildren
+          - name: prerender
+          - name: update
+          - name: useKeyboardMouse
+          - name: renderControllerDisconnected
+        staticMethods:
+          - name: setKeyboardMouseActivated

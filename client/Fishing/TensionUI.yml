@@ -1,0 +1,37 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      Fishing:
+        staticFields:
+          ISTensionUI:
+            type: Fishing.ISTensionUI
+      Fishing.ISTensionUI:
+        extends: ISUIElement
+        local: true
+        constructors:
+          - parameters:
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISTensionUI"'
+        fields:
+          val:
+            type: number
+          playerIndex:
+            type: integer
+          player:
+            type: IsoPlayer
+          tex:
+            type: Texture
+          bckgTex:
+            type: Texture
+        methods:
+          - name: initialise
+          - name: prerender
+          - name: render
+          - name: updateValue
+            parameters:
+              - name: val
+                type: number

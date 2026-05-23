@@ -1,0 +1,395 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      SandboxOptionsScreen:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"SandboxOptionsScreen"'
+          instance:
+            type: SandboxOptionsScreen
+            nullable: true
+        fields:
+          selectedYear:
+            type: integer
+            nullable: true
+          selectedMonth:
+            type: integer
+            nullable: true
+          backButton:
+            type: ISButton
+          playButton:
+            type: ISButton
+          presetPanel:
+            type: ISPanelJoypad
+          presetList:
+            type: ISComboBox
+          savePresetButton:
+            type: ISButton
+          deletePresetButton:
+            type: ISButton
+          advancedCheckBox:
+            type: ISTickBox
+          devPresetButton:
+            type: ISButton
+          searchEntry:
+            type: ISTextEntryBox
+          listbox:
+            type: ISScrollingListBox
+          controls:
+            type: table<string, ISUIElement>
+          currentPanel:
+            type: ISUIElement
+            nullable: true
+          presets:
+            type: umbrella.SandboxOptionsScreen.Preset[]
+          hadJoypadFocus:
+            type: boolean
+          joypadNavigate:
+            type: table
+          nonDefaultOptions:
+            type: SandboxOptions
+        methods:
+          - name: syncStartDay
+          - name: create
+          - name: changeAdvancedMode
+            parameters:
+              - name: _
+                type: integer
+              - name: bool
+                type: boolean
+          - name: doSearch
+          - name: createPanel
+            parameters:
+              - name: page
+                type: umbrella.ServerSettingsScreen.SettingsPage
+            return:
+              - type: ISUIElement
+          - name: onTickBoxSelected
+            parameters:
+              - name: _
+                type: integer
+              - name: value
+                type: boolean
+              - name: optionName
+                type: string
+          - name: onComboBoxSelected
+            parameters:
+              - name: combo
+                type: ISComboBox
+              - name: optionName
+                type: string
+          - name: settingsToUI
+            parameters:
+              - name: options
+                type: SandboxOptions
+          - name: settingsFromUI
+            parameters:
+              - name: options
+                type: SandboxOptions
+          - name: onMouseDownListbox
+            parameters:
+              - name: item
+                type: umbrella.SandboxOptionsScreen.ListBoxItem
+          - name: onResolutionChange
+            parameters:
+              - name: oldw
+                type: number
+              - name: oldh
+                type: number
+              - name: neww
+                type: number
+              - name: newh
+                type: number
+          - name: onPanelChange
+          - name: onPresetChange
+          - name: addPresetToList
+            parameters:
+              - name: fileName
+                type: string
+              - name: text
+                type: string
+              - name: userDefined
+                type: boolean
+          - name: loadPresets
+          - name: getNormalPreset
+            return:
+              - type: umbrella.SandboxOptionsScreen.Preset
+          - name: getSurvivalPreset
+            return:
+              - type: umbrella.SandboxOptionsScreen.Preset
+          - name: getHardPreset
+            return:
+              - type: umbrella.SandboxOptionsScreen.Preset
+          - name: getBeginnerPreset
+            return:
+              - type: umbrella.SandboxOptionsScreen.Preset
+          - name: getApocalypsePreset
+            return:
+              - type: umbrella.SandboxOptionsScreen.Preset
+          - name: getSurvivorPreset
+            return:
+              - type: umbrella.SandboxOptionsScreen.Preset
+          - name: getBuilderPreset
+            return:
+              - type: umbrella.SandboxOptionsScreen.Preset
+          - name: prerender
+          - name: render
+          - name: setSandboxVars
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onSavePreset
+            parameters:
+              - name: button
+                type: ISButton
+              - name: joypadData
+                type: JoypadData
+          - name: deletePresetStep1
+            parameters:
+              - name: preset
+                type: umbrella.SandboxOptionsScreen.Preset
+          - name: deletePresetStep2
+            parameters:
+              - name: button
+                type: ISButton
+              - name: joypadData
+                type: JoypadData
+          - name: onValidateSavePreset
+            parameters:
+              - name: text
+                type: string
+                nullable: true
+            return:
+              - type: boolean
+          - name: onSaveDeveloperPreset
+            parameters:
+              - name: button
+                type: ISButton
+              - name: joypadData
+                type: JoypadData
+          - name: setVisible
+            parameters:
+              - name: visible
+                type: boolean
+              - name: joypadData
+                type: JoypadData
+                nullable: true
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateStart
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateStart_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+      SandboxOptions.SandboxOptionsScreenListBox:
+        extends: ISScrollingListBox
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"SandboxOptionsScreenListBox"'
+        methods:
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+      SandboxOptions.SandboxOptionsScreenPanel:
+        extends: ISPanelJoypad
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"SandboxOptionsScreenPanel"'
+        fields:
+          entryText:
+            type: table<string, string>
+          joypadButtons:
+            type: ISButton[]
+        methods:
+          - name: prerender
+          - name: render
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+                nullable: true
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+      SandboxOptions.SandboxOptionsScreenPresetPanel:
+        extends: ISPanelJoypad
+        local: true
+        staticFields:
+          Type:
+            defaultValue: '"SandboxOptionsScreenPresetPanel"'
+        methods:
+          - name: render
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+      SandboxOptions.SandboxAdvancedControl:
+        extends: ISPanel
+        local: true
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: setting
+              - name: tooltip
+        staticFields:
+          Type:
+            defaultValue: '"SandboxAdvancedControl"'
+        fields:
+          entry:
+            type: ISTextEntryBox
+          combo:
+            type: ISComboBox
+          setting:
+            type: umbrella.ServerSettingsScreen.Setting
+          tooltip:
+            type: string
+            nullable: true
+        methods:
+          - name: createChildren
+          - name: onComboBoxSelected
+            parameters:
+              - name: combo
+                type: ISComboBox
+              - name: control
+                type: SandboxAdvancedControl
+              - name: setting
+                type: string
+          - name: advancedCheckboxChanged
+            parameters:
+              - name: bool
+                type: boolean
+          - name: getText
+            return:
+              - type: string
+          - name: setJoypadFocused
+            parameters:
+              - name: focused
+                type: boolean
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: setText
+            parameters:
+              - name: value
+                type: string
+      umbrella.SandboxOptionsScreen.Preset:
+        fields:
+          name:
+            type: string
+          options:
+            type: SandboxOptions
+          userDefined:
+            type: boolean
+            nullable: true
+      umbrella.SandboxOptionsScreen.ListBoxItem:
+        fields:
+          page:
+            type: umbrella.ServerSettingsScreen.SettingsPage
+          panel:
+            type: ISUIElement

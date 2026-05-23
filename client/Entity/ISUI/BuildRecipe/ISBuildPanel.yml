@@ -1,0 +1,189 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBuildPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: craftBench
+                type: CraftBench
+                nullable: true
+              - name: isoObject
+                type: IsoObject
+              - name: recipeQuery
+                type: string
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISBuildPanel"'
+          drawDirty:
+            type: boolean
+            nullable: true
+        fields:
+          rootTable:
+            type: ISTableLayout
+            nullable: true
+          recipeListMode:
+            type: boolean
+          inventoryPanel:
+            type: ISCraftInventoryPanel
+            nullable: true
+          inventoryPanelColumn:
+            type: ISTableLayoutColumn
+            nullable: true
+          craftRecipePanel:
+            type: ISBuildRecipePanel
+          categoryColumn:
+            type: ISTableLayoutColumn
+          recipeCategories:
+            type: ISWidgetRecipeCategories
+          recipeColumn:
+            type: ISTableLayoutColumn
+          recipesPanel:
+            type: ISWidgetRecipesPanel
+          playerLastSquare:
+            type: IsoGridSquare
+            nullable: true
+          _filterString:
+            type: string
+            nullable: true
+          _filterMode:
+            type: string
+            nullable: true
+          _categoryString:
+            type: string
+            nullable: true
+          buildEntity:
+            type: ISBuildIsoEntity
+            nullable: true
+          logic:
+            type: BuildLogic
+          player:
+            type: IsoPlayer
+          craftBench:
+            type: CraftBench
+            nullable: true
+          isoObject:
+            type: IsoObject
+          recipeQuery:
+            type: string
+            nullable: true
+          leftHandedMode:
+            type: boolean
+          drawDebugLines:
+            type: boolean
+          windowInstance:
+            type: ISUIElement
+            nullable: true
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: refreshList
+          - name: ReselectRecipeOrFirst
+            parameters:
+              - name: _recipe
+                type: CraftRecipe
+          - name: createInventoryPanel
+          - name: createRecipePanel
+          - name: createRecipeCategoryColumn
+          - name: onDoubleClick
+            parameters:
+              - name: item
+                type: CraftRecipe
+          - name: createRecipesColumn
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: hasPlayerMoved
+            return:
+              - type: boolean
+                nullable: true
+          - name: updateContainers
+            parameters:
+              - name: _forceRefresh
+                type: boolean
+                nullable: true
+          - name: setRecipeListMode
+            parameters:
+              - name: _useListMode
+                type: boolean
+          - name: getSelectedRecipe
+            return:
+              - type: CraftRecipe
+          - name: setRecipeList
+            parameters:
+              - name: _recipeList
+                type: ArrayList<CraftRecipe>
+          - name: setRecipes
+            parameters:
+              - name: _recipeQuery
+          - name: onRecipeChanged
+            parameters:
+              - name: _recipe
+                type: CraftRecipe
+          - name: setRecipeFilter
+            parameters:
+              - name: _filterString
+                type: string
+                nullable: true
+              - name: _filterMode
+                type: string
+                nullable: true
+          - name: filterRecipeList
+          - name: setSortMode
+            parameters:
+              - name: _sortMode
+          - name: sortRecipeList
+          - name: onCategoryChanged
+            parameters:
+              - name: _category
+                type: string
+          - name: onUpdateContainers
+          - name: createBuildIsoEntity
+            parameters:
+              - name: dontSetDrag
+                type: boolean
+          - name: updateManualInputs
+          - name: onUpdateRecipeList
+            parameters:
+              - name: _recipeList
+                type: ArrayList<CraftRecipe>
+          - name: onManualSelectChanged
+            parameters:
+              - name: _manualSelectInputs
+          - name: onShowManualSelectChanged
+            parameters:
+              - name: _showManualSelectInputs
+                type: boolean
+          - name: OnCloseWindow
+          - name: onStopCraft
+          - name: getCategoryList
+            return:
+              - type: ArrayList<string>
+        staticMethods:
+          - name: SetDragItem
+            parameters:
+              - name: item
+                type: table
+              - name: playerNum
+                type: integer

@@ -1,0 +1,63 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISForageAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: iconID
+                type: string
+              - name: itemDataList
+                type: table[]
+              - name: targetContainer
+                type: ItemContainer
+              - name: itemType
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISForageAction"'
+        fields:
+          itemCount:
+            type: integer
+          targetContainer:
+            type: ItemContainer
+          itemType:
+            type: string
+          itemDataList:
+            type: table[]
+          iconID:
+            type: string
+          manager:
+            type: ISSearchManager
+          forageIcon:
+            type: ISForageIcon
+          zoneData:
+            type: umbrella.Foraging.ZoneData
+            nullable: true
+          itemDef:
+            type: umbrella.Foraging.ItemDefinition
+          currentTime:
+            type: number
+          started:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: stop
+          - name: start
+          - name: perform
+          - name: forage
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

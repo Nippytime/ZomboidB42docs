@@ -1,0 +1,227 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISTiledIconListBox.OnClickTile:
+        - type: "fun(target: unknown, data: unknown)"
+      umbrella.ISTiledIconListBox.OnHoverTile:
+        - type: "fun(target: unknown, data: unknown)"
+      umbrella.ISTiledIconListBox.OnRenderTile:
+        - type: "fun(listbox: ISTiledIconListBox, tileData: unknown, x: number, y: number,
+            width: number, height: number, isMouseOver: boolean)"
+      umbrella.ISTiledIconListBox.OnPageChanged:
+        - type: "fun(target: unknown, page: integer)"
+    classes:
+      ISTiledIconListBox:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: dataList
+                type: ArrayList
+        staticFields:
+          Type:
+            defaultValue: '"ISTiledIconListBox"'
+        fields:
+          mouseOverTile:
+            type: number
+          columns:
+            type: integer
+          rows:
+            type: integer
+          columnWidth:
+            type: number
+          rowHeight:
+            type: number
+          tileCount:
+            type: integer
+          pages:
+            type: integer
+          currentPage:
+            type: integer
+          selectedTileData:
+            type: unknown
+            nullable: true
+          lastMouseOverTile:
+            type: number
+          dataArrayList:
+            type: ArrayList
+          callbackTarget:
+            type: boolean
+          onRenderTile:
+            type: umbrella.ISTiledIconListBox.OnRenderTile | false
+          onHoverTile:
+            type: umbrella.ISTiledIconListBox.OnHoverTile | false
+          onClickTile:
+            type: umbrella.ISTiledIconListBox.OnClickTile | false
+          iconWidth:
+            type: number
+          iconHeight:
+            type: number
+          tilePadX:
+            type: number
+          tilePadY:
+            type: number
+          tileWidth:
+            type: number
+          tileHeight:
+            type: number
+          tileMarginX:
+            type: number
+          tileMarginY:
+            type: number
+          minimumColumns:
+            type: integer
+          minimumRows:
+            type: integer
+          margin:
+            type: number
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+          onPageChanged:
+            type: umbrella.ISTiledIconListBox.OnPageChanged
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: getTileForCoordinate
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+            return:
+              - type: unknown
+                nullable: true
+          - name: getTileIndexForCoordinate
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+            return:
+              - type: integer
+          - name: getDataElement
+            parameters:
+              - name: _index
+                type: integer
+            return:
+              - type: unknown
+                nullable: true
+          - name: calculateTiles
+          - name: renderTile
+            parameters:
+              - name: _tileData
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+              - name: _mouseover
+                type: boolean
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseWheel
+            parameters:
+              - name: _del
+                type: number
+            return:
+              - type: boolean
+          - name: onPageScrolled
+            parameters:
+              - name: _newPage
+                type: integer
+          - name: setCurrentPage
+            parameters:
+              - name: _page
+                type: integer
+          - name: getCurrentPage
+            return:
+              - type: integer
+          - name: pageChanged
+          - name: getPages
+            return:
+              - type: integer
+          - name: focusPageOnSelectedTile
+          - name: getDataElementColumnRow
+            parameters:
+              - name: _tileData
+                nullable: true
+            return:
+              - type: number
+              - type: number
+          - name: trySelectDataElement
+            parameters:
+              - name: _index
+                type: integer
+            return:
+              - type: unknown
+                nullable: true
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData

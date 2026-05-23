@@ -1,0 +1,48 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCutHair:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: hairStyle
+                type: string
+              - name: item
+                type: InventoryItem
+                nullable: true
+              - name: maxTimeInit
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISCutHair"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          hairStyle:
+            type: string
+          item:
+            type: InventoryItem
+            nullable: true
+          maxTimeInit:
+            type: number
+          maxTime:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: stopSound
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

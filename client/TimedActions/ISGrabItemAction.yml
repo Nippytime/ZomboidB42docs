@@ -1,0 +1,56 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISGrabItemAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: IsoWorldInventoryObject
+              - name: time
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISGrabItemAction"'
+        fields:
+          transactionId:
+            type: number
+          started:
+            type: boolean
+          item:
+            type: IsoWorldInventoryObject
+          queueList:
+            type: umbrella.ISGrabItemAction.QueueItem[]
+          ignoreAction:
+            type: boolean
+          loopedAction:
+            type: boolean
+          destContainer:
+            type: ItemContainer
+          sourceContainer:
+            type: ItemContainer
+            nullable: true
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: transferItem
+            parameters:
+              - name: item
+                type: IsoWorldInventoryObject
+          - name: checkQueueList
+      umbrella.ISGrabItemAction.QueueItem:
+        fields:
+          items:
+            type: IsoWorldInventoryObject[]
+          time:
+            type: number
+          type:
+            type: string

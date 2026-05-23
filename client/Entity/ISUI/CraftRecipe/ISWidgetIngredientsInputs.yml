@@ -1,0 +1,93 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetIngredientsInputs:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: logic
+                type: BaseCraftingLogic
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetIngredientsInputs"'
+        fields:
+          inputsLabel:
+            type: ISLabel
+          panel:
+            type: ISPanel
+          inputs:
+            type: ISWidgetInput[]
+          player:
+            type: IsoPlayer
+          logic:
+            type: BaseCraftingLogic
+          interactiveMode:
+            type: boolean
+          textureLink:
+            type: Texture
+          margin:
+            type: number
+          itemSpacing:
+            type: number
+          itemMargin:
+            type: number
+          itemNameMaxLines:
+            type: number
+          doToolTip:
+            type: boolean
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: addInput
+            parameters:
+              - name: _inputScript
+                type: InputScript
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onRebuildItemNodes
+            parameters:
+              - name: _inputItems
+          - name: onRecipeChanged
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData

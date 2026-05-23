@@ -1,0 +1,73 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWidgetCraftProgress:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: entity
+                type: GameEntity
+              - name: callbackTarget
+                type: unknown
+                nullable: true
+              - name: _styleBar
+                type: string
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISWidgetCraftProgress"'
+        fields:
+          progressBar:
+            type: ISProgressBar
+            nullable: true
+          originalBarWidth:
+            type: number
+          originalBarHeight:
+            type: number
+          player:
+            type: IsoPlayer
+          entity:
+            type: GameEntity
+          callbackTarget:
+            type: unknown
+            nullable: true
+          margin:
+            type: number
+          styleBar:
+            type: string
+            nullable: true
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+              - name: _preferredHeight
+                type: number
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onGetProgress
+            return:
+              - type: number

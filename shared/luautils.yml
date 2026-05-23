@@ -1,0 +1,364 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      luautils:
+        staticMethods:
+          - name: stringStarts
+            parameters:
+              - name: String
+                type: string
+              - name: Start
+                type: string
+            return:
+              - type: boolean
+          - name: stringEnds
+            parameters:
+              - name: String
+                type: string
+              - name: End
+                type: string
+            return:
+              - type: boolean
+          - name: trim
+            parameters:
+              - name: s
+                type: string
+            return:
+              - type: string
+          - name: splitJavaStyle
+            parameters:
+              - name: pString
+                type: string
+              - name: pPattern
+                type: string
+            return:
+              - type: string[]
+          - name: indexOf
+            parameters:
+              - name: table1
+                type: string
+              - name: value
+                type: unknown
+            return:
+              - type: integer
+          - name: tableContains
+            parameters:
+              - name: table2
+                type: string
+              - name: value
+                type: unknown
+            return:
+              - type: boolean
+          - name: getNextTiles
+            parameters:
+              - name: cell
+                type: IsoCell
+              - name: startingGrid
+                type: IsoGridSquare
+              - name: range
+                type: number
+            return:
+              - type: IsoGridSquare[]
+          - name: walk
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+              - name: keepActions
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: walkAdj
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+              - name: keepActions
+                type: boolean
+                nullable: true
+              - name: excludeList
+                type: IsoGridSquare[]
+                nullable: true
+            return:
+              - type: boolean
+          - name: walkAdjTest
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: walkAdjAltTest
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+              - name: altSquare
+                type: IsoGridSquare
+                nullable: true
+              - name: keepActions
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+          - name: getCorrectSquareForWall
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: IsoGridSquare
+          - name: walkAdjWall
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+              - name: north
+                type: boolean
+              - name: keepActions
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+          - name: walkAdjWindowOrDoor
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+              - name: item
+                type: IsoObject
+              - name: keepActions
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+          - name: walkAdjFence
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+              - name: object
+                type: IsoObject
+              - name: keepActions
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+          - name: walkToContainer
+            parameters:
+              - name: container
+                type: ItemContainer
+              - name: playerNum
+                type: integer
+            return:
+              - type: boolean
+          - name: haveToBeTransfered
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: dontWalk
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+          - name: haveToBeTransferedWhileTrading
+            parameters:
+              - name: player
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: dontWalk
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+          - name: round
+            parameters:
+              - name: num
+                type: number
+              - name: idp
+                type: integer
+                nullable: true
+            return:
+              - type: number
+          - name: updatePerksXp
+            parameters:
+              - name: perks
+                type: PerkFactory.Perk
+              - name: player
+                type: IsoPlayer
+          - name: equipItems
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _primItemToEquip
+                type: InventoryItem | string
+                nullable: true
+              - name: _scndItemToEquip
+                type: InventoryItem | string
+                nullable: true
+            return:
+              - type: InventoryItem
+                nullable: true
+              - type: InventoryItem
+                nullable: true
+          - name: okModal
+            parameters:
+              - name: _text
+                type: string
+              - name: _centered
+                type: boolean
+              - name: _width
+                type: number
+                nullable: true
+              - name: _height
+                type: number
+                nullable: true
+              - name: _posX
+                type: number
+                nullable: true
+              - name: _posY
+                type: number
+                nullable: true
+          - name: walkToObject
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _object
+                type: IsoObject
+              - name: _cancelTA
+                type: boolean
+                nullable: true
+            return:
+              - type: boolean
+          - name: weaponLowerCondition
+            parameters:
+              - name: _weapon
+                type: HandWeapon
+              - name: _character
+                type: IsoPlayer
+              - name: _replace
+                type: boolean
+                nullable: true
+              - name: _chance
+                type: integer
+                nullable: true
+          - name: isEquipped
+            parameters:
+              - name: _item
+                type: InventoryItem
+              - name: _player
+                type: IsoPlayer
+            return:
+              - type: 0 | 1 | 2 | 3
+          - name: split
+            parameters:
+              - name: inputstr
+                type: string
+              - name: sep
+                type: string
+            return:
+              - type: string[]
+          - name: getConditionRGB
+            parameters:
+              - name: condition
+                type: integer
+            return:
+              - type: umbrella.RGB
+          - name: isSquareAdjacentToSquare
+            parameters:
+              - name: _square1
+                type: IsoGridSquare
+              - name: _square2
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: countItemsRecursive
+            parameters:
+              - name: _containerList
+                type: ItemContainer[]
+              - name: _itemsNum
+                type: integer
+                nullable: true
+            return:
+              - type: integer
+          - name: findRootInventory
+            parameters:
+              - name: _inventory
+                type: ItemContainer
+            return:
+              - type: ItemContainer
+          - name: roughlyEqual
+            parameters:
+              - name: _value
+                type: number
+              - name: _value2
+                type: number
+              - name: _delta
+                type: number
+            return:
+              - type: boolean
+          - name: lerp
+            parameters:
+              - name: _sourceValue
+                type: number
+              - name: _destinationValue
+                type: number
+              - name: _stepRate
+                type: number
+              - name: _finalStepRatio
+                type: number
+                nullable: true
+            return:
+              - type: number
+          - name: exportGlobals
+            parameters:
+              - name: _print
+                type: boolean
+                nullable: true
+              - name: _save
+                type: boolean
+                nullable: true
+              - name: _test
+                type: boolean
+                nullable: true
+          - name: packString
+            parameters:
+              - name: stringTable
+                type: string[]
+              - name: sep
+                type: string
+            return:
+              - type: string
+                nullable: true
+          - name: unpackString
+            parameters:
+              - name: text
+                type: string
+              - name: sep
+                type: string
+            return:
+              - type: ...string
+    functions:
+      - name: round
+        parameters:
+          - name: num
+            type: number
+          - name: idp
+            type: integer
+            nullable: true
+        return:
+          - type: integer

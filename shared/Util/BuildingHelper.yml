@@ -1,0 +1,27 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      BuildingHelper:
+        staticMethods:
+          - name: getFreeTilesFromRandomRoomInBuilding
+            parameters:
+              - name: building
+                type: BuildingDef
+              - name: count
+                type: integer
+            return:
+              - type: IsoGridSquare[]
+          - name: getFreeTileFromBuilding
+            parameters:
+              - name: building
+                type: BuildingDef
+            return:
+              - type: IsoGridSquare
+                nullable: true
+          - name: getShovelAnim
+            parameters:
+              - name: item
+                type: InventoryItem
+            return:
+              - type: CharacterActionAnims

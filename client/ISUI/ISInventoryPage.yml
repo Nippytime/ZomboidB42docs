@@ -1,0 +1,551 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISInventoryPage:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: inventory
+                type: ItemContainer
+              - name: onCharacter
+                type: boolean
+                nullable: true
+              - name: zoom
+                type: number
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISInventoryPage"'
+          bagSoundDelay:
+            defaultValue: "0.5"
+          bagSoundTime:
+            defaultValue: "0"
+          renderDirty:
+            type: boolean
+            nullable: true
+          floorContainer:
+            type: table<integer, ItemContainer>
+            nullable: true
+        fields:
+          render3DItemRot:
+            type: number
+          inventoryPane:
+            type: ISInventoryPane
+          controlsUI:
+            type: ISLootWindowContainerControls | ISInventoryWindowContainerControls
+          lootAll:
+            type: ISButton
+          containerButtonPanel:
+            type: ISInventoryPageContainerButtonPanel
+          resizeWidget:
+            type: ISResizeWidget
+          resizeWidget2:
+            type: ISResizeWidget
+          closeButton:
+            type: ISButton
+          infoButton:
+            type: ISButton
+          pinButton:
+            type: ISButton
+          collapseButton:
+            type: ISButton
+          totalWeight:
+            type: number
+          totalItems:
+            type: number
+          infoText:
+            type: string
+            nullable: true
+          infoRichText:
+            type: ISModalRichText
+          pin:
+            type: boolean
+          coloredInv:
+            type: ItemContainer
+            nullable: true
+          capacity:
+            type: number
+          collapseCounter:
+            type: number
+          isCollapsed:
+            type: boolean
+          lastSquare:
+            type: IsoGridSquare
+          lastDir:
+            type: IsoDirections
+          backpackChoice:
+            type: number
+          blinkContainer:
+            type: boolean
+          blinkContainerType:
+            type: string
+            nullable: true
+          forceSelectedContainer:
+            type: ItemContainer
+            nullable: true
+          forceSelectedContainerTime:
+            type: number
+          blinkAlphaContainer:
+            type: number
+          blinkAlphaIncreaseContainer:
+            type: boolean
+          blinkAlpha:
+            type: number
+          blinkAlphaIncrease:
+            type: boolean
+          selectedContainerForSound:
+            nullable: true
+          title:
+            type: string
+            nullable: true
+          inventory:
+            type: ItemContainer
+          downX:
+            type: number
+          downY:
+            type: number
+          lastMouseWheelMS:
+            type: number
+          buttonPool:
+            type: ISButton[]
+          lookDir:
+            type: IsoDirections
+          selectedButton:
+            type: ISButton
+          zoom:
+            type: number
+          onCharacter:
+            type: boolean
+          titlebarbkg:
+            type: Texture
+          statusbarbkg:
+            type: Texture
+          resizeimage:
+            type: Texture
+          invbasic:
+            type: Texture
+          infoBtn:
+            type: Texture
+          closebutton:
+            type: Texture
+          collapsebutton:
+            type: Texture
+          pinbutton:
+            type: Texture
+          conDefault:
+            type: Texture
+          highlightColors:
+            type: umbrella.RGB
+          containerIconMaps:
+            type: ContainerButtonIcons
+          backpacks:
+            type: ISButton[]
+          titleFont:
+            type: UIFont
+          titleFontHgt:
+            type: number
+          buttonSize:
+            type: integer
+          visibleTarget:
+            type: ISInventoryPage
+          visibleFunction:
+            type: function
+          disableJoypadNavigation:
+            type: boolean
+          mouseOverButton:
+            type: ISButton
+            nullable: true
+          render3DItemXOffset:
+            type: number
+            nullable: true
+          render3DItemYOffset:
+            type: number
+            nullable: true
+          render3DItemZOffset:
+            type: number
+            nullable: true
+          selectedSqDrop:
+            type: IsoGridSquare
+            nullable: true
+        methods:
+          - name: initialise
+          - name: onChangeFilter
+            parameters:
+              - name: selected
+                type: integer
+          - name: titleBarHeight
+            parameters:
+              - name: selected
+            return:
+              - type: number
+          - name: createChildren
+          - name: lootAll
+          - name: updateItemCount
+          - name: refreshWeight
+          - name: transferAll
+          - name: toggleStove
+          - name: syncAddFuel
+          - name: syncPutOut
+          - name: syncLightFire
+          - name: setInfo
+            parameters:
+              - name: text
+                type: string
+                nullable: true
+          - name: onInfo
+          - name: collapse
+          - name: setPinned
+          - name: isRemoveButtonVisible
+            return:
+              - type: boolean
+          - name: getContainerParent
+            parameters:
+              - name: container
+                nullable: true
+            return:
+              - type: unknown
+                nullable: true
+          - name: updateContainerHighlight
+          - name: update
+          - name: setBlinkingContainer
+            parameters:
+              - name: blinking
+                type: boolean
+              - name: containerType
+                type: string
+                nullable: true
+          - name: setForceSelectedContainer
+            parameters:
+              - name: container
+                type: ItemContainer
+              - name: ms
+                type: number
+                nullable: true
+          - name: prerender
+          - name: drawTextRight
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+          - name: drawText
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+          - name: close
+          - name: onToggleVisible
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: getCurrentBackpackIndex
+            return:
+              - type: integer
+          - name: prevUnlockedContainer
+            parameters:
+              - name: index
+                type: integer
+              - name: wrap
+                type: boolean
+            return:
+              - type: integer
+          - name: nextUnlockedContainer
+            parameters:
+              - name: index
+                type: integer
+              - name: wrap
+                type: boolean
+            return:
+              - type: integer
+          - name: selectPrevContainer
+          - name: selectNextContainer
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: ensureVisible
+            parameters:
+              - name: index
+                type: integer
+          - name: onJoypadDirLeft
+          - name: onJoypadDirRight
+          - name: render
+          - name: dropItemsInContainer
+            parameters:
+              - name: button
+                type: ISButton
+            return:
+              - type: boolean
+          - name: playContainerOpenCloseSounds
+            parameters:
+              - name: button
+                type: ISButton
+          - name: playContainerOpenSound
+            parameters:
+              - name: container
+            return:
+              - type: boolean
+                nullable: true
+          - name: playContainerCloseSound
+            parameters:
+              - name: container
+                nullable: true
+            return:
+              - type: boolean
+                nullable: true
+          - name: updateContainerOpenCloseSounds
+          - name: selectContainer
+            parameters:
+              - name: button
+                type: ISButton
+          - name: setNewContainer
+            parameters:
+              - name: inventory
+                type: ItemContainer
+          - name: selectButtonForContainer
+            parameters:
+              - name: container
+                type: ItemContainer
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: collapseNow
+          - name: isCycleContainerKeyDown
+            return:
+              - type: boolean
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: onBackpackMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onBackpackClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onBackpackMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onBackpackRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: addContainerButton
+            parameters:
+              - name: container
+                type: ItemContainer
+              - name: texture
+                type: Texture
+                nullable: true
+              - name: name
+                type: string
+              - name: tooltip
+                type: string
+                nullable: true
+            return:
+              - type: ISButton
+          - name: checkExplored
+            parameters:
+              - name: container
+                type: ItemContainer
+              - name: playerObj
+                type: IsoPlayer
+          - name: refreshBackpacks
+          - name: onRenameContainerClick
+            parameters:
+              - name: button
+                type: ISButton
+              - name: player
+                type: IsoPlayer
+              - name: container
+                type: ItemContainer
+          - name: onMouseOverButton
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseOutButton
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: canPutIn
+            return:
+              - type: boolean
+          - name: RestoreLayout
+            parameters:
+              - name: name
+                type: string
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: SaveLayout
+            parameters:
+              - name: name
+                type: string
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: onInventoryContainerSizeChanged
+          - name: removeAll
+          - name: render3DItemPreview
+        staticMethods:
+          - name: OnObjectHighlighted
+            parameters:
+              - name: playerNum
+                type: integer
+              - name: object
+                type: IsoObject
+              - name: isHighlighted
+                type: boolean
+          - name: loadWeight
+            parameters:
+              - name: inv
+                type: ItemContainer
+            return:
+              - type: number
+          - name: dirtyUI
+          - name: GetFloorContainer
+            parameters:
+              - name: playerNum
+                type: integer
+            return:
+              - type: ItemContainer
+          - name: onRenameContainer
+            parameters:
+              - name: container
+              - name: player
+          - name: onKeyPressed
+            parameters:
+              - name: key
+                type: integer
+          - name: toggleInventory
+          - name: ContainerSizeChanged
+          - name: onInventoryFontChanged
+          - name: OnContainerUpdate
+            parameters:
+              - name: object
+                nullable: true
+          - name: ongamestart
+      ISInventoryPageContainerButtonPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISInventoryPageContainerButtonPanel"'
+        methods:
+          - name: prerender
+          - name: render
+          - name: keepSelectedButtonVisible

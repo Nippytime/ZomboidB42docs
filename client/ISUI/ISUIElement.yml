@@ -1,0 +1,1464 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISUIElement.MouseDoubleClick:
+        - type: "fun(target: ISUIElement, x: number, y: number)"
+      umbrella.ISUIElement.ShrinkWrapPredicate:
+        - type: "fun(child: ISUIElement): boolean"
+    classes:
+      ISUIElement:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+                nullable: true
+              - name: y
+                type: number
+                nullable: true
+              - name: width
+                type: number
+                nullable: true
+              - name: height
+                type: number
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISUIElement"'
+          IDMax:
+            defaultValue: "1"
+        fields:
+          children:
+            type: table<integer, ISUIElement>
+          ID:
+            type: integer
+          controller:
+            type: integer
+            nullable: true
+          anchorBottom:
+            type: boolean
+          anchorTop:
+            type: boolean
+          anchorLeft:
+            type: boolean
+          anchorRight:
+            type: boolean
+          x:
+            type: number
+          y:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+          enabled:
+            type: boolean
+            nullable: true
+          minimumWidth:
+            type: number
+          minimumHeight:
+            type: number
+          joyfocus:
+            nullable: true
+          joypadFocused:
+            type: boolean
+          joypadNavigatePrevRect:
+            type: table
+            nullable: true
+          joypadNavigateTransition:
+            type: table
+            nullable: true
+          javaObject:
+            type: UIElement
+          removed:
+            type: boolean
+          vscroll:
+            type: ISScrollBar
+            nullable: true
+          hscroll:
+            type: ISScrollBar
+            nullable: true
+          onMouseDoubleClick:
+            type: umbrella.ISUIElement.MouseDoubleClick
+          target:
+            type: unknown
+            nullable: true
+          scrollwidth:
+            type: number
+          wantKeyEvents:
+            type: boolean
+            nullable: true
+          wantExtraMouseEvents:
+            type: boolean
+            nullable: true
+          forceCursorVisible:
+            type: boolean
+            nullable: true
+          dock:
+            type: string
+          joypadNavigate:
+            type: table
+            nullable: true
+            tags:
+              - StubGen_Extra
+          internal:
+            type: string
+            nullable: true
+            tags:
+              - StubGen_Extra
+          parent:
+            type: ISUIElement
+            nullable: true
+            tags:
+              - StubGen_Extra
+          overrideBPrompt:
+            type: boolean
+            nullable: true
+            tags:
+              - StubGen_Extra
+          isValidPrompt:
+            type: "fun(self: ISUIElement): boolean"
+            nullable: true
+            tags:
+              - StubGen_Extra
+          getAPrompt:
+            type: "fun(self: ISUIElement): string?"
+            nullable: true
+            tags:
+              - StubGen_Extra
+          getBPrompt:
+            type: "fun(self: ISUIElement): string?"
+            nullable: true
+            tags:
+              - StubGen_Extra
+          getXPrompt:
+            type: "fun(self: ISUIElement): string?"
+            nullable: true
+            tags:
+              - StubGen_Extra
+          getYPrompt:
+            type: "fun(self: ISUIElement): string?"
+            nullable: true
+            tags:
+              - StubGen_Extra
+          getRBPrompt:
+            type: "fun(self: ISUIElement): string?"
+            nullable: true
+            tags:
+              - StubGen_Extra
+          getLBPrompt:
+            type: "fun(self: ISUIElement): string?"
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: initialise
+          - name: setController
+            parameters:
+              - name: c
+                type: integer
+          - name: getController
+            return:
+              - type: integer
+                nullable: true
+          - name: setAnchorBottom
+            parameters:
+              - name: bAnchor
+                type: boolean
+          - name: setAnchorTop
+            parameters:
+              - name: bAnchor
+                type: boolean
+          - name: setAnchorLeft
+            parameters:
+              - name: bAnchor
+                type: boolean
+          - name: setAnchorRight
+            parameters:
+              - name: bAnchor
+                type: boolean
+          - name: setAnchorsTBLR
+            parameters:
+              - name: bAnchorT
+                type: boolean
+              - name: bAnchorB
+                type: boolean
+              - name: bAnchorL
+                type: boolean
+              - name: bAnchorR
+                type: boolean
+          - name: setAnchors
+            parameters:
+              - name: bAnchor
+                type: boolean
+          - name: getKeepOnScreen
+            return:
+              - type: boolean
+          - name: setX
+            parameters:
+              - name: x
+                type: number
+          - name: setY
+            parameters:
+              - name: y
+                type: number
+          - name: setWidth
+            parameters:
+              - name: w
+                type: number
+          - name: setHeight
+            parameters:
+              - name: h
+                type: number
+          - name: getWidth
+            return:
+              - type: number
+          - name: getHeight
+            return:
+              - type: number
+          - name: getRight
+            return:
+              - type: number
+          - name: getBottom
+            return:
+              - type: number
+          - name: getXScroll
+            return:
+              - type: number
+          - name: setWidthAndParentWidth
+            parameters:
+              - name: wi
+                type: number
+          - name: setHeightAndParentHeight
+            parameters:
+              - name: h
+                type: number
+          - name: getYScroll
+            return:
+              - type: number
+          - name: getMouseX
+            return:
+              - type: number
+          - name: getMouseY
+            return:
+              - type: number
+          - name: getCentreX
+            return:
+              - type: number
+          - name: getCentreY
+            return:
+              - type: number
+          - name: getX
+            return:
+              - type: number
+          - name: getY
+            return:
+              - type: number
+          - name: isEnabled
+            return:
+              - type: boolean
+          - name: setEnabled
+            parameters:
+              - name: en
+                type: boolean
+          - name: getAbsoluteX
+            return:
+              - type: number
+          - name: isMouseOver
+            return:
+              - type: boolean
+          - name: isPointOver
+            parameters:
+              - name: screenX
+                type: number
+              - name: screenY
+                type: number
+            return:
+              - type: boolean
+          - name: isMouseOverChild
+            return:
+              - type: boolean
+          - name: isPointOverChild
+            parameters:
+              - name: screenX
+              - name: screenY
+            return:
+              - type: boolean
+          - name: suspendStencil
+          - name: resumeStencil
+          - name: setStencilRect
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+            return:
+              - type: nil
+          - name: setStencilCircle
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+            return:
+              - type: unknown
+          - name: clearStencilRect
+            return:
+              - type: nil
+          - name: repaintStencilRect
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+            return:
+              - type: nil
+          - name: clampStencilRectToParent
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+            return:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+          - name: ignoreWidthChange
+            return:
+              - type: nil
+          - name: getMaxDrawHeight
+            return:
+              - type: number
+          - name: setMaxDrawHeight
+            parameters:
+              - name: height
+                type: number
+            return:
+              - type: nil
+          - name: clearMaxDrawHeight
+            return:
+              - type: nil
+          - name: ignoreHeightChange
+            return:
+              - type: nil
+          - name: getAbsoluteY
+            return:
+              - type: number
+          - name: recalcSize
+            return:
+              - type: nil
+          - name: onResize
+          - name: setCapture
+            parameters:
+              - name: bCapture
+                type: boolean
+          - name: getIsCaptured
+            return:
+              - type: boolean
+          - name: isCapture
+            return:
+              - type: unknown
+          - name: setFollowGameWorld
+            parameters:
+              - name: bFollow
+                type: boolean
+          - name: getIsFollowGameWorld
+            return:
+              - type: boolean
+          - name: isFollowGameWorld
+            return:
+              - type: boolean
+          - name: setRenderThisPlayerOnly
+            parameters:
+              - name: playerNum
+                type: integer
+          - name: getRenderThisPlayerOnly
+            return:
+              - type: integer
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: setJoypadFocused
+            parameters:
+              - name: focused
+                type: boolean
+              - name: joypadData
+                type: JoypadData
+          - name: setVisible
+            parameters:
+              - name: bVisible
+                type: boolean
+          - name: getJavaObject
+            return:
+              - type: UIElement
+          - name: getIsVisible
+            return:
+              - type: boolean
+          - name: isVisible
+            return:
+              - type: boolean
+          - name: isReallyVisible
+            return:
+              - type: boolean
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadButtonReleased
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadButtonReleased_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirLeft_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivate
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivate_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: hasConflictWithJoypadNavigateStart
+            return:
+              - type: boolean
+          - name: getJoypadNavigateStartDelay
+            return:
+              - type: number
+          - name: onJoypadNavigateStart
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateEnd
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateParent
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadNavigateStart_Descendant
+            parameters:
+              - name: descendant
+                type: ISUIElement
+              - name: joypadData
+                type: JoypadData
+          - name: renderJoypadFocus
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+          - name: renderJoypadNavigateOverlay
+            parameters:
+              - name: playerNum
+                type: integer
+          - name: renderJoypadNavigateCurrent
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+          - name: renderJoypadNavigateSelf
+          - name: renderJoypadNavigateHighlight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+              - name: child
+                type: ISUIElement
+          - name: renderJoypadNavigateTexture
+            parameters:
+              - name: joypadData
+                type: JoypadData
+              - name: child
+                type: ISUIElement
+              - name: texture
+                type: Texture
+          - name: isDescendant
+            parameters:
+              - name: ui
+            return:
+              - type: boolean
+          - name: instantiate
+          - name: createChildren
+          - name: drawTextureAllPoint
+            parameters:
+              - name: texture
+                type: Texture
+              - name: tlx
+                type: number
+              - name: tly
+                type: number
+              - name: trx
+                type: number
+              - name: try
+                type: number
+              - name: brx
+                type: number
+              - name: bry
+                type: number
+              - name: blx
+                type: number
+              - name: bly
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: StartOutline
+            parameters:
+              - name: tex
+                type: Texture
+              - name: outlineThickness
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: EndOutline
+          - name: drawTextureScaled
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawTextureScaledUniform
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: scale
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawTextureScaledAspect
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawTextureScaledAspect2
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawTextureScaledAspect3
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawTexture
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawTextureTiled
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+              - name: a
+                type: number
+                nullable: true
+          - name: drawTextureTiledX
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+              - name: a
+                type: number
+                nullable: true
+          - name: drawTextureTiledY
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+              - name: a
+                type: number
+                nullable: true
+          - name: drawTextureTiledYOffset
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+              - name: a
+                type: number
+                nullable: true
+          - name: DrawTextureAngle
+            parameters:
+              - name: tex
+                type: Texture
+              - name: centerX
+                type: number
+              - name: centerY
+                type: number
+              - name: angle
+                type: number
+          - name: drawTextureScaledStatic
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawTextureStatic
+            parameters:
+              - name: texture
+                type: Texture
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+                nullable: true
+              - name: g
+                type: number
+                nullable: true
+              - name: b
+                type: number
+                nullable: true
+          - name: drawItemIcon
+            parameters:
+              - name: item
+                type: InventoryItem
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: a
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+          - name: drawScriptItemIcon
+            parameters:
+              - name: scriptItem
+                type: Item
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: a
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+          - name: drawRect
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+          - name: drawRectStatic
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+          - name: drawRectBorderStatic
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+          - name: drawRectBorder
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+          - name: drawLine2
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: x2
+                type: number
+              - name: y2
+                type: number
+              - name: a
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+          - name: drawPolygon
+            parameters:
+              - name: tex
+                type: Texture
+              - name: x1
+                type: number
+              - name: y1
+                type: number
+              - name: x2
+                type: number
+              - name: y2
+                type: number
+              - name: x3
+                type: number
+              - name: y3
+                type: number
+              - name: x4
+                type: number
+              - name: y4
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: drawTextZoomed
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: zoom
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: drawTextUntrimmed
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: drawTextCentre
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: drawText
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: drawTextRight
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: setAlwaysOnTop
+            parameters:
+              - name: b
+                type: boolean
+          - name: drawTextStatic
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: drawTextCentreStatic
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: drawTextRightStatic
+            parameters:
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: addToUIManager
+          - name: removeFromUIManager
+          - name: backMost
+          - name: addScrollBars
+            parameters:
+              - name: addHorizontal
+                type: boolean
+                nullable: true
+          - name: isVScrollBarVisible
+            return:
+              - type: boolean
+          - name: getParent
+            return:
+              - type: ISUIElement
+                nullable: true
+          - name: getChildren
+            return:
+              - type: table<integer, ISUIElement>
+          - name: addChild
+            parameters:
+              - name: otherElement
+                type: ISUIElement
+          - name: removeChild
+            parameters:
+              - name: otherElement
+                type: ISUIElement
+          - name: clearChildren
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: setOnMouseDoubleClick
+            parameters:
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onmousedblclick
+                type: umbrella.ISUIElement.MouseDoubleClick
+          - name: onRightMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onFocus
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: bringToTop
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: containsPoint
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: containsPointLocal
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: shrinkY
+            parameters:
+              - name: y
+                type: number
+          - name: shrinkX
+            parameters:
+              - name: x
+                type: number
+          - name: update
+          - name: prerender
+          - name: render
+          - name: setScrollWidth
+            parameters:
+              - name: w
+                type: number
+          - name: setScrollHeight
+            parameters:
+              - name: h
+                type: number
+          - name: getScrollWidth
+            return:
+              - type: number
+          - name: getScrollHeight
+            return:
+              - type: number
+          - name: setScrollChildren
+            parameters:
+              - name: b
+                type: boolean
+          - name: getScrollChildren
+            return:
+              - type: boolean
+                nullable: true
+          - name: setScrollWithParent
+            parameters:
+              - name: b
+                type: boolean
+          - name: getScrollWithParent
+            return:
+              - type: boolean
+                nullable: true
+          - name: setYScroll
+            parameters:
+              - name: y
+                type: number
+          - name: updateScrollbars
+          - name: setXScroll
+            parameters:
+              - name: x
+                type: number
+          - name: getScrollAreaWidth
+            return:
+              - type: number
+          - name: getScrollAreaHeight
+            return:
+              - type: number
+          - name: wrapInCollapsableWindow
+            parameters:
+              - name: title
+                type: string
+              - name: resizable
+                type: boolean
+                nullable: true
+              - name: subClass
+                type: ISCollapsableWindow
+                nullable: true
+            return:
+              - type: ISCollapsableWindow
+          - name: isRemoved
+            return:
+              - type: boolean
+          - name: setRemoved
+            parameters:
+              - name: bremove
+                type: boolean
+          - name: setUIName
+            parameters:
+              - name: name
+                type: string
+          - name: getUIName
+            parameters:
+              - name: name
+                type: string
+                nullable: true
+            return:
+              - type: string
+          - name: toString
+            return:
+              - type: string
+          - name: drawProgressBar
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: f
+                type: number
+              - name: fg
+                type: umbrella.RGBA
+          - name: stayOnSplitScreen
+            parameters:
+              - name: playerNum
+                type: integer
+          - name: setWantKeyEvents
+            parameters:
+              - name: want
+                type: boolean
+          - name: setWantExtraMouseEvents
+            parameters:
+              - name: want
+                type: boolean
+          - name: setForceCursorVisible
+            parameters:
+              - name: force
+                type: boolean
+          - name: shrinkWrap
+            parameters:
+              - name: padRight
+                type: number
+              - name: padBottom
+                type: number
+              - name: predicate
+                type: umbrella.ISUIElement.ShrinkWrapPredicate
+                nullable: true
+          - name: centerOnScreen
+            parameters:
+              - name: playerNum
+                type: integer

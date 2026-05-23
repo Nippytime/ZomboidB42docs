@@ -1,0 +1,55 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      BootstrapConnectPopup:
+        extends: ISPanelJoypad
+        staticFields:
+          Type:
+            defaultValue: '"BootstrapConnectPopup"'
+          instance:
+            type: BootstrapConnectPopup
+            nullable: true
+        fields:
+          connectLabel:
+            type: ISLabel
+          backBtn:
+            type: ISButton
+          connecting:
+            type: boolean
+          host:
+            type: string
+          port:
+            type: number
+          serverPassword:
+            type: string
+        methods:
+          - name: create
+          - name: prerender
+          - name: onBackButton
+          - name: connect
+            parameters:
+              - name: host
+                type: string
+              - name: port
+                type: string
+              - name: serverPassword
+                type: string
+          - name: OnSteamServerResponded2
+            parameters:
+              - name: host
+                type: string
+              - name: port
+                type: integer
+              - name: server2
+                type: Server
+          - name: OnSteamServerFailedToRespond2
+            parameters:
+              - name: host
+                type: string
+              - name: port
+                type: integer
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData

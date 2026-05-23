@@ -1,0 +1,44 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDumpContentsAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISDumpContentsAction"'
+        fields:
+          item:
+            type: InventoryItem
+            nullable: true
+          sound:
+            type: integer
+            nullable: true
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: start
+          - name: update
+          - name: stop
+          - name: perform
+          - name: stopSound
+          - name: finalItem
+            parameters:
+              - name: itemType
+                type: string
+            return:
+              - type: unknown
+                nullable: true
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

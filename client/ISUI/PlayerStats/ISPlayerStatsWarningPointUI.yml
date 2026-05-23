@@ -1,0 +1,58 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISPlayerStatsWarningPointUI.OnClick:
+        - type: "fun(target: unknown?, button: ISButton, reason: string, amount: string)"
+    classes:
+      ISPlayerStatsWarningPointUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onclick
+                type: umbrella.ISPlayerStatsWarningPointUI.OnClick
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISPlayerStatsWarningPointUI"'
+        fields:
+          reason:
+            type: ISTextEntryBox
+          amount:
+            type: ISTextEntryBox
+          ok:
+            type: ISButton
+          cancel:
+            type: ISButton
+          variableColor:
+            type: umbrella.RGBA
+          onclick:
+            type: umbrella.ISPlayerStatsWarningPointUI.OnClick
+            nullable: true
+        methods:
+          - name: initialise
+          - name: setVisible
+            parameters:
+              - name: visible
+                type: boolean
+          - name: render
+          - name: create
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number

@@ -1,0 +1,75 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISSpeakerButton.OnClick:
+        - type: "fun(target: unknown?, isMute: boolean)"
+    classes:
+      ISSpeakerButton:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: onclick
+                type: umbrella.ISSpeakerButton.OnClick
+                nullable: true
+              - name: onclickTarget
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISSpeakerButton"'
+        fields:
+          hover:
+            type: boolean
+          enableControls:
+            type: boolean
+          isMute:
+            type: boolean
+          onclick:
+            type: umbrella.ISSpeakerButton.OnClick
+            nullable: true
+          onclickTarget:
+            type: unknown
+            nullable: true
+          speakerTexture:
+            type: Texture
+          muteTexture:
+            type: Texture
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onMouseMove
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: prerender
+          - name: render
+          - name: setEnableControls
+            parameters:
+              - name: _b
+                type: boolean
+          - name: getEnableControls
+            return:
+              - type: boolean

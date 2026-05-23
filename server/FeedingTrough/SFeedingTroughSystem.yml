@@ -1,0 +1,54 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      SFeedingTroughSystem:
+        extends: SGlobalObjectSystem
+        constructors:
+          - {}
+        staticFields:
+          Type:
+            defaultValue: '"SFeedingTroughSystem"'
+          instance:
+            type: SFeedingTroughSystem
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: initSystem
+          - name: newLuaObject
+            parameters:
+              - name: globalObject
+                type: GlobalObject
+            return:
+              - type: SFeedingTroughGlobalObject
+          - name: addTrough
+            parameters:
+              - name: grid
+                type: IsoGridSquare
+              - name: def
+                type: umbrella.FeedingTroughDefinition
+              - name: north
+                type: boolean
+              - name: spriteGridX
+                type: integer
+              - name: spriteGridY
+                type: integer
+            return:
+              - type: SFeedingTroughGlobalObject
+                nullable: true
+          - name: isValidIsoObject
+            parameters:
+              - name: isoObject
+                type: IsoObject
+            return:
+              - type: boolean
+          - name: OnClientCommand
+            parameters:
+              - name: command
+                type: string
+              - name: playerObj
+                type: IsoPlayer
+              - name: args
+                type: table
+                nullable: true

@@ -1,0 +1,86 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ModInfoPanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ModInfoPanel"'
+        fields:
+          modInfoParams:
+            type: string[]
+          thumbnailPreviewImage:
+            type: Texture
+            nullable: true
+          modInfo:
+            type: ChooseGameInfo.Mod
+          titlePanel:
+            type: ModInfoPanel.Title
+          descPanel:
+            type: ModInfoPanel.Desc
+          thumbnailPanel:
+            type: ModInfoPanel.Thumbnail
+          dependenciesPanel:
+            type: ModInfoPanel.InteractionParam
+          incompatiblePanel:
+            type: ModInfoPanel.InteractionParam
+          joypadFocused:
+            type: boolean
+            nullable: true
+        methods:
+          - name: drawCustomRectBorder
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: render
+          - name: recalcSize
+          - name: updateView
+            parameters:
+              - name: modInfo
+                type: ChooseGameInfo.Mod
+          - name: createChildren
+          - name: setJoypadFocused
+            parameters:
+              - name: val
+                type: boolean
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData

@@ -1,0 +1,52 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRepairClothing:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: clothing
+                type: Clothing
+              - name: part
+                type: BloodBodyPartType
+              - name: fabric
+                type: InventoryItem
+              - name: thread
+                type: InventoryItem
+              - name: needle
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISRepairClothing"'
+        fields:
+          clothing:
+            type: Clothing
+          fabric:
+            type: InventoryItem
+          needle:
+            type: InventoryItem
+          thread:
+            type: InventoryItem
+          started:
+            type: boolean
+          sound:
+            type: integer
+          part:
+            type: BloodBodyPartType
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

@@ -1,0 +1,89 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISMoveablesAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: square
+                type: IsoGridSquare
+              - name: mode
+                type: string
+              - name: origSpriteName
+                type: string
+                nullable: true
+              - name: object
+                type: IsoObject
+                nullable: true
+              - name: direction
+                type: '"N" | "E" | "S" | "W"'
+              - name: item
+                type: InventoryItem
+                nullable: true
+              - name: moveCursor
+                type: ISMoveableCursor
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISMoveablesAction"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          playerNum:
+            type: integer
+          square:
+            type: IsoGridSquare
+          origSpriteName:
+            type: string
+            nullable: true
+          spriteFrame:
+            type: number
+          mode:
+            type: string
+          object:
+            type: IsoObject
+            nullable: true
+          direction:
+            type: '"N" | "E" | "S" | "W"'
+          item:
+            type: InventoryItem
+            nullable: true
+          moveProps:
+            type: ISMoveableSpriteProps
+          deviceData:
+            type: DeviceData
+            nullable: true
+          moveCursor:
+            type: ISMoveableCursor
+            nullable: true
+          cursorFacing:
+            type: number
+            nullable: true
+        methods:
+          - name: isReachableObjectType
+            return:
+              - type: boolean
+          - name: isValidObject
+            return:
+              - type: boolean
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: setActionSound
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

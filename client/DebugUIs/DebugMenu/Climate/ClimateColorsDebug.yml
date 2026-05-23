@@ -1,0 +1,99 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ClimateColorsDebug:
+        extends: ISDebugSubPanelBase
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: doStencil
+                type: boolean
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ClimateColorsDebug"'
+        fields:
+          clim:
+            type: ClimateManager
+          colorInfo:
+            type: umbrella.ClimateColorsDebug.ColorInfo[]
+          colors:
+            type: table
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: addColorInfo
+            parameters:
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _w
+                type: number
+              - name: _col
+                type: ClimateColorInfo
+              - name: _name
+                type: string
+              - name: _daySegment
+                type: number
+                nullable: true
+              - name: _temp
+                type: number
+                nullable: true
+              - name: _season
+                type: number
+                nullable: true
+            return:
+              - type: number
+          - name: addColorOption
+            parameters:
+              - name: _info
+                type: umbrella.ClimateColorsDebug.ColorInfo
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _w
+                type: number
+            return:
+              - type: number
+          - name: prerender
+          - name: onApplyColorChange
+            parameters:
+              - name: _colorInfo
+                type: umbrella.ClimateColorsDebug.ColorInfo
+          - name: onButtonWriteConfig
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: onButtonClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: update
+      umbrella.ClimateColorsDebug.ColorInfo:
+        fields:
+          colorInfo:
+            type: ClimateColorInfo
+          name:
+            type: string
+          isSeasonal:
+            type: boolean
+            nullable: true
+          daySegment:
+            type: number
+            nullable: true
+          temperature:
+            type: number
+            nullable: true
+          season:
+            type: number
+            nullable: true

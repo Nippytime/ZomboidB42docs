@@ -1,0 +1,73 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidSlotPanel:
+        extends: ISGroupBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: entity
+                type: GameEntity
+              - name: _styleLabel
+                type: string
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidSlotPanel"'
+        fields:
+          tableLayout:
+            type: ISTableLayout
+            nullable: true
+          player:
+            type: IsoPlayer
+          entity:
+            type: GameEntity
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: addResources
+            parameters:
+              - name: _resources
+                type: ArrayList<ResourceFluid>
+              - name: _styleFluidSlot
+                type: string
+                nullable: true
+              - name: _styleBtnTransfer
+                type: string
+                nullable: true
+              - name: _styleBtnClear
+                type: string
+                nullable: true
+              - name: _styleBar
+                type: string
+                nullable: true
+          - name: addResource
+            parameters:
+              - name: _resourceFluid
+                type: ResourceFluid
+              - name: _styleFluidSlot
+                type: string
+                nullable: true
+              - name: _styleBtnTransfer
+                type: string
+                nullable: true
+              - name: _styleBtnClear
+                type: string
+                nullable: true
+              - name: _styleBar
+                type: string
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update

@@ -1,0 +1,113 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidMixerViewPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidMixerViewPanel"'
+        fields:
+          listLabel:
+            type: ISLabel
+          entryBox:
+            type: ISTextEntryBox
+          list:
+            type: ISScrollingListBox
+          fluidContainer:
+            type: FluidContainer
+          fluidBar:
+            type: ISFluidBar
+          addFluidLabel:
+            type: ISLabel
+          warningLabel:
+            type: ISLabel
+          slider:
+            type: ISSliderPanel
+          amountBox:
+            type: ISTextEntryBox
+          addFluidButton:
+            type: ISButton
+          clearFluidButton:
+            type: ISButton
+          createItemButton:
+            type: ISButton
+          selectedFluidItem:
+            type: table
+          canMix:
+            type: boolean
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          searchText:
+            type: string
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onResize
+            parameters:
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+          - name: incY
+            parameters:
+              - name: _y
+                type: number
+              - name: _obj
+                type: ISUIElement
+              - name: _margin
+                type: number
+                nullable: true
+            return:
+              - type: number
+          - name: onSliderChange
+            parameters:
+              - name: _newval
+                type: number
+              - name: _slider
+                type: ISSliderPanel
+          - name: onButtonClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: addItem
+            parameters:
+              - name: item
+                type: InventoryItem
+          - name: populate
+          - name: drawFluidListItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onFluidListSelected
+            parameters:
+              - name: _item
+                type: table
+          - name: prerender
+          - name: render
+          - name: close
+        staticMethods:
+          - name: onTextChange
+            parameters:
+              - name: box
+                type: ISTextEntryBox

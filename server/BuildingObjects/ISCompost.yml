@@ -1,0 +1,56 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCompost:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: name
+                type: string
+              - name: sprite
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISCompost"'
+        fields:
+          sq:
+            type: IsoGridSquare
+            nullable: true
+          javaObject:
+            type: IsoCompost
+            nullable: true
+          name:
+            type: string
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: getHealth
+            return:
+              - type: number
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare

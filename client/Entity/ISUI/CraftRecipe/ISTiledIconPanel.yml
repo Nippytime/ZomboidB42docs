@@ -1,0 +1,177 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISTiledIconPanel:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: dataList
+                type: ArrayList
+                nullable: true
+              - name: callbackTarget
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISTiledIconPanel"'
+        fields:
+          buttonPrev:
+            type: ISButton
+            nullable: true
+          pagesLabel:
+            type: ISLabel
+            nullable: true
+          buttonNext:
+            type: ISButton
+            nullable: true
+          tiledIconListBox:
+            type: ISTiledIconListBox
+            nullable: true
+          entryBox:
+            type: ISTextEntryBox
+            nullable: true
+          sourceDataList:
+            type: ArrayList
+            nullable: true
+          player:
+            type: IsoPlayer
+          callbackTarget:
+            type: unknown
+            nullable: true
+          dataList:
+            type: ArrayList
+          searchText:
+            type: string
+          searchInfoText:
+            type: string
+          enableSearchBox:
+            type: boolean
+          margin:
+            type: number
+          autoFillContents:
+            type: boolean
+          isAutoFill:
+            type: boolean
+          isAutoFillX:
+            type: boolean
+          isAutoFillY:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: calculateLayout
+            parameters:
+              - name: _preferredWidth
+                type: number
+                nullable: true
+              - name: _preferredHeight
+                type: number
+                nullable: true
+          - name: onResize
+          - name: prerender
+          - name: render
+          - name: update
+          - name: onPageChanged
+          - name: onPageScrolled
+            parameters:
+              - name: _newPage
+                type: integer
+          - name: onRenderTile
+            parameters:
+              - name: _tileData
+                type: unknown
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+              - name: _mouseover
+                type: boolean
+          - name: onTileClicked
+            parameters:
+              - name: _tileData
+                type: unknown
+              - name: _x
+                type: number
+              - name: _y
+                type: number
+              - name: _width
+                type: number
+              - name: _height
+                type: number
+              - name: _mouseover
+                type: boolean
+          - name: onTileMouseHover
+            parameters:
+              - name: _tileData
+                type: unknown
+          - name: onFilterData
+            parameters:
+              - name: _string
+                type: string
+              - name: _dataList
+                type: ArrayList
+              - name: _sourceDataList
+                type: ArrayList
+                nullable: true
+          - name: onButtonClick
+            parameters:
+              - name: _button
+                type: ISButton
+          - name: filterData
+            parameters:
+              - name: _string
+                type: string
+          - name: setDataList
+            parameters:
+              - name: _dataList
+                type: ArrayList
+          - name: setSearchInfoText
+            parameters:
+              - name: _text
+                type: string
+          - name: setSelectedData
+            parameters:
+              - name: _data
+                type: unknown
+          - name: onJoypadButtonReleased
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: onTextChange
+            parameters:
+              - name: box
+                type: ISTextEntryBox

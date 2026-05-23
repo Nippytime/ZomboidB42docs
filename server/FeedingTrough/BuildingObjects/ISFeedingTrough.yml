@@ -1,0 +1,104 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFeedingTrough:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: character
+                type: integer
+              - name: def
+                type: umbrella.ISFeedingTrough.TroughSprite
+        staticFields:
+          Type:
+            defaultValue: '"ISFeedingTrough"'
+        fields:
+          troughSprite:
+            type: umbrella.ISFeedingTrough.TroughSprite
+          character:
+            type: IsoPlayer
+            nullable: true
+          actionAnim:
+            type: string
+          def:
+            type: umbrella.FeedingTroughDefinition
+          doubleSprite:
+            type: boolean
+          sq2:
+            type: IsoGridSquare
+          sprite2:
+            type: string
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: getSquare2Pos
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: north
+                type: boolean
+            return:
+              - type: number
+              - type: number
+              - type: number
+          - name: walkTo
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+            return:
+              - type: boolean
+          - name: onTimedActionStart
+            parameters:
+              - name: action
+                type: ISBaseTimedAction
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+          - name: isSquareFree
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: getSquare2
+            parameters:
+              - name: square
+                type: IsoGridSquare
+              - name: north
+                type: boolean
+            return:
+              - type: IsoGridSquare
+      umbrella.ISFeedingTrough.TroughSprite:
+        fields:
+          backLeft:
+            type: string
+          backRight:
+            type: string

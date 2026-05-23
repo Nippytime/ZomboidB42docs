@@ -1,0 +1,373 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISMiniMapOuter:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: playerNum
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISMiniMapOuter"'
+        fields:
+          inner:
+            type: ISMiniMapInner
+          titleBar:
+            type: ISMiniMapTitleBar
+          bottomPanel:
+            type: ISPanel
+          button1:
+            type: ISButton
+          button2:
+            type: ISButton
+          button3:
+            type: ISButton
+          button4:
+            type: ISButton
+          button6:
+            type: ISButton
+          hideInventoryX:
+            nullable: true
+          optionsUI:
+            type: ISMiniMapOptionsPanel
+          userPosition:
+            type: boolean
+          playerNum:
+            type: integer
+          borderSize:
+            type: number
+          bottomHeight:
+            type: number
+        methods:
+          - name: createChildren
+          - name: prerender
+          - name: render
+          - name: setAdornmentsVisible
+            parameters:
+              - name: visible
+                type: boolean
+          - name: setPosition
+          - name: onButton1
+          - name: onButton2
+          - name: onButton3
+          - name: onButton4
+          - name: onToggleOptionsPanel
+          - name: onButton6
+          - name: saveSettings
+          - name: restoreSettings
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: RestoreLayout
+            parameters:
+              - name: name
+                type: string
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+          - name: SaveLayout
+            parameters:
+              - name: name
+                type: string
+              - name: layout
+                type: umbrella.ISLayoutManager.Layout
+      ISMiniMapInner:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: playerNum
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISMiniMapInner"'
+        fields:
+          mapAPI:
+            type: UIWorldMapV1
+          dragging:
+            type: boolean
+          dragMoved:
+            type: boolean
+          dragStartX:
+            type: number
+          dragStartY:
+            type: number
+          dragStartCX:
+            type: number
+          dragStartCY:
+            type: number
+          dragStartZoomF:
+            type: number
+          dragStartWorldX:
+            type: number
+          dragStartWorldY:
+            type: number
+          rightMouseDown:
+            type: boolean
+          isTerrainImage:
+            type: boolean
+          playerNum:
+            type: integer
+          javaObject:
+            type: UIWorldMap
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: instantiate
+          - name: prerender
+          - name: prerenderHack
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+                nullable: true
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+                nullable: true
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: onRightMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: checkTerrainImage
+          - name: onToggleTerrainImage
+          - name: showTerrainImage
+          - name: onTeleport
+            parameters:
+              - name: worldX
+                type: number
+              - name: worldY
+                type: number
+      ISMiniMapTitleBar:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: miniMap
+                type: ISMiniMapOuter
+        staticFields:
+          Type:
+            defaultValue: '"ISMiniMapTitleBar"'
+        fields:
+          downX:
+            type: number
+          downY:
+            type: number
+          dragging:
+            type: boolean
+          miniMap:
+            type: ISMiniMapOuter
+          titlebarbkg:
+            type: Texture
+        methods:
+          - name: prerender
+          - name: titleBarHeight
+            return:
+              - type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+        staticMethods:
+          - name: TitleBarHeight
+            return:
+              - type: number
+      ISMiniMapOptionsPanel:
+        extends: ISCollapsableWindowJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: map
+                type: ISMiniMapInner
+        staticFields:
+          Type:
+            defaultValue: '"ISMiniMapOptionsPanel"'
+        fields:
+          doubleBoxes:
+            type: table
+          tickBoxes:
+            type: table
+          showAllOptions:
+            type: boolean
+          screenHeight: {}
+          map:
+            type: ISMiniMapInner
+        methods:
+          - name: onTickBox
+            parameters:
+              - name: index
+              - name: selected
+              - name: option
+          - name: onCommandEntered
+            parameters:
+              - name: entry
+              - name: option
+          - name: createChildren
+          - name: getVisibleOptions
+            return:
+              - type: table
+          - name: isMultiplayerOption
+            parameters:
+              - name: optionName
+                type: string
+            return:
+              - type: boolean
+          - name: synchUI
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+      ISMiniMap:
+        staticMethods:
+          - name: IsAllowed
+            return:
+              - type: boolean
+                nullable: true
+          - name: NeedsLight
+            return:
+              - type: boolean
+                nullable: true
+          - name: InitPlayer
+            parameters:
+              - name: playerNum
+                type: integer
+            return:
+              - type: ISMiniMapOuter
+          - name: ToggleMiniMap
+            parameters:
+              - name: playerNum
+                type: integer
+          - name: FocusMiniMap
+            parameters:
+              - name: playerNum
+                type: integer
+          - name: Recreate
+            parameters:
+              - name: playerNum
+                type: integer

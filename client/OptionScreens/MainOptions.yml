@@ -1,0 +1,827 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.MainOptions.KeyTextItem:
+        - type: umbrella.MainOptions.KeyTextElement
+        - type: umbrella.MainOptions.KeyTextSection
+    classes:
+      MainOptions:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"MainOptions"'
+          keys:
+            type: umbrella.KeybindTable[]
+          keyText:
+            type: umbrella.MainOptions.KeyTextItem[]
+          setKeybindDialog:
+            type: ISSetKeybindDialog
+            nullable: true
+          keyBindingLength:
+            defaultValue: "0"
+          translatorPane:
+            type: ISRichTextPanel
+            nullable: true
+          KEYS_VERSION1:
+            defaultValue: "1"
+          KEYS_VERSION:
+            defaultValue: "2"
+          instance:
+            type: MainOptions
+            nullable: true
+        fields:
+          addY:
+            type: number
+          mainPanel:
+            type: ISPanelJoypad
+          tabs:
+            type: ISTabPanel
+          backButton:
+            type: ISButton
+          acceptButton:
+            type: ISButton
+          saveButton:
+            type: ISButton
+          objHighColor:
+            type: ISButton
+          colorPicker2:
+            type: ISColorPicker
+          worldItemHighlightColor:
+            type: ISButton
+          targetColor:
+            type: ColorInfo
+          colorPicker5:
+            type: ISColorPicker
+          noTargetColor:
+            type: ColorInfo
+          colorPicker6:
+            type: ISColorPicker
+          keyButtonWidth:
+            type: number
+          keyTickBoxes:
+            type: ISTickBox[]
+          sprintBtn:
+            type: ISButton
+          goodHighColor:
+            type: ISButton
+          colorPicker3:
+            type: ISColorPicker
+          badHighColor:
+            type: ISButton
+          colorPicker4:
+            type: ISColorPicker
+          stuffBelowControllerTickbox:
+            type: ISPanel
+          btnJoypadSensitivityM:
+            type: ISButton
+          labelJoypadSensitivity:
+            type: ISLabel
+          btnJoypadSensitivityP:
+            type: ISButton
+          controllerTestPanel:
+            type: ISControllerTestPanel
+          mpColor:
+            type: ISButton
+          colorPicker:
+            type: ISColorPicker
+          gameSounds:
+            type: ISGameSounds
+          modal:
+            type: ISUIElement
+            nullable: true
+          cover:
+            type: ISPanel
+          monitorSettings:
+            type: umbrella.MainOptions.MonitorSettings
+          resetLua:
+            type: boolean
+          restartRequired:
+            type: boolean
+          joypadButtons:
+            type: ISButton[]
+          gameOptions:
+            type: GameOptions
+        methods:
+          - name: initialise
+          - name: instantiate
+          - name: setResolutionAndFullScreen
+          - name: ControllerReload
+            parameters:
+              - name: button
+                type: ISButton
+          - name: joypadSensitivityM
+            parameters:
+              - name: button
+                type: ISButton
+          - name: joypadSensitivityP
+            parameters:
+              - name: button
+                type: ISButton
+          - name: addTextPane
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+          - name: addCombo
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: name
+                type: string
+              - name: options
+                type: string[]
+              - name: selected
+                type: integer
+                nullable: true
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onchange
+                type: umbrella.ISComboBox.OnChange
+                nullable: true
+            return:
+              - type: ISComboBox
+          - name: addTitle
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: name
+                type: string
+          - name: addDescription
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: text
+                type: string
+          - name: addTextEntry
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: name
+                type: string
+              - name: _text
+                type: string
+            return:
+              - type: ISTextEntryBox
+          - name: addVolumeControl
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: name
+                type: string
+              - name: volume
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onchange
+                type: umbrella.ISVolumeControl.TargetFunction
+                nullable: true
+            return:
+              - type: ISVolumeControl
+          - name: addTickBox
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+            return:
+              - type: ISTickBox
+          - name: addYesNo
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: name
+                type: string
+            return:
+              - type: ISTickBox
+          - name: addColorButton
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: name
+                type: string
+              - name: color
+                type: umbrella.RGBA
+              - name: onClick
+                type: umbrella.ISButton.OnClick
+                nullable: true
+            return:
+              - type: ISButton
+          - name: addButton
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: name
+                type: string
+            return:
+              - type: ISButton
+          - name: addSlider
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: name
+                type: string
+              - name: min
+                type: number
+              - name: max
+                type: number
+              - name: step
+                type: number
+              - name: value
+                type: number
+            return:
+              - type: ISSliderPanel
+          - name: addMegaVolumeControl
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: name
+                type: string
+              - name: volume
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onchange
+                type: umbrella.ISMegaVolumeControl.TargetFunction
+                nullable: true
+            return:
+              - type: ISMegaVolumeControl
+          - name: addVolumeIndicator
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: name
+                type: string
+              - name: volume
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onchange
+                type: function
+                nullable: true
+            return:
+              - type: ISVolumeIndicator
+          - name: addPage
+            parameters:
+              - name: name
+                type: string
+          - name: subPanelPreRender
+          - name: subPanelRender
+          - name: addHorizontalLine
+            parameters:
+              - name: y
+                type: number
+              - name: text
+                type: string
+          - name: addHorizontalLineSmall
+            parameters:
+              - name: y
+                type: number
+          - name: create
+          - name: addDisplayPanel
+          - name: addUIPanel
+          - name: addSoundPanel
+          - name: addKeybindingPanel
+          - name: addAccessibilityPanel
+          - name: addControllerPanel
+          - name: addMultiplayerPanel
+          - name: addModOptionsPanel
+          - name: onObjHighlightColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onWorldItemHighlightColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onModColorPick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onMPColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onGoodHighlightColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onBadHighlightColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onTargetColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: onNoTargetColor
+            parameters:
+              - name: button
+                type: ISButton
+          - name: pickedObjHighlightColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: pickedWorldItemHighlightColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: pickedModColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: pickedMPTextColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: pickedGoodHighlightColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: pickedBadHighlightColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: pickedTargetColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: pickedNoTargetColor
+            parameters:
+              - name: color
+                type: umbrella.RGB
+              - name: mouseUp
+                type: boolean
+                nullable: true
+          - name: onReloadGameSounds
+          - name: onGameSounds
+          - name: toUI
+          - name: onKeyboardLayoutChanged
+          - name: showConfirmDialog
+            return:
+              - type: boolean
+          - name: onConfirmModalClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: showConfirmMonitorSettingsDialog
+            parameters:
+              - name: closeAfter
+                type: boolean
+            return:
+              - type: boolean
+          - name: onConfirmMonitorSettingsClick
+            parameters:
+              - name: button
+                type: ISButton
+              - name: closeAfter
+                type: boolean
+          - name: showRestartRequiredDialog
+            parameters:
+              - name: closeAfter
+                type: boolean
+          - name: onRestartRequiredClick
+            parameters:
+              - name: button
+                type: ISButton
+              - name: closeAfter
+                type: boolean
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseWheelCurrentTab
+            parameters:
+              - name: self
+                type: ISPanelJoypad
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: prerender
+          - name: render
+          - name: onKeyBindingBtnPress
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onOptionMouseDown
+            parameters:
+              - name: button
+                type: ISButton
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: apply
+            parameters:
+              - name: closeAfter
+                type: boolean
+            return:
+              - type: boolean
+                nullable: true
+          - name: close
+          - name: onKeybindChanged
+            parameters:
+              - name: name
+                type: string
+              - name: key
+                type: integer
+          - name: onResolutionChange
+            parameters:
+              - name: oldw
+                type: number
+              - name: oldh
+                type: number
+              - name: neww
+                type: number
+              - name: newh
+                type: number
+          - name: centerKeybindings
+          - name: centerTabChildrenX
+            parameters:
+              - name: tabTitle
+                type: string
+          - name: centerChildrenX
+            parameters:
+              - name: panel
+                type: ISUIElement
+          - name: tableContains
+            parameters:
+              - name: tbl
+                type: table
+              - name: x
+                type: unknown
+            return:
+              - type: boolean
+          - name: onTabsActivateView
+            parameters:
+              - name: tabs
+                type: ISTabPanel
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onGainJoypadFocusCurrentTab
+            parameters:
+              - name: self
+                type: ISPanelJoypad
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocusCurrentTab
+            parameters:
+              - name: self
+                type: ISPanelJoypad
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivateCurrentTab
+            parameters:
+              - name: self
+                type: ISPanelJoypad
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDownCurrentTab
+            parameters:
+              - name: self
+                type: ISPanelJoypad
+              - name: button
+                type: ISButton
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivate
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onKeyRelease
+            parameters:
+              - name: key
+                type: integer
+        staticMethods:
+          - name: sortModes
+            parameters:
+              - name: a
+                type: string
+              - name: b
+                type: string
+            return:
+              - type: boolean
+          - name: upgradeKeysIni
+            parameters:
+              - name: name
+                type: string
+              - name: key
+                type: integer
+                nullable: true
+              - name: defaultKey
+                type: integer
+              - name: version
+                type: integer
+            return:
+              - type: integer
+                nullable: true
+          - name: loadKeys
+            return:
+              - type: boolean
+                nullable: true
+          - name: getKeyPrefix
+            parameters:
+              - name: bind
+                type: umbrella.MainOptions.KeyTextElement
+                nullable: true
+            return:
+              - type: string
+          - name: saveKeys
+          - name: writeKey
+            parameters:
+              - name: value
+                type: umbrella.MainOptions.KeyTextElement
+              - name: fileOutput
+                type: LuaFileWriter
+          - name: keyPressHandler
+            parameters:
+              - name: key
+                type: integer
+              - name: shift
+                type: boolean
+              - name: ctrl
+                type: boolean
+              - name: alt
+                type: boolean
+          - name: doLanguageToolTip
+            parameters:
+              - name: languages
+                type: string[]
+            return:
+              - type: table<string, string>
+          - name: getGeneralTranslators
+            parameters:
+              - name: _language
+                type: string
+                nullable: true
+            return:
+              - type: string[]
+          - name: getAvailableLanguage
+            return:
+              - type: string[]
+              - type: integer
+          - name: OnGamepadConnect
+            parameters:
+              - name: index
+                type: integer
+          - name: OnGamepadDisconnect
+            parameters:
+              - name: index
+                type: integer
+      MainOptions.GameOption:
+        extends: ISBaseObject
+        local: true
+        constructors:
+          - parameters:
+              - name: name
+                type: string
+              - name: control
+                type: ISUIElement
+                nullable: true
+              - name: arg1
+                nullable: true
+              - name: arg2
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"GameOption"'
+        fields:
+          name:
+            type: string
+          control:
+            type: ISUIElement
+            nullable: true
+          arg1:
+            nullable: true
+          arg2:
+            nullable: true
+          onChange:
+            type: function
+            nullable: true
+          tableContains:
+            type: function
+            nullable: true
+        methods:
+          - name: storeCurrentValue
+          - name: restoreOriginalValue
+          - name: toUI
+          - name: apply
+          - name: resetLua
+          - name: restartRequired
+            parameters:
+              - name: oldValue
+                type: unknown
+              - name: newValue
+                type: unknown
+          - name: onChangeComboBox
+            parameters:
+              - name: box
+                type: ISComboBox
+          - name: onChangeSlider
+            parameters:
+              - name: value
+                type: number
+              - name: control
+                type: ISSliderPanel
+          - name: onChangeTickBox
+            parameters:
+              - name: index
+                type: integer
+              - name: selected
+                type: boolean
+          - name: onChangeVolumeControl
+            parameters:
+              - name: control
+                type: ISVolumeControl
+              - name: volume
+                type: number
+      MainOptions.GameOptions:
+        extends: ISBaseObject
+        local: true
+        constructors:
+          - {}
+        staticFields:
+          Type:
+            defaultValue: '"GameOptions"'
+        fields:
+          changed:
+            type: boolean
+          options:
+            type: table
+        methods:
+          - name: add
+            parameters:
+              - name: option
+                type: MainOptions.GameOption
+          - name: get
+            parameters:
+              - name: optionName
+                type: string
+            return:
+              - type: MainOptions.GameOption
+                nullable: true
+          - name: apply
+          - name: storeCurrentValues
+          - name: restoreOriginalValues
+          - name: toUI
+          - name: onChange
+            parameters:
+              - name: option
+                type: MainOptions.GameOption
+                nullable: true
+      MainOptions.HorizontalLine:
+        extends: ISPanel
+        local: true
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"HorizontalLine"'
+        methods:
+          - name: prerender
+          - name: render
+      umbrella.MainOptions.KeyTextElement:
+        fields:
+          txt:
+            type: ISLabel
+          keyCode:
+            type: integer
+          defaultKeyCode:
+            type: integer
+            nullable: true
+          altCode:
+            type: integer
+          btn:
+            type: ISButton
+          left:
+            type: boolean
+          shift:
+            type: boolean
+            nullable: true
+          ctrl:
+            type: boolean
+            nullable: true
+          isModBind:
+            type: boolean
+            nullable: true
+      umbrella.MainOptions.KeyTextSection:
+        fields:
+          value:
+            type: string
+      umbrella.MainOptions.MonitorSettings:
+        fields:
+          changed:
+            type: boolean
+          fullscreen:
+            type: boolean
+          borderless:
+            type: boolean
+          width:
+            type: boolean
+          height:
+            type: boolean
+          vsync:
+            type: boolean

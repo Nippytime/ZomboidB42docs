@@ -1,0 +1,342 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISComboBox.OnChange:
+        - type: "fun(target: unknown, combo: ISComboBox, ...: unknown)"
+    classes:
+      ISComboBox:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onChange
+                type: umbrella.ISComboBox.OnChange
+                nullable: true
+              - name: onChangeArg1
+                type: unknown
+                nullable: true
+              - name: onChangeArg2
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISComboBox"'
+          SharedPopup:
+            type: ISComboBoxPopup
+            nullable: true
+        fields:
+          popup:
+            type: ISComboBoxPopup
+          filterText:
+            type: string
+            nullable: true
+          expanded:
+            type: boolean
+          selected:
+            type: integer
+          tooltipUI:
+            type: ISToolTip
+          sawMouseDown:
+            type: boolean
+          editor:
+            type: ISComboBoxEditor
+          tooltip:
+            type: table<string, string>
+            nullable: true
+          options:
+            type: (string | umbrella.ISComboBox.Option)[]
+          disabled:
+            type: boolean
+          editable:
+            type: boolean
+          backgroundColorMouseOver:
+            type: umbrella.RGBA
+          font:
+            type: UIFont
+          textColor:
+            type: umbrella.RGBA
+          baseHeight:
+            type: number
+          target:
+            type: unknown
+            nullable: true
+          onChange:
+            type: umbrella.ISComboBox.OnChange
+            nullable: true
+          onChangeArgs:
+            type: unknown[]
+          isCombobox:
+            type: boolean
+          image:
+            type: Texture
+          fade:
+            type: UITransition
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: showPopup
+          - name: hidePopup
+          - name: setJoypadFocused
+            parameters:
+              - name: focused
+                type: boolean
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: pointOnItem
+            parameters:
+              - name: index
+          - name: forceClick
+          - name: prerender
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: selectOptionFromText
+            parameters:
+              - name: text
+                type: string
+          - name: select
+            parameters:
+              - name: option
+                type: string
+          - name: selectData
+            parameters:
+              - name: data
+                type: unknown
+          - name: find
+            parameters:
+              - name: func
+                type: "fun(text: string, data: unknown?, ...: unknown)"
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+            return:
+              - type: integer
+          - name: addOption
+            parameters:
+              - name: option
+                type: string
+          - name: addOptionWithData
+            parameters:
+              - name: option
+                type: string
+              - name: data
+                type: unknown
+                nullable: true
+          - name: getOptionCount
+            return:
+              - type: integer
+          - name: isEmpty
+            return:
+              - type: boolean
+          - name: contains
+            parameters:
+              - name: text
+            return:
+              - type: boolean
+          - name: getOptionText
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: string
+                nullable: true
+          - name: getOptionData
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: unknown
+                nullable: true
+          - name: getOptionTooltip
+            parameters:
+              - name: index
+                type: integer
+            return:
+              - type: string
+                nullable: true
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: setToolTipMap
+            parameters:
+              - name: tooltipmap
+                type: table<string, string>
+          - name: getSelectedText
+            return:
+              - type: string
+                nullable: true
+          - name: getSelected
+            return:
+              - type: integer
+          - name: setSelected
+            parameters:
+              - name: value
+                type: integer
+          - name: setWidthToOptions
+            parameters:
+              - name: minWidth
+                type: number
+                nullable: true
+          - name: clear
+          - name: setEnabled
+            parameters:
+              - name: enabled
+                type: boolean
+          - name: isEnabled
+            return:
+              - type: boolean
+          - name: setEditable
+            parameters:
+              - name: editable
+                type: boolean
+          - name: isEditable
+            return:
+              - type: boolean
+          - name: setFilterText
+            parameters:
+              - name: text
+                type: string
+          - name: getFilterText
+            return:
+              - type: string
+                nullable: true
+          - name: hasFilterText
+            return:
+              - type: boolean
+      ISComboBoxEditor:
+        extends: ISTextEntryBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: comboBox
+                type: ISComboBox
+        staticFields:
+          Type:
+            defaultValue: '"ISComboBoxEditor"'
+        fields:
+          parentCombo:
+            type: ISComboBox
+        methods:
+          - name: onTextChange
+          - name: onOtherKey
+            parameters:
+              - name: key
+                type: integer
+      ISComboBoxPopup:
+        extends: ISScrollingListBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISComboBoxPopup"'
+        fields:
+          parentCombo:
+            type: ISComboBox
+            nullable: true
+          tooWide:
+            type: umbrella.ISScrollingListBox.Item
+            nullable: true
+          tooWideY:
+            type: number
+            nullable: true
+          selected:
+            type: number
+        methods:
+          - name: prerender
+          - name: render
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+                nullable: true
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: setComboBox
+            parameters:
+              - name: comboBox
+                type: ISComboBox
+      umbrella.ISComboBox.Option:
+        fields:
+          text:
+            type: string
+          data:
+            type: unknown

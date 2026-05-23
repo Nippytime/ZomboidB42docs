@@ -1,0 +1,114 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      RWMMedia:
+        extends: RWMPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"RWMMedia"'
+        fields:
+          lcd:
+            type: ISLcdBar
+          itemDropBox:
+            type: ISItemDropBox
+          toggleOnOffButton:
+            type: ISButton
+          mediaIndex:
+            type: number
+          mediaText:
+            type: string
+          fontheight:
+            type: number
+          cdTex:
+            type: Texture
+          tapeTex:
+            type: Texture
+          idleText:
+            type: string
+          lcdBlue:
+            type: umbrella.RWMMedia.ColorContainer
+          lcdGreen:
+            type: umbrella.RWMMedia.ColorContainer
+          textPlay:
+            type: string
+          textStop:
+            type: string
+          textNoCD:
+            type: string
+          textNoTape:
+            type: string
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: togglePlayMedia
+          - name: removeMedia
+          - name: addMedia
+            parameters:
+              - name: _items
+                type: InventoryItem[]
+          - name: addMediaAux
+            parameters:
+              - name: item
+                type: InventoryItem
+          - name: verifyItem
+            parameters:
+              - name: _item
+                type: InventoryItem
+            return:
+              - type: boolean
+                nullable: true
+          - name: clear
+          - name: readFromObject
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+              - name: _deviceData
+                type: DeviceData
+              - name: _deviceType
+                type: string
+            return:
+              - type: boolean
+          - name: getMediaText
+            return:
+              - type: string
+          - name: update
+          - name: prerender
+          - name: render
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: getAPrompt
+            return:
+              - type: string
+          - name: getBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getXPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getYPrompt
+            return:
+              - type: string
+                nullable: true
+      umbrella.RWMMedia.ColorContainer:
+        fields:
+          text:
+            type: umbrella.RGBA
+          back:
+            type: umbrella.RGBA

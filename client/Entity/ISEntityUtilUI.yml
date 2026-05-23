@@ -1,0 +1,24 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISEntityUtilUI:
+        staticMethods:
+          - name: GetVendingInteriorTextures
+            return:
+              - type: Texture[]
+          - name: GetVendingInteriorUnlitTextures
+            return:
+              - type: Texture[]
+          - name: GetVendingAlphabeticalButtonTexture
+            parameters:
+              - name: _index
+                type: number
+            return:
+              - type: Texture
+          - name: GetVendingAlphabeticalLabelTexture
+            parameters:
+              - name: _index
+                type: number
+            return:
+              - type: Texture

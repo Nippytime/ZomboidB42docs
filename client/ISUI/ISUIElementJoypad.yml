@@ -1,0 +1,180 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISUIElementJoypad:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISUIElementJoypad"'
+          defaultJoypadMoveInterval:
+            defaultValue: "20"
+        fields:
+          __Class:
+            type: ISUIElement
+          playerNum:
+            type: integer
+        methods:
+          - name: inheritingClassCall
+            parameters:
+              - name: _functionName
+                type: string
+              - name: ...
+            return:
+              - type: unknown
+                nullable: true
+          - name: setPlayerNum
+            parameters:
+              - name: _num
+                type: integer
+          - name: setBucket
+            parameters:
+              - name: _bool
+                type: boolean
+          - name: setZOrder
+            parameters:
+              - name: _z
+                type: number
+          - name: orderJoypadChildren
+            parameters:
+              - name: _recursive
+                type: boolean
+                nullable: true
+          - name: setDefaultEventTarget
+            parameters:
+              - name: _target
+                type: unknown
+                nullable: true
+          - name: setEventCallback
+            parameters:
+              - name: _name
+                type: string
+              - name: _func
+                type: function
+                nullable: true
+              - name: _target
+                type: unknown
+                nullable: true
+          - name: setEventPromptText
+            parameters:
+              - name: _name
+                type: string
+              - name: _text
+                type: string
+                nullable: true
+          - name: addChild
+            parameters:
+              - name: otherElement
+                type: ISUIElement
+          - name: removeChild
+            parameters:
+              - name: otherElement
+                type: ISUIElement
+          - name: clearChildren
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: hasJoypadFocus
+            return:
+              - type: boolean
+          - name: focusFirstJoypadElement
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: focusNextJoypadElement
+            parameters:
+              - name: joypadData
+                type: JoypadData
+            return:
+              - type: boolean
+                nullable: true
+          - name: focusPreviousJoypadElement
+            parameters:
+              - name: joypadData
+                type: JoypadData
+            return:
+              - type: boolean
+                nullable: true
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: getAPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getXPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getYPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getLBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getRBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: unfocusRecursive
+            parameters:
+              - name: _focus
+                type: ISUIElement
+              - name: _playerNum
+                type: integer
+          - name: setFocusJoypadSelf
+            parameters:
+              - name: _bool
+                type: boolean
+          - name: unfocusJoypadSelf
+          - name: focusJoypadSelf
+          - name: isValidPrompt
+            return:
+              - type: boolean
+                nullable: true
+          - name: onJoypadDirUp
+          - name: onJoypadDirDown
+          - name: onJoypadDirLeft
+          - name: onJoypadDirRight
+        staticMethods:
+          - name: Wrap
+            parameters:
+              - name: _Class
+                type: ISUIElement
+              - name: ...
+            return:
+              - type: ISUIElementJoypad
+                nullable: true
+          - name: Inject
+            parameters:
+              - name: _NewClass
+                type: table
+                nullable: true
+              - name: _Class
+                type: ISUIElement
+              - name: ...
+            return:
+              - type: ISUIElementJoypad
+                nullable: true

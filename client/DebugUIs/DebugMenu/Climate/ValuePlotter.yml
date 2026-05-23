@@ -1,0 +1,107 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ValuePlotter:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: maxPlotPoints
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ValuePlotter"'
+        fields:
+          indexPointer:
+            type: number
+          his:
+            type: number[][]
+          gridColor:
+            type: umbrella.RGBA
+          greyCol:
+            type: umbrella.RGBA
+          doGridLines:
+            type: boolean
+          gridHorzSpacing:
+            type: number
+          gridVertSpacing:
+            type: number
+          maxPlotPoints:
+            type: number
+          vars:
+            type: table[]
+          vertBars:
+            type: table<integer, umbrella.RGBA | false>
+          horzBars:
+            type: table[]
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: update
+          - name: prerender
+          - name: render
+          - name: addPlotPoint
+            parameters:
+              - name: dataset
+                type: number[]
+              - name: vertbarCol
+                type: umbrella.RGBA | false
+          - name: calcMinMax
+            parameters:
+              - name: indexLine
+                type: number
+              - name: minmax
+                type: table
+                nullable: true
+            return:
+              - type: table
+          - name: applyMinMax
+            parameters:
+              - name: _minmax
+                type: table
+              - name: indexLine
+                type: number
+          - name: getDataSet
+            return:
+              - type: number[][]
+          - name: getVars
+            return:
+              - type: table[]
+          - name: getVarCount
+            return:
+              - type: number
+          - name: clearHistory
+          - name: setVariableEnabled
+            parameters:
+              - name: _name
+                type: string
+              - name: _bool
+                type: boolean
+          - name: defineVariable
+            parameters:
+              - name: name
+                type: string
+              - name: color
+                type: umbrella.RGBA
+              - name: minVal
+                type: number
+              - name: maxVal
+                type: number
+          - name: setHorzLine
+            parameters:
+              - name: value
+                type: number
+              - name: col
+                type: umbrella.RGBA
+          - name: unsetHorzLine
+            parameters:
+              - name: idx
+                type: integer

@@ -1,0 +1,247 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISGarmentUI:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: character
+                type: IsoPlayer
+              - name: clothing
+                type: Clothing
+        staticFields:
+          Type:
+            defaultValue: '"ISGarmentUI"'
+          windows:
+            type: table<integer, ISGarmentUI>
+          ghs:
+            defaultValue: '"<GHC>"'
+          bhs:
+            defaultValue: '"<BHC>"'
+        fields:
+          listbox:
+            type: ISScrollingListBox
+          parts:
+            type: BloodBodyPartType[]
+          texturesY:
+            type: number
+          texturesYOffset:
+            type: number
+          texturesHeight:
+            type: number
+          progressY:
+            type: number
+          bodyPartAction:
+            type: table<BloodBodyPartType, table>
+          actionToBodyPart:
+            type: table<ISBaseTimedAction, BloodBodyPartType>
+          textures:
+            type: table<string, umbrella.ISGarmentUI.TextureInfo>
+          progressWidth1:
+            type: number
+          progressWidth2:
+            type: number
+          progressWidth3:
+            type: number
+          progressWidthTotal:
+            type: number
+          progressX1:
+            type: number
+          progressX2:
+            type: number
+          progressX3:
+            type: number
+          biteColumn:
+            type: number
+          scratchColumn:
+            type: number
+          bulletColumn:
+            type: number
+          drawJoypadFocus:
+            type: boolean
+          chr:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          title:
+            type: string
+          clothing:
+            type: Clothing
+          sex:
+            type: string
+          progressWidth:
+            type: number
+          progressHeight:
+            type: number
+          noRepairWidth:
+            type: number
+          bodyPartColumn:
+            type: number
+          addedHeight:
+            type: number
+        methods:
+          - name: update
+          - name: initialise
+          - name: calculateHeight
+            parameters:
+              - name: doListHeight
+                type: boolean
+          - name: onBodyPartListRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: doPatch
+            parameters:
+              - name: fabric
+                type: InventoryItem
+              - name: thread
+                type: InventoryItem
+              - name: needle
+                type: InventoryItem
+              - name: part
+                type: BloodBodyPartType
+              - name: context
+                type: ISContextMenu
+              - name: submenu
+                type: ISContextMenu
+                nullable: true
+            return:
+              - type: ISContextMenu
+                nullable: true
+          - name: getPaddablePartsNumber
+            parameters:
+              - name: clothing
+                type: Clothing
+              - name: parts
+                type: BloodBodyPartType[]
+            return:
+              - type: number
+          - name: doContextMenu
+            parameters:
+              - name: part
+                type: BloodBodyPartType
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: ISContextMenu
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+          - name: render
+          - name: drawBar
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: percent
+                type: number
+              - name: highGood
+                type: boolean
+          - name: setBodyPartAction
+            parameters:
+              - name: bodyPart
+                type: BloodBodyPartType
+              - name: args
+                type: table
+                nullable: true
+          - name: setBodyPartForAction
+            parameters:
+              - name: action
+                type: ISBaseTimedAction
+              - name: bodyPart
+                type: BloodBodyPartType
+          - name: close
+          - name: addTextures
+            parameters:
+              - name: type
+                type: string
+              - name: textureName
+                type: string
+              - name: overlayName
+                type: string
+          - name: create
+          - name: calcProgressWidths
+          - name: calcProgressPositions
+          - name: calcColumnWidths
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: setBodyPartActionForPlayer
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: bodyPart
+                type: BloodBodyPartType
+              - name: action
+                type: ISBaseTimedAction
+                nullable: true
+              - name: jobType
+                type: string
+                nullable: true
+              - name: args
+                type: table
+                nullable: true
+          - name: setOtherActionForPlayer
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: bodyPart
+                type: BloodBodyPartType
+              - name: action
+                type: ISBaseTimedAction
+          - name: setBodyPartForLastAction
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: bodyPart
+                type: BloodBodyPartType
+      umbrella.ISGarmentUI.TextureInfo:
+        fields:
+          texture:
+            type: Texture
+          hole:
+            type: Texture
+            nullable: true
+          blood:
+            type: Texture
+            nullable: true
+          patch:
+            type: Texture
+            nullable: true

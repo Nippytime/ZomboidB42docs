@@ -1,0 +1,34 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ScriptItemInterface:
+        staticFields:
+          types: {}
+        staticMethods:
+          - name: newItemType
+            parameters:
+              - name: name
+                type: string
+              - name: displayname
+                type: string
+              - name: type
+                type: string
+              - name: inventoryIcon
+                type: string
+            return:
+              - type: Item
+                nullable: true
+          - name: cloneItemType
+            parameters:
+              - name: newName
+                type: string
+              - name: originalFullName
+                type: string
+            return:
+              - type: Item
+                nullable: true
+          - name: instanceItemType
+            parameters:
+              - name: item
+                type: string

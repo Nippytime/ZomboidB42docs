@@ -1,0 +1,54 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      LuaDebugger:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"LuaDebugger"'
+          instance:
+            type: LuaDebugger
+            nullable: true
+        fields:
+          title:
+            type: string
+          threadPanel:
+            type: LuaThreadWindow
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: prerender
+          - name: onResolutionChange
+            parameters:
+              - name: oldw
+                type: number
+              - name: oldh
+                type: number
+              - name: neww
+                type: number
+              - name: newh
+                type: number
+    functions:
+      - name: DoLuaDebuggerOnBreak
+        parameters:
+          - name: file
+            type: string
+          - name: line
+            type: integer
+      - name: DoLuaDebugger
+        parameters:
+          - name: f
+            type: string
+          - name: line
+            type: integer

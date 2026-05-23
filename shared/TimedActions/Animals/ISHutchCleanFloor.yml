@@ -1,0 +1,71 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISHutchCleanFloor:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: hutch
+                type: IsoHutch
+              - name: water
+                type: InventoryItem
+              - name: mop
+                type: InventoryItem
+                nullable: true
+              - name: bleach
+                type: InventoryItem
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISHutchCleanFloor"'
+        fields:
+          water:
+            type: InventoryItem
+            nullable: true
+          bleach:
+            type: InventoryItem
+            nullable: true
+          timer:
+            type: number
+          lastTimer:
+            type: number
+          sound:
+            type: integer
+            nullable: true
+          hutch:
+            type: IsoHutch
+          playerInv:
+            type: ItemContainer
+          mop:
+            type: InventoryItem
+            nullable: true
+          timePerDirt:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: clean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: serverStart
+          - name: getDuration
+            return:
+              - type: number

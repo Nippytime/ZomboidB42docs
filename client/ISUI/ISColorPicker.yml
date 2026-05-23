@@ -1,0 +1,153 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISColorPicker.PickedFunction:
+        - type: "fun(target: unknown?, color: umbrella.RGB, mouseUp: boolean?, ...:
+            unknown)"
+    classes:
+      ISColorPicker:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: HSBFactor
+                type: umbrella.HSB
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISColorPicker"'
+        fields:
+          mouseDown:
+            type: boolean
+          index:
+            type: integer
+          pickedFunc:
+            type: umbrella.ISColorPicker.PickedFunction
+            nullable: true
+          pickedArgs:
+            type: unknown[]
+          colors:
+            type: umbrella.RGB[]
+          columns:
+            type: number
+          rows:
+            type: number
+          borderSize:
+            type: number
+          buttonSize:
+            type: number
+          pickedTarget:
+            type: unknown
+            nullable: true
+            tags:
+              - StubGen_Extra
+          otherFct:
+            type: boolean
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: render
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseDownOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+            return:
+              - type: boolean
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: picked2
+            parameters:
+              - name: hide
+                type: boolean
+                nullable: true
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+            return:
+              - type: boolean
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: removeSelf
+          - name: picked
+            parameters:
+              - name: hide
+                type: boolean
+                nullable: true
+          - name: setInitialColor
+            parameters:
+              - name: initial
+                type: ColorInfo
+          - name: setPickedFunc
+            parameters:
+              - name: func
+                type: umbrella.ISColorPicker.PickedFunction
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true
+          - name: setColors
+            parameters:
+              - name: colors
+                type: umbrella.RGB[]
+              - name: columns
+                type: number
+              - name: rows
+                type: number

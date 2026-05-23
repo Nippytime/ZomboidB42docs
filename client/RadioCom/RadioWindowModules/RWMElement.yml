@@ -1,0 +1,137 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      RWMElement:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: subpanel
+                type: RWMPanel
+              - name: title
+                type: string
+              - name: radioParent
+                type: ISRadioWindow
+        staticFields:
+          Type:
+            defaultValue: '"RWMElement"'
+        fields:
+          headerButton:
+            type: ISButton
+          isExpanded:
+            type: boolean
+          drawJoypadFocus:
+            type: boolean
+          playerNum:
+            type: integer
+          radioParent:
+            type: ISRadioWindow
+          fontheight:
+            type: number
+          fontheightMed:
+            type: number
+          buttonTexture:
+            type: Texture
+          subpanel:
+            type: RWMPanel
+          titleText:
+            type: string
+          overrideBPrompt:
+            type: boolean
+          isJoypadWindow:
+            type: boolean
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: onHeaderClick
+          - name: setExpanded
+            parameters:
+              - name: _bool
+                type: boolean
+          - name: calculateHeights
+          - name: clear
+          - name: readFromObject
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _deviceObject
+                type: InventoryItem | IsoObject | VehiclePart
+              - name: _deviceData
+                type: DeviceData
+              - name: _deviceType
+                type: string
+            return:
+              - type: boolean
+                nullable: true
+          - name: prerender
+          - name: render
+          - name: setFocus
+            parameters:
+              - name: _playerNum
+                type: integer
+              - name: _radioParent
+                type: ISRadioWindow
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirUp
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirDown
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: getAPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getXPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getYPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getLBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: getRBPrompt
+            return:
+              - type: string
+                nullable: true
+          - name: isValidPrompt
+            return:
+              - type: boolean | DeviceData
+                nullable: true

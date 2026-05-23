@@ -1,0 +1,44 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSmashWindow:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: window
+                type: IsoWindow | VehicleWindow
+              - name: vehiclePart
+                type: VehiclePart
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISSmashWindow"'
+        fields:
+          vehiclePart:
+            type: VehiclePart
+            nullable: true
+          window:
+            type: IsoWindow | VehicleWindow
+          useProgressBar:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: serverStart
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

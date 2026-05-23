@@ -1,0 +1,37 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISBackButtonWheel:
+        extends: ISRadialMenu
+        constructors:
+          - parameters:
+              - name: playerNum
+                type: integer
+        staticFields:
+          Type:
+            defaultValue: '"ISBackButtonWheel"'
+        fields:
+          showPausedMessage:
+            type: boolean
+        methods:
+          - name: center
+          - name: addCommands
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onCommand
+            parameters:
+              - name: command
+                type: string

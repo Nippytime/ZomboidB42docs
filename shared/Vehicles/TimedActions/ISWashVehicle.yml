@@ -1,0 +1,103 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWashVehicle:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: id
+                type: string
+              - name: area
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISWashVehicle"'
+          BLOOD_PER_WATER:
+            defaultValue: "5"
+        fields:
+          accumulator:
+            type: number
+          waterAccumulator:
+            type: number
+          amountSent:
+            type: number
+            nullable: true
+          sound:
+            type: integer
+            nullable: true
+          vehicle:
+            type: BaseVehicle
+          id:
+            type: string
+          area:
+            type: string
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: updateWashing
+          - name: removeBlood
+            parameters:
+              - name: bloodRemoved
+                type: number
+              - name: waterUsed
+                type: number
+          - name: useWater
+            parameters:
+              - name: units
+                type: number
+          - name: start
+          - name: stop
+          - name: animEvent
+            parameters:
+              - name: event
+                type: string
+              - name: parameter
+                type: string
+          - name: serverStart
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number
+        staticMethods:
+          - name: getWaterAmountForPlayer
+            parameters:
+              - name: character
+                type: IsoPlayer
+            return:
+              - type: number
+          - name: getWaterAmountForArea
+            parameters:
+              - name: vehicle
+                type: BaseVehicle
+              - name: id
+                type: string
+            return:
+              - type: number
+          - name: chooseArea
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+            return:
+              - type: string
+                nullable: true
+          - name: hasBlood
+            parameters:
+              - name: vehicle
+                type: BaseVehicle
+            return:
+              - type: boolean

@@ -1,0 +1,234 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISTextEntryBox:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: title
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISTextEntryBox"'
+        fields:
+          font:
+            type: UIFont
+          placeholderText:
+            type: string
+            nullable: true
+          title:
+            type: string
+          tooltipUI:
+            type: ISToolTip
+          tooltip:
+            nullable: true
+          joypadFocused: {}
+          keeplog:
+            type: boolean
+          logIndex:
+            type: number
+          fade:
+            type: UITransition
+          currentText:
+            type: string
+          javaObject:
+            type: UITextBox2
+            tags:
+              - StubGen_Extra
+          onOtherKey:
+            type: "fun(self: ISTextEntryBox, key: integer)"
+            nullable: true
+            tags:
+              - StubGen_Extra
+        methods:
+          - name: isMultipleLine
+            return:
+              - type: boolean
+          - name: initialise
+          - name: setFont
+            parameters:
+              - name: font
+                type: UIFont
+          - name: onCommandEntered
+          - name: onTextChange
+          - name: onLostFocus
+          - name: ignoreFirstInput
+          - name: setOnlyNumbers
+            parameters:
+              - name: onlyNumbers
+                type: boolean
+          - name: setOnlyText
+            parameters:
+              - name: onlyText
+                type: boolean
+          - name: instantiate
+          - name: getText
+            return:
+              - type: string
+          - name: setEditable
+            parameters:
+              - name: editable
+                type: boolean
+          - name: isEditable
+            return:
+              - type: boolean
+          - name: setSelectable
+            parameters:
+              - name: enable
+          - name: isSelectable
+            return:
+              - type: boolean
+          - name: setMultipleLine
+            parameters:
+              - name: multiple
+                type: boolean
+          - name: setMaxLines
+            parameters:
+              - name: max
+                type: integer
+          - name: getMaxLines
+            return:
+              - type: integer
+          - name: setClearButton
+            parameters:
+              - name: hasButton
+                type: boolean
+          - name: setText
+            parameters:
+              - name: str
+                type: string
+          - name: setTextRGBA
+            parameters:
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: setPlaceholderText
+            parameters:
+              - name: str
+                type: string
+          - name: getPlaceholderText
+            return:
+              - type: string
+                nullable: true
+          - name: setPlaceholderTextRGBA
+            parameters:
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+          - name: onPressDown
+          - name: onPressUp
+          - name: focus
+            return:
+              - type: unknown
+                nullable: true
+          - name: unfocus
+            return:
+              - type: unknown
+                nullable: true
+          - name: isFocused
+            return:
+              - type: boolean
+          - name: getInternalText
+            return:
+              - type: string
+          - name: isMasked
+            return:
+              - type: unknown
+          - name: setMasked
+            parameters:
+              - name: b
+                type: boolean
+            return:
+              - type: unknown
+                nullable: true
+          - name: setMaxTextLength
+            parameters:
+              - name: length
+                type: number
+          - name: setForceUpperCase
+            parameters:
+              - name: forceUpperCase
+                type: boolean
+          - name: getCursorPos
+            return:
+              - type: integer
+          - name: setCursorPos
+            parameters:
+              - name: charIndex
+                type: integer
+          - name: prerender
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: clear
+          - name: getHasFrame
+            return:
+              - type: unknown
+          - name: setHasFrame
+            parameters:
+              - name: hasFrame
+                type: boolean
+          - name: setFrameAlpha
+            parameters:
+              - name: alpha
+                type: number
+          - name: getFrameAlpha
+            return:
+              - type: number
+          - name: setValid
+            parameters:
+              - name: valid
+                type: boolean
+          - name: setTooltip
+            parameters:
+              - name: text
+                type: string
+                nullable: true
+          - name: selectAll
+          - name: setJoypadFocused
+            parameters:
+              - name: focused
+                type: boolean
+              - name: joypadData
+                type: JoypadData
+                nullable: true
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData

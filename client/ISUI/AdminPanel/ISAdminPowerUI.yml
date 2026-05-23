@@ -1,0 +1,66 @@
+version: "1.1"
+languages:
+  lua:
+    aliases:
+      umbrella.ISAdminPowerUI.SetFunction:
+        - type: "fun(self: ISAdminPowerUI, selected: boolean)"
+    classes:
+      ISAdminPowerUI:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISAdminPowerUI"'
+          messages: {}
+          cheatTooltips:
+            type: table<string, string>
+          instance:
+            type: ISAdminPowerUI
+            nullable: true
+        fields:
+          ok:
+            type: ISButton
+          tickBox:
+            type: ISTickBox
+          richText:
+            type: ISRichTextLayout
+          setFunction:
+            type: table<integer, umbrella.ISAdminPowerUI.SetFunction>
+          player:
+            type: IsoPlayer
+        methods:
+          - name: initialise
+          - name: addAdminPowerOptions
+          - name: addOption
+            parameters:
+              - name: text
+                type: string
+              - name: selected
+                type: boolean
+              - name: setFunction
+                type: umbrella.ISAdminPowerUI.SetFunction
+          - name: onTicked
+            parameters:
+              - name: index
+                type: integer
+              - name: selected
+                type: boolean
+          - name: render
+          - name: prerender
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+        staticMethods:
+          - name: onGameStart

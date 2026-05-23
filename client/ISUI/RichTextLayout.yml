@@ -1,0 +1,129 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRichTextLayout:
+        extends: ISBaseObject
+        constructors:
+          - parameters:
+              - name: width
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISRichTextLayout"'
+          drawMargins:
+            defaultValue: "false"
+        fields:
+          font:
+            type: UIFont
+          rgbCurrent:
+            type: umbrella.RGB
+            nullable: true
+          imageCount:
+            type: integer
+          indent:
+            type: number
+            nullable: true
+          textDirty:
+            type: boolean
+          fonts:
+            type: table<integer, UIFont>
+          images:
+            type: Texture[]
+          imageX:
+            type: number[]
+          imageY:
+            type: number[]
+          rgb:
+            type: table<integer, umbrella.RGB>
+          orient:
+            type: table<integer, "left" | "right" | "centre">
+          imageW:
+            type: number[]
+          imageH:
+            type: number[]
+          lineY:
+            type: table<integer, number>
+          lineX:
+            type: table<integer, number>
+          lines:
+            type: string[]
+          currentLine:
+            type: integer
+          height:
+            type: number
+          r:
+            type: integer
+          g:
+            type: integer
+          b:
+            type: integer
+          text:
+            type: string
+          marginLeft:
+            type: number
+          marginTop:
+            type: number
+          marginRight:
+            type: number
+          marginBottom:
+            type: number
+          width:
+            type: number
+          clip:
+            type: boolean
+          maxLines:
+            type: number
+          defaultFont:
+            type: UIFont
+        methods:
+          - name: initialise
+          - name: processCommand
+            parameters:
+              - name: command
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: lineImageHeight
+                type: number
+              - name: lineHeight
+                type: number
+            return:
+              - type: number
+              - type: number
+              - type: number
+          - name: paginate
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: ui
+                type: ISUIElement
+          - name: setText
+            parameters:
+              - name: text
+                type: string
+          - name: setMargins
+            parameters:
+              - name: left
+                type: number
+              - name: top
+                type: number
+              - name: right
+                type: number
+              - name: bottom
+                type: number
+          - name: getWidth
+            return:
+              - type: number
+          - name: setWidth
+            parameters:
+              - name: width
+                type: number
+          - name: getHeight
+            return:
+              - type: number

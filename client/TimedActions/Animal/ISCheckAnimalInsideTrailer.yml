@@ -1,0 +1,29 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCheckAnimalInsideTrailer:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+        staticFields:
+          Type:
+            defaultValue: '"ISCheckAnimalInsideTrailer"'
+        fields:
+          vehicle:
+            type: BaseVehicle
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform

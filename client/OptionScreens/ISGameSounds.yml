@@ -1,0 +1,177 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISGameSounds.MainPanel:
+        extends: ISPanelJoypad
+        local: true
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"GameSoundsMainPanel"'
+        fields:
+          highlightedLabel:
+            type: ISLabel
+            nullable: true
+          joypadButtons:
+            type: ISButton[]
+          stopSound:
+            type: ISSpeakerButton
+        methods:
+          - name: prerender
+          - name: render
+          - name: onResize
+            parameters:
+              - name: width
+                type: number
+              - name: height
+                type: number
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivate
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirLeft
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDirRight
+            parameters:
+              - name: joypadData
+                type: JoypadData
+      ISGameSounds:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISGameSounds"'
+        fields:
+          addY:
+            type: number
+          mainPanel:
+            type: ISPanelJoypad
+          tabs:
+            type: ISTabPanel
+          maxLabelWidth:
+            type: number
+          buttonClose:
+            type: ISButton
+          buttonReload:
+            type: ISButton
+          volumesChanged:
+            type: boolean
+          previewControl:
+            type: ISUIElement
+            nullable: true
+        methods:
+          - name: addCombo
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: name
+                type: string
+              - name: options
+                type: string[]
+              - name: selected
+                type: integer
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onchange
+                type: umbrella.ISComboBox.OnChange
+                nullable: true
+            return:
+              - type: ISComboBox
+          - name: addVolumeControl
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: w
+                type: number
+              - name: h
+                type: number
+              - name: name
+                type: string
+              - name: volume
+                type: number
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onchange
+                type: umbrella.ISGameSoundVolumeControl.TargetFunction
+                nullable: true
+            return:
+              - type: ISGameSoundVolumeControl
+          - name: onMouseWheel
+            parameters:
+              - name: del
+                type: number
+            return:
+              - type: boolean
+          - name: addPage
+            parameters:
+              - name: name
+                type: string
+          - name: createChildren
+          - name: onVolumeChanged
+            parameters:
+              - name: control
+                type: ISGameSoundVolumeControl
+              - name: volume
+                type: number
+          - name: onStopSound
+          - name: onClose
+          - name: onReload
+          - name: onReturnToGame
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadBeforeDeactivate
+            parameters:
+              - name: joypadData
+                type: JoypadData
+        staticMethods:
+          - name: onPlaySound
+            parameters:
+              - name: args
+                type: "[ISGameSounds, ISUIElement]"

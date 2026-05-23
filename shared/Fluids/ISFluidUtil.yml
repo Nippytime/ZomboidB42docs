@@ -1,0 +1,46 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidUtil:
+        staticFields:
+          isoPanelWalkToDist:
+            defaultValue: "2"
+          isoMaxPanelDist:
+            defaultValue: "2"
+        methods:
+          - name: getLuaFluidContainer
+            parameters:
+              - name: container
+            return:
+              - type: ISFluidContainer
+        staticMethods:
+          - name: validateContainer
+            parameters:
+              - name: _container
+                type: ISFluidContainer
+                nullable: true
+            return:
+              - type: boolean
+          - name: doWalkTo
+            parameters:
+              - name: _player
+                type: IsoPlayer
+              - name: _container
+                type: ISFluidContainer
+              - name: _dist
+                type: number
+            return:
+              - type: boolean
+          - name: getContainerOwner
+            parameters:
+              - name: _container
+                type: FluidContainer | ResourceFluid
+            return:
+              - type: GameEntity
+          - name: getTransferActionTimePerLiter
+            return:
+              - type: number
+          - name: getMinTransferActionTime
+            return:
+              - type: number

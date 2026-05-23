@@ -1,0 +1,37 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAnimalBehaviorDebugUI:
+        extends: ISCollapsableWindow
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: animal
+                type: IsoAnimal
+              - name: player
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISAnimalBehaviorDebugUI"'
+        fields:
+          animal:
+            type: IsoAnimal
+          chr:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          refreshNeeded:
+            type: boolean
+        methods:
+          - name: prerender
+          - name: render
+          - name: initialise
+          - name: create

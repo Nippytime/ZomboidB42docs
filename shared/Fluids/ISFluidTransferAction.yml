@@ -1,0 +1,58 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISFluidTransferAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: sourceContainer
+                type: ISFluidContainer
+              - name: sourceFluidObject
+                type: FluidContainer | ResourceFluid
+              - name: targetContainer
+                type: ISFluidContainer
+              - name: targetFluidObject
+                type: FluidContainer | ResourceFluid
+              - name: amount
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISFluidTransferAction"'
+        fields:
+          sound:
+            type: integer
+            nullable: true
+          sourceFluidObject:
+            type: FluidContainer | ResourceFluid
+            nullable: true
+          targetFluidObject:
+            type: FluidContainer | ResourceFluid
+            nullable: true
+          source:
+            type: ISFluidContainer
+          target:
+            type: ISFluidContainer
+          sourceOwner:
+            type: GameEntity
+            nullable: true
+          targetOwner:
+            type: GameEntity
+            nullable: true
+          sourceStartAmount:
+            type: number
+          amount:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: complete
+            return:
+              - type: boolean
+          - name: perform

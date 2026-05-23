@@ -1,0 +1,225 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISClothingInsPanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: player
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISClothingInsPanel"'
+          viewSimpleID:
+            defaultValue: '"viewSimple"'
+          viewAdvancedID:
+            defaultValue: '"viewAdvanced"'
+        fields:
+          coreRectangleX:
+            type: number
+          coreRectangleW:
+            type: number
+          bpPanelX:
+            type: number
+          bpPanelY:
+            type: number
+          bpAnchorX:
+            type: number
+          bpAnchorY:
+            type: number
+          bodyPartPanel:
+            type: ISBodyPartPanel
+          mainGroup:
+            type: ISUIElement[]
+          nodeGroup:
+            type: ISUIElement[]
+          labelCoreTemp:
+            type: ISLabel
+          labelCoreTempMid:
+            type: ISLabel
+          labelCoreTempMin:
+            type: ISLabel
+          labelCoreTempMax:
+            type: ISLabel
+          coreTemperatureBar:
+            type: ISGradientBar
+          labelCoreHeat:
+            type: ISLabel
+          labelCoreHeatMid:
+            type: ISLabel
+          labelCoreHeatMin:
+            type: ISLabel
+          labelCoreHeatMax:
+            type: ISLabel
+          coreHeatBar:
+            type: ISGradientBar
+          currentViewID:
+            type: string
+          viewButtons:
+            type: table<string, ISButton[]>
+          nodeDetails:
+            type: table<string, umbrella.ISClothingInsPanel.NodeDetailsTable[]>
+          mainGroupViews:
+            type: table<string, ISUIElement[]>
+          nodeGroupViews:
+            type: table<string, ISUIElement[]>
+          maxViewsY:
+            type: number
+          coreRectangleH:
+            type: number
+          labelCurrentView:
+            type: ISLabel
+          labelCurrentViewMid:
+            type: ISLabel
+          labelCurrentViewMin:
+            type: ISLabel
+          labelCurrentViewMax:
+            type: ISLabel
+          legendBar:
+            type: ISGradientBar
+          toggleAdvBtn:
+            type: ISButton
+          selectedViewIndex:
+            type: number
+          views:
+            type: umbrella.ISClothingInsPanel.View[]
+          viewsSimple:
+            type: umbrella.ISClothingInsPanel.View[]
+          viewsAdvanced:
+            type: umbrella.ISClothingInsPanel.View[]
+          colorScheme:
+            type: umbrella.ISBodyPartPanel.ColorSchemeTable[]
+          selectedBodyPart:
+            type: boolean
+          player:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          refreshNeeded:
+            type: boolean
+          bFemale:
+            type: boolean
+          titleColor:
+            type: umbrella.RGBA
+          defTextColor:
+            type: umbrella.RGBA
+          btnTextColor:
+            type: umbrella.RGBA
+          sex:
+            type: string
+          bodyOutline:
+            type: Texture
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: addView
+            parameters:
+              - name: _viewID
+                type: string
+              - name: _viewTable
+                type: umbrella.ISClothingInsPanel.View[]
+              - name: _y
+                type: number
+          - name: addMainGroup
+            parameters:
+              - name: _widget
+                type: ISUIElement
+              - name: _ignoreAddChild
+                type: boolean
+                nullable: true
+              - name: _view
+                type: string
+                nullable: true
+          - name: addNodeGroup
+            parameters:
+              - name: _widget
+                type: ISUIElement
+              - name: _view
+                type: string
+                nullable: true
+          - name: create
+          - name: onResetButton
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onClickViewButton
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: onToggleViewStyle
+            parameters:
+              - name: _btn
+                type: ISButton
+          - name: setViewStyle
+            parameters:
+              - name: _viewStyle
+                type: string
+              - name: _force
+                type: boolean
+                nullable: true
+          - name: setViewIndex
+            parameters:
+              - name: _index
+                type: integer
+          - name: setSelection
+            parameters:
+              - name: _node
+                type: umbrella.ISBodyPartPanel.BodyPartTable
+          - name: prerender
+          - name: render
+          - name: update
+          - name: setJoypadButtons
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+              - name: joypadData
+                type: JoypadData
+      umbrella.ISClothingInsPanel.NodeDetailsTable:
+        fields:
+          labelTitle:
+            type: ISLabel
+          labelMid:
+            type: ISLabel
+            nullable: true
+          labelMin:
+            type: ISLabel
+            nullable: true
+          labelMax:
+            type: ISLabel
+            nullable: true
+          bar:
+            type: ISGradientBar
+            nullable: true
+      umbrella.ISClothingInsPanel.View:
+        fields:
+          title:
+            type: string
+          min:
+            type: string
+          mid:
+            type: string
+          max:
+            type: string
+          tex:
+            type: Texture
+          scheme:
+            type: umbrella.ISBodyPartPanel.ColorSchemeTable[]
+          functionName:
+            type: string

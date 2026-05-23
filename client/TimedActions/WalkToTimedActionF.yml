@@ -1,0 +1,66 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISWalkToTimedActionF:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: location
+                type: IsoGridSquare
+              - name: additionalTest
+                type: umbrella.ISWalkToTimedAction.AdditionalTest
+                nullable: true
+              - name: additionalContext
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISWalkToTimedActionF"'
+        fields:
+          result:
+            type: BehaviorResult
+            nullable: true
+          onCompleteFunc:
+            type: function
+            nullable: true
+          onCompleteArgs:
+            type: table
+            nullable: true
+          location:
+            type: IsoGridSquare
+          pathIndex:
+            type: number
+          additionalTest:
+            type: umbrella.ISWalkToTimedAction.AdditionalTest
+            nullable: true
+          additionalContext:
+            type: unknown
+            nullable: true
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: setOnComplete
+            parameters:
+              - name: func
+                type: function
+                nullable: true
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true

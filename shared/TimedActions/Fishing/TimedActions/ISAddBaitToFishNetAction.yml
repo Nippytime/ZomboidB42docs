@@ -1,0 +1,36 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISAddBaitToFishNetAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: fishNet
+                type: IsoObject
+              - name: bait
+                type: InventoryItem
+        staticFields:
+          Type:
+            defaultValue: '"ISAddBaitToFishNetAction"'
+        fields:
+          bait:
+            type: InventoryItem
+          fishNet:
+            type: IsoObject
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

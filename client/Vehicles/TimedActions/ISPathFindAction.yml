@@ -1,0 +1,150 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISPathFindAction:
+        extends: ISBaseTimedAction
+        staticFields:
+          Type:
+            defaultValue: '"ISPathFindAction"'
+        fields:
+          goalFurnitureObject:
+            type: IsoObject
+          onCompleteFunc:
+            type: function
+            nullable: true
+          onCompleteArgs:
+            type: table
+            nullable: true
+          onFailFunc:
+            type: function
+            nullable: true
+          onFailArgs:
+            type: table
+            nullable: true
+          runActionsAfterFailing:
+            type: boolean
+            nullable: true
+          goal:
+            type: "[string, ...]"
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: setOnComplete
+            parameters:
+              - name: func
+                type: function
+                nullable: true
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true
+          - name: setOnFail
+            parameters:
+              - name: func
+                type: function
+                nullable: true
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true
+          - name: setRunActionsAfterFailing
+            parameters:
+              - name: b
+                type: boolean
+          - name: pathToLocationF
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: targetX
+                type: number
+              - name: targetY
+                type: number
+              - name: targetZ
+                type: number
+            return:
+              - type: ISPathFindAction
+          - name: pathToNearest
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: locations
+                type: number[]
+            return:
+              - type: ISPathFindAction
+          - name: pathToSitOnFurniture
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: bed
+                type: IsoObject
+              - name: bAnySpriteGridObject
+                type: boolean
+            return:
+              - type: ISPathFindAction
+          - name: pathToVehicleAdjacent
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+            return:
+              - type: ISPathFindAction
+          - name: pathToVehicleArea
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: areaId
+                type: string
+            return:
+              - type: ISPathFindAction
+          - name: pathToVehicleSeat
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: seat
+                type: integer
+            return:
+              - type: ISPathFindAction
+          - name: pathToGrabCorpse
+            parameters:
+              - name: character
+                type: IsoPlayer
+              - name: corpse
+                type: IsoDeadBody
+            return:
+              - type: ISPathFindAction
+    functions:
+      - name: ISPathFindAction_pathToLocationF
+        parameters:
+          - name: targetX
+            type: number
+          - name: targetY
+            type: number
+          - name: targetZ
+            type: number

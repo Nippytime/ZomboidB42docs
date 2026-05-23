@@ -1,0 +1,40 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISCloseVehicleDoor:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: part
+                type: VehiclePart
+        staticFields:
+          Type:
+            defaultValue: '"ISCloseVehicleDoor"'
+        fields:
+          vehicle:
+            type: BaseVehicle
+          part:
+            nullable: true
+          seat:
+            type: integer
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+                nullable: true
+          - name: collapseLootWindow
+          - name: getDuration
+            return:
+              - type: number

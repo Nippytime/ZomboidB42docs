@@ -1,0 +1,104 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSineWaveDisplay:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISSineWaveDisplay"'
+        fields:
+          waveCntr:
+            type: number
+          wave:
+            type: number[]
+          waveUpdInt:
+            type: number
+          offsetUpdInt:
+            type: number
+          hasChanged:
+            type: boolean
+          offsetCntr:
+            type: number
+          offset:
+            type: number
+          isOn:
+            type: boolean
+          gridColor:
+            type: umbrella.RGBA
+          greyCol:
+            type: umbrella.RGBA
+          doGridLines:
+            type: boolean
+          gridHorzSpacing:
+            type: number
+          gridVertSpacing:
+            type: number
+          waveParams:
+            type: umbrella.ISSineWaveDisplay.WaveParams
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: update
+          - name: prerender
+          - name: toggleOn
+            parameters:
+              - name: _b
+                type: boolean
+          - name: render
+          - name: setWaveParameters
+            parameters:
+              - name: _minLen
+                type: number
+              - name: _maxLen
+                type: number
+              - name: _minHeight
+                type: number
+              - name: _maxHeight
+                type: number
+              - name: _minUpdFreq
+                type: integer
+              - name: _maxUpdFreq
+                type: integer
+              - name: _minScrollSpeed
+                type: integer
+              - name: _maxScrollSpeed
+                type: integer
+          - name: getWaveData
+            parameters:
+              - name: _len
+                type: integer
+              - name: _minH
+                type: number
+              - name: _maxH
+                type: number
+            return:
+              - type: table
+      umbrella.ISSineWaveDisplay.WaveParams:
+        fields:
+          minLen:
+            type: number
+          maxLen:
+            type: number
+          minHeight:
+            type: number
+          maxHeight:
+            type: number
+          minUpd:
+            type: integer
+          maxUpd:
+            type: integer
+          minSpeed:
+            type: integer
+          maxSpeed:
+            type: integer

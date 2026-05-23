@@ -1,0 +1,888 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISHealthPanel:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: player
+                type: IsoPlayer
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISHealthPanel"'
+          cheat:
+            defaultValue: false or getDebug()
+          instance:
+            type: ISHealthPanel
+            nullable: true
+        fields:
+          healthPanel:
+            type: ISNewHealthPanel
+          listbox:
+            type: ISHealthBodyPartListBox
+          bodyPartPanel:
+            type: ISHealthBodyPartPanel
+          fitness:
+            type: ISButton
+          blockingAlpha:
+            type: number
+          otherPlayer:
+            nullable: true
+          actions:
+            type: table
+          blockingMessage:
+            type: string
+            nullable: true
+          damagedParts:
+            type: table
+          textRight:
+            type: number
+          allTextHeight:
+            type: number
+          bodyPartAction:
+            type: table
+          characterX:
+            type: number
+          characterY:
+            type: number
+          otherPlayerX:
+            type: number
+          otherPlayerY:
+            type: number
+          progressBarLoaded:
+            type: boolean
+          character:
+            type: IsoPlayer
+          playerNum:
+            type: integer
+          doctorLevel:
+            type: integer
+          abutton:
+            type: Texture
+          tabtotalwidth:
+            type: number
+        methods:
+          - name: initialise
+          - name: createChildren
+          - name: setVisible
+            parameters:
+              - name: visible
+                type: boolean
+          - name: toPlayerInventory
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: bodyPart
+                type: BodyPart
+          - name: update
+          - name: prerender
+          - name: render
+          - name: getDoctor
+            return:
+              - type: IsoPlayer
+                nullable: true
+          - name: getPatient
+            return:
+              - type: IsoPlayer
+          - name: getDamagedParts
+            return:
+              - type: BodyPart[]
+          - name: updateBodyPartList
+          - name: drawText
+            parameters:
+              - name: self
+                type: ISUIElement
+              - name: str
+                type: string
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: r
+                type: number
+              - name: g
+                type: number
+              - name: b
+                type: number
+              - name: a
+                type: number
+              - name: font
+                type: UIFont
+                nullable: true
+          - name: setBodyPartAction
+            parameters:
+              - name: bodyPart
+                type: BodyPart
+              - name: args
+                type: table
+                nullable: true
+          - name: setOtherPlayer
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+          - name: onGainJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onLoseJoypadFocus
+            parameters:
+              - name: joypadData
+                type: JoypadData
+          - name: onJoypadDown
+            parameters:
+              - name: button
+                type: integer
+          - name: onJoypadDirUp
+          - name: onJoypadDirDown
+          - name: checkItems
+            parameters:
+              - name: handlers
+                type: umbrella.ISHealthPanel.BodyPartHandler[]
+          - name: checkContainerItems
+            parameters:
+              - name: container
+                type: ItemContainer
+              - name: childContainers
+                type: ItemContainer[]
+              - name: handlers
+                type: umbrella.ISHealthPanel.BodyPartHandler[]
+          - name: doBodyPartContextMenu
+            parameters:
+              - name: bodyPart
+                type: BodyPart
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: wasRemotePlayerRecreated
+            return:
+              - type: boolean
+          - name: dropItemsOnBodyPart
+            parameters:
+              - name: bodyPart
+                type: BodyPart
+              - name: items
+                type: InventoryItem[]
+        staticMethods:
+          - name: onCheatCurrentPlayer
+            parameters:
+              - name: bodyPart
+                type: BodyPart
+              - name: action
+                type: string
+              - name: player
+                type: IsoPlayer
+          - name: onCheatOtherPlayer
+            parameters:
+              - name: bodyPart
+                type: BodyPart
+              - name: action
+                type: string
+              - name: player
+                type: IsoPlayer
+              - name: otherPlayer
+                type: IsoPlayer
+          - name: onCheat
+            parameters:
+              - name: bodyPart
+                type: BodyPart
+              - name: action
+                type: string
+              - name: player
+                type: IsoPlayer
+              - name: otherPlayer
+                type: IsoPlayer
+          - name: onCheatItem
+            parameters:
+              - name: itemType
+                type: string
+              - name: playerObj
+                type: IsoPlayer
+          - name: setBodyPartActionForPlayer
+            parameters:
+              - name: playerObj
+                type: IsoPlayer
+              - name: bodyPart
+                type: BodyPart
+              - name: action
+                type: ISBaseTimedAction
+                nullable: true
+              - name: jobType
+                type: string
+                nullable: true
+              - name: args
+                type: table
+                nullable: true
+          - name: DidPatientMove
+            parameters:
+              - name: doctor
+                type: IsoPlayer
+              - name: patient
+                type: IsoPlayer
+              - name: patientX
+                type: number
+              - name: patientY
+                type: number
+            return:
+              - type: boolean
+          - name: IsCharactersInSameCar
+            parameters:
+              - name: doctor
+                type: IsoPlayer
+              - name: patient
+                type: IsoPlayer
+            return:
+              - type: boolean
+          - name: getBandageType
+            parameters:
+              - name: bodyPart
+                type: BodyPart
+            return:
+              - type: string
+                nullable: true
+          - name: onCheatHealthCommand
+            parameters:
+              - name: module
+                type: string
+              - name: command
+                type: string
+              - name: args
+                type: table
+      ISNewHealthPanel:
+        extends: ISUIElement
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: character
+                type: IsoPlayer
+        staticFields:
+          Type:
+            defaultValue: '"ISNewHealthPanel"'
+        fields:
+          character:
+            type: IsoPlayer
+        methods:
+          - name: instantiate
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+      ISHealthBodyPartPanel:
+        extends: ISBodyPartPanel
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: x
+                type: number
+              - name: y
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISHealthBodyPartPanel"'
+        fields:
+          functionTarget:
+            type: ISHealthBodyPartPanel
+        methods:
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: prerender
+          - name: cbSetSelected
+            parameters:
+              - name: bp
+                type: umbrella.ISBodyPartPanel.BodyPartTable
+      ISHealthBodyPartListBox:
+        extends: ISScrollingListBox
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISHealthBodyPartListBox"'
+        fields:
+          drawText:
+            type: "fun(str: string, x: number, y: number, r: number, g: number, b: number,
+              a: number, font?: UIFont)"
+          textRight:
+            type: number
+          selected:
+            type: integer
+        methods:
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onRightMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: doDrawItem
+            parameters:
+              - name: y
+                type: number
+              - name: item
+                type: umbrella.ISScrollingListBox.Item
+              - name: alt
+                type: boolean
+            return:
+              - type: number
+      HealthPanelAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: handler
+                type: umbrella.ISHealthPanel.BodyPartHandler
+              - name: arg1
+                type: unknown
+                nullable: true
+              - name: arg2
+                type: unknown
+                nullable: true
+              - name: arg3
+                type: unknown
+                nullable: true
+              - name: arg4
+                type: unknown
+                nullable: true
+              - name: arg5
+                type: unknown
+                nullable: true
+              - name: arg6
+                type: unknown
+                nullable: true
+              - name: arg7
+                type: unknown
+                nullable: true
+              - name: arg8
+                type: unknown
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"HealthPanelAction"'
+        fields:
+          handler:
+            type: umbrella.ISHealthPanel.BodyPartHandler
+          args:
+            type: table
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: start
+          - name: update
+          - name: stop
+          - name: perform
+      ISHealthPanel.BaseHandler:
+        extends: ISBaseObject
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"BaseHandler"'
+        fields:
+          panel: {}
+          bodyPart: {}
+          items:
+            type: table
+        methods:
+          - name: isInjured
+            return:
+              - type: boolean
+          - name: checkItems
+          - name: checkContainerItems
+            parameters:
+              - name: container
+              - name: childContainers
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: addItem
+            parameters:
+              - name: items
+              - name: item
+          - name: getAllItemTypes
+            parameters:
+              - name: items
+            return:
+              - type: table
+          - name: getItemOfType
+            parameters:
+              - name: items
+              - name: type
+            return:
+              - type: unknown
+                nullable: true
+          - name: getItemOfTag
+            parameters:
+              - name: items
+              - name: type
+            return:
+              - type: unknown
+                nullable: true
+          - name: getAllItemsOfType
+            parameters:
+              - name: items
+              - name: type
+            return:
+              - type: table
+          - name: onMenuOptionSelected
+            parameters:
+              - name: arg1
+              - name: arg2
+              - name: arg3
+              - name: arg4
+              - name: arg5
+              - name: arg6
+              - name: arg7
+              - name: arg8
+          - name: toPlayerInventory
+            parameters:
+              - name: item
+              - name: previousAction
+            return:
+              - type: ISGrabCorpseItem | ISInventoryTransferAction
+          - name: getDoctor
+            return:
+              - type: unknown
+          - name: getPatient
+            return:
+              - type: unknown
+      ISHealthPanel.HApplyBandage:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HApplyBandage"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: itemType
+            return:
+              - type: unknown
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: itemType
+      ISHealthPanel.HRemoveBandage:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HRemoveBandage"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: isValid
+            return:
+              - type: unknown
+          - name: perform
+            parameters:
+              - name: previousAction
+      ISHealthPanel.HApplyPoultice:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+              - name: bodyPart
+              - name: itemType
+                type: string
+              - name: menuLabel
+                type: string
+              - name: actionClass
+                type: table
+        staticFields:
+          Type:
+            defaultValue: '"HApplyPoultice"'
+        fields:
+          itemType:
+            type: string
+          menuLabel:
+            type: string
+          actionClass:
+            type: table
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: itemType
+            return:
+              - type: boolean
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: itemType
+      ISHealthPanel.HApplyComfrey:
+        extends: ISHealthPanel.HApplyPoultice
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HApplyComfrey"'
+      ISHealthPanel.HApplyGarlic:
+        extends: ISHealthPanel.HApplyPoultice
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HApplyGarlic"'
+      ISHealthPanel.HApplyPlantain:
+        extends: ISHealthPanel.HApplyPoultice
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HApplyPlantain"'
+      ISHealthPanel.HDisinfect:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HDisinfect"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: itemType
+            return:
+              - type: unknown
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: itemType
+      ISHealthPanel.HStitch:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HStitch"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+            return:
+              - type: boolean
+                nullable: true
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: needleType
+              - name: threadType
+            return:
+              - type: boolean
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: needleType
+              - name: threadType
+      ISHealthPanel.HRemoveStitch:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HRemoveStitch"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: isValid
+            return:
+              - type: unknown
+          - name: perform
+            parameters:
+              - name: previousAction
+      ISHealthPanel.HRemoveGlass:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HRemoveGlass"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: itemType
+            return:
+              - type: boolean
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: itemType
+      ISHealthPanel.HSplint:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HSplint"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+            return:
+              - type: boolean
+                nullable: true
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: rippedSheetType
+              - name: plankType
+            return:
+              - type: boolean
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: rippedSheetType
+              - name: plankType
+      ISHealthPanel.HRemoveSplint:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HRemoveSplint"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: isValid
+            return:
+              - type: boolean
+          - name: perform
+            parameters:
+              - name: previousAction
+      ISHealthPanel.HRemoveBullet:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HRemoveBullet"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: itemType
+            return:
+              - type: unknown
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: itemType
+      ISHealthPanel.HCleanBurn:
+        extends: ISHealthPanel.BaseHandler
+        local: true
+        constructors:
+          - parameters:
+              - name: panel
+                type: ISHealthPanel
+              - name: bodyPart
+        staticFields:
+          Type:
+            defaultValue: '"HCleanBurn"'
+        methods:
+          - name: checkItem
+            parameters:
+              - name: item
+          - name: addToMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: dropItems
+            parameters:
+              - name: items
+            return:
+              - type: boolean
+          - name: isValid
+            parameters:
+              - name: itemType
+            return:
+              - type: unknown
+          - name: perform
+            parameters:
+              - name: previousAction
+              - name: itemType
+      umbrella.ISHealthPanel.BodyPartHandler:
+        extends: ISBaseObject
+        fields:
+          bodyPart:
+            type: BodyPart
+          panel:
+            type: ISHealthPanel
+          items:
+            type: table

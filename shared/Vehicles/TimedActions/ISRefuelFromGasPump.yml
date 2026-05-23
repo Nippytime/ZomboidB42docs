@@ -1,0 +1,59 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISRefuelFromGasPump:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: part
+                type: VehiclePart
+              - name: fuelStation
+                type: IsoObject
+        staticFields:
+          Type:
+            defaultValue: '"ISRefuelFromGasPump"'
+        fields:
+          amountSent:
+            type: number
+          sound:
+            type: integer
+            nullable: true
+          tankStart:
+            type: number
+            nullable: true
+          pumpStart:
+            type: number
+            nullable: true
+          tankTarget:
+            type: number
+            nullable: true
+          pumpTarget:
+            type: number
+            nullable: true
+          vehicle:
+            type: BaseVehicle
+          part:
+            type: VehiclePart
+          fuelStation:
+            type: IsoObject
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: serverStop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

@@ -1,0 +1,69 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSelectCursor:
+        extends: ISBuildingObject
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: ui
+                type: umbrella.ISSelectCursor.UI
+              - name: onSquareSelected
+                type: function
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISSelectCursor"'
+        fields:
+          ui:
+            type: umbrella.ISSelectCursor.UI
+          onSquareSelected:
+            type: function
+            nullable: true
+          character:
+            type: IsoPlayer
+          player:
+            type: integer
+          noNeedHammer:
+            type: boolean
+          skipBuildAction:
+            type: boolean
+        methods:
+          - name: create
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: north
+                type: boolean
+              - name: sprite
+                type: string
+          - name: isValid
+            parameters:
+              - name: square
+                type: IsoGridSquare
+            return:
+              - type: boolean
+          - name: render
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: z
+                type: number
+              - name: square
+                type: IsoGridSquare
+      umbrella.ISSelectCursor.UI:
+        extends: ISUIElement
+        fields:
+          cursor:
+            type: ISSelectCursor
+            nullable: true
+          onSquareSelected:
+            type: "fun(square: IsoGridSquare)"

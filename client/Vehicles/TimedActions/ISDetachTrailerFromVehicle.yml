@@ -1,0 +1,37 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISDetachTrailerFromVehicle:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: attachment
+                type: string
+        staticFields:
+          Type:
+            defaultValue: '"ISDetachTrailerFromVehicle"'
+        fields:
+          sound: {}
+          vehicle:
+            type: BaseVehicle
+          attachment:
+            type: string
+          hitchPos:
+            type: Vector3f
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: stopSound

@@ -1,0 +1,25 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISGeneratorInfoAction:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: object
+                type: IsoGenerator
+        staticFields:
+          Type:
+            defaultValue: '"ISGeneratorInfoAction"'
+        fields:
+          playerNum:
+            type: integer
+          object:
+            type: IsoGenerator
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: perform

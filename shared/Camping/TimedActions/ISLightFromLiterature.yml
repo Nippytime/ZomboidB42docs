@@ -1,0 +1,50 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISLightFromLiterature:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: item
+                type: InventoryItem
+              - name: lighter
+                type: InventoryItem
+              - name: campfire
+                type: SCampfireGlobalObject
+              - name: fuelAmt
+                type: number
+        staticFields:
+          Type:
+            defaultValue: '"ISLightFromLiterature"'
+        fields:
+          lighter:
+            type: InventoryItem
+          item:
+            type: InventoryItem
+          sound:
+            type: integer
+            nullable: true
+          campfire:
+            type: SCampfireGlobalObject
+          fuelAmt:
+            type: number
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+          - name: getDuration
+            return:
+              - type: number

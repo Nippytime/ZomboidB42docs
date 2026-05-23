@@ -1,0 +1,106 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISSkillProgressBar:
+        extends: ISPanel
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: playerNum
+                type: integer
+              - name: perk
+                type: PerkFactory.Perk
+              - name: parent
+                type: ISCharacterInfo
+        staticFields:
+          Type:
+            defaultValue: '"ISSkillProgressBar"'
+          alpha:
+            defaultValue: "0.0"
+          upAlpha:
+            defaultValue: "true"
+        fields:
+          tooltip:
+            type: ISToolTip
+            nullable: true
+          level:
+            type: integer
+          xpForLvl:
+            type: number
+          message:
+            type: string
+            nullable: true
+          xp:
+            type: number
+          playerNum:
+            type: integer
+          char:
+            type: IsoPlayer
+          perk:
+            type: PerkFactory.Perk
+          parent:
+            type: ISCharacterInfo
+          SkillUnitFilled:
+            type: Texture
+          SkillUnitBorder:
+            type: Texture
+        methods:
+          - name: initialise
+          - name: render
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: updateTooltip
+            parameters:
+              - name: lvlSelected
+                type: integer
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: removeTooltip
+          - name: activate
+          - name: renderPerkRect
+        staticMethods:
+          - name: updateAlpha
+          - name: getXpForLvl
+            parameters:
+              - name: perk
+                type: PerkFactory.Perk
+              - name: level
+                type: integer
+            return:
+              - type: unknown
+          - name: getPreviousXpLvl
+            parameters:
+              - name: perk
+                type: PerkFactory.Perk
+              - name: level
+                type: integer
+            return:
+              - type: number
+          - name: getPerkXp
+            parameters:
+              - name: self
+                type: ISSkillProgressBar
+            return:
+              - type: number

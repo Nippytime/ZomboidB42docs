@@ -1,0 +1,45 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISOpenVehicleDoor:
+        extends: ISBaseTimedAction
+        constructors:
+          - parameters:
+              - name: character
+                type: IsoPlayer
+              - name: vehicle
+                type: BaseVehicle
+              - name: part
+                type: VehiclePart
+        staticFields:
+          Type:
+            defaultValue: '"ISOpenVehicleDoor"'
+        fields:
+          vehicle:
+            type: BaseVehicle
+          part:
+            type: VehiclePart
+          seat:
+            type: integer
+          ignoreHandsWounds:
+            type: boolean
+        methods:
+          - name: isValid
+            return:
+              - type: boolean
+          - name: waitToStart
+            return:
+              - type: boolean
+          - name: update
+          - name: start
+          - name: stop
+          - name: perform
+          - name: complete
+            return:
+              - type: boolean
+                nullable: true
+          - name: selectContainerInLootWindow
+          - name: getDuration
+            return:
+              - type: number

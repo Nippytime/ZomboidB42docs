@@ -1,0 +1,35 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      BaseGameCharacterDetails:
+        staticFields:
+          professionsDone:
+            type: boolean
+            nullable: true
+        staticMethods:
+          - name: CreateCharacterInstance
+            parameters:
+              - name: s
+                type: IsoSurvivor
+          - name: CreateCharacterStats
+            parameters:
+              - name: desc
+                type: SurvivorDesc
+          - name: DoTraits
+          - name: SetTraitDescription
+            parameters:
+              - name: characterTraitDefinition
+                type: CharacterTraitDefinition
+          - name: DoObservations
+          - name: DoProfessions
+          - name: SetProfessionDescription
+            parameters:
+              - name: professionDefinition
+                type: CharacterProfessionDefinition
+          - name: DoSurname
+          - name: DoFemaleForename
+          - name: DoMaleForename
+          - name: DoSpawnPoint
+          - name: DoTrouserColor
+          - name: DoHairColor

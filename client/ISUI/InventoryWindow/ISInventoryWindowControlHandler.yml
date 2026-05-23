@@ -1,0 +1,48 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISInventoryWindowControlHandler:
+        extends: ISBaseObject
+        constructors:
+          - {}
+        staticFields:
+          Type:
+            defaultValue: '"ISInventoryWindowControlHandler"'
+        fields:
+          control:
+            type: ISUIElement
+          altColor:
+            type: boolean
+        methods:
+          - name: shouldBeVisible
+            return:
+              - type: boolean
+          - name: getControl
+            return:
+              - type: ISUIElement
+          - name: getButtonControl
+            parameters:
+              - name: title
+                type: string
+            return:
+              - type: ISButton
+          - name: getImageButtonControl
+            parameters:
+              - name: imagePath
+                type: string
+            return:
+              - type: ISButton
+          - name: handleJoypadContextMenu
+            parameters:
+              - name: context
+                type: ISContextMenu
+          - name: addJoypadContextMenuOption
+            parameters:
+              - name: context
+                type: ISContextMenu
+              - name: text
+                type: string
+            return:
+              - type: umbrella.ISContextMenu.Option
+          - name: perform

@@ -1,0 +1,133 @@
+version: "1.1"
+languages:
+  lua:
+    classes:
+      ISTeleportDebugUI:
+        extends: ISPanelJoypad
+        constructors:
+          - parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+              - name: width
+                type: number
+              - name: height
+                type: number
+              - name: player
+                type: IsoPlayer
+              - name: target
+                type: unknown
+                nullable: true
+              - name: onclick
+                type: "fun(target: unknown?, x: string, y: string, z: string)"
+                nullable: true
+        staticFields:
+          Type:
+            defaultValue: '"ISTeleportDebugUI"'
+        fields:
+          entryX:
+            type: ISTextEntryBox
+          entryY:
+            type: ISTextEntryBox
+          entryZ:
+            type: ISTextEntryBox
+          refresh:
+            type: ISButton
+          copy:
+            type: ISButton
+          paste:
+            type: ISButton
+          yes:
+            type: ISButton
+          no:
+            type: ISButton
+          name:
+            nullable: true
+          target:
+            type: unknown
+            nullable: true
+          onclick:
+            type: "fun(target: unknown?, x: string, y: string, z: string)"
+            nullable: true
+          player:
+            type: IsoPlayer
+          titlebarbkg:
+            type: Texture
+          numLines:
+            type: number
+          maxLines:
+            type: number
+          multipleLine:
+            type: boolean
+        methods:
+          - name: onCommandEntered
+          - name: onOtherKey
+            parameters:
+              - name: key
+                type: integer
+          - name: initialise
+          - name: destroy
+          - name: onDoubleClick
+          - name: onClick
+            parameters:
+              - name: button
+                type: ISButton
+          - name: titleBarHeight
+            return:
+              - type: number
+          - name: prerender
+          - name: updateButtons
+          - name: render
+          - name: refreshCoords
+          - name: getPlayerCoords
+            return:
+              - type: integer
+              - type: integer
+              - type: integer
+          - name: playerHasMoved
+            return:
+              - type: boolean
+          - name: extractClipboardCoords
+            return:
+              - type: integer
+                nullable: true
+              - type: integer
+                nullable: true
+              - type: integer
+                nullable: true
+          - name: isValidClipboardCoords
+            return:
+              - type: boolean
+          - name: copyCoords
+          - name: pasteCoords
+          - name: onMouseMove
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseMoveOutside
+            parameters:
+              - name: dx
+                type: number
+              - name: dy
+                type: number
+          - name: onMouseDown
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUp
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
+          - name: onMouseUpOutside
+            parameters:
+              - name: x
+                type: number
+              - name: y
+                type: number
